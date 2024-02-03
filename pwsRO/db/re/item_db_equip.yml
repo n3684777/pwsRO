@@ -148940,7 +148940,7 @@ Body:
     Refineable: true
     Script: |
       bonus bSpeedRate,120;
-      bonus bAddMaxWeight,250000;
+      bonus bAddMaxWeight,150000;
   - Id: 58102
     AegisName: Sandals_LV2
     Name: 輕便鞋LV2
@@ -148954,7 +148954,7 @@ Body:
     Refineable: true
     Script: |
       bonus bSpeedRate,150;
-      bonus bAddMaxWeight,250000;
+      bonus bAddMaxWeight,150000;
   - Id: 58103
     AegisName: Sandals_LV3
     Name: 輕便鞋LV3
@@ -148968,7 +148968,7 @@ Body:
     Refineable: true
     Script: |
       bonus bSpeedRate,180;
-      bonus bAddMaxWeight,250000;
+      bonus bAddMaxWeight,150000;
   - Id: 58104
     AegisName: Sandals_LV4
     Name: 輕便鞋LV4
@@ -148982,7 +148982,7 @@ Body:
     Refineable: true
     Script: |
       bonus bSpeedRate,210;
-      bonus bAddMaxWeight,250000;
+      bonus bAddMaxWeight,150000;
   - Id: 58105
     AegisName: Sandals_LV5
     Name: 輕便鞋LV5
@@ -148997,7 +148997,7 @@ Body:
     Script: |
       bonus bSpeedRate,250;
       bonus bUnbreakableShoes;
-      bonus bAddMaxWeight,250000;
+      bonus bAddMaxWeight,150000;
   - Id: 58201
     AegisName: HoodLV1
     Name: 連帽披肩LV1
@@ -149464,8 +149464,6 @@ Body:
     Slots: 4
     Jobs:
       Mage: true
-      Wizard: true
-      Sage: true
     Locations:
       Right_Hand: true
     WeaponLevel: 4
@@ -149488,8 +149486,6 @@ Body:
     Slots: 4
     Jobs:
       Mage: true
-      Sage: true
-      Wizard: true
     Locations:
       Right_Hand: true
     WeaponLevel: 4
@@ -149514,8 +149510,6 @@ Body:
     Slots: 4
     Jobs:
       Mage: true
-      Sage: true
-      Wizard: true
     Locations:
       Right_Hand: true
     WeaponLevel: 4
@@ -149574,7 +149568,7 @@ Body:
     Refineable: true
     Script: |
       .@r = getrefine();
-      if (.@r>=10) {
+      if (.@r>=11) {
          bonus2 bSkillCooldown,"AB_ADORAMUS",-500;
       }
       bonus2 bSkillAtk,"AB_ADORAMUS",25;

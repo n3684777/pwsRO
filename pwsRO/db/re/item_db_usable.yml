@@ -50673,3 +50673,80 @@ Body:
     EquipLevelMin: 1
     Script: |
       getgroupitem(IG_Valerian_Scroll);
+  - Id: 950001
+    AegisName: Shadow_10_Refine_Hammer
+    Name: 高級忽克連影子精煉錘克連10
+    Type: Delayconsume
+    Weight: 10
+    Script: |
+      upgradeui 950001;
+  - Id: 950002
+    AegisName: Shadow_11_Refine_Hammer
+    Name: 高級忽克連影子精煉錘克連11
+    Type: Delayconsume
+    Weight: 10
+    Script: |
+      upgradeui 950002;
+  - Id: 950003
+    AegisName: Shadow_12_Refine_Hammer
+    Name: 高級忽克連影子精煉錘克連12
+    Type: Delayconsume
+    Weight: 10
+    Script: |
+      upgradeui 950003;
+  - Id: 950004
+    AegisName: Shadow_13_Refine_Hammer
+    Name: 高級忽克連影子精煉錘克連13
+    Type: Delayconsume
+    Weight: 10
+    Script: |
+      upgradeui 950004;
+  - Id: 950005
+    AegisName: Shadow_14_Refine_Hammer
+    Name: 高級忽克連影子精煉錘克連14
+    Type: Delayconsume
+    Weight: 10
+    Script: |
+      upgradeui 950005;
+  - Id: 950006
+    AegisName: Shadow_15_Refine_Hammer
+    Name: 高級忽克連影子精煉錘克連15
+    Type: Delayconsume
+    Weight: 10
+    Script: |
+      upgradeui 950006;
+  - Id: 950007
+    AegisName: Shadow_16_Refine_Hammer
+    Name: 高級忽克連影子精煉錘克連16
+    Type: Delayconsume
+    Weight: 10
+    Script: |
+      upgradeui 950007;
+  - Id: 950008
+    AegisName: Shadow_17_Refine_Hammer
+    Name: 高級忽克連影子精煉錘克連17
+    Type: Delayconsume
+    Weight: 10
+    Script: |
+      upgradeui 950008;
+  - Id: 950009
+    AegisName: Shadow_18_Refine_Hammer
+    Name: 高級忽克連影子精煉錘克連18
+    Type: Delayconsume
+    Weight: 10
+    Script: |
+      upgradeui 950009;
+  - Id: 950010
+    AegisName: Shadow_19_Refine_Hammer
+    Name: 高級忽克連影子精煉錘克連19
+    Type: Delayconsume
+    Weight: 10
+    Script: |
+      upgradeui 950010;
+  - Id: 950011
+    AegisName: Shadow_20_Refine_Hammer
+    Name: 高級忽克連影子精煉錘克連20
+    Type: Delayconsume
+    Weight: 10
+    Script: |
+      upgradeui 950011;

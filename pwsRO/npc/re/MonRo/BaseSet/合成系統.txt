@@ -1640,6 +1640,38 @@ function	script	F_Lapine_Shadow_12_Refine_Hammer	{
 	set getarg(0), 12;
 	return;
 }
+function	script	F_Lapine_Shadow_13_Refine_Hammer	{
+	set getarg(0), 13;
+	return;
+}
+function	script	F_Lapine_Shadow_14_Refine_Hammer	{
+	set getarg(0), 14;
+	return;
+}
+function	script	F_Lapine_Shadow_15_Refine_Hammer	{
+	set getarg(0), 15;
+	return;
+}
+function	script	F_Lapine_Shadow_16_Refine_Hammer	{
+	set getarg(0), 16;
+	return;
+}
+function	script	F_Lapine_Shadow_17_Refine_Hammer	{
+	set getarg(0), 17;
+	return;
+}
+function	script	F_Lapine_Shadow_18_Refine_Hammer	{
+	set getarg(0), 18;
+	return;
+}
+function	script	F_Lapine_Shadow_19_Refine_Hammer	{
+	set getarg(0), 19;
+	return;
+}
+function	script	F_Lapine_Shadow_20_Refine_Hammer	{
+	set getarg(0), 20;
+	return;
+}
 // http://ro.gnjoy.com/news/probability/View.asp?seq=3964879
 function	script	F_Lapine_Magic_Cat_Hand	{
 	.@r = rand(160);
