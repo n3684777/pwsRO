@@ -1,0 +1,130 @@
+-	shop	Custom_Upg	-1,512:100	//生成商店，請無視這行
+lroom00,118,49,5	script	強化系列製作	485,{
+OnShop:
+	set .Npcname$,strnpcinfo(1);
+	set @i,0;
+	mes "["+.Npcname$+"]";
+	mes "請按照購買物品似的選擇";
+	mes "材料足夠後將直接製作";
+	mes "材料不足將直接提示材料";
+	mes "請^FF0000一次選購一種^000000裝備";
+	mes "請放心選購^FF3399 查看裝備時,不會扣除相應Zeny^000000";
+	close2;
+	callshop "Custom_Upg",1;
+	npcshopattach "Custom_Upg";
+	end;
+
+OnBuyItem:
+	if(.BuildQuest) {
+		for(set .e,0; getarg(.e+1)!=-1; set .e,.e+2);
+		if(.i==1) npcshopitem "Custom_Upg",getarg(.e+2),1;
+		else npcshopadditem "Custom_Upg",getarg(.e+2),1;
+		setarray .Shop[.i],getarg(.e+2);
+		set .i,.i+1;
+		if(.i%20==0){sleep(1);}
+		goto Quest_Setup;
+	}
+	if(.Shop[@i]!=@bought_nameid) for(set @i,1; 1; set @i,@i+1) if(.Shop[@i]==@bought_nameid) { set .i,@i; callsub Quest_Setup; }
+	for(set @i,1; !@e; set @i,@i+1) if(.Shop[@i]==@bought_nameid) { set @e,1; set .i,@i; callsub Quest_Setup; }
+	mes "- 製作 ^FF0000"+getitemname(@bought_nameid)+"^000000";
+	mes "- 請準備好下面材料！";
+	for(set @i,0; getarg(@i+1)!=-1; set @i,@i+2) mes " ^0066CC" + getitemname(getarg(@i)) + "^000000 " + "[^009900" + countitem(getarg(@i)) + "^000000/^FF6600" + getarg(@i+1) + "^000000]"+( countitem(getarg(@i))>=getarg(@i+1)?" ( ^D2691E已完成^000000 )":" ( ^999999未完成^000000 )");
+	if(getarg(@i)) mes " ^FF1493需要製作費用^000000 " + ((Zeny>=getarg(@i))? "^FF0000":"") + "" + callfunc("F_InsertComma",getarg(@i)) + "^000000 "+((Zeny>=getarg(@i))? "( ^D2691E已完成^000000 )":"( ^999999金錢不足^000000 )");
+	mes "- 在交換條件裡寫著, 我將會給你：";
+	for(set @i,@i+2; getarg(@i+1,0); set @i,@i+2) mes "  ^0000FF" + getitemname(getarg(@i)) + "^000000 x ^0000FF" + getarg(@i+1) + "^000000";
+	switch(select("- 1、製作 ^FF0000"+getitemname(@bought_nameid)+"^000000:" + (((((getiteminfo(@bought_nameid,5) & 1) || (getiteminfo(@bought_nameid,5) & 256) || (getiteminfo(@bought_nameid,5) & 512)) && @equip==0))? "- 2、看看他長啥樣":"") + ":- 3、結束對話")) {
+		case 1:
+			for(set @i,0; getarg(@i+1)!=-1; set @i,@i+2) if(countitem(getarg(@i)) < getarg(@i+1)) {
+				next;
+				mes "["+.Npcname$+"]";
+				mes "^9955FF" + getitemname(getarg(@i)) + "^000000 - ^009900" + countitem(getarg(@i)) + "^000000 / ^FF0000" + getarg(@i+1) + "^000000";
+				mes "請補齊 ^FF0000" + (getarg(@i+1)-countitem(getarg(@i))) + "^000000 個 ^9955FF" + getitemname(getarg(@i)) + "^000000 再來找我。";
+				emotion ET_CONFUSE;
+				close;
+			}
+			if(Zeny < getarg(@i)) {
+				next;
+				mes "["+.Npcname$+"]";
+				mes "你身上攜帶的金錢不足.";
+				mes "請補齊 ^FF0000" + (getarg(@i)-Zeny) + "Zeny差額再來找我^000000.";
+				emotion ET_CONFUSE;
+				close;
+			}
+			for(set @i,0; getarg(@i+1)!=-1; set @i,@i+2) delitem getarg(@i),getarg(@i+1);
+			set Zeny,Zeny-getarg(@i);
+			for(set @i,@i+2; getarg(@i+1,0)>0; set @i,@i+2) getitem getarg(@i),getarg(@i+1);
+			specialeffect2 154;
+			emotion ET_BEST;
+			if (getarg(@i,0)==-1) announce strcharinfo(0) + " 從"+.Npcname$+"那製作了 " + getitemname(@bought_nameid) + "!",bc_all;
+			close;
+		case 2:
+			specialeffect2 6;
+			set @bottomview, getlook(3);
+			set @topview, getlook(4);
+			set @midview, getlook(5);
+			addtimer 1000, strnpcinfo(3)+"::On_Leave";
+			set @equip,getiteminfo(@bought_nameid, 5);
+			set @view, getiteminfo(@bought_nameid, 11);
+			if(@equip != -1 && @view > 0) {
+				if(@equip & 1) atcommand "@changelook 3 " + @view;
+				if(@equip & 256) atcommand "@changelook 1 " + @view;
+				if(@equip & 512) atcommand "@changelook 2 " + @view;
+			}
+			next;
+			goto OnBuyItem;
+
+		case 3:
+			emotion ET_WRAP;
+			close;
+	}
+	
+On_Leave:
+	atcommand "@changelook 1 " + @topview;
+	atcommand "@changelook 2 " + @midview;
+	atcommand "@changelook 3 " + @bottomview;
+	set @equip,0;
+	set @view,0;
+	set @topview,0;
+	set @midview,0;
+	set @bottomview,0;
+	end;
+	
+OnInit:
+	// 需改為跟 case 1 的目標物品一樣 (item_id, numbers)
+	set .BuildQuest,1;
+	set .i,1;
+Quest_Setup:
+	switch(.i) {
+	default: set .BuildQuest,0; set .e,0; set .i,0; end;
+	// case 第幾筆 : callsub onBuyItem, 材料物品1, 數量, 材料物品2, 數量, ..., 製作需求金額, -1(Zeny flag), 製作物品1, 數量, 製作物品2, 數量, ..., 廣播標籤(如需廣播請加-1);
+	//  5336 5337 5338 5346 5474
+	case 1: callsub OnBuyItem,999,20,757,20,985,20,2000000,-1,1292,1;	//強化卡塔勒拳刃
+	case 2: callsub OnBuyItem,999,20,757,20,985,20,2000000,-1,1394,1;	//強化雙手斧
+	case 3: callsub OnBuyItem,999,20,757,20,985,20,2000000,-1,1491,1;	//強化騎士長矛
+	case 4: callsub OnBuyItem,999,20,757,20,985,20,2000000,-1,1585,1;	//強化書
+	case 5: callsub OnBuyItem,999,20,757,20,985,20,2000000,-1,2015,1;	//強化智慧魔杖
+	case 6: callsub OnBuyItem,999,20,757,20,985,20,2000000,-1,2996,1;	//強化炮身
+	case 7: callsub OnBuyItem,999,20,757,20,985,20,2000000,-1,13071,1;	//強化大駒短劍
+	case 8: callsub OnBuyItem,999,20,757,20,985,20,2000000,-1,13115,1;	//強化左輪手槍
+	case 9: callsub OnBuyItem,999,20,757,20,985,20,2000000,-1,16019,1;	//強化鐵鎚
+	case 10: callsub OnBuyItem,999,20,757,20,985,20,2000000,-1,18112,1;	//強化弓
+	case 11: callsub OnBuyItem,999,20,757,20,985,20,2000000,-1,21000,1;	//強化雙手巨劍
+	case 12: callsub OnBuyItem,999,20,757,20,985,20,2000000,-1,2149,1;	//強化鐵盾
+	case 13: callsub OnBuyItem,999,20,757,20,985,20,2000000,-1,2150,1;	//強化圓盾
+	case 14: callsub OnBuyItem,999,20,757,20,985,20,2000000,-1,2151,1;	//強化鋼盾
+	case 15: callsub OnBuyItem,999,20,757,20,985,20,2000000,-1,2459,1;	//強化長靴
+	case 16: callsub OnBuyItem,999,20,757,20,985,20,2000000,-1,2460,1;	//強化戰士長靴
+	case 17: callsub OnBuyItem,999,20,757,20,985,20,2000000,-1,2461,1;	//強化重靴
+	case 18: callsub OnBuyItem,999,20,757,20,985,20,2000000,-1,2561,1;	//強化連帽披肩
+	case 19: callsub OnBuyItem,999,20,757,20,985,20,2000000,-1,2562,1;	//強化披肩
+	case 20: callsub OnBuyItem,999,20,757,20,985,20,2000000,-1,2563,1;	//強化斗篷
+	case 21: callsub OnBuyItem,999,20,757,20,985,20,2000000,-1,15015,1;	//強化冒險衣
+	case 22: callsub OnBuyItem,999,20,757,20,985,20,2000000,-1,15016,1;	//強化長大衣
+	case 23: callsub OnBuyItem,999,20,757,20,985,20,2000000,-1,15017,1;	//強化聖職者之衣
+	case 24: callsub OnBuyItem,999,20,757,20,985,20,2000000,-1,15018,1;	//強化緊身便衣
+	case 25: callsub OnBuyItem,999,20,757,20,985,20,2000000,-1,15019,1;	//強化盜賊之衣
+	case 26: callsub OnBuyItem,999,20,757,20,985,20,2000000,-1,15020,1;	//強化鋼鐵鎖子甲
+	case 27: callsub OnBuyItem,999,20,757,20,985,20,2000000,-1,15021,1;	//強化西裝外套
+	case 28: callsub OnBuyItem,999,20,757,20,985,20,2000000,-1,2828,1;	//強化髮夾
+	}
+}

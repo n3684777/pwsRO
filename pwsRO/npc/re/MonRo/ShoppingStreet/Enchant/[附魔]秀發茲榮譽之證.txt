@@ -1,0 +1,323 @@
+function	script	showfaz	{
+	disable_items;
+	if (checkweight(501,1) == 0) {
+		mes "你身上的物品太多了，請試著減少一些再來吧！";
+		close;
+	}
+	if ((MaxWeight - Weight) < 1000) {
+		mes "你身上重量太多了，請減輕一點重量再來吧！";
+		close;
+	}
+	if (isbegin_quest(12376) != 2) {
+		mes "[候軋]";
+		mes "哦？你是客人嗎？我今天已經累到有一點不太想再接客了。";
+		next;
+		select("我好像在某處聽到類似的話...");
+		mes "[候軋]";
+		mes "那只是你的幻想。這個世界上沒有像我這樣的第二人。";
+		next;
+		mes "^0000ff但他看起來仍然很眼熟。^000000";
+		next;
+		if (select( "真是浪費時間...", "請告訴我你的交易是什麼" ) == 1) {
+			mes "[候軋]";
+			mes "嘿！滾開吧！";
+			close;
+		}
+		mes "[候軋]";
+		mes "你知道秀發茲秀發茲榮譽之證嗎？他是國家頒發的東西，國家禁止人民私底下互相交易，但我接受客人使用秀發茲秀發茲榮譽之證來請我將他們的裝備升級。";
+		next;
+		mes "[候軋]";
+		mes "在我背叛同業之後...我得到了升級的秘密方法。 從那以後，我一直在這樣的陰影中工作......哦，算了吧。 這不是一個令人愉快的故事。";
+		next;
+		select("(他真的看起來很熟悉......)");
+		mes "[候軋]";
+		mes "無論如何，如果你有一堆代幣，不要把它們扔掉，請找我。我們可以來做一個很好的交易。";
+		next;
+		select("什麼樣的交易？");
+		mes "[候軋]";
+		mes "我可以替「議程之袍」、「喬事之袍」以及「傭兵之戒A/B式」提供了特別的升級，但你需要拿秀發茲秀發茲榮譽之證給我當作回報。";
+		next;
+		mes "[候軋]";
+		mes "好了，我想我們不用說太多，如果你有秀發茲秀發茲榮譽之證在過來找我吧！我們再來詳細談談。";
+		setquest 12376;// First transaction
+		completequest 12376;// First transaction
+		close;
+	}
+	mes "[候軋]";
+	mes "你想強化裝備嗎？告訴我你需要什麼吧！";
+	next;
+	switch( select( "請跟我詳細說明交易內容", "強化我的外袍", "強化我的戒指", "我想重置我的外袍", "我想重置我的戒指" ) ) {
+	case 1:
+		mes "[候軋]";
+		mes "仔細聽。 我不會說第兩次。";
+		next;
+		mes "[候軋]";
+		mes "你可以拿20個秀發茲榮譽之證來請求我替你將「議程之袍」、「喬事之袍」其中一種強化，我最多可以強化兩次。如果想要重置擇必須要給我10個秀發茲榮譽之證，有跟上嗎？";
+		next;
+		mes "[候軋]";
+		mes "如果是要強化「傭兵之戒A/B式」的話則要給我5個秀發茲榮譽之證，一樣我最多可以強化兩次。如果想要重置則必須要給我10個秀發茲榮譽之證";
+		next;
+		mes "[候軋]";
+		mes "但是如果你要重置的話，你的物品必須要先有經過兩次的強化，我才能夠幫你重置。";
+		next;
+		mes "[候軋]";
+		mes "歐，我差點忘記說，重置普隆德拉徽章時候，有20%的機率會導致失敗，如果失敗了物品將會消失，所以還請多注意！";
+		next;
+		mes "[候軋]";
+		mes "我期待與你建立良好的業務關係。";
+		close;
+	case 2:
+		mes "[候軋]";
+		mes "要強化「議程之袍」、「喬事之袍」其中一種，一次需要花費20個秀發茲榮譽之證，你確定要升級嗎？";
+		next;
+		if (select( "不要", "開始吧！" ) == 1) {
+			mes "[候軋]";
+			mes "因為我很忙，所以不要毫無意義地跟我說話。";
+			close;
+		}
+		.@equip_id = getequipid(EQI_ARMOR);
+		setarray .@card[0],
+			getequipcardid(EQI_ARMOR,0),
+			getequipcardid(EQI_ARMOR,1),
+			getequipcardid(EQI_ARMOR,2),
+			getequipcardid(EQI_ARMOR,3);
+		.@refine = getequiprefinerycnt(EQI_ARMOR);
+
+		switch( .@equip_id ) {
+		case -1:
+			mes "[候軋]";
+			mes "你身上沒有裝備阿！";
+			close;
+		case 15163:
+		case 15164:
+			break;
+		default:
+			mes "[候軋]";
+			mes "如果您想升級您的裝備，必須先將其正確的穿上。";
+			close;
+		}
+		if (.@card[2] > 0 && .@card[3] > 0) {
+			mes "[候軋]";
+			mes "它不能再被強化了。 你還有什麼要提升的嗎？";
+			close;
+		}
+		if (countitem(25155) < 20) {
+			mes "[候軋]";
+			mes "你身上的" + getitemname(25155) + "不夠20個，請確認好在跟我交易吧！";
+			close;
+		}
+
+		// unknown rates
+		setarray .@enhance[0],
+			4994,	// Rune of Strength Lv 1
+			4997,	// Rune of Agility Lv 1
+			29009,	// Rune of Vitality Lv 1
+			29000,	// Rune of Intellect Lv 1
+			29003,	// Rune of Dexterity Lv 1
+			29006,	// Rune of Luck Lv 1
+			4995,	// Rune of Strength Lv 2
+			4998,	// Rune of Agility Lv 2
+			29010,	// Rune of Vitality Lv 2
+			29001,	// Rune of Intellect Lv 2
+			29004,	// Rune of Dexterity Lv 2
+			29007,	// Rune of Luck Lv 2
+			4996,	// Rune of Strength Lv 3
+			4999,	// Rune of Agility Lv 3
+			29011,	// Rune of Vitality Lv 3
+			29002,	// Rune of Intellect Lv 3
+			29005,	// Rune of Dexterity Lv 3
+			29008;	// Rune of Luck Lv 3
+		.@size = getarraysize(.@enhance);
+
+		if (.@card[3] == 0)
+			.@card[3] = .@enhance[ rand(.@size) ];
+		else if (.@card[2] == 0)
+			.@card[2] = .@enhance[ rand(.@size) ];
+
+		delitem 25155,20;
+		delequip EQI_ARMOR;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],.@card[3];
+		specialeffect2 EF_REPAIRWEAPON;
+		mes "[候軋]";
+		mes "升級完成了！你檢查看看吧！";
+		close;
+	case 3:
+		mes "[候軋]";
+		mes "要強化「傭兵之戒A/B式」其中一種，一次需要花費5個秀發茲榮譽之證，你確定要升級嗎？";
+		next;
+		if (select( "不要", "開始吧！" ) == 1) {
+			mes "[候軋]";
+			mes "因為我很忙，所以不要毫無意義地跟我說話。";
+			close;
+		}
+		.@equip_id = getequipid(EQI_ACC_L);
+		setarray .@card[0],
+			getequipcardid(EQI_ACC_L,0),
+			getequipcardid(EQI_ACC_L,1),
+			getequipcardid(EQI_ACC_L,2),
+			getequipcardid(EQI_ACC_L,3);
+
+		switch( .@equip_id ) {
+		case -1:
+			mes "[候軋]";
+			mes "哦，我忘了說。我只增強左手側插槽中配備的項目。請你裝備在左手側！";
+			close;
+		case 28425:
+		case 28426:
+			break;
+		default:
+			mes "[候軋]";
+			mes "如果您想升級您的戒指，您必須先正確的佩戴它。";
+			close;
+		}
+		if (.@card[2] > 0 && .@card[3] > 0) {
+			mes "[候軋]";
+			mes "它不能再被強化了。 你還有什麼要提升的嗎？";
+			close;
+		}
+		if (countitem(25155) < 5) {
+			mes "[候軋]";
+			mes "你身上的 " + getitemname(25155) + "不足5個，請檢查後再來！";
+			close;
+		}
+
+		// unknown rates
+		setarray .@enhance[0],
+			4710,	// INT+1
+			4730,	// AGI+1
+			4740,	// VIT+1
+			4720,	// DEX+1
+			4750,	// LUK+1
+			4700,	// STR+1
+			4711,	// INT+2
+			4721,	// DEX+2
+			4701,	// STR+2
+			4731,	// AGI+2
+			4751,	// LUK+2
+			4741;	// VIT+2
+		.@size = getarraysize(.@enhance);
+
+		if (.@card[3] == 0)
+			.@card[3] = .@enhance[ rand(.@size) ];
+		else if (.@card[2] == 0)
+			.@card[2] = .@enhance[ rand(.@size) ];
+
+		delitem 25155,5;
+		delequip EQI_ACC_L;
+		getitem2 .@equip_id,1,1,0,0,.@card[0],.@card[1],.@card[2],.@card[3];
+		specialeffect2 EF_REPAIRWEAPON;
+		mes "[候軋]";
+		mes "升級完成了！你檢查看看吧！";
+		close;
+	case 4:
+		mes "[候軋]";
+		mes "要重置「議程之袍」、「喬事之袍」的話，我需要10個榮譽之證，這重置不會失敗，上方的卡片跟精煉等級都不會受引響。";
+		next;
+		if (select( "不要", "開始吧！" ) == 1) {
+			mes "[候軋]";
+			mes "因為我很忙，所以不要毫無意義地跟我說話。";
+			close;
+		}
+		.@equip_id = getequipid(EQI_ARMOR);
+		setarray .@card[0],
+			getequipcardid(EQI_ARMOR,0),
+			getequipcardid(EQI_ARMOR,1),
+			getequipcardid(EQI_ARMOR,2),
+			getequipcardid(EQI_ARMOR,3);
+		.@refine = getequiprefinerycnt(EQI_ARMOR);
+
+		switch( .@equip_id ) {
+		case -1:
+			mes "[候軋]";
+			mes "你身上沒有這裝備。";
+			close;
+		case 15163:
+		case 15164:
+			break;
+		default:
+			mes "[候軋]";
+			mes "哦，這個物品還沒有強化過兩次。 我還不能重置它。";
+			close;
+		}
+		if (.@card[2] == 0 || .@card[3] == 0) {
+			mes "[候軋]";
+			mes "哦，這個物品還沒有強化過兩次。 我還不能重置它。";
+			close;
+		}
+		if (countitem(25155) < 10) {
+			mes "[候軋]";
+			mes "你身上的" + getitemname(25155) + "不足10個，請確認後再來。";
+			close;
+		}
+		delitem 25155,10;
+		delequip EQI_ARMOR;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],0,0,0;
+		specialeffect2 EF_REPAIRWEAPON;
+		mes "[候軋]";
+		mes "重置完成了！你檢查看看吧！";
+		close;
+	case 5:
+		mes "[候軋]";
+		mes "你需要10個榮譽之證來重置你身體左手側插槽中的「傭兵之戒A/B式」其中一種。";
+		next;
+		mes "[候軋]";
+		mes "正如我告訴你的那樣，「傭兵之戒A/B式」很難重置， ^ff0000成功的機率有80％。^000000 如果它失敗了，一切都會消失。 你要重置嗎？";
+		next;
+		if (select( "不要", "開始吧！" ) == 1) {
+			mes "[候軋]";
+			mes "因為我很忙，所以不要毫無意義地跟我說話。";
+			close;
+		}
+		mes "[候軋]";
+		mes "我再次重申^ff0000成功的機率有80％。^000000 如果它失敗了，一切都會消失。 你確定要重置嗎？";
+		next;
+		if (select( "不要好了", "繼續吧！" ) == 1) {
+			mes "[候軋]";
+			mes "好的！";
+			close;
+		}
+		.@equip_id = getequipid(EQI_ACC_L);
+		setarray .@card[0],
+			getequipcardid(EQI_ACC_L,0),
+			getequipcardid(EQI_ACC_L,1),
+			getequipcardid(EQI_ACC_L,2),
+			getequipcardid(EQI_ACC_L,3);
+
+		switch( .@equip_id ) {
+		case -1:
+			mes "[候軋]";
+			mes "哦，我忘了說。我只工作左手側插槽中配備的項目。請你裝備在左手側！";
+			close;
+		case 28425:
+		case 28426:
+			break;
+		default:
+			mes "[候軋]";
+			mes "它不能再被強化了。 你還有什麼要提升的嗎？";
+			close;
+		}
+		if (.@card[2] == 0 || .@card[3] == 0) {
+			mes "[候軋]";
+			mes "它不能再被強化了。 你還有什麼要提升的嗎？";
+			close;
+		}
+		if (countitem(25155) < 10) {
+			mes "[候軋]";
+			mes "你身上的" + getitemname(25155) + "不足10個，請確認後再來。";
+			close;
+		}
+		delitem 25155,10;
+		delequip EQI_ACC_L;
+		if (rand(100) < 20) {
+			specialeffect2 EF_LORD;
+			mes "[候軋]";
+			mes "你今天真不走運。你的裝備嚴重受損了。";
+			close;
+		}
+		getitem2 .@equip_id,1,1,0,0,.@card[0],0,0,0;
+		specialeffect2 EF_REPAIRWEAPON;
+		mes "[候軋]";
+		mes "很幸運的完成了重置！";
+		close;
+	}
+}

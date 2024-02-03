@@ -1,0 +1,1065 @@
+//===== eAthena Script =======================================
+//= 3rd Jobs Merchants
+//===== By: ==================================================
+//= 5511
+//===== Current Version: =====================================
+//= 1.5
+//===== Compatible With: =====================================
+//= SeAthena 1.3.200+
+//===== Description: =========================================
+//= [Most cRO Conversion]
+//
+//= 符文騎士
+//= - 符文石銷售員
+//=
+//= 十字切割者
+//= - 毒草銷售員
+//= - 迷幻藥採集者
+//=
+//= 大法師
+//= - 魔法書管理員
+//=
+//===== Additional Comments: =================================
+//= 1.0 First version. [5511]
+//= 1.0a 修正幾個銷售員的金錢檢查語句. [5511]
+//= 1.1 加入"元素碎片商人". [5511]
+//= 1.1a 修正獸騎消除兵對職業的判斷情況. [5511]
+//= 1.2 修正部分NPC外觀/坐標. [5511]
+//= 1.3 加入"迷幻藥採集者". [5511]
+//= 1.4 加入魔法書管理員. [5511]
+//= 1.4a 修正官方翻譯的文字錯誤. [5511]
+//= 1.5 移出部分商人至其它文件,修正普通符文石的販賣錯誤. [5511]
+//============================================================
+
+-	script	Poison Herb Merchant	877,{
+	if (checkweight(1201,1) == 0) {
+		mes "等一下!";
+		mes "當前你帶了太多東西了!";
+		close;
+	}
+	set .@now_weight,MaxWeight - Weight;
+	if(.@now_weight < 20000) {
+		mes "等一下!";
+		mes "當前你帶了太多東西了!";
+		close;
+	}
+	mes "[毒草銷售員]";
+	mes "我是專門出售毒草的毒草商人.";
+	mes "你想買點什麼呢?";
+	mes "毒草的價格全部都是4000z.";
+	next;
+	switch(select("夾竹桃:馬纓丹:斑葉竹:蛇足草:賽莨菪:透骨草:製毒工具箱")) {
+	case 1:
+		callsub S_SellPoisonHerb,7932,4000; // 夾竹桃
+		break;
+	case 2:
+		callsub S_SellPoisonHerb,7933,4000; // 馬纓丹
+		break;
+	case 3:
+		callsub S_SellPoisonHerb,7934,4000; // 斑葉竹
+		break;
+	case 4:
+		callsub S_SellPoisonHerb,7935,4000; // 蛇足草
+		break;
+	case 5:
+		callsub S_SellPoisonHerb,7936,4000; // 賽莨菪
+		break;
+	case 6:
+		callsub S_SellPoisonHerb,7937,4000; // 透骨草
+		break;
+	case 7:
+		mes "[毒草銷售員]";
+		mes "製毒工具箱只能買1個,";
+		mes "價格是5000z, 要買嗎?";
+		next;
+		if(select("是的:不") == 2) {
+			mes "[毒草銷售員]";
+			mes "這樣啊? 那我知道了.";
+			close;
+		}
+		if (Zeny < 5000) {
+			mes "[毒草銷售員]";
+			mes "錢! 錢! 錢! 錢不夠啊!";
+			mes "你先確認下好吧!";
+			close;
+		}
+		set zeny,zeny-5000;
+		getitem 7931,1;	// 製毒工具箱
+		mes "[毒草銷售員]";
+		mes "這是你要的製毒工具箱.";
+		close;
+	}
+	close;
+
+S_SellPoisonHerb:
+	mes "[毒草銷售員]";
+	mes "你想買幾個呢?";
+	mes "最多可以購買2000個, 如果想取消, 請輸入0";
+	next;
+	input .@input,0,2001;
+	if (.@input < 1) {
+		mes "[毒草銷售員]";
+		mes "交易取消.";
+		close;
+	}
+	if (.@input > 2000) {
+		mes "[毒草銷售員]";
+		mes "確定好數量輕告訴我.";
+		close;
+	}
+	set .@price,.@input*getarg(1);
+	mes "[毒草銷售員]";
+	mes ""+.@input+"個一共"+.@price+"z.";
+	mes "是否繼續?";
+	next;
+	if(select("是的:不") == 2) {
+		mes "[毒草銷售員]";
+		mes "這樣啊? 那我知道了.";
+		close;
+	}
+	if (Zeny < .@price) {
+		mes "[毒草銷售員]";
+		mes "錢! 錢! 錢! 錢不夠啊!";
+		mes "你先確認下好吧!";
+		close;
+	}
+	set zeny,zeny-.@price;
+	getitem getarg(0),.@input;
+	mes "[毒草銷售員]";
+	mes "這是你要的毒草.";
+	close;
+}
+
+job3_guil01,79,96,3	duplicate(Poison Herb Merchant)	毒草銷售員#job	877
+morocc,190,96,4	duplicate(Poison Herb Merchant)	毒草銷售員#moc	877
+lhz_in02,16,205,4	duplicate(Poison Herb Merchant)	毒草銷售員#lhz	877
+
+job3_guil01,91,93,3	script	珍惜毒草採集者	49,{
+	if(baseClass != Job_Thief || !(Upper&4)){
+		mes "[珍惜毒草採集者]";
+		mes "我是以採集世界上的珍貴毒草為生的人.";
+		mes "但是我不想賣給你, 呵呵...";
+		close;
+	}
+	if (checkweight(1201,1) == 0) {
+		mes "等一下!";
+		mes "當前你帶了太多東西了!";
+		close;
+	}
+	set .@now_weight,MaxWeight - Weight;
+	if(.@now_weight < 20000) {
+		mes "等一下!";
+		mes "當前你帶了太多東西了!";
+		close;
+	}
+	mes "[珍惜毒草採集者]";
+	mes "我是以採集世界上的珍貴毒草為生的人.";
+	mes "最近正在出售名叫迷幻草的東西. 如果你感興趣的話, 可以從我這裡購買.";
+	next;
+	switch(select("購買條件是?:用動物的血交換:用苦味草交換:用青嫩毒草交換:用冰雕玫瑰交換:用止痛藥交換:用西納雷花交換")) {
+	case 1:
+		mes "[珍惜毒草採集者]";
+		mes "如果你能給我中的1個以及1萬金幣, 隨時可以交易.";
+		mes "最近正在出售名叫迷幻草的東西. 如果你感興趣的話, 可以從我這裡購買.";
+		next;
+		mes "[珍惜毒草採集者]";
+		mes "為什麼還要另外收錢? 1萬金幣, 就算是給我的辛苦費吧, 呵呵...";
+		close;
+	case 2:
+		set .@izidor_material,702; // 動物的血
+		break;
+	case 3:
+		set .@izidor_material,621; // 苦味草
+		break;
+	case 4:
+		set .@izidor_material,631; // 青嫩毒草
+		break;
+	case 5:
+		set .@izidor_material,749; // 冰雕玫瑰
+		break;
+	case 6:
+		set .@izidor_material,605; // 止痛藥
+		break;
+	case 7:
+		set .@izidor_material,703; // 西納雷花
+		break;
+	}
+	if ((Zeny < 10000) || !countitem(.@izidor_material)) {
+		mes "[珍惜毒草採集者]";
+		mes "喂, 你能先把不足的部分補齊, 然後再和我交易嗎?";
+		close;
+	}
+	delitem .@izidor_material,1;
+	set zeny,zeny - 10000;
+	getitem 709,1;	// 迷幻藥
+	mes "[珍惜毒草採集者]";
+	mes "很好. 錢和東西我都收到了.";
+	close;
+}
+
+-	script	Rune Merchant	853,{
+	if (checkweight(1201,1) == 0) {
+		mes "等一下!";
+		mes "當前你帶了太多東西了!";
+		close;
+	}
+	set .@now_weight,MaxWeight - Weight;
+	if(.@now_weight < 20000) {
+		mes "等一下!";
+		mes "當前你帶了太多東西了!";
+		close;
+	}
+	mes "[符文石銷售員]";
+	mes "你需要符文石嗎?!";
+	mes "從我這裡買就行了!";
+	mes "告訴我你需要什麼符文石.";
+	next;
+	switch(select("高級符文原石:普通符文原石")) {
+	case 1:
+		callsub S_SellRunstone,12734,2500; // 高級符文原石
+		break;
+	case 2:
+		callsub S_SellRunstone,12737,1000; // 普通符文原石
+		break;
+	}
+	close;
+
+S_SellRunstone:
+	mes "[符文石銷售員]";
+	mes "你想買"+getitemname(getarg(0))+"啊!";
+	mes "只要"+getarg(1)+"z就行!";
+	mes "告訴我你需要多少個, 最多可以";
+	mes "購買2000個!";
+	next;
+	input .@input,0,2001;
+	if (.@input < 1 || .@input > 2000) {
+		mes "[符文石銷售員]";
+		mes "不買的話, 就給我走開!";
+		close;
+	}
+	set .@price,.@input*getarg(1);
+	mes "[符文石銷售員]";
+	mes ""+.@input+"個一共"+.@price+"z.";
+	mes "是否繼續?";
+	next;
+	if(select("是的:不") == 2) {
+		mes "[符文石銷售員]";
+		mes "不買的話, 就給我走開!";
+		close;
+	}
+	if (Zeny < .@price) {
+		mes "[符文石銷售員]";
+		mes "錢! 錢! 錢! 錢不夠啊!";
+		mes "你先確認下好吧!";
+		close;
+	}
+	set zeny,zeny-.@price;
+	getitem getarg(0),.@input;
+	mes "[符文石銷售員]";
+	mes "下次再來還可以買, 謝謝惠顧!";
+	close;
+}
+
+job3_rune01,90,62,3	duplicate(Rune Merchant)	符文石銷售員#job	853
+prontera,171,184,3	duplicate(Rune Merchant)	符文石銷售員#prt	612
+
+gef_tower,105,172,5	script	元素碎片商人#Sorcerer	700,{
+	if (checkweight(1201,1) == 0) {
+		mes "等一下!";
+		mes "當前你帶了太多東西了!";
+		close;
+	}
+	set .@now_weight,MaxWeight - Weight;
+	if(.@now_weight < 20000) {
+		mes "等一下!";
+		mes "當前你帶了太多東西了!";
+		close;
+	}
+	mes "[元素碎片商人]";
+	mes "你好, 我在販賣元素使的技能道具";
+	mes "^FF0000元素碎片^000000. 你有需要嗎?";
+	next;
+	switch(select("火靈碎片 - 200z:地靈精華 - 200z:水靈碎片 - 200z:風靈精華 - 200z:對話取消.")) {
+	case 1:
+		set .@titem,6360; // 火靈碎片
+		break;
+	case 2:
+		set .@titem,6363; // 地靈精華
+		break;
+	case 3:
+		set .@titem,6361; // 水靈碎片
+		break;
+	case 4:
+		set .@titem,6362; // 風靈精華
+		break;
+	case 5:
+		mes "[元素碎片商人]";
+		mes "沒有你想要的嗎?";
+		close;
+	}
+	mes "[元素碎片商人]";
+	mes "你選的是^FF0000"+getitemname(.@titem)+"^000000嗎?";
+	mes "要多少個呢?";
+	mes "取消的話就輸入0.";
+	next;
+	input .@input,0,2001;
+	if (.@input < 1 || .@input > 2000) {
+		mes "[元素碎片商人]";
+		mes "你取消了.";
+		close;
+	}
+	set .@price,.@input*200;
+	if (Zeny < .@price) {
+		mes "[元素碎片商人]";
+		mes "你帶的現金不足.";
+		close;
+	}
+	set zeny,zeny-.@price;
+	getitem .@titem,.@input;
+	mes "[元素碎片商人]";
+	mes "謝謝惠顧.";
+	close;
+}
+
+
+
+geffen_in,176,105,4	script	魔法書管理者 貝洛波斯#WL	64,{
+	if(baseClass != Job_Mage || !(Upper&4)){
+		mes "[魔法書管理者 貝洛波斯]";
+		mes "呵呵, 你也渴望學到新的東西嗎?";
+		next;
+		mes "[魔法書管理者 貝洛波斯]";
+		mes "但是你選擇的道路差得太遠, 沒辦法學習這些新知識......";
+		close;
+	}
+	if(!getskilllv("WL_RELEASE")) {
+		mes "[魔法書管理者 貝洛波斯]";
+		mes "嗯, 其它條件都滿足了, 只差一樣.";
+		next;
+		mes "[魔法書管理者 貝洛波斯]";
+		mes "如果你學會了解放魔法, 我們就會有很多共同語言了.";
+		close;
+	}
+	mes "[魔法書管理者 貝洛波斯]";
+	mes "歡迎你.";
+	mes "掌握新的更高級別魔法的人.";
+	next;
+	mes "[魔法書管理者 貝洛波斯]";
+	mes "對於新知識的渴望, 讓每個使用魔法的人為之瘋狂. 經過刻苦努力之後, 終於結出了甜美的果實...";
+	next;
+	mes "[魔法書管理者 貝洛波斯]";
+	mes "當我們經受的孤獨和痛苦終於有了回報, 那種成就感和快感是無法言表的. 相信你也正是因為瞭解這種喜悅, 才會踏上求道之路, 不是嗎? 我可以理解你的內心.";
+	next;
+	mes "[魔法書管理者 貝洛波斯]";
+	mes "對了, 你到這裡來有什麼事情嗎?";
+	next;
+	switch(select("沒什麼特別的事情:你知道魔法書閱讀嗎?:魔法保存是什麼?:我能獲得魔法書嗎?:如果不通過魔法保存使用魔法書, 將會怎樣?")) {
+	case 1:
+		mes "[魔法書管理者 貝洛波斯]";
+		mes "真是個無聊的朋友...";
+		close;
+	case 2:
+		mes "[魔法書管理者 貝洛波斯]";
+		mes "魔法書閱讀, 從字面上解釋, 就是閱讀魔法書... 的意思. 你知道魔法書嗎?";
+		next;
+		switch(select("是的, 我知道.:不, 我不太清楚...")) {
+		case 1:
+			mes "[魔法書管理者 貝洛波斯]";
+			mes "看來不用我多解釋了. 你已經知道得很清楚了.";
+			close;
+		case 2:
+			mes "[魔法書管理者 貝洛波斯]";
+			mes "魔法書是卷軸的一種, 卷軸上的魔法文字使用一次之後就會消失, 但魔法書要比它高級.";
+			next;
+			mes "[魔法書管理者 貝洛波斯]";
+			mes "如果把卷軸上的文字比作鐵絲, 用鐵絲打開門或者用來幹什麼之後, 鐵絲就會彎掉, 失去原來的模樣. 但是魔法書上的文字就像是記憶金屬.";
+			next;
+			mes "[魔法書管理者 貝洛波斯]";
+			mes "什麼? 你不知道記憶金屬是什麼? 沒關係. 總之, 用記憶金屬製作的金屬絲經過一段時間後, 就會恢復成原來的模樣.";
+			next;
+			mes "[魔法書管理者 貝洛波斯]";
+			mes "魔法書上記載的魔法文字也具有和記憶金屬類似的特性. 也就是說, 使用之後經過一段時間, 就可以重新使用.";
+			next;
+			mes "[魔法書管理者 貝洛波斯]";
+			mes "... 呃, 抱歉, 說到別的地方去了. 總之, 使用這種魔法書, 可以釋放你之前學會的魔法. 這和你之前學習的魔法語言略有不同.";
+			next;
+			select("二者的差異到底是什麼呢?");
+			mes "[魔法書管理者 貝洛波斯]";
+			mes "你是說已經學會的魔法和是否需要重新寫到魔法書上去嗎?";
+			next;
+			mes "[魔法書管理者 貝洛波斯]";
+			mes "讓我來給你仔細說明一下. 這和魔法附著技術又關. 所謂魔法附著, 就是將魔法附著到物體上.";
+			next;
+			mes "[魔法書管理者 貝洛波斯]";
+			mes "你已經學會了釋放技能, 擁有了將召喚的4種屬性的能量聚集在一起, 然後釋放出去的力量. 不是嗎? 其實原理與它非常相似.";
+			next;
+			mes "[魔法書管理者 貝洛波斯]";
+			mes "如果你擁有解放的力量, 就擁有使用魔法附著技術的力量. 但是這個以後我再給你解釋...";
+			next;
+			mes "[魔法書管理者 貝洛波斯]";
+			mes "你現在可以用學過的魔法將力量聚集在身邊, 然後釋放出去, 而不需要借助其他技能. 對吧?";
+			next;
+			mes "[魔法書管理者 貝洛波斯]";
+			mes "也就是說, 你召喚4種屬性的球體, 本身就與魔法附著有關.";
+			next;
+			mes "[魔法書管理者 貝洛波斯]";
+			mes "火, 水, 風, 地是最基本的元素... 聚集最基本的力量, 是魔法的基礎, 其實並不很困難.";
+			next;
+			mes "[魔法書管理者 貝洛波斯]";
+			mes "在實際生活中, 人們也會用木柴生火, 用扇子扇風, 用碗舀水, 用泥土製作陶器.";
+			next;
+			mes "[魔法書管理者 貝洛波斯]";
+			mes "雖然和魔法略有不同, 但從結果上看, 在將各種屬性的力量聚集在一起這一點是相同的.";
+			next;
+			mes "[魔法書管理者 貝洛波斯]";
+			mes "但是要將你所知道的各種複雜的魔法. 比如召喚暴風, 召喚閃電, 在某個區域召喚火焰... 特別是伴隨物理力量的情況下...";
+			next;
+			mes "[魔法書管理者 貝洛波斯]";
+			mes "要將那些高級魔法固定附著, 必須要消耗大量的精神力. 這個過程中如果不能妥善控制...";
+			next;
+			mes "[魔法書管理者 貝洛波斯]";
+			mes "魔法附著就會失敗, 或者給施展者的肉體和精神造成巨大的負擔.";
+			next;
+			mes "[魔法書管理者 貝洛波斯]";
+			mes "魔法書就是用來減少這種負擔的東西. 施展者只要集中精力聚集魔力, 就可以用魔法書釋放出魔法.";
+			next;
+			mes "[魔法書管理者 貝洛波斯]";
+			mes "但是你不可以釋放沒有學過的魔法.";
+			next;
+			mes "[魔法書管理者 貝洛波斯]";
+			mes "你還記不記得, 我說過魔法書的文字具有恢復原來狀態的性質?";
+			next;
+			mes "[魔法書管理者 貝洛波斯]";
+			mes "魔法書上的咒語是你無法改變或者創造出來的.";
+			next;
+			mes "[魔法書管理者 貝洛波斯]";
+			mes "也就是說, 如果是你沒有學過的魔法, 就會超出你的魔力所能承受的範圍.";
+			next;
+			mes "[魔法書管理者 貝洛波斯]";
+			mes "因此, 想要使用魔法書閱讀, 就必須先學會可以附著魔力的魔法保存.";
+			close;
+		}
+	case 3:
+		mes "[魔法書管理者 貝洛波斯]";
+		mes "簡單地說, 也可以成為魔法附著或魔法保存. 就是利用魔力, 將你使用的魔法插入到各個循環之間.";
+		next;
+		mes "[魔法書管理者 貝洛波斯]";
+		mes "由於構成魔法的循環和循環之間存在有機的關係, 用魔法保存固定的魔法在你使用解放咒語之前, 是絕對不會發動的.";
+		next;
+		mes "[魔法書管理者 貝洛波斯]";
+		mes "當然, 為了一隻魔法發動, 不可避免地要持續地消耗魔力. 雖然比施展魔法消耗的魔力要少, 但長時間地固定魔力是一件非常困難的事情.";
+		next;
+		mes "[魔法書管理者 貝洛波斯]";
+		mes "此外, 越是強力的魔法, 使用魔法附著就越困難.";
+		next;
+		mes "[魔法書管理者 貝洛波斯]";
+		mes "較弱的魔法, 可能在一個循環內附著2-3個魔法. 但強力的魔法, 最多也就能附著一兩個.";
+		next;
+		mes "[魔法書管理者 貝洛波斯]";
+		mes "不管怎樣, 如果是已經學會的魔法, 因為你已經對魔力的掌握很熟悉了, 所以應該可以控制. 我想你可以到時自己動手試一下應該就清楚了.";
+		close;
+	case 4:
+		mes "[魔法書管理者 貝洛波斯]";
+		mes "呃... 很遺憾, 我沒有可以滿足你的要求的魔法書. 現在我只有基本初級修煉用的魔法書... 你想要嗎?";
+		next;
+		switch(select("是的, 我很樂意接受.:沒有更高級的一些魔法書嗎?")) {
+		case 1:
+			mes "[魔法書管理者 貝洛波斯]";
+			mes "你去圖書管理員[莉亞]說是貝洛波斯讓你去的, 讓她把我放在那裡的魔法書給你.";
+			next;
+			mes "[魔法書管理者 貝洛波斯]";
+			mes "她應該不會輕易給你. 不過如果你能答應她的條件, 應該就會把魔法書交給你的.";
+			set Can_Borrow_Magic_Book,1;
+			close;
+		case 2:
+			mes "[魔法書管理者 貝洛波斯]";
+			mes "抱歉, 最近魔法操控能手的人數急劇增加, 所以幾位賢明的高級魔法師下達了指示, 說要適當控制魔法書的數量.";
+			next;
+			mes "[魔法書管理者 貝洛波斯]";
+			mes "想想辦法的話... 總是可以弄到的. 但我手頭確實沒有你需要的高級魔法書.";
+			next;
+			mes "[魔法書管理者 貝洛波斯]";
+			mes "如果我從上面聽到了什麼好消息, 我一定會先跟你說的. 你不要擔心.";
+			close;
+		}
+	case 5:
+		mes "[魔法書管理者 貝洛波斯]";
+		mes "不經過魔法附著而想把魔力凝聚在自己身邊, 什麼事情都不會發生的. 因為沒有城防魔力的口袋, 又何來凝聚呢.";
+		next;
+		mes "[魔法書管理者 貝洛波斯]";
+		mes "空手去舀水, 水會沖指縫中流走. 你說對不對?";
+		next;
+		mes "[魔法書管理者 貝洛波斯]";
+		mes "更大的問題是, 如果你想強制使用自己沒有學過的魔法書的魔法, 會產生一定的副作用.";
+		next;
+		mes "[魔法書管理者 貝洛波斯]";
+		mes "當然副作用並不會致命. 試圖召喚魔法的力量也許會和試圖固定魔法的力量產生衝突, 引起混亂, 或者讓你陷入沉睡.";
+		next;
+		mes "[魔法書管理者 貝洛波斯]";
+		mes "希望你最好不要做出那種魯莽的事情. 唸咒的時候睡著了, 對於魔法師而言, 這是一件非常恥辱的事情. 無論如何也丟不起那個人啊.";
+		close;
+	}
+}
+
+geffen_in,175,112,4	script	莉亞#Warlock	123,{
+	if(baseClass != Job_Mage || !(Upper&4)){
+		mes "[莉亞]";
+		mes "這裡是閱覽書籍的地方. 我們為符合條件的人提供借書和閱覽服務.";
+		close;
+	}
+	mes "[莉亞]";
+	mes "書籍只能在這裡閱覽, 如果想外借, 必須經過1名管理人和1位高級魔法師的許可.";
+	if(!Can_Borrow_Magic_Book) close;
+	next;
+	mes "[莉亞]";
+	mes "你有什麼事嗎?";
+	next;
+	select("貝洛波斯讓我來借魔法書.");
+	mes "[莉亞]";
+	mes "你想借魔法書嗎?";
+	next;
+	switch(select("我再考慮一下:我需要初級魔法書:我需要中級魔法書:我需要高級魔法書:我需要終級魔法書")) {
+	case 1:
+		mes "[莉亞]";
+		mes "好的.";
+		close;
+	case 2:
+		mes "[莉亞]";
+		mes "現在有太多的人想獲得魔法書, 讓我們感到非常難辦.";
+		next;
+		mes "[莉亞]";
+		mes "每個人都... 啊, 也不能這麼說. 最近進場出現過了還書日期但還不及時歸還的情況, 所以我們需要一些保證.";
+		next;
+		select("保證?");
+		mes "[莉亞]";
+		mes "是的. 需要盧恩-米德加爾茲王國的貨幣1萬, 或者2本古魔法書, 或50張破舊書頁. 這樣我才能把魔法書借給你.";
+		next;
+		switch(select("哪裡能得到古魔法書和破舊書頁啊?:我願意支付金幣:我願意支付古魔法書:我願意支付破舊書頁")) {
+		case 1:
+			mes "[莉亞]";
+			mes "嗯, 聽說從飛行魔書, 死亡魔書和巫婆身上可以獲得. 千萬不要勉強, 要找自己能對付的魔物.";
+			next;
+			mes "[莉亞]";
+			mes "我見過很多人, 由於對魔法書太執著, 因此失去了寶貴的生命.";
+			close;
+		case 2:
+			if(Zeny < 10000) {
+				mes "[莉亞]";
+				mes "錢好像不夠啊.";
+				close;
+			}
+			mes "[莉亞]";
+			mes "那你想要借閱哪本呢?";
+			next;
+			switch(select("我再想想:魔法書(火箭術):魔法書(冰箭術):魔法書(雷擊術)")) {
+			case 1:
+				mes "[莉亞]";
+				mes "好的";
+				close;
+			case 2:
+				set .@Magic_Book,6189; break;
+			case 3:
+				set .@Magic_Book,6190; break;
+			case 4:
+				set .@Magic_Book,6191; break;
+			}
+			if(countitem(.@Magic_Book)) {
+				mes "[莉亞]";
+				mes "你已經有魔法書了. 對於已經租借魔法書的人, 我們無法再借你魔法書.";
+				next;
+				mes "你難道不知道別人也想要這本書嗎? 沒想到你是個這麼自私的人. 真讓人寒心.";
+				close;
+			}
+			if(Zeny < 10000) {
+				mes "[莉亞]";
+				mes "東西好像不夠啊.";
+				close;
+			}
+			mes "[莉亞]";
+			mes "出借日期我寫在書後頁的借書卡上了.";
+			next;
+			mes "[莉亞]";
+			mes "如果出現丟失, 破損, 或者書的一部分損壞的話, 將會根據情況收取賠償金. 希望你能注意保管.";
+			set Zeny,Zeny - 10000;
+			getitem .@Magic_Book,1;
+			close;
+		case 3:
+			if(countitem(1006) < 2) {
+				mes "[莉亞]";
+				mes "東西好像不夠啊.";
+				close;
+			}
+			mes "[莉亞]";
+			mes "那你想要借閱哪本呢?";
+			next;
+			switch(select("我再想想:魔法書(火箭術):魔法書(冰箭術):魔法書(雷擊術)")) {
+			case 1:
+				mes "[莉亞]";
+				mes "好的";
+				close;
+			case 2:
+				set .@Magic_Book,6189; break;
+			case 3:
+				set .@Magic_Book,6190; break;
+			case 4:
+				set .@Magic_Book,6191; break;
+			}
+			if(countitem(.@Magic_Book)) {
+				mes "[莉亞]";
+				mes "你已經有魔法書了. 對於已經租借魔法書的人, 我們無法再借你魔法書.";
+				next;
+				mes "你難道不知道別人也想要這本書嗎? 沒想到你是個這麼自私的人. 真讓人寒心.";
+				close;
+			}
+			if(countitem(1006) < 2) {
+				mes "[莉亞]";
+				mes "東西好像不夠啊.";
+				close;
+			}
+			mes "[莉亞]";
+			mes "出借日期我寫在書後頁的借書卡上了.";
+			next;
+			mes "[莉亞]";
+			mes "如果出現丟失, 破損, 或者書的一部分損壞的話, 將會根據情況收取賠償金. 希望你能注意保管.";
+			delitem 1006,2;	//古魔法書
+			set Zeny,Zeny - 100000;
+			getitem .@Magic_Book,1;
+			close;
+		case 4:
+			if(countitem(1097) < 50) {
+				mes "[莉亞]";
+				mes "東西好像不夠啊.";
+				close;
+			}
+			mes "[莉亞]";
+			mes "那你想要借閱哪本呢?";
+			next;
+			switch(select("我再想想:魔法書(火箭術):魔法書(冰箭術):魔法書(雷擊術)")) {
+			case 1:
+				mes "[莉亞]";
+				mes "好的";
+				close;
+			case 2:
+				set .@Magic_Book,6189; break;
+			case 3:
+				set .@Magic_Book,6190; break;
+			case 4:
+				set .@Magic_Book,6191; break;
+			}
+			if(countitem(.@Magic_Book)) {
+				mes "[莉亞]";
+				mes "你已經有魔法書了. 對於已經租借魔法書的人, 我們無法再借你魔法書.";
+				next;
+				mes "你難道不知道別人也想要這本書嗎? 沒想到你是個這麼自私的人. 真讓人寒心.";
+				close;
+			}
+			if(countitem(1097) < 50) {
+				mes "[莉亞]";
+				mes "東西好像不夠啊.";
+				close;
+			}
+			mes "[莉亞]";
+			mes "出借日期我寫在書後頁的借書卡上了.";
+			next;
+			mes "[莉亞]";
+			mes "如果出現丟失, 破損, 或者書的一部分損壞的話, 將會根據情況收取賠償金. 希望你能注意保管.";
+			delitem 1097,50;	//破舊書頁
+			set Zeny,Zeny - 100000;
+			getitem .@Magic_Book,1;
+			close;
+		}
+	case 3:
+		mes "[莉亞]";
+		mes "你想要中級魔法書啊, 外借保證金是5萬金幣. 或者你給我2個神秘箱子或9顆鋁, 我就把中級魔法書借給你.";
+		next;
+		switch(select("神秘箱子和鋁怎麼才能獲得呢?:我要支付5萬金幣:我要支付神秘箱子:我要支付鋁")) {
+		case 1:
+			mes "[莉亞]";
+			mes "神秘箱子可以從邪惡禮盒, 邪骸食人魚, 邪惡箱, 夢魘, 克萊本, 諾可伊, 九尾狐, 廢氣魔, 狂徒等世界各地的魔物那裡獲得, 但收集起來稍微有點困難. 如果你資金充足的話, 還可以從商店中購買...";
+			next;
+			mes "[莉亞]";
+			mes "而鋁則可以從妖君, 腐屍戰俘, 玩偶熊, 黑曜石, 銀月魔女等魔物身上獲得. 事實上, 還可以用鋁原石在鐵匠鋪裡進行加工後得到鋁. 收集原石可比收集鋁更加簡單.";
+			close;
+		case 2:
+			if(Zeny < 50000) {
+				mes "[莉亞]";
+				mes "錢好像不夠啊.";
+				close;
+			}
+			mes "[莉亞]";
+			mes "那你想要借閱哪本呢?";
+			next;
+			switch(select("我再想想:魔法書(暴風雪):魔法書(怒雷強擊):魔法書(隕石術):魔法書(雷爆術):魔法書(雷鳴術):魔法書(水球術):魔法書(崩裂術):魔法書(地震術)")) {
+			case 1:
+				mes "[莉亞]";
+				mes "好的";
+				close;
+			case 2:
+				set .@Magic_Book,6192; break;
+			case 3:
+				set .@Magic_Book,6193; break;
+			case 4:
+				set .@Magic_Book,6194; break;
+			case 5:
+				set .@Magic_Book,6197; break;
+			case 6:
+				set .@Magic_Book,6198; break;
+			case 7:
+				set .@Magic_Book,6199; break;
+			case 8:
+				set .@Magic_Book,6200; break;
+			case 9:
+				set .@Magic_Book,6201; break;
+			}
+			if(countitem(.@Magic_Book)) {
+				mes "[莉亞]";
+				mes "你已經有魔法書了. 對於已經租借魔法書的人, 我們無法再借你魔法書.";
+				next;
+				mes "你難道不知道別人也想要這本書嗎? 沒想到你是個這麼自私的人. 真讓人寒心.";
+				close;
+			}
+			if(Zeny < 50000) {
+				mes "[莉亞]";
+				mes "東西好像不夠啊.";
+				close;
+			}
+			mes "[莉亞]";
+			mes "出借日期我寫在書後頁的借書卡上了.";
+			next;
+			mes "[莉亞]";
+			mes "如果出現丟失, 破損, 或者書的一部分損壞的話, 將會根據情況收取賠償金. 希望你能注意保管.";
+			set Zeny,Zeny - 50000;
+			getitem .@Magic_Book,1;
+			close;
+		case 3:
+			if(countitem(603) < 2) {
+				mes "[莉亞]";
+				mes "東西好像不夠啊.";
+				close;
+			}
+			mes "[莉亞]";
+			mes "那你想要借閱哪本呢?";
+			next;
+			switch(select("我再想想:魔法書(暴風雪):魔法書(怒雷強擊):魔法書(隕石術):魔法書(雷爆術):魔法書(雷鳴術):魔法書(水球術):魔法書(崩裂術):魔法書(地震術)")) {
+			case 1:
+				mes "[莉亞]";
+				mes "好的";
+				close;
+			case 2:
+				set .@Magic_Book,6192; break;
+			case 3:
+				set .@Magic_Book,6193; break;
+			case 4:
+				set .@Magic_Book,6194; break;
+			case 5:
+				set .@Magic_Book,6197; break;
+			case 6:
+				set .@Magic_Book,6198; break;
+			case 7:
+				set .@Magic_Book,6199; break;
+			case 8:
+				set .@Magic_Book,6200; break;
+			case 9:
+				set .@Magic_Book,6201; break;
+			}
+			if(countitem(.@Magic_Book)) {
+				mes "[莉亞]";
+				mes "你已經有魔法書了. 對於已經租借魔法書的人, 我們無法再借你魔法書.";
+				next;
+				mes "你難道不知道別人也想要這本書嗎? 沒想到你是個這麼自私的人. 真讓人寒心.";
+				close;
+			}
+			if(countitem(603) < 2) {
+				mes "[莉亞]";
+				mes "東西好像不夠啊.";
+				close;
+			}
+			mes "[莉亞]";
+			mes "出借日期我寫在書後頁的借書卡上了.";
+			next;
+			mes "[莉亞]";
+			mes "如果出現丟失, 破損, 或者書的一部分損壞的話, 將會根據情況收取賠償金. 希望你能注意保管.";
+			delitem 603,2;	//神秘箱子
+			set Zeny,Zeny - 100000;
+			getitem .@Magic_Book,1;
+			close;
+		case 4:
+			if(countitem(985) < 9) {
+				mes "[莉亞]";
+				mes "東西好像不夠啊.";
+				close;
+			}
+			mes "[莉亞]";
+			mes "那你想要借閱哪本呢?";
+			next;
+			switch(select("我再想想:魔法書(暴風雪):魔法書(怒雷強擊):魔法書(隕石術):魔法書(雷爆術):魔法書(雷鳴術):魔法書(水球術):魔法書(崩裂術):魔法書(地震術)")) {
+			case 1:
+				mes "[莉亞]";
+				mes "好的";
+				close;
+			case 2:
+				set .@Magic_Book,6192; break;
+			case 3:
+				set .@Magic_Book,6193; break;
+			case 4:
+				set .@Magic_Book,6194; break;
+			case 5:
+				set .@Magic_Book,6197; break;
+			case 6:
+				set .@Magic_Book,6198; break;
+			case 7:
+				set .@Magic_Book,6199; break;
+			case 8:
+				set .@Magic_Book,6200; break;
+			case 9:
+				set .@Magic_Book,6201; break;
+			}
+			if(countitem(.@Magic_Book)) {
+				mes "[莉亞]";
+				mes "你已經有魔法書了. 對於已經租借魔法書的人, 我們無法再借你魔法書.";
+				next;
+				mes "你難道不知道別人也想要這本書嗎? 沒想到你是個這麼自私的人. 真讓人寒心.";
+				close;
+			}
+			if(countitem(985) < 9) {
+				mes "[莉亞]";
+				mes "東西好像不夠啊.";
+				close;
+			}
+			mes "[莉亞]";
+			mes "出借日期我寫在書後頁的借書卡上了.";
+			next;
+			mes "[莉亞]";
+			mes "如果出現丟失, 破損, 或者書的一部分損壞的話, 將會根據情況收取賠償金. 希望你能注意保管.";
+			delitem 985,9;	//鋁
+			set Zeny,Zeny - 100000;
+			getitem .@Magic_Book,1;
+			close;
+		}
+	case 4:
+		mes "[莉亞]";
+		mes "啊, 高級魔法書嗎? 高級魔法書很難買到, 因此外借條件非常嚴格. 這沒關係吧?";
+		next;
+		select("沒關係.");
+		mes "[莉亞]";
+		mes "好的, 真是為堅定的人. 如果你能滿足下列外借條件, 我就把高級魔法書借給你.";
+		next;
+		mes "[莉亞]";
+		mes "可以支付[12個未知碎片和10萬金幣],[7個神之金屬和10萬金幣]或者[1個神秘紫箱和10萬金幣]進行租借.";
+		mes "你想選擇哪種方式呢?";
+		next;
+		switch(select("材料從那裡獲得呢?:再考慮一下:支付12個未知碎片+10萬金幣:支付7個神之金屬+10萬金幣:支付1個神秘紫箱+10萬金幣")) {
+		case 1:
+			mes "[莉亞]";
+			mes "未知碎片聽說可以從優配擂斯中的奇怪機器魔物身上獲得. 哪種隨便是古代文明的源泉... 啊... 想想就讓人激動.";
+			next;
+			mes "[莉亞]";
+			mes "神之金屬可以從行刑者, 獅鷲獸, 裘卡, 深淵騎士等魔物身上獲得. 不過神之金屬要是收集原石會更快一些.";
+			next;
+			mes "[莉亞]";
+			mes "收集到神之金屬原石後, 可以在城鎮的鐵匠鋪裡加工成神之金屬.";
+			next;
+			mes "[莉亞]";
+			mes "神秘紫箱聽說可以從邪惡箱, 邪惡摩艾, 獸人酋長, 冰暴騎士, 俄塞裡斯身上獲得.";
+			next;
+			mes "[莉亞]";
+			mes "神秘紫箱具有非常大的研究價值, 因為可以用來進行薛定諤之貓的實驗.";
+			close;
+		case 2:
+			mes "[莉亞]";
+			mes "條件很苛刻吧? 那我就來更改一下高級魔法書的外借條件吧.";
+			next;
+			mes "[莉亞]";
+			mes "如果你能給我盧恩-米德加爾茲王國的貨幣20萬, 我就把高級魔法書借給你. 怎麼樣?";
+			next;
+			switch(select("還是不行:好的")) {
+			case 1:
+				mes "[莉亞]";
+				mes "好吧, 我知道了.";
+				close;
+			case 2:
+				if(Zeny < 200000) {
+					mes "[莉亞]";
+					mes "錢好像不夠啊.";
+					close;
+				}
+				mes "[莉亞]";
+				mes "你想要什麼魔法書?";
+				next;
+				switch(select("我再想想:魔法書(大地扭曲):魔法書(連鎖閃電):魔法書(深紅隕石):魔法書(生命吸收)")) {
+				case 1:
+					mes "[莉亞]";
+					mes "好的";
+					close;
+				case 2:
+					set .@Magic_Book,6202; break;
+				case 3:
+					set .@Magic_Book,6203; break;
+				case 4:
+					set .@Magic_Book,6204; break;
+				case 5:
+					set .@Magic_Book,6205; break;
+				}
+				if(countitem(.@Magic_Book)) {
+					mes "[莉亞]";
+					mes "你已經有魔法書了. 對於已經租借魔法書的人, 我們無法再借你魔法書.";
+					next;
+					mes "你難道不知道別人也想要這本書嗎? 沒想到你是個這麼自私的人. 真讓人寒心.";
+					close;
+				}
+				if(Zeny < 200000) {
+					mes "[莉亞]";
+					mes "錢好像不夠啊.";
+					close;
+				}
+				mes "[莉亞]";
+				mes "出借日期我寫在書後頁的借書卡上了.";
+				next;
+				mes "[莉亞]";
+				mes "如果出現丟失, 破損, 或者書的一部分損壞的話, 將會根據情況收取賠償金. 希望你能注意保管.";
+				set Zeny,Zeny - 200000;
+				getitem .@Magic_Book,1;
+				close;
+			}
+		case 3:
+			if(Zeny < 100000 || countitem(7094) < 12) {
+				mes "[莉亞]";
+				mes "東西好像不夠啊.";
+				close;
+			}
+			mes "[莉亞]";
+			mes "那你想要借閱哪本呢?";
+			next;
+			switch(select("我再想想:魔法書(大地扭曲):魔法書(連鎖閃電):魔法書(深紅隕石):魔法書(生命吸收)")) {
+			case 1:
+				mes "[莉亞]";
+				mes "好的";
+				close;
+			case 2:
+				set .@Magic_Book,6202; break;
+			case 3:
+				set .@Magic_Book,6203; break;
+			case 4:
+				set .@Magic_Book,6204; break;
+			case 5:
+				set .@Magic_Book,6205; break;
+			}
+			if(countitem(.@Magic_Book)) {
+				mes "[莉亞]";
+				mes "你已經有魔法書了. 對於已經租借魔法書的人, 我們無法再借你魔法書.";
+				next;
+				mes "你難道不知道別人也想要這本書嗎? 沒想到你是個這麼自私的人. 真讓人寒心.";
+				close;
+			}
+			if(Zeny < 100000 || countitem(7094) < 12) {
+				mes "[莉亞]";
+				mes "東西好像不夠啊.";
+				close;
+			}
+			mes "[莉亞]";
+			mes "出借日期我寫在書後頁的借書卡上了.";
+			next;
+			mes "[莉亞]";
+			mes "如果出現丟失, 破損, 或者書的一部分損壞的話, 將會根據情況收取賠償金. 希望你能注意保管.";
+			delitem 7094,12;	//未知的碎片
+			set Zeny,Zeny - 100000;
+			getitem .@Magic_Book,1;
+			close;
+		case 4:
+			if(Zeny < 100000 || countitem(984) < 7) {
+				mes "[莉亞]";
+				mes "東西好像不夠啊.";
+				close;
+			}
+			mes "[莉亞]";
+			mes "那你想要借閱哪本呢?";
+			next;
+			switch(select("我再想想:魔法書(大地扭曲):魔法書(連鎖閃電):魔法書(深紅隕石):魔法書(生命吸收)")) {
+			case 1:
+				mes "[莉亞]";
+				mes "好的";
+				close;
+			case 2:
+				set .@Magic_Book,6202; break;
+			case 3:
+				set .@Magic_Book,6203; break;
+			case 4:
+				set .@Magic_Book,6204; break;
+			case 5:
+				set .@Magic_Book,6205; break;
+			}
+			if(countitem(.@Magic_Book)) {
+				mes "[莉亞]";
+				mes "你已經有魔法書了. 對於已經租借魔法書的人, 我們無法再借你魔法書.";
+				next;
+				mes "你難道不知道別人也想要這本書嗎? 沒想到你是個這麼自私的人. 真讓人寒心.";
+				close;
+			}
+			if(Zeny < 100000 || countitem(984) < 7) {
+				mes "[莉亞]";
+				mes "東西好像不夠啊.";
+				close;
+			}
+			mes "[莉亞]";
+			mes "出借日期我寫在書後頁的借書卡上了.";
+			next;
+			mes "[莉亞]";
+			mes "如果出現丟失, 破損, 或者書的一部分損壞的話, 將會根據情況收取賠償金. 希望你能注意保管.";
+			delitem 984,7;	//神之金屬
+			set Zeny,Zeny - 100000;
+			getitem .@Magic_Book,1;
+			close;
+		case 5:
+			if(Zeny < 100000 || countitem(617) < 1) {
+				mes "[莉亞]";
+				mes "東西好像不夠啊.";
+				close;
+			}
+			mes "[莉亞]";
+			mes "那你想要借閱哪本呢?";
+			next;
+			switch(select("我再想想:魔法書(大地扭曲):魔法書(連鎖閃電):魔法書(深紅隕石):魔法書(生命吸收)")) {
+			case 1:
+				mes "[莉亞]";
+				mes "好的";
+				close;
+			case 2:
+				set .@Magic_Book,6202; break;
+			case 3:
+				set .@Magic_Book,6203; break;
+			case 4:
+				set .@Magic_Book,6204; break;
+			case 5:
+				set .@Magic_Book,6205; break;
+			}
+			if(countitem(.@Magic_Book)) {
+				mes "[莉亞]";
+				mes "你已經有魔法書了. 對於已經租借魔法書的人, 我們無法再借你魔法書.";
+				next;
+				mes "你難道不知道別人也想要這本書嗎? 沒想到你是個這麼自私的人. 真讓人寒心.";
+				close;
+			}
+			if(Zeny < 100000 || countitem(617) < 1) {
+				mes "[莉亞]";
+				mes "東西好像不夠啊.";
+				close;
+			}
+			mes "[莉亞]";
+			mes "出借日期我寫在書後頁的借書卡上了.";
+			next;
+			mes "[莉亞]";
+			mes "如果出現丟失, 破損, 或者書的一部分損壞的話, 將會根據情況收取賠償金. 希望你能注意保管.";
+			delitem 617,1;	//神秘紫箱
+			set Zeny,Zeny - 100000;
+			getitem .@Magic_Book,1;
+			close;
+		}
+	case 5:
+		mes "[莉亞]";
+		mes "現在還沒有可以外借的終級魔法書. 一旦有可以外借的魔法書, 我會及時通知你的.";
+		next;
+		mes "[莉亞]";
+		mes "對了, 終極魔法書的保證金是25萬金幣, 或者與之價值相等的實物.";
+		close;
+	}
+}

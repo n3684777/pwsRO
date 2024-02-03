@@ -1,0 +1,104 @@
+//===== rAthenaCN 漢化聲明 ===================================
+//= 您可以隨意轉載和使用本漢化腳本。若您使用、借鑒或複製了
+//= 此腳本中的漢化成果，那麼請在您的腳本中加上並保留這七行
+//= 漢化聲明，由衷感謝。
+//= 若您對這個腳本有更好的翻譯建議，或發現此腳本的漢化錯誤，
+//= 請前往 http://rathena.cn 上報您發現的問題，謝謝。
+//============================================================
+
+//===== rAthenaCN Script =====================================
+//= 效果控制器(Bonus)取值檢測與強制干預演示腳本
+//===== By: ==================================================
+//= Sola、小克
+//===== Current Version: =====================================
+//= 1.0
+//===== Compatible With: =====================================
+//= rAthenaCN 開發團隊
+//===== Description: =========================================
+//= 在這裡演示如何使用 OnSystemBonusJudge 來干涉 Bonus 的取值
+//= 結果, 使用腳本方式來干涉可以盡可能的滿足各位 GM 的需求。
+//============================================================
+
+-	script	BONUS_JUDGE_EVENT	-1,{
+end;
+OnSystemBonusJudge:
+	// OnSystemBonusJudge 是與玩家關聯的
+	// 當被觸發時無論玩家當前正在做什麼事情, 都會立刻馬上執行該事件 (繞過事件隊列)
+	//
+	// 使用這個特殊事件, 您可以隨意干涉被支持的 bonus 的最終值.
+	// 
+	// 這個特殊事件的處理腳本中, 禁止使用任何可能會導致腳本被打斷、暫停的指令, 比如:
+	// mes,next,end,close,close2,menu,select,prompt,
+	// input,progressbar,produce,cooking,makerune,buyingstore,openstorage,
+	// openstorage2,openauction,openmail,guildopenstorage,
+	// callshop,bpet,opendressroom,sleep,sleep2
+	// 
+	// 參數說明
+	// -------------------------------------------------------
+	// @bonus_id		-	本次被調用的 bonus 的編號
+	// @bonus_param1	-	本次被調用的 bonus 的第 1 個參數
+	// @bonus_param2	-	本次被調用的 bonus 的第 2 個參數
+	// @bonus_param3	-	本次被調用的 bonus 的第 3 個參數
+	// @bonus_param4	-	本次被調用的 bonus 的第 4 個參數
+	// @bonus_val		-	本次被調用的 bonus 的關鍵修改值
+	// @bonus_current	-	本次被調用的 bonus 它的當前值是多少
+	// @bonus_finally	-	本次被調用的 bonus 您期望的最終值是多少
+	//
+	// @bonus_finally 也是您可以干涉 bonus 最終值的唯一手段
+	// 默認為 -1 表示不干涉, 否則這個 bonus 將被設定為你指定的值
+	// -------------------------------------------------------
+	//
+	// 目前僅支持以下的 bonus (覺得有遺漏的, 可以找開發人員提建議):
+	// 除了這些 bonus 之外其他的 bonus 將不會觸發 OnSystemBonusJudge 事件.
+	//
+	// bonus2 bAddEle,e,x;
+	// bonus3 bAddEle,e,x,bf;
+	// bonus2 bMagicAddEle,e,x;
+	// bonus2 bSubEle,e,x;
+	// bonus3 bSubEle,e,x,bf;
+	// bonus2 bSubDefEle,e,x;
+	// 
+	// bonus2 bAddRace, r, x;
+	// bonus2 bMagicAddRace, r, x;
+	// bonus2 bSubRace, r, x;
+	// 
+	// bonus2 bAddClass, c, x;
+	// bonus2 bMagicAddClass, c, x;
+	// bonus2 bSubClass, c, x;
+	// 
+	// bonus2 bAddSize, s, x;
+	// bonus2 bMagicAddSize, s, x;
+	// bonus2 bSubSize, s, x;
+	// 
+	// bonus2 bAddDamageClass, mid, x;
+	// bonus2 bAddMagicDamageClass, mid, x;
+	// bonus2 bAddDefMonster,mid,x;
+	// bonus2 bAddMDefMonster,mid,x;
+	//	
+	// bonus2 bAddRace2, mr, x;
+	// bonus2 bSubRace2, mr, x;
+	// bonus2 bMagicAddRace2, mr, x;
+	// 
+	// bonus2 bSubSkill, sk, n;
+	// 
+	// -------------------------------------------------------
+
+	dispbottom "[特殊事件] OnSystemBonusJudge | " + strcharinfo(0) + " 觸發了可以被干預的 bonus (暫譯為: 效果控制器).";
+	dispbottom "           - Bonus的編號: " + @bonus_id + " | 參數1: " + @bonus_param1 + " | 參數2: " + @bonus_param2 + " | 參數3: " + @bonus_param3 + " | 參數4: " + @bonus_param4;
+	dispbottom "           - 其中關鍵修改值(調用 Bonus 時攜帶的參數)為: " + @bonus_val + " | 此 Bonus 目前的值為: " + @bonus_current;
+	dispbottom "           - 若不進行任何干預, 那麼最終這組效果控制器的值會是: " + (@bonus_current + @bonus_val);
+	
+	// 您可以使用 @bonus_finally 變量來干涉最終的值
+	// 比如下面的代碼就將鎖死 bonus2 bAddEle,Ele_All,x; 永遠不能超過 20
+	
+	if (@bonus_id == bAddEle && @bonus_param1 == Ele_All) {
+		// 如果是 bonus2 bAddEle,Ele_All 那麼判定一下即將設置的值和當前的值相加是否超過20
+		if (@bonus_val + @bonus_current > 20) {
+			@bonus_finally = 20;	// 超過了那麼強制干預最終結果為 20
+			dispbottom "           - 發現 bonus2 bAddEle,Ele_All 的最終值可能超過 20, 強制設置 20 為最終值";
+		}
+	}
+	
+	dispbottom " ";
+end;
+}

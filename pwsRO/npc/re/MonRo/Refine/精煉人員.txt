@@ -1,0 +1,163 @@
+prt_in,63,54,3	script	影子鑄劍師	685,{
+disable_items;
+//神之金屬&鋁
+setarray .@PriceWD[0],100,100,100,100,60,40,40,20,20,9,0,0,0,0,0,0,0,0,0,0;
+//濃縮
+setarray .@PriceWD4[0],100,100,100,100,90,70,70,40,40,20,0,0,0,0,0,0,0,0,0,0;
+//高濃縮
+setarray .@PriceHighWD4[0],0,0,0,0,0,0,0,40,40,20,0,0,0,0,0,0,0,0,0,0;
+setarray .@oreD[1],985,7619,6241;
+setarray .@oreW[1],984,7620,6240;
+
+//裝備名稱
+setarray .@equipname$[1],getequipname(16),getequipname(17),getequipname(15),getequipname(18),getequipname(19),getequipname(20);
+setarray .@equiprefine[1],getequiprefinerycnt(16),getequiprefinerycnt(17),getequiprefinerycnt(15),getequiprefinerycnt(18),getequiprefinerycnt(19),getequiprefinerycnt(20);
+setarray .@part[1],16,17,15,18,19,20;
+setarray .@equippair$[1],"[影子手套]","[影子神盾]","[影子鎧甲]","[影子戰靴]","[影子飾品]","[影子飾品]";
+mes "[修彼仕]";
+mes "哦唉唉唉唉唉影子精煉嗎?";
+mes "你想精煉哪裡?";
+next;	
+for(.@i=1; .@i<getarraysize(.@part); .@i++) 
+set .@menu$,.@menu$+(getequipisequiped(.@part[.@i])?
+.@equippair$[.@i]+" - ^FF0000"+"+"+.@equiprefine[.@i]+"^000000^0066CC "+.@equipname$[.@i]:""+.@equippair$[.@i]+" - ^666666尚未裝備^000000")+"^000000:";
+	set .@equipchoes,select(.@menu$);
+	set .@eqid,getequipid(.@part[.@equipchoes]);
+	if(.@eqid<=0){mes "[修彼仕]"; mes "不穿是要我怎樣"; close; }
+	set .@eqre,getequiprefinerycnt(.@part[.@equipchoes]);
+	if(.@part[.@equipchoes] == 16){set .@refineequip,1;}else{set .@refineequip,0;}
+	if(.@eqre == 10 ){mes "[修彼仕]";mes "你瞎的嗎這+10了還想要我怎樣"; close; }
+	if(getequipisenableref(.@part[.@equipchoes]) == 0){ mes "[修彼仕]";mes "這不能精煉吧? 你沒問題嗎?"; close;  }
+	next;
+	mes "[修彼仕]";
+	mes "來辣! 選一個你想用的材料，好好選阿!";
+	next;
+	if( .@eqre <=  6){ set .@x,3;}else{ set .@x,4;}
+	//裝備
+	if (.@refineequip == 0){
+	for(.@i=1; .@i<.@x; .@i++) 
+	set .@itemmenu$,.@itemmenu$+"持有^0000ff"+getitemname(.@oreD[.@i])+"^000000("+countitem(.@oreD[.@i])+")個:";
+	set .@orechoes,select(.@itemmenu$);
+	set .@ore,.@oreD[.@orechoes];
+		}
+	//武器
+	if (.@refineequip == 1){
+	for(.@i=1; .@i<.@x; .@i++) 
+	set .@itemmenu$,.@itemmenu$+"持有^0000ff"+getitemname(.@oreW[.@i])+"^000000("+countitem(.@oreW[.@i])+")個:";
+	set .@orechoes,select(.@itemmenu$);
+	set .@ore,.@oreW[.@orechoes];
+	}
+	Defcheck:
+	set .@eqre,getequiprefinerycnt(.@part[.@equipchoes]);
+	if (.@eqre == 10 ){mes "[修彼仕]";mes "你瞎的嗎這+10了還想要我怎樣"; close; }
+	if (zeny < 50000){ mes "[修彼仕]";mes "錢不夠是要強化個? 最好拿 50000 Zeny出來。";close;}
+	if (countitem(.@ore) < 1){mes "[修彼仕]";mes "材料不夠也不知道，還沒醒嗎?";close;}
+	if (.@ore == 985 || .@ore == 984 ) { set .@Price,.@PriceWD[.@eqre];set .@fail,0;}
+	if (.@ore == 7619|| .@ore == 7620) { set .@Price,.@PriceWD4[.@eqre];set .@fail,0;}
+	if (.@ore == 6240|| .@ore == 6241) { set .@Price,.@PriceHighWD4[.@eqre];set .@fail,1;}
+	if(.@Price == 0){mes "[修彼仕]"; mes "再選一次礦石吧!";close;}
+	mes "[修彼仕]";
+	mes "選擇裝備: ^0000ff+"+.@eqre+" "+getitemname(.@eqid)+"^000000";
+	mes "選擇礦石: ^D9006C"+getitemname(.@ore)+"";
+	mes "成功機率: ^019858"+.@Price+" %^000000";
+	mes "確定精煉嗎?";
+	next;
+	if(select("確定:取消")==2){close;}
+	delitem .@ore,1;
+	set zeny,zeny -50000;
+	set .@Pricerand,rand(100);
+	if( .@Pricerand > .@Price){
+		if (.@fail == 0 ){
+			failedrefitem .@part[.@equipchoes];
+			mes "[修彼仕]";
+			mes "失敗了...";
+			close;
+			}
+		if (.@fail == 1 ){
+			downrefitem .@part[.@equipchoes],1;
+			mes "[修彼仕]";
+			mes "失敗了...";
+			mes "不過裝備並沒有破壞!!";
+			next;
+			mes "[修彼仕]";
+			mes "是否繼續精煉?";
+			next;
+			if(select("繼續精煉:離開")==2){close; }
+			goto Defcheck;
+			}
+	}
+	successrefitem .@part[.@equipchoes];
+	mes "[修彼仕]";
+	mes "精鍊成功。";
+	next;
+	mes "[修彼仕]";
+	mes "是否繼續精煉?";
+	next;
+	if(select("繼續精煉:離開")==2){close; }
+	goto Defcheck;
+}
+	
+
+prt_in,52,69,5	script	魔法精煉師	878,{
+disable_items;
+setarray .@DefG[1],6232,6994,6239,6585,6876,6877,6878,6879,6880,6881,6865;
+setarray .@WeaG[1],6228,6993,6238,6584,6870,6871,6872,6873,6874,6875,6864;
+setarray .@Uprang[1],9,10,11,12,13,14,15,16,17,18,19;
+setarray .@equipname$[1],getequipname(6),getequipname(9),getequipname(8),getequipname(7),getequipname(3),getequipname(2);
+setarray .@equiprefine[1],getequiprefinerycnt(6),getequiprefinerycnt(9),getequiprefinerycnt(8),getequiprefinerycnt(7),getequiprefinerycnt(3),getequiprefinerycnt(2);
+setarray .@part[1],6,9,8,7,3,2;
+setarray .@equippair$[1],"[頭上]","[武器]","[盾牌]","[鎧甲]","[披肩]","[靴子]";
+
+mes "[芬里爾]";
+mes "我可以將精煉券上的魔力轉移到裝備上!";
+mes "你想嘗試嗎?";
+next;	
+for(.@i=1; .@i<getarraysize(.@part); .@i++) 
+set .@menu$,.@menu$+(getequipisequiped(.@part[.@i])?
+.@equippair$[.@i]+" - ^FF0000"+"+"+.@equiprefine[.@i]+"^000000^0066CC "+.@equipname$[.@i]:""+.@equippair$[.@i]+" - ^666666尚未裝備^000000")+"^000000:";
+	set .@equipchoes,select(.@menu$);
+	set .@eqid,getequipid(.@part[.@equipchoes]);
+	if(.@eqid<=0){mes "[芬里爾]"; mes "沒有裝備。"; close; }
+	set .@eqre,getequiprefinerycnt(.@part[.@equipchoes]);
+	set .@type,getiteminfo(.@eqid,2);
+	if(.@type == 5){set .@refineequip,1;}else{set .@refineequip,0;}
+	if(getequipisenableref(.@part[.@equipchoes]) == 0){ mes "[芬里爾]";mes "此裝備無法精煉。"; close;  }
+	next;
+	mes "[芬里爾]";
+	mes "請選精煉券";
+	next;
+	//裝備
+	if (.@refineequip == 0){
+	for(.@i=1; .@i<12; .@i++) 
+	set .@itemmenu$,.@itemmenu$+"持有^0000ff"+getitemname(.@DefG[.@i])+"^000000("+countitem(.@DefG[.@i])+")個:";
+	set .@orechoes,select(.@itemmenu$);
+	set .@ore,.@DefG[.@orechoes];
+	}
+	if (.@refineequip == 1){
+	for(.@i=1; .@i<12; .@i++) 
+	set .@itemmenu$,.@itemmenu$+"持有^0000ff"+getitemname(.@WeaG[.@i])+"^000000("+countitem(.@WeaG[.@i])+")個:";
+	set .@orechoes,select(.@itemmenu$);
+	set .@ore,.@WeaG[.@orechoes];
+	}
+	if(.@eqre >= .@Uprang[.@orechoes] ){mes "[芬里爾]";mes "此裝備無法使用這張精煉券。"; close; }
+	if (countitem(.@ore) < 1){mes "[芬里爾]";mes "精煉券數量不足";close;}
+	mes "[芬里爾]";
+	mes "選擇裝備: ^0000ff+"+.@eqre+" "+getitemname(.@eqid)+"^000000";
+	mes "選擇道具: ^D9006C"+getitemname(.@ore)+"";
+	mes "確定精煉嗎?";
+	next;
+	if(select("確定:取消")==2){close;}
+	specialeffect2 150;
+	specialeffect 154;
+	specialeffect 135;
+	delitem .@ore,1;
+	setarray .@equip_card[0], getequipcardid(.@part[.@equipchoes],0), getequipcardid(.@part[.@equipchoes],1), getequipcardid(.@part[.@equipchoes],2), getequipcardid(.@part[.@equipchoes],3);
+	setarray .@Optrandom[0],getequiprandomoption(.@part[.@equipchoes],0,0),getequiprandomoption(.@part[.@equipchoes],1,0),getequiprandomoption(.@part[.@equipchoes],2,0),getequiprandomoption(.@part[.@equipchoes],3,0),getequiprandomoption(.@part[.@equipchoes],4,0);
+	setarray .@Optrandomval[0],getequiprandomoption(.@part[.@equipchoes],0,1),getequiprandomoption(.@part[.@equipchoes],1,1),getequiprandomoption(.@part[.@equipchoes],2,1),getequiprandomoption(.@part[.@equipchoes],3,1),getequiprandomoption(.@part[.@equipchoes],4,1);
+	setarray .@Optran[0],0,0,0,0,0;
+	getitem3 getequipid(.@part[.@equipchoes]),1,1,.@Uprang[.@orechoes],0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@equip_card[3],.@Optrandom[0],.@Optrandomval[0],.@Optran[0];
+	delequip .@part[.@equipchoes];
+	close;
+	OnInit:
+	waitingroom "歡迎使用精煉券",0;
+	}

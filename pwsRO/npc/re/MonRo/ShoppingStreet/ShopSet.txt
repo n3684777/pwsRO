@@ -1,0 +1,47 @@
+lroom00,72,162,3	script	告示牌#03	835,{end;}
+lroom00,49,162,3	script	告示牌#04	835,{end;}
+lroom00,45,167	warp	lroomwarp	1,1,lroom00,123,73
+lroom00,123,77	warp	lroomwarp1	1,1,lroom00,45,161
+lroom00,75,167	warp	lroomwarp2	1,1,lroom00,154,73
+lroom00,154,77	warp	lroomwarp3	1,1,lroom00,75,161
+lroom00,61,126	warp	lroomwarp4	1,1,egg1,308,267
+
+//商店街Npc 
+////==================附魔========================
+lroom00,42,140,5	script	OSC1198#1	562,{callfunc "OSC1198";end;}					//EDDA古城殞落附魔道具回收
+lroom00,40,140,5	script	OSC1127#1	563,{callfunc "OSC1127";end;}					//EDDA古城殞落
+lroom00,40,148,5	script	神秘的考古員#1	10129,{callfunc "Mysterious";end;}			//EDDA生體實驗研究所
+lroom00,81,132,3	script	神殿裝備管理員#1	920,{callfunc "ladynecklace";end;}			//主教項鍊
+lroom00,81,136,3	script	幻影裝備附魔#1	998,{callfunc "illenchant";end;}			//幻影吸血鬼~,迷藏森林
+lroom00,40,161,5	script	幻覺裝備改造#1	4_EP17_GUARD_B,{callfunc "RS26";end;}						//幻覺裝備模組改造
+lroom00,81,140,3	script	古代奧丁附魔#1	501,{callfunc "odinec";end;}				//神職裝備
+lroom00,81,144,3	script	古城諮詢考古員#1	10060,{callfunc "glast_dare";end;}			//古城-挑戰模式
+lroom00,85,142,3	script	邦茲	49,{callfunc "bonz";end;}								//勇士之戒
+lroom00,81,148,3	script	黑鬍鬚喬#1	712,{callfunc "terrortoy";end;}					//恐怖玩具工廠
+lroom00,81,152,3	script	梅林#1	64,{callfunc "Kaiser";end;}						//凱薩祝福
+lroom00,55,131,5	script	墮落天使	403,{callfunc "blackangel";end;}					//墮天使之翼
+lroom00,66,131,3	script	墮落天使#1	403,{callfunc "foreverwing";end;}				//永恆之翼
+lroom00,81,156,3	script	文物強化師#1	726,{ callfunc "UnlimitedSpace2";end;}			//無限裝備
+lroom00,51,166,5	script	光明匠人#1	495,{ callfunc "moraenc";end;}				//穆拉裝備
+lroom00,53,166,5	script	古物匠人#1	495,{ callfunc "moraenc2";end;}				//穆拉裝備
+lroom00,49,166,5	script	古物研究員#1	521,{ callfunc "moraenc3";end;}				//穆拉裝備
+lroom00,85,146,3	script	巴巴利亞#1	803,{ callfunc "lokiscarf";end;}				//洛基圍巾
+lroom00,85,154,3	script	首飾加工師傅#1	576,{ callfunc "GuardianPendant";end;}	//守護者之墜
+lroom00,85,150,3	script	縫紉師傅#1	71,{ callfunc "GeorgeSa";end;}				//喬治沙外套
+lroom00,40,132,5	script	MARS_01#1	10147,{ callfunc "Exelionche";end;}			//艾克賽利翁
+lroom00,81,160,3	script	量產型查理斯頓#1	10053,{ callfunc "Exelionche2";end;}		//強化、補充裝置
+lroom00,40,136,5	script	綿綿島附魔師	555,{callfunc "manman";end;}					//綿綿島
+lroom00,40,156,5	script	肯特#1	743,{ callfunc "graduateenc";end;}					//研究所
+lroom00,36,154,5	script	迷惘的思念#1	10172,{callfunc "ghostmissing";end;}			//戰死者頭盔
+lroom00,36,150,5	script	飾品研究員	882,{callfunc "kingringenc";end;}				//國王戒指&飾品
+lroom00,36,142,5	script	戰魂研究師	653,{callfunc "Fightingspirit";end;}				//戰魂頭盔
+lroom00,40,144,5	script	強化附魔人員	500,{callfunc "strengthen";end;}				//強化裝備
+lroom00,36,146,5	script	RWC飾品工匠	10061,{callfunc "RWCEnc";end;}				//RWC飾品
+lroom00,75,128,3	script	候軋#1	880,{callfunc "showfaz";end;}						//議程、喬事
+lroom00,68,165,3	script	古爾吉奧 古爾曼尼#1	10080,{ callfunc "C_effect";end;}		//服飾附魔(特效)
+lroom00,72,165,3	script	阿維爾 道旭#1	505,{ callfunc "C_ench1";end;}				//服飾附魔(頭飾)
+lroom00,70,165,3	script	雷斯 查德#1	614,{ callfunc "C_ench2";end;}				//服飾附魔(披肩)
+
+//==================強化========================
+lroom00,70,128,3	script	古物收藏家#1	495,{ callfunc "moramagicup";end;}			//穆拉法杖升級
+lroom00,49,128,5	script	班尼	402,{callfunc	"baniyaup";end;}						//巴尼亞裝備強化

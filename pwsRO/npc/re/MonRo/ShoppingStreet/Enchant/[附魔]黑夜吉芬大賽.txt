@@ -1,0 +1,203 @@
+//===== rAthena Script ======================================= 
+//= 黑夜吉芬魔法大賽附魔
+//===== By: ================================================== 
+//= 天波工作組(https://www.angeling-studio.com/)
+//===== Current Version: ===================================== 
+//= 1.0
+//===== Compatible With: ===================================== 
+//= rAthena Project
+//===================尊重他人智慧財產權，請保留以上資訊=========================
+lroom00,58,163,5	script	暗夜吉芬鬥技場附魔	4_M_HUMAN_01,{
+	disable_items;
+	mes "[暗夜吉芬鬥技場附魔]";
+	mes "您要進行附魔嗎？";
+	next;
+	set .@typeChoice, select("我想體驗附魔","我想想看...");
+
+	switch(.@typeChoice) {
+	case 1:
+		setarray .@items[0],450149,450150,460005,460006,480065,480066,480067,480068,490077,490078;
+		.@menu$ = "";
+		for(.@i = 0; .@i<getarraysize(.@items); ++.@i)
+		{
+			if(getequipid(EQI_ARMOR) == .@items[.@i] || getequipid(EQI_HAND_L) == .@items[.@i] || getequipid(EQI_GARMENT) == .@items[.@i] || getequipid(EQI_ACC_L) == .@items[.@i] || getequipid(EQI_ACC_R) == .@items[.@i])
+			{
+				set .@realItems[getarraysize(.@realItems)], .@items[.@i];
+				.@menu$ += getitemname(.@items[.@i])+":";
+			}
+		}
+		break;
+	case 2:
+		mes "[暗夜吉芬鬥技場附魔]";
+		mes "等你想好再跟我說吧！。";
+		close;
+	}
+	if(getarraysize(.@realItems) == 0)
+	{
+		next;
+		mes "[暗夜吉芬鬥技場附魔]";
+		mes "你必須穿上它，才能讓我附魔。";
+		close;
+	}
+	
+	callsub S_EnchantArmor, .@realItems[select(.@menu$)-1], .@typeChoice;
+	end;
+//=========物品設定結束===========
+//========附魔
+S_EnchantArmor:
+	.@itemid = getarg(0);
+	.@typeChoice = getarg(1);
+	next;
+	mes "[暗夜吉芬鬥技場附魔]";
+	mes "首先，你必須知道附魔後";
+	mes "^ff5555原先有的附魔也會直接取代覆蓋掉^000000";
+	mes "你仍然想繼續附魔嗎？";
+	next;
+	if(select("痾…讓我考慮一下", "開始吧") == 1) {
+		mes "[暗夜吉芬鬥技場附魔]";
+		mes "好吧，這我也不能怪你，安全第一！你說是吧？";
+		mes "祝你有美好的一天！";
+		close;
+	}
+	if(countitem(.@itemId) > 1)
+	{
+		mes "[暗夜吉芬鬥技場附魔]";
+		mes "抱歉，同樣的裝備只能持有一件。";
+		mes "否則，附魔時可能會混淆…";
+		close;
+	}
+	
+	//find good slot
+	set .@slot, -1;
+	if(getequipid(EQI_ARMOR) == .@itemid)
+	{
+		set .@Equipslot,EQI_ARMOR;
+		set .@equip,1;
+	}
+	if(getequipid(EQI_HAND_L) == .@itemid)
+	{
+		set .@Equipslot,EQI_HAND_L;
+		set .@equip,2;
+	}
+	if(getequipid(EQI_GARMENT) == .@itemid)
+	{
+		set .@Equipslot,EQI_GARMENT;
+		set .@equip,3;
+	}
+	if(getequipid(EQI_ACC_L) == .@itemid)
+	{
+		set .@Equipslot,EQI_ACC_L;
+		set .@equip,4;
+	}
+	if(getequipid(EQI_ACC_R) == .@itemid)
+	{
+		set .@Equipslot,EQI_ACC_R;
+		set .@equip,4;
+	}
+	
+//====檢查洞的位置結束======
+	
+OnCheck:
+	//設定需求物品
+	set .@useamount,1;//素材數量設定
+	set .@success_rate,100;//機率設定
+	
+	if (.@equip == 1){
+		set .@reqId, 100365;
+		set $@Enc1,rand(1,4);
+		setarray $@EncA_1[1],1,2,9,10;
+		setarray $@EncB_1[1],rand(100,1500),rand(100,500),rand(1,10),rand(1,10);
+
+		set $@Enc2,rand(1,27);
+		setarray $@EncA_2[1],11,12,22,20,21,169,170,36,38,40,42,44,46,48,50,52,54,56,58,60,62,64,66,68,70,72,74;
+		setarray $@EncB_2[1],rand(30,65),rand(30,65),rand(2,30),rand(10,55),rand(1,6),rand(5,15),rand(1,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10);
+
+		set $@Enc3,rand(1,3);
+		setarray $@EncA_3[1],1,2,0;
+		setarray $@EncB_3[1],rand(100,1500),rand(100,500),0;
+
+		setarray .@id[0],$@EncA_1[$@Enc1],$@EncA_2[$@Enc2],$@EncA_3[$@Enc3];
+		setarray .@val1[0],$@EncB_1[$@Enc1],$@EncB_2[$@Enc2],$@EncB_3[$@Enc3];
+		setarray .@val2[0],0,0,0;
+	}
+	if (.@equip == 2){
+		set .@reqId, 100366;
+		set $@Enc1,rand(1,4);
+		setarray $@EncA_1[1],1,2,9,10;
+		setarray $@EncB_1[1],rand(100,1000),rand(100,300),rand(1,5),rand(1,5);
+
+		set $@Enc2,rand(1,25);
+		setarray $@EncA_2[1],22,20,21,169,170,36,38,40,42,44,46,48,50,52,54,56,58,60,62,64,66,68,70,72,74;
+		setarray $@EncB_2[1],rand(5,20),rand(5,60),rand(1,6),rand(5,10),rand(1,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10);
+
+		set $@Enc3,rand(1,3);
+		setarray $@EncA_3[1],1,2,0;
+		setarray $@EncB_3[1],rand(200,800),rand(50,300),0;
+
+		setarray .@id[0],$@EncA_1[$@Enc1],$@EncA_2[$@Enc2],$@EncA_3[$@Enc3];
+		setarray .@val1[0],$@EncB_1[$@Enc1],$@EncB_2[$@Enc2],$@EncB_3[$@Enc3];
+		setarray .@val2[0],0,0,0;
+	}
+	if (.@equip == 3){
+		set .@reqId, 100367;
+		set $@Enc1,rand(1,12);
+		setarray $@EncA_1[1],16,170,24,26,27,28,29,172,9,10,13,14;
+		setarray $@EncB_1[1],rand(3,7),rand(5,10),rand(5,10),rand(3,5),rand(3,5),rand(3,5),rand(3,5),rand(3,5),rand(1,5),rand(1,5),rand(1,5),rand(1,5);
+
+		set $@Enc2,rand(1,18);
+		setarray $@EncA_2[1],0,0,0,0,0,0,16,170,24,26,27,28,29,172,9,10,13,14;
+		setarray $@EncB_2[1],0,0,0,0,0,0,rand(3,5),rand(5,8),rand(5,8),rand(3,5),rand(3,5),rand(3,5),rand(3,5),rand(3,5),rand(1,5),rand(1,5),rand(1,5),rand(1,5);
+
+
+		setarray .@id[0],$@EncA_1[$@Enc1],$@EncA_2[$@Enc2];
+		setarray .@val1[0],$@EncB_1[$@Enc1],$@EncB_2[$@Enc2];
+		setarray .@val2[0],0,0,0;
+	}
+	if (.@equip == 4){
+		set .@reqId, 100368;
+		set $@Enc1,rand(1,36);
+		setarray $@EncA_1[1],21,20,1,2,87,88,99,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,168,170;
+		setarray $@EncB_1[1],rand(3,10),rand(30,100),rand(100,1000),rand(20,200),rand(2,7),rand(2,7),rand(2,7),rand(2,7),rand(2,7),rand(2,7),rand(2,7),rand(2,7),rand(2,7),rand(2,7),rand(1,5),rand(1,5),rand(1,5),rand(1,5),rand(1,5),rand(1,5),rand(1,5),rand(1,5),rand(1,5),rand(1,5),rand(1,5),rand(1,5),rand(1,5),rand(1,5),rand(1,5),rand(1,5),rand(1,5),rand(1,5),rand(1,5),rand(1,5),rand(5,10),rand(1,5);
+
+		set $@Enc2,rand(1,36);
+		setarray $@EncA_2[1],21,20,1,2,87,88,99,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,168,16;
+		setarray $@EncB_2[1],rand(3,10),rand(30,100),rand(100,1000),rand(20,200),rand(2,7),rand(2,7),rand(2,7),rand(2,7),rand(2,7),rand(2,7),rand(2,7),rand(2,7),rand(2,7),rand(2,7),rand(1,5),rand(1,5),rand(1,5),rand(1,5),rand(1,5),rand(1,5),rand(1,5),rand(1,5),rand(1,5),rand(1,5),rand(1,5),rand(1,5),rand(1,5),rand(1,5),rand(1,5),rand(1,5),rand(1,5),rand(1,5),rand(1,5),rand(1,5),rand(5,10),rand(1,5);
+
+		set $@Enc3,rand(1,60);
+		setarray $@EncA_3[1],0,0,0,0,0,0,0,0,0,0,0,0,0,0,15,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,153,154,155,156,171;
+		setarray $@EncB_3[1],0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,rand(5,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10),rand(5,10),rand(30,60),rand(30,60),rand(30,60),rand(30,60),rand(30,60),rand(30,60),rand(30,60),rand(30,60),rand(30,60),rand(30,60),rand(30,60),rand(30,60),rand(30,60),rand(30,60),rand(30,60),rand(30,60),rand(30,60),rand(30,60),rand(30,60),rand(30,60),rand(30,60),rand(30,60),rand(30,60),rand(30,60),rand(1,3);
+
+		setarray .@id[0],$@EncA_1[$@Enc1],$@EncA_2[$@Enc2],$@EncA_3[$@Enc3];
+		setarray .@val1[0],$@EncB_1[$@Enc1],$@EncB_2[$@Enc2],$@EncB_3[$@Enc3];
+		setarray .@val2[0],0,0,0;
+	}
+	
+	
+	goto OnEnchantMain;
+
+OnEnchantMain:
+	mes "[暗夜吉芬鬥技場附魔]";
+	mes "目前選擇：^888888"+getitemname(.@itemid)+"^000000";
+	mes "需求物品：^888888"+getitemname(.@reqId)+" x "+.@useamount+"";
+	mes "成功機率：^888888"+.@success_rate+"%^000000";
+	next;
+	if(select("確定:取消")==2) close;
+	if((countitem(.@reqId) < .@useamount) ) {
+		mes "[暗夜吉芬鬥技場附魔]";
+		mes "^ff0000"+getitemname(.@reqId)+"不足…^000000";
+		close;
+	}else{
+		delitem .@reqId,.@useamount;//移除物品
+		
+			specialeffect2 EF_PHARMACY_OK;
+			set .@card_id1,getequipcardid(.@Equipslot,0);//保留第一洞的卡片
+			set .@card_id2,getequipcardid(.@Equipslot,1);
+			set .@card_id3,getequipcardid(.@Equipslot,2);
+			set .@card_id4,getequipcardid(.@Equipslot,3);
+			set .@ref_lv,getequiprefinerycnt(.@Equipslot);
+			delequip .@Equipslot;
+			getitem3 .@itemid,1,1,.@ref_lv,0,.@card_id1,.@card_id2,.@card_id3,.@card_id4,.@id,.@val1,.@val2;
+			dispbottom "附魔成功！";
+	}
+	end;
+}

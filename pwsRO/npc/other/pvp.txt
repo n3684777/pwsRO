@@ -1,0 +1,11 @@
+prt_in,54,140,4	script	PVP傳送員	868,{
+mes"是否要前往PVP場地呢？";
+menu"前往",x,"離開",-;
+close;
+x:
+warp "pvp_y_1-2",0,0;
+end;
+OnInit:
+waitingroom "PVP ["+getmapusers("pvp_y_1-2")+"]",0;
+end;
+}

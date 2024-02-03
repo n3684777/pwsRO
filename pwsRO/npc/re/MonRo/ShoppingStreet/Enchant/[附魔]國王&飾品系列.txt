@@ -1,0 +1,240 @@
+/*
+============================================================================
+完成時間: 2020/5/20
+發行版本: 國王飾品附魔v1.0 
+測試環境: rAthena
+作者: Miher
+說明: 轉載請保留上述資訊。若有任何問題或Bug，
+歡迎前往加入Line帳號或Discord提問和反饋，
+我們會為您提供技術援助以及版本更新。
+謝謝您的支持！
+Line: @550qsrig
+Discord: Miher#2176
+============================================================================
+*/
+
+function	script	kingringenc	{
+	disable_items;
+	set .@part, EQI_ACC_L;
+	set .@equip_refine, getequiprefinerycnt(.@part);
+	set .@equip_id, getequipid(.@part);
+	if (.@equip_id == 28483){ callfunc "kingring";end;}
+	set .@item$, "|2601|2621|2602|2622|2603|2623|2604|2624|2605|2625|2607|2608|2626|2609|2715|2610|2611|2612|2613|2614|2615|2956|2618|2619|2671|2620|2627|2628|2636|2637|2638|2639|2640|2641|2645|2647|2648|2649|2650|2651|2652|2653|2654|2655|2656|2658|2663|2664|2665|2666|2667|2680|2700|2701|2702|2703|2716|2718|2719|2720|2721|2722|2723|2724|2725|2726|2727|2728|2729|2730|2731|2732|2736|2743|2744|2745|2746|2747|2748|2749|2766|2767|2768|2769|2770|2771|2772|2773|2774|2777|2778|2779|2780|2783|2784|2787|2788|2789|2790|2794|2795|2800|2801|2802|2803|2804|2805|2807|2808|2809|2810|2826|2827|2843|2853|2854|2881|";
+	setarray .@equip_card[0], getequipcardid(.@part,0), getequipcardid(.@part,1), getequipcardid(.@part,2), getequipcardid(.@part,3);
+	setarray .@Slots4[0],4701,4702,4703,4704,4705,4711,4712,4713,4714,4715,4721,4722,4723,4724,4725,4731,4732,4733,4734,4735,4741,4742,4743,4744,4745,4808,4809,4820,4817,4816,4843,4826,4813,4812,4805,4850,4832,4863,4864,29047,4760,4819,29071,4800,4801,4796,4798,4861,4862,4929,4792,4794,4786,4787;
+	if (checkweight(1201,1) == 0 && MaxWeight - Weight < 10000) {
+	mes "[飾品研究員]";
+	mes "請確認您的負重以及背包。";
+	close;
+	}
+	mes "[飾品研究員]";
+	mes "你找我有事嗎?";
+	next;
+	switch(select("飾品附魔:飾品附魔重置")){
+	case 1:
+	if (!compare(.@item$,"|"+.@equip_id+"|")) {
+		mes "[飾品研究員]";
+		mes "請將要附魔飾品放置左邊欄位！";
+		close;
+	}
+	if (.@equip_card[3]){
+		mes "[飾品研究員]";
+		mes "這個飾品已經附魔過了。";
+		close;
+	}
+	mes "[飾品研究員]";
+	mes "附魔需要材料:";
+	mes "<ITEM>附魔原石<INFO>25235</INFO></ITEM>: 10個";
+	mes "Zeny: 100000";
+	mes "將在第四洞附上隨機能力值";
+	next;
+	select("進行");	
+	if(Zeny < 100000 || countitem(25235) < 10){ 
+	mes "[飾品研究員]";
+	mes "道具或金額不足";
+	mes "請檢查Zeny & <ITEM>附魔原石<INFO>25235</INFO></ITEM> 數量。";
+	close;
+	}
+	progressbar "ffffff",1;
+	mes "[飾品研究員]";
+	mes "附魔成功，請確認一下吧。";
+	specialeffect 154;
+	delitem 25235,10;
+	delequip .@prat;
+	set zeny,zeny -100000;
+	getitem2 .@equip_id,1,1,0,0,.@equip_card[0],0,0,.@Slots4[rand(53)];
+	close;
+		
+	case 2:
+		mes "[飾品研究員]";		
+		mes "重置飾品需準備材料:";
+		mes "<ITEM>附魔原石<INFO>25235</INFO></ITEM>: 10個";
+		mes "Zeny: 100000";
+		mes"你確定要重置飾品上的強化效果嗎?";
+		mes"有20%機率會爆掉喔";
+		next;
+		select("進行");
+		if(Zeny < 100000 || countitem(25235) < 10){ 
+		mes "[飾品研究員]";
+		mes "道具或金額不足";
+		mes "請檢查Zeny & <ITEM>附魔原石<INFO>25235</INFO></ITEM> 數量。";
+		close;
+		}
+		if (.@equip_card[3]){
+		set .@i,rand(100);
+		delitem 25235,10;
+		set zeny,zeny -100000;
+		if(.@i <= 80){			
+		specialeffect 154;
+		mes "[飾品研究員]";
+		mes "成功了";
+		delequip .@prat;
+		getitem .@equip_id,1;
+		close;
+		}else{
+		specialeffect 155;
+		mes "[飾品研究員]";
+		mes "失敗了! 我提醒過你了...!";
+		delequip .@prat;
+		close;
+		}
+	}else{
+	mes "[飾品研究員]";
+	mes "此裝備無須重置!";
+	close;
+		}
+	
+	}
+}
+
+
+function	script	kingring	{
+	disable_items;
+	set .@part, EQI_ACC_L;
+	setarray .@atk4[0],4702,4703,4704,4705,4706,4732,4733,4734,4735,4736,4742,4743,4744,4745,4746;
+	setarray .@atk3[0],4809,4808,4820,4821,4822,4818,4817,4816,4843,4844,4842,4882,4766,4767,4807;
+	setarray .@longatk4[0],4722,4723,4724,4725,4726,4732,4733,4734,4735,4736,4752,4753,4754,4755,4756;
+	setarray .@longatk3[0],4863,4864,4865,4866,4843,4844,4816,4817,4818,4832,4833,4834,4807,4842,29047;
+	setarray .@magic3[0],4826,4827,4828,4813,4850,4851,4805,4852,4929,4896,4897,4883,29072,29071;
+	setarray .@magic4[0],4742,4743,4744,4745,4746,4722,4723,4724,4725,4726,4712,4713,4714,4715,4716;
+	setarray .@equip_card[0], getequipcardid(.@part,0), getequipcardid(.@part,1), getequipcardid(.@part,2), getequipcardid(.@part,3);
+
+	if( countitem(28483) == 0 ){mes "[飾品研究員]"; mes "你聽過<ITEM>國王守護之戒<INFO>28483</INFO></ITEM>嗎?"; close;}
+	if (checkweight(1201,1) == 0 && MaxWeight - Weight < 10000) {
+		mes "[飾品研究員]";
+		mes "請確認您的負重以及背包。";
+		close;
+	}
+	mes "[飾品研究員]";
+	mes "你帶著珍貴的戒指耶!你找我有事嗎?";
+	next;
+	switch(select("戒指附魔:戒指附魔重置")){
+	if( getequipid(0) != 28483 ){mes "[飾品研究員]"; mes "請將<ITEM>國王守護之戒<INFO>28483</INFO></ITEM>裝備在左邊欄位"; close;}
+	case 1:
+	mes "[飾品研究員]";
+	mes "解開封印需準備材料:";
+	mes "<ITEM>附魔原石<INFO>25235</INFO></ITEM>: 10個";
+	mes "Zeny: 100000";
+	mes "妳需要哪種力量呢?";
+	next;
+	switch(select("物理攻擊:魔法攻擊:遠距離攻擊")){
+		case 1:
+		set .@enc_type4,.@atk4[rand(14)];
+		set .@enc_type3,.@atk3[rand(14)];
+		break;
+		case 2:
+		set .@enc_type4,.@magic4[rand(14)];
+		set .@enc_type3,.@magic3[rand(14)];
+		break;
+		case 3:
+		set .@enc_type4,.@longatk4[rand(14)];
+		set .@enc_type3,.@longatk3[rand(14)];
+		break;
+		}
+		if (!.@equip_card[3]){
+		mes "[飾品研究員]";
+		mes "我來解開第一道封印";
+		next;
+		select("進行");
+		if(Zeny < 100000 || countitem(25235) < 10){ 
+		mes "[飾品研究員]";
+		mes "道具或金額不足";
+		mes "請檢查Zeny & <ITEM>附魔原石<INFO>25235</INFO></ITEM> 數量。";
+		close;
+		}
+		progressbar "ffffff",1;
+		mes "[飾品研究員]";
+		mes "封印已打開，請確認一下吧。";
+		specialeffect 154;
+		delitem 25235,10;
+		delequip .@prat;
+		set zeny,zeny -100000;
+		getitem2 28483,1,1,0,0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@enc_type4;
+		close;
+		}
+		if (!.@equip_card[2]&&.@equip_card[3]){
+		mes "[飾品研究員]";
+		mes "再來解開第二道封印，沒問題吧?";
+		next;
+		select("進行");
+		if(Zeny < 100000 || countitem(25235) < 10){ 
+		mes "[飾品研究員]";
+		mes "道具或金額不足";
+		mes "請檢查Zeny & <ITEM>附魔原石<INFO>25235</INFO></ITEM> 數量。";
+		close;
+		}
+		progressbar "ffffff",1;
+		mes "[飾品研究員]";
+		mes "封印已打開，請確認一下吧。";
+		specialeffect 154;
+		delitem 25235,10;
+		delequip .@prat;
+		set zeny,zeny -100000;
+		getitem2 28483,1,1,0,0,.@equip_card[0],.@equip_card[1],.@enc_type3,.@equip_card[3];
+		close;
+		}
+		mes "[飾品研究員]";
+		mes "這個戒指已經解開封印了。";
+		close;
+	case 2:
+		mes "[飾品研究員]";		
+		mes "重置飾品需準備材料:";
+		mes "<ITEM>附魔原石<INFO>25235</INFO></ITEM>: 10個";
+		mes "Zeny: 100000";
+		mes"你確定要重置飾品上的強化效果嗎?";
+		mes"有20%機率會爆掉喔";
+		next;
+		select("進行");
+		if(Zeny < 100000 || countitem(25235) < 10){ 
+		mes "[飾品研究員]";
+		mes "道具或金額不足";
+		mes "請檢查Zeny & <ITEM>附魔原石<INFO>25235</INFO></ITEM> 數量。";
+		close;
+		}
+		if (.@equip_card[3]+.@equip_card[2]){
+		set .@i,rand(100);
+		delitem 25235,10;
+		set zeny,zeny -100000;
+		if(.@i <= 80){			
+		specialeffect 154;
+		mes "[飾品研究員]";
+		mes "成功了";
+		delequip .@prat;
+		getitem 28483,1;
+		close;
+		}else{
+		specialeffect 155;
+		mes "[飾品研究員]";
+		mes "失敗了! 我提醒過你了...!";
+		delequip .@prat;
+		close;
+		}
+	}else{
+	mes "[飾品研究員]";
+	mes "此裝備無須重置!";
+	close;
+		}
+	}
+	
+		
+}	

@@ -1,0 +1,236 @@
+lroom00,118,61,5	script	時光戰靴兌換	542,{
+	disable_items;
+function str2 {
+	setarray .@a,0,40,34;
+	setarray .@b,1,2,1;
+	function GetCopyStr {
+		for(set .@i,getarg(0);.@i>0;set .@i,.@i-1)set .@h$,.@h$+" ";
+		return .@h$;
+	}
+	return GetCopyStr((.@a[getarg(1,0)]-(getstrlen(getarg(0))-(getarg(2,0)*7)))/.@b[getarg(1,0)]) + getarg(0);
+}
+	function refine_5;
+	function Add;
+	function Chk;
+	function Chk2;
+	function Slot;
+	if(!.Allow) end;
+	if(.Shops$ != "") set .@i,1;
+	else{
+		mes "["+strnpcinfo(1)+"]";
+		mes "^FF00001.^000000 請一次製作一種道具";
+		mes "^FF00002.^000000 查看道具材料並不會扣除金錢";
+		mes "^FF00003.^000000 攜帶所有材料即可製作";
+		close2;
+		set .@menu$,"";
+		for(set .@i,1; .@i<=getarraysize(.Shops$); set .@i,.@i+1) 
+			set .@menu$, .@menu$+(.Shops$[.@i])+":";
+		set .@i, select(.@menu$);
+		callshop "qshop_GHSGJC_"+.@i,1;
+		npcshopattach "qshop_GHSGJC_"+.@i;
+	}
+	end;
+	
+function refine_5 {
+	setarray .@refine_5,501;
+	.@index = inarray(.@refine_5,getarg(0));
+	if(.@index > -1) return .@index;
+	else return -1;
+}
+
+function Add {
+	if (getitemname(getarg(1))=="null") {
+		debugmes "道具編號 #"+getarg(1)+" 出現錯誤 (略過).";
+		return;
+	}
+	for(set .@n,5; .@n<127; set .@n,.@n+2) {
+		if (!getarg(.@n,0)) break;
+		if (getitemname(getarg(.@n))=="null") {
+			debugmes "製作材料超過最大值, 編號#"+getarg(.@n)+" (略過)."; return;
+		}
+	}
+	for(set .@i,2; .@i<.@n; set .@i,.@i+1)
+		set getd(".q_"+getarg(1)+"["+(.@i-2)+"]"), getarg(.@i);
+	npcshopadditem "qshop_GHSGJC_"+getarg(0),getarg(1),((.ShowZeny)?getarg(3):0);
+	sleep 1;
+	return;
+}
+
+function Chk {
+	if (getarg(0)<getarg(1)){
+		set @qe0,1;
+		return "(^999999未完成^000000)";
+	} else return "(^D2691E已完成^000000)";
+}
+
+function Chk2 {
+	if(countitem2(getarg(0),1,5,0,0,0,0,0) < getarg(1)){
+		set @qe0,1;
+		return "(^999999未完成^000000)";
+	} else return "(^D2691E已完成^000000)";
+}
+
+function Slot {
+	set .@s$,getitemname(getarg(0));
+	if(refine_5(getarg(0)) > -1)
+		if(getarg(1,0) == 0) .@s$ = "+5 "+.@s$;
+	switch(.ShowSlot){
+		case 1: if (!getitemslots(getarg(0))) return .@s$;
+		case 2: if (getiteminfo(getarg(0),11)>0) return ""+.@s$+"["+getitemslots(getarg(0))+"]";
+		default: return .@s$;
+	}
+}
+
+OnBuyItem:
+	set .@q[0],@bought_nameid;
+	copyarray .@q[1],getd(".q_"+@bought_nameid+"[0]"),getarraysize(getd(".q_"+@bought_nameid+"[0]"));
+	if (!.@q[1]) {
+		message strcharinfo(0),"An error has occurred.";
+		end;
+	}
+	mes "[時光靴製作]";
+	//mes "- 製作 ^FF0000"+((.@q[1]>1)?.@q[1]+"x ":"")+Slot(.@q[0])+"^000000";
+	mes "- 請準備好下面材料 :";
+	if (.@q[2]) mes "- ^FF1493製作費用 "+.@q[2]+" Zeny "+Chk(Zeny,.@q[2])+"^000000";
+	if (.@q[3]) mes "- ^009900製作P點 "+.@q[3]+" "+.Points$[1]+"^000000 ["+getd(.Points$[0])+"/"+.@q[3]+"] "+Chk(getd(.Points$[0]),.@q[3]);
+	if (.@q[4]) for(set .@i,4; .@i<getarraysize(.@q); set .@i,.@i+2){
+		if(refine_5(.@q[.@i]) > -1)
+			mes "- "+Slot(.@q[.@i])+" x "+.@q[.@i+1]+" [^009900"+countitem2(.@q[.@i],1,5,0,0,0,0,0)+"^000000/^FF6600"+.@q[.@i+1]+"^000000] "+Chk2(.@q[.@i],.@q[.@i+1]);
+		else
+			mes "- "+Slot(.@q[.@i])+" x "+.@q[.@i+1]+" [^009900"+countitem(.@q[.@i])+"^000000/^FF6600"+.@q[.@i+1]+"^000000] "+Chk(countitem(.@q[.@i]),.@q[.@i+1]);
+	}
+	set @qe1, getiteminfo(.@q[0],5);
+	set @qe2, getiteminfo(.@q[0],11);
+	addtimer 1000, strnpcinfo(1)+"::OnEnd";
+	while(1){
+		switch(select(" ~ 製作 ^FF0000"+getitemname(.@q[0])+"^000000:"+((((@qe1&1) || (@qe1&256) || (@qe1&512)) && @qe2>0 && !@qe6)?" ~ 查看外觀...":"")+": ~ ^777777結束對話^000000")) {
+			case 1:
+				clear;
+				if (@qe0) { 
+					mes "[時光靴製作]";
+					mes "材料不足，無法製作！";
+					close;
+				}
+				if (!checkweight(.@q[0],.@q[1])) {
+					mes "[時光靴製作]";
+					mes "^FF0000你需要 "+(((.@q[1]*getiteminfo(.@q[0],6))+Weight-MaxWeight)/10)+" 的負重量才能玩成此次交易.^000000";
+					close;
+				}
+				if (.@q[2]) set Zeny, Zeny-.@q[2];
+				if (.@q[3]) setd .Points$[0], getd(.Points$[0])-.@q[3];
+				if (.@q[4]){
+					for(set .@i,4; .@i<getarraysize(.@q); set .@i,.@i+2){
+						if(refine_5(.@q[.@i]) > -1)
+							delitem2 .@q[.@i],.@q[.@i+1],1,5,0,0,0,0,0;
+						else
+							delitem .@q[.@i],.@q[.@i+1];
+					}
+				}
+				getitem .@q[0],.@q[1];
+				specialeffect2 699;
+				mes "[時光靴製作]";
+				mes "製作完成!";
+				close;
+			case 2:
+				set @qe3, getlook(3);
+				set @qe4, getlook(4);
+				set @qe5, getlook(5);
+				if (@qe1&1) atcommand "@changelook 3 "+@qe2;
+				if (@qe1&256) atcommand "@changelook 1 "+@qe2;
+				if (@qe1&512) atcommand "@changelook 2 "+@qe2;
+				set @qe6,1;
+				break;
+			case 3:
+				close;
+		}
+	}
+OnEnd:
+	if (@qe6) {
+		atcommand "@changelook 3 "+@qe3;
+		atcommand "@changelook 1 "+@qe4;
+		atcommand "@changelook 2 "+@qe5;
+	}
+	for(set .@i,0; .@i<7; set .@i,.@i+1) setd "@qe"+.@i,0;
+	end;
+OnInit:
+// --------------------- Config ---------------------
+// 自定義變數, 新增方法 : "變數","變數名稱"
+
+	setarray .Points$[0],"#CASHPOINTS","CASH";
+
+	set .Announce,0;	// 是否廣播製作? (1: 是 / 0: 否)
+	set .ShowSlot,2;	// 是否顯示道具洞數? (2: 一律顯示 / 1: 洞數 > 0 才顯示 / 0: 不顯示)
+	set .DisplayID,0;	// 是否顯示道具編號? (1: 是 / 0: 否)
+	set .ShowZeny,1;	// 是否在商店顯示道具製作金錢? (1: 是 / 0: 否)
+	
+
+	setarray .Shops$[1],			"時光戰靴",
+						"進階時光戰靴[0]",
+						"進階變異戰靴[0]",
+						"進階時光戰靴[1]",
+						"進階變異戰靴[1]",
+						"卡片類";
+
+// Add(<shop number>,<reward ID>,<reward amount>,<Zeny cost>,<point cost>,<required item ID>,<required item amount>{,...});
+// Add(<分類>,<製作道具編號>,<製作道具數量>,<所需金錢>,<所需商城點數>,<所需材料編號>,<所需材料數量>{,...});
+
+	//===[ 時裝戰靴 ]===
+	Add(1,2499,1,1000000,0,6607,1);
+	
+	//===[ 進階時光戰靴[0] ]===
+	Add(2,22000,1,3000000,0,2499,1,6607,5);
+	Add(2,22001,1,3000000,0,2499,1,6607,5);
+	Add(2,22002,1,3000000,0,2499,1,6607,5);
+	Add(2,22003,1,3000000,0,2499,1,6607,5);
+	Add(2,22004,1,3000000,0,2499,1,6607,5);
+	Add(2,22005,1,3000000,0,2499,1,6607,5);
+	
+	//===[ 進階變異戰靴[0] ]===
+	Add(3,22107,1,3000000,0,2499,1,6607,5);
+	Add(3,22108,1,3000000,0,2499,1,6607,5);
+	Add(3,22109,1,3000000,0,2499,1,6607,5);
+	Add(3,22110,1,3000000,0,2499,1,6607,5);
+	Add(3,22111,1,3000000,0,2499,1,6607,5);
+	Add(3,22112,1,3000000,0,2499,1,6607,5);
+	
+	//===[ 進階時光戰靴[1] ]===
+	Add(4,22006,1,5000000,0,22000,1,6607,10);
+	Add(4,22009,1,5000000,0,22001,1,6607,10);
+	Add(4,22008,1,5000000,0,22004,1,6607,10);
+	Add(4,22007,1,5000000,0,22003,1,6607,10);
+	Add(4,22010,1,5000000,0,22002,1,6607,10);
+	Add(4,22011,1,5000000,0,22005,1,6607,10);
+	
+	//===[ 進階變異戰靴[1] ]===
+	Add(5,22113,1,5000000,0,22107,1,6607,10);
+	Add(5,22114,1,5000000,0,22108,1,6607,10);
+	Add(5,22115,1,5000000,0,22109,1,6607,10);
+	Add(5,22116,1,5000000,0,22110,1,6607,10);
+	Add(5,22117,1,5000000,0,22111,1,6607,10);
+	Add(5,22118,1,5000000,0,22112,1,6607,10);
+	
+	//===[ 卡片類 ]===
+	Add(6,4608,1,2000000,0,6607,10,6608,600,6755,150);
+	Add(6,4609,1,2000000,0,6607,10,6608,600,6755,150);
+
+	//===[ 待新增 ]===
+	//Add(7,19428,1,2000000,0,5126,1,25271,100,25775,100,25783,50);
+
+	//===[ 待新增 ]===
+	//Add(8,62066,1,2000000,0,7324,5,25897,5,25896,100,25899,100,25271,50);
+
+// --------------------------------------------------
+	for(set .@i,1; .@i<=getarraysize(.Shops$); set .@i,.@i+1) npcshopdelitem "qshop_GHSGJC_"+.@i,909;
+	set .Allow,1;
+	end;
+}
+
+// -------- Dummy data (duplicate as needed) --------
+-	shop	qshop_GHSGJC_1	-1,909:-1
+-	shop	qshop_GHSGJC_2	-1,909:-1
+-	shop	qshop_GHSGJC_3	-1,909:-1
+-	shop	qshop_GHSGJC_4	-1,909:-1
+-	shop	qshop_GHSGJC_5	-1,909:-1
+-	shop	qshop_GHSGJC_6	-1,909:-1
+-	shop	qshop_GHSGJC_7	-1,909:-1
+//-	shop	qshop_GHSGJC_8	-1,909:-1

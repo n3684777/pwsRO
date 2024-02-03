@@ -1,0 +1,616 @@
+function	script	qlz10	{
+	mes "保羅協夫的研究室就在後面,裡面傳出哭聲";
+.@coldtime = 6; // 冷卻時間
+if((gettimetick(2)-mqlz10)<(.@coldtime*3600)){
+set .@time,(.@coldtime*3600)-(gettimetick(2)-mqlz);
+set .@hour,.@time/3600;
+set .@min,.@time/60%60;
+set .@sec,.@time%60;
+mes "["+strnpcinfo(0)+"]";
+mes "剩餘冷卻時間 : ^FF1493"+(.@hour<10?"0"+.@hour:.@hour)+" 時 "+(.@min<10?"0"+.@min:.@min)+" 分 "+(.@sec<10?"0"+.@sec:.@sec)+" 秒";
+close;
+}
+	next;
+	switch(select("一探究竟!","還是小心微妙, 別進去好了."))
+	{
+	case 1:
+		if(!getcharid(1)){
+			mes "^FF0000(警告)^000000";
+			mes ""+strcharinfo(0)+"...";
+			mes "^FF0000(未認證的使用者)^000000";
+			next;
+			mes "實驗室保護機制被啟動並開始攻擊你";
+			pushpc DIR_SOUTH,3;
+			specialeffect EF_AUTOCOUNTER;
+			specialeffect2 EF_BASH;
+			percentheal -5,0;
+			close;
+		}
+		set .@party_id,getcharid(1);
+		set .@ins_mas,getpartyleader(.@party_id,2);
+		set .@p_name$,getpartyname(.@party_id);
+		set .@p_reader$,strcharinfo(0);
+		set .@md_name$,"保羅協夫的研究室";
+		mes "[保羅協夫]";
+		mes "你確定要進入了嗎?";
+		mes "如果你願意你已經可以進入實驗室。";
+		next;
+		mes "[保羅協夫]";
+		mes "按下緊急按鈕嘗試更改系統，便可以進入實驗室。";
+		next;
+		mes "[保羅協夫]";
+		mes "許多警報系統只要把他們關了便不會再運作。";
+		next;
+		mes "[保羅協夫]";
+		mes "阿！如果在使用緊急系統的時候會變得相當不穩定，發生在這實驗室裡的事情實在太神祕了。";
+		next;
+		mes "[保羅協夫]";
+		mes "我不知道這麼做會發生甚麼事，也許你會因此受傷也不一定。";
+		next;
+		mes "[保羅協夫]";
+		mes "你真的想要進入" + .@md_name$ + "?";
+		next;
+		switch(select(.@ins_mas==getcharid(0)?"創建 " + .@md_name$:"","進入實驗室"))
+		{
+//			callfunc "PartyIPCheck";
+//			callfunc "Cooldown_Check", "Laboratory_Lasttime", "$@Laboratory_Cooldown", strnpcinfo(1);
+			case 1:
+				if (instance_create(.@md_name$) < 0) {
+					mes "隊伍名稱: "+.@p_name$;
+					mes "隊　　長: "+strcharinfo(0);
+					mes "^0000ff"+.@md_name$+" ^000000- 創建失敗!";
+				} else {
+					mes "[保羅協夫]";
+					mes "^0000ff"+.@md_name$+"^000000 - 創建完成";
+					mes "創建副本後，就可以與你隊伍的玩家進入實驗室。";
+				}
+				close;
+			case 2:
+//				callfunc "PartyIPCheck";
+				switch(instance_enter(.@md_name$)) {
+					case 3:
+						mes "不明錯誤.";
+						close;
+					case 2:
+						mes .@md_name$+" 副本不存在.";
+						mes "隊長尚未申請記憶迷宮.";
+						close;
+					case 1:
+						mes "只有申請 "+.@md_name$+" 副本的隊員才可以進入.";
+						close;
+					case 0:
+						set mqlz10,gettimetick(2);
+if(getpartyleader(getcharid(1),2) == getcharid(0)) {
+mapannounce strnpcinfo(4), getpartyname(getcharid(1))+" 隊伍成員 "+strcharinfo(0)+" 進入了 "+.@md_name$+"",bc_map,"0x00ff99";
+}
+						end;
+				}
+				close;
+		}
+	case 2:	close;
+	}
+close;
+}
+
+//MOB FIJA:
+1@lhz,0,0,0	script	#wolfinsmob	-1,{
+OnInstanceInit:
+	'time = gettimetick(2);
+	donpcevent instance_npcname("#wolfinsmob")+"::OnEnable";
+	end;
+	
+OnDisable:
+	killmonster instance_mapname("1@lhz"),instance_npcname("#wolfinsmob")+"::OnMyMobDead";
+	end;
+	
+OnEnable:
+	enablenpc instance_npcname("#wolfinsmob");
+	areamonster instance_mapname("1@lhz"),36,169,53,156,"餓壞了的實驗動物",2242,11,instance_npcname("#wolfinsmob")+"::OnMyMobDead";
+	end;
+	
+OnMyMobDead:
+	if (mobcount(instance_mapname("1@lhz"),instance_npcname("#wolfinsmob")+"::OnMyMobDead") < 1){
+		enablenpc instance_npcname("#wolfvaluon");
+		donpcevent instance_npcname("#wolfinschat")+"::OnChat";
+//		donpcevent instance_npcname("#wolfvaluon")+"::OnAble";
+		disablenpc instance_npcname("#wolfinsmob");
+		end;
+	}
+}
+1@lhz,0,0,0	script	#wolfinsmob2	-1,{
+OnInstanceInit:
+	donpcevent instance_npcname("#wolfinsmob2")+"::OnDisable";
+	end;
+	
+OnDisable:
+	killmonster instance_mapname("1@lhz"),instance_npcname("#wolfinsmob2")+"::OnMyMobDead";
+	end;
+	
+OnEnable:
+	enablenpc instance_npcname("#wolfinsmob2");
+	areamonster instance_mapname("1@lhz"),140,57,163,41,"餓壞了的實驗動物",2242,8,instance_npcname("#wolfinsmob2")+"::OnMyMobDead";
+	areamonster instance_mapname("1@lhz"),140,57,163,41,"餓壞了的實驗動物",2243,4,instance_npcname("#wolfinsmob2")+"::OnMyMobDead";
+	end;
+	
+OnMyMobDead:
+	if (mobcount(instance_mapname("1@lhz"),instance_npcname("#wolfinsmob2")+"::OnMyMobDead") < 1) {
+		donpcevent instance_npcname("#wolfinschat2")+"::OnChat";
+		disablenpc instance_npcname("#wolfinsmob2");
+		end;
+	}
+}
+1@lhz,0,0,0	script	#wolfinsmob3	-1,{
+
+OnInstanceInit:
+	donpcevent instance_npcname("#wolfinsmob3")+"::OnDisable";
+	end;
+	
+OnDisable:
+	killmonster instance_mapname("1@lhz"),instance_npcname("#wolfinsmob3")+"::OnMyMobDead";
+	end;
+	
+OnEnable:
+	enablenpc instance_npcname("#wolfinsmob3");
+	areamonster instance_mapname("1@lhz"),34,109,57,97,"餓壞了的實驗動物",2242,13,instance_npcname("#wolfinsmob3")+"::OnMyMobDead";
+	areamonster instance_mapname("1@lhz"),34,109,57,97,"餓壞了的實驗動物",2243,7,instance_npcname("#wolfinsmob3")+"::OnMyMobDead";
+	end;
+	
+OnMyMobDead:
+	if (mobcount(instance_mapname("1@lhz"),instance_npcname("#wolfinsmob3")+"::OnMyMobDead") < 1) {
+		donpcevent instance_npcname("#wolfinschat3")+"::OnChat";
+		disablenpc instance_npcname("#wolfinsmob3");
+		end;
+	}
+}
+1@lhz,0,0,0	script	#wolfinsmob4	-1,{
+
+OnInstanceInit:
+	donpcevent instance_npcname("#wolfinsmob4")+"::OnDisable";
+	end;
+	
+OnDisable:
+	killmonster instance_mapname("1@lhz"),instance_npcname("#wolfinsmob4")+"::OnMyMobDead";
+	end;
+	
+OnEnable:
+	enablenpc instance_npcname("#wolfinsmob4");
+	set .@mvp_ran,rand(1,11);
+	if (.@mvp_ran == 1) {
+		areamonster instance_mapname("1@lhz"),121,140,155,97,"甦醒的實驗體",2235,1,instance_npcname("#wolfinsmob4")+"::OnMyMobDead";
+		disablenpc instance_npcname("實驗體#paladin");
+	}
+	else if (.@mvp_ran == 2) {
+		areamonster instance_mapname("1@lhz"),121,140,155,97,"甦醒的實驗體",2236,1,instance_npcname("#wolfinsmob4")+"::OnMyMobDead";
+		disablenpc instance_npcname("實驗體#creator");
+	}
+	else if (.@mvp_ran == 3) {
+		areamonster instance_mapname("1@lhz"),121,140,155,97,"甦醒的實驗體",2237,1,instance_npcname("#wolfinsmob4")+"::OnMyMobDead";
+		disablenpc instance_npcname("實驗體#prof");
+	}
+	else if (.@mvp_ran == 4) {
+		areamonster instance_mapname("1@lhz"),121,140,155,97,"甦醒的實驗體",2238,1,instance_npcname("#wolfinsmob4")+"::OnMyMobDead";
+		disablenpc instance_npcname("實驗體#champion");
+	}
+	else if (.@mvp_ran == 5) {
+		areamonster instance_mapname("1@lhz"),121,140,155,97,"甦醒的實驗體",2239,1,instance_npcname("#wolfinsmob4")+"::OnMyMobDead";
+		disablenpc instance_npcname("實驗體#stalker");
+	}
+	else if (.@mvp_ran == 6) {
+		areamonster instance_mapname("1@lhz"),121,140,155,97,"甦醒的實驗體",2240,1,instance_npcname("#wolfinsmob4")+"::OnMyMobDead";
+		disablenpc instance_npcname("實驗體#misntrel");
+	}
+	else if (.@mvp_ran == 7) {
+		areamonster instance_mapname("1@lhz"),121,140,155,97,"甦醒的實驗體",1649,1,instance_npcname("#wolfinsmob4")+"::OnMyMobDead";
+		disablenpc instance_npcname("實驗體#Margaretha");
+	}
+	else if (.@mvp_ran == 8) {
+		areamonster instance_mapname("1@lhz"),121,140,155,97,"甦醒的實驗體",1647,1,instance_npcname("#wolfinsmob4")+"::OnMyMobDead";
+		disablenpc instance_npcname("實驗體#Assasin");
+	}
+	else if (.@mvp_ran == 9) {
+		areamonster instance_mapname("1@lhz"),121,140,155,97,"甦醒的實驗體",1650,1,instance_npcname("#wolfinsmob4")+"::OnMyMobDead";
+		disablenpc instance_npcname("實驗體#Hunter");
+	}
+	else if (.@mvp_ran == 10) {
+		areamonster instance_mapname("1@lhz"),121,140,155,97,"甦醒的實驗體",1646,1,instance_npcname("#wolfinsmob4")+"::OnMyMobDead";
+		disablenpc instance_npcname("實驗體#lordknight");
+	}
+	else if (.@mvp_ran == 11) {
+		areamonster instance_mapname("1@lhz"),121,140,155,97,"甦醒的實驗體",1648,1,instance_npcname("#wolfinsmob4")+"::OnMyMobDead";
+		disablenpc instance_npcname("實驗體#Howard");
+	}
+	end;
+	
+OnMyMobDead:
+	'time2 = gettimetick(2) - 'time;
+	'hour = 'time2 / 3600;
+	'min = 'time2 / 60;
+	'sec = 'time2 % 60;
+	disablenpc instance_npcname("#wolfinsmob4");
+	mapannounce instance_mapname("1@lhz"),"恭喜完成保羅協夫的研究室副本。",bc_map,"0x00ffff";
+addrid(2,0,getcharid(1));
+if (strcharinfo(3)==instance_mapname("1@lhz")&& @hunter == 1){
+set #hunter,#hunter+1;
+if (getequipid(11) == 31900||getequipid(11) == 31600){set #hunter,#hunter+1;}
+dispbottom "<系統訊息> 副本點數增加！";
+}
+	sleep2 5000;
+	enablenpc instance_npcname("異界旅人#Lib");
+	end;
+}
+1@lhz,137,156,7	script	保羅協夫#finalevent	865,{
+	mes "[保羅協夫]";
+	mes "很好...你們擊敗了他....";
+	next;
+	mes "[保羅協夫]";
+	mes "有一些問題...";
+	next;
+	mes "[保羅協夫]";
+	mes "因為某些錯誤,副本必須有時間予以冷卻為時72hr";
+	next;
+	mes "[保羅協夫]";
+	mes "我已經幫你們打開出口了,想要離開了嗎";
+	next;
+	switch(select("我想再逛逛.","離開"))
+	{
+		case 1:
+			mes "[保羅協夫]";
+			mes "如果想要離開再告訴我.";
+			close;
+		case 2:
+			mes "[保羅協夫]";
+			mes "我將把你們送出實驗室.";
+			close2;
+			warp "lhz_dun04",147,273;
+			end;
+	}
+OnInstanceInit:
+	donpcevent instance_npcname("保羅協夫#finalevent")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("保羅協夫#finalevent");
+	end;
+OnEnable:
+	enablenpc instance_npcname("保羅協夫#finalevent");
+	end;
+}
+
+
+1@lhz,45,172,0	script	#wolfwarp1	45,1,1,{
+OnInstanceInit:
+	donpcevent instance_npcname("#wolfwarp1")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#wolfwarp1");
+	end;
+OnTouch:
+	warp instance_mapname("1@lhz"),151,27;
+	end;
+}
+1@lhz,152,64,0	script	#wolfwarp2	45,1,1,{
+OnInstanceInit:
+	donpcevent instance_npcname("#wolfwarp2")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#wolfwarp2");
+	end;
+OnTouch:
+	warp instance_mapname("1@lhz"),45,82;
+	end;
+}
+1@lhz,45,120,0	script	#wolfwarp3	45,1,1,{
+OnInstanceInit:
+	donpcevent instance_npcname("#wolfwarp3")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#wolfwarp3");
+	end;
+OnTouch:
+	warp instance_mapname("1@lhz"),138,95;
+	end;
+}
+1@lhz,38,169,1	script	#wolfvaluon	-1,3,3,{
+OnInstanceInit:
+	donpcevent instance_npcname("#wolfvaluon")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#wolfvaluon");
+	end;
+OnTouch:
+	if(getcharid(0)==getpartyleader(getcharid(1),2)) {
+		mes "保羅協夫四處散落的文件提到了啟動了緊急裝置";
+		next;
+		mes "這是一個好主意,繼續操作";
+		donpcevent instance_npcname("#wolfvalvuchat")+"::OnChat";
+		disablenpc instance_npcname("#wolfvaluon");
+	} else {
+		mes "保羅協夫四處散落的文件提到了啟動了緊急裝置";
+		next;
+		mes "這是一個好主意,繼續操作";
+	}
+close;
+}
+
+1@lhz,0,0,0	script	#wolfinschat	-1,{
+OnInstanceInit:
+	donpcevent instance_npcname("#wolfinschat")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#wolfinschat");
+	end;
+OnChat:
+	enablenpc instance_npcname("#wolfinschat");
+	initnpctimer;
+	mapannounce instance_mapname("1@lhz"), "[警備系統] 第一道警備系統已經被關閉。",bc_map,"0xFF8080";
+	end;
+OnTimer2000:
+	mapannounce instance_mapname("1@lhz"), "[警備系統] 緊急裝置已經被啟動,請耐心等待。",bc_map,"0xFF8080";
+	sleep2 1000;
+	mapannounce instance_mapname("1@lhz"), "這附近好像散落著甚麼，到處找找看吧。",bc_map,"0xD28EFF";
+	stopnpctimer;
+	disablenpc instance_npcname("#wolfinschat");
+	end;
+}
+
+1@lhz,0,0,0	script	#wolfinschat2	-1,{
+OnInstanceInit:
+	donpcevent instance_npcname("#wolfinschat2")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#wolfinschat2");
+	end;
+OnChat:
+	enablenpc instance_npcname("#wolfinschat2");
+	initnpctimer;
+	mapannounce instance_mapname("1@lhz"), "[警備系統] 第二道警備系統已經被關閉。",bc_map,"0xFF8080";
+	end;
+OnTimer2000:
+	mapannounce instance_mapname("1@lhz"), "[管理系統] 通往第三實驗室的入口開啟了！",bc_map,"0x0080C0";
+	stopnpctimer;
+	enablenpc instance_npcname("#wolfvalvuchat1b");
+	enablenpc instance_npcname("#wolfwarp2");
+	disablenpc instance_npcname("#wolfinschat2");
+	end;
+}
+1@lhz,0,0,0	script	#wolfinschat3	-1,{
+OnInstanceInit:
+	donpcevent instance_npcname("#wolfinschat3")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#wolfinschat3");
+	end;
+OnChat:
+	enablenpc instance_npcname("#wolfinschat3");
+	initnpctimer;
+	mapannounce instance_mapname("1@lhz"), "[警備系統] 第三道警備系統已經被關閉。",bc_map,"0xFF8080";
+	end;
+OnTimer2000:
+	mapannounce instance_mapname("1@lhz"), "[管理系統] 通往第四實驗室的入口開啟了！",bc_map,"0x0080C0";
+	stopnpctimer;
+	enablenpc instance_npcname("#wolfvalvuchat1c");
+	enablenpc instance_npcname("#wolfwarp3");
+	disablenpc instance_npcname("#wolfinschat3");
+	end;
+}
+	
+1@lhz,0,0,0	script	#wolfvalvuchat	-1,{
+OnInstanceInit:
+	donpcevent instance_npcname("#wolfvalvuchat")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#wolfvalvuchat");
+	end;
+OnChat:
+	initnpctimer;
+	mapannounce instance_mapname("1@lhz"), "正在嘗試開啟副本入口，請耐心等待。",bc_map,"0x0080C0";
+	end;
+OnTimer15000:
+	mapannounce instance_mapname("1@lhz"), "[管理系統] 通往第二實驗室的入口開啟了！。",bc_map,"0x0080C0";
+	enablenpc instance_npcname("#wolfwarp1");
+	stopnpctimer;
+	enablenpc instance_npcname("#wolfvalvuchat1a");
+	disablenpc instance_npcname("#wolfvalvuchat");
+	end;
+}
+1@lhz,152,26,0	script	#wolfvalvuchat1a	-1,2,2,{
+OnTouch:
+	if(getcharid(0)==getpartyleader(getcharid(1),2)) {
+		donpcevent instance_npcname("#wolfvalvuchat1")+"::OnEnable";
+		disablenpc instance_npcname("#wolfvalvuchat1a");
+		end;
+	}
+end;
+OnInstanceInit:
+	donpcevent instance_npcname("#wolfvalvuchat1a")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#wolfvalvuchat1a");
+	end;
+}
+1@lhz,45,82,1	script	#wolfvalvuchat1b	-1,2,2,{
+OnTouch:
+	if(getcharid(0)==getpartyleader(getcharid(1),2)) {
+		donpcevent instance_npcname("#wolfvalvuchat2")+"::OnEnable";
+		disablenpc instance_npcname("#wolfvalvuchat1b");
+		end;
+	}
+end;
+OnInstanceInit:
+	donpcevent instance_npcname("#wolfvalvuchat1b")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#wolfvalvuchat1b");
+	end;
+}
+1@lhz,138,95,1	script	#wolfvalvuchat1c	-1,2,2,{
+OnTouch:
+	if(getcharid(0)==getpartyleader(getcharid(1),2)) {
+		donpcevent instance_npcname("#wolfvalvuchat3")+"::OnEnable";
+		disablenpc instance_npcname("#wolfvalvuchat1c");
+		end;
+	}
+end;
+OnInstanceInit:
+	donpcevent instance_npcname("#wolfvalvuchat1c")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#wolfvalvuchat1c");
+	end;
+}
+1@lhz,0,0,0	script	#wolfvalvuchat1	-1,{
+OnInstanceInit:
+	donpcevent instance_npcname("#wolfvalvuchat1")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#wolfvalvuchat1");
+	end;
+OnEnable:
+	enablenpc instance_npcname("#wolfvalvuchat1");
+	initnpctimer;
+	end;
+
+OnTimer1000:
+	mapannounce instance_mapname("1@lhz"), "[警備系統] 嗡嗡嗡~偵測到有人入侵第二實驗室。",bc_map,"0xFF8080";
+	end;
+OnTimer3000:
+	mapannounce instance_mapname("1@lhz"), "[警備系統] 再過5秒 第二研究室的安全系統 將自動開啟。",bc_map,"0xFF8080";
+	end;
+OnTimer4000:
+	mapannounce instance_mapname("1@lhz"), "[警備系統] 嗡嗡嗡~第二研究室管道壓力超標。",bc_map,"0x0080C0";
+	end;
+OnTimer6000:
+		mapannounce instance_mapname("1@lhz"), "[警備系統] 安全系統即將啟用, 請研究室人員盡速撤離。",bc_map,"0xFF8080";
+		end;
+OnTimer8000:
+	mapannounce instance_mapname("1@lhz"), "[警備系統] 警告！研究室管道壓力超標，請盡速打開閥門。",bc_map,"0x0080C0";
+	donpcevent instance_npcname("#wolfinsmob2")+"::OnEnable";
+	stopnpctimer;
+	disablenpc instance_npcname("#wolfvalvuchat1");
+	end;
+}
+1@lhz,0,0,0	script	#wolfvalvuchat2	-1,{
+OnInstanceInit:
+	donpcevent instance_npcname("#wolfvalvuchat2")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#wolfvalvuchat2");
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("#wolfvalvuchat2");
+	initnpctimer;
+	end;
+OnTimer1000:
+	mapannounce instance_mapname("1@lhz"), "[警備系統] 嗡嗡嗡~偵測到有人入侵第三研究室。",bc_map,"0xFF8080";
+	end;
+OnTimer3000:
+	mapannounce instance_mapname("1@lhz"), "[警備系統] 5秒後即將啟動安全裝置 實驗體5號。",bc_map,"0xFF8080";
+	donpcevent instance_npcname("#wolfinsmob3")+"::OnEnable";
+	end;
+OnTimer5000:
+		mapannounce instance_mapname("1@lhz"), "[警備系統] 即將啟動研究室3的安全裝置！請人員盡快疏散。",bc_map,"0xFF8080";
+		end;
+OnTimer8000:
+	mapannounce instance_mapname("1@lhz"), "[警備系統] 警告！壓力目前過高，請人員盡速疏散。",bc_map,"0x0080C0";
+	stopnpctimer;
+	disablenpc instance_npcname("#wolfvalvuchat2");
+	end;
+}
+1@lhz,0,0,0	script	#wolfvalvuchat3	-1,{
+OnInstanceInit:
+	donpcevent instance_npcname("#wolfvalvuchat3")+"::OnDisable";
+	end;
+OnDisable:
+	disablenpc instance_npcname("#wolfvalvuchat3");
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("#wolfvalvuchat3");
+	initnpctimer;
+	end;
+OnTimer1000:
+	mapannounce instance_mapname("1@lhz"), "[警備系統] 嗡嗡嗡~偵測到有人入侵第四研究室。",bc_map,"0xFF8080";
+	end;
+OnTimer3000:
+	mapannounce instance_mapname("1@lhz"), "[警備系統] 5秒後即將啟動安全裝置 實驗體4號。",bc_map,"0xFF8080";
+	donpcevent instance_npcname("#wolfinsmob4")+"::OnEnable";
+	end;
+OnTimer5000:
+		mapannounce instance_mapname("1@lhz"), "輕聲細語: 是誰….",bc_map,"0x0080FF";
+		end;
+OnTimer6000:
+		mapannounce instance_mapname("1@lhz"), "輕聲細語: 不要再往前了…",bc_map,"0x0080FF";
+		end;
+OnTimer7000:
+		mapannounce instance_mapname("1@lhz"), "輕聲細語: 這裡相當的危險…",bc_map,"0x0080FF";
+		end;
+OnTimer8000:
+		mapannounce instance_mapname("1@lhz"), "輕聲細語: 我沒有辦法繼續存活下去…",bc_map,"0x0080FF";
+		end;
+OnTimer9000:
+		mapannounce instance_mapname("1@lhz"), "輕聲細語: 如果你不想像…",bc_map,"0x0080FF";
+		end;
+OnTimer10000:
+		mapannounce instance_mapname("1@lhz"), "輕聲細語: 趕快離開…",bc_map,"0x0080FF";
+		end;
+OnTimer11000:
+		mapannounce instance_mapname("1@lhz"), "輕聲細語: 充滿了悲傷和痛苦…",bc_map,"0x0080FF";
+		end;
+OnTimer12000:
+		mapannounce instance_mapname("1@lhz"), "輕聲細語: 呃…呃…已經太遲了…",bc_map,"0x0080FF";
+		stopnpctimer;
+		disablenpc instance_npcname("#wolfvalvuchat3");
+		end;
+}
+
+1@lhz,138,133,4	script	異界旅人#Lib	64,{
+	mes "[異界旅人]";
+	mes "剛剛感覺到這地方出現了秩序上的混亂";
+	mes "看來是被勇者們給解決了";
+	mes "辛苦各位了";
+	next;
+	switch(select("離開:再待一下")){
+		case 1:
+			warp "Save",50,50;
+			break;
+		case 2:
+			mes "[異界旅人]";
+			mes "那你想離開再來找我吧";
+			close;
+	}
+	close;
+	end;
+OnInstanceInit:
+	disablenpc instance_npcname("異界旅人#Lib");
+	end;
+
+}
+
+
+
+
+//Mapflags
+1@lhz	mapflag	nosave	SavePoint
+1@lhz	mapflag	nomemo
+1@lhz	mapflag	noteleport
+1@lhz	mapflag	nodrop
+1@lhz	mapflag	partylock
+1@lhz	mapflag	loadevent
+
+-	script	實驗體::Experiment	-1,{}
+1@lhz,127,111,7	duplicate(Experiment)	實驗體#creator	2222
+1@lhz,123,115,7	duplicate(Experiment)	實驗體#misntrel	2226
+1@lhz,119,119,7	duplicate(Experiment)	實驗體#champion	2224
+1@lhz,115,123,7	duplicate(Experiment)	實驗體#gyspy	2227
+1@lhz,148,111,1	duplicate(Experiment)	實驗體#paladin	2221
+1@lhz,152,115,1	duplicate(Experiment)	實驗體#prof	2223
+1@lhz,156,119,1	duplicate(Experiment)	實驗體#hz	1639
+1@lhz,160,123,1	duplicate(Experiment)	實驗體#Margaretha	1643
+1@lhz,115,144,5	duplicate(Experiment)	實驗體#Assasin	1641
+1@lhz,119,148,5	duplicate(Experiment)	實驗體#stalker	2225
+1@lhz,123,152,5	duplicate(Experiment)	實驗體#Hunter	1638
+1@lhz,127,156,5	duplicate(Experiment)	實驗體#lordknight	1634
+1@lhz,148,156,3	duplicate(Experiment)	Type_**Give#es00	826
+1@lhz,152,152,3	duplicate(Experiment)	Type_**Give#es01	898
+1@lhz,156,148,3	duplicate(Experiment)	Type_**Give#es02	85
+1@lhz,160,144,3	duplicate(Experiment)	實驗體#Howard	1642

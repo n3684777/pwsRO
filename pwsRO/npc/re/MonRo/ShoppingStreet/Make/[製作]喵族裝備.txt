@@ -1,0 +1,2144 @@
+
+lroom00,145,41,5	script	細心的老大	545,{			
+		set .@part, EQI_ACC_L;	
+		set @mama_equip_id, getequipid(.@part);
+		set .@equip_id, @mama_equip_id;
+		setarray .@equip_card[0], getequipcardid(.@part,0),getequipcardid(.@part,1),getequipcardid(.@part,2),getequipcardid(.@part,3);
+		set .@equip_refine, getequiprefinerycnt(.@part);
+	set .@npc$,"[細心的老大]";
+	mes .@npc$;
+	mes "你好，你有 "+getitemname(25142)+" 嗎...?";
+	mes "這裡可以將護符升級唷!!不過必須先把護符裝在左邊欄位。";
+	
+	next;
+	switch(select("升級楓葉護符:升級竹筴魚護符:升級兔子護符:取消")){
+	case 1:
+		if (!getequipisequiped(.@part)) {
+		mes .@npc$;
+		mes "對不起，您沒有任何護符在於右邊裝飾品位置。";
+		close;}
+		if(getequipid(.@part) == 28416 ){
+		if(countitem(25142) < 30){ 
+		mes .@npc$;
+		mes "^FF0000"+getitemname(25142)+"^000000數量不足，升為中級需要30個。";
+		close;	}
+		delequip .@part;
+		delitem 25142,30;
+		getitem2 28417,1,1,.@equip_refine,0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@equip_card[3];
+		mes .@npc$;
+		mes "升級完畢!";
+		close;}
+		if(getequipid(.@part) == 28417 ){
+		if(countitem(25142) < 90){ 
+		mes .@npc$;
+		mes "^FF0000"+getitemname(25142)+"^000000數量不足，升為高級需要90個。";
+		close;	}
+		delequip .@part;
+		delitem 25142,90;
+		getitem2 28418,1,1,.@equip_refine,0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@equip_card[3];
+		mes .@npc$;
+		mes "升級完畢!";
+		close;}
+		mes .@npc$;
+		mes "你是不是裝錯飾品了?";
+		close;
+	case 2:
+		if (!getequipisequiped(.@part)) {
+		mes .@npc$;
+		mes "對不起，您沒有任何護符在於右邊裝飾品位置。";
+		close;}
+		if(getequipid(.@part) == 28413 ){
+		if(countitem(25142) < 30){ 
+		mes .@npc$;
+		mes "^FF0000"+getitemname(25142)+"^000000數量不足，升為中級需要30個。";
+		close;	}
+		delequip .@part;
+		delitem 25142,30;
+		getitem2 28414,1,1,.@equip_refine,0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@equip_card[3];
+		mes .@npc$;
+		mes "升級完畢!";
+		close;}
+		if(getequipid(.@part) == 28414 ){
+		if(countitem(25142) < 90){ 
+		mes .@npc$;
+		mes "^FF0000"+getitemname(25142)+"^000000數量不足，升為高級需要90個。";
+		close;	}
+		delequip .@part;
+		delitem 25142,90;
+		getitem2 28415,1,1,.@equip_refine,0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@equip_card[3];
+		mes .@npc$;
+		mes "升級完畢!";
+		close;}
+		mes .@npc$;
+		mes "你是不是裝錯飾品了?";
+		close;
+	case 3:
+			if (!getequipisequiped(.@part)) {
+		mes .@npc$;
+		mes "對不起，您沒有任何護符在於右邊裝飾品位置。";
+		close;}
+		if(getequipid(.@part) == 28419 ){
+		if(countitem(25142) < 30){ 
+		mes .@npc$;
+		mes "^FF0000"+getitemname(25142)+"^000000數量不足，升為中級需要30個。";
+		close;	}
+		delequip .@part;
+		delitem 25142,30;
+		getitem2 28420,1,1,.@equip_refine,0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@equip_card[3];
+		mes .@npc$;
+		mes "升級完畢!";
+		close;}
+		if(getequipid(.@part) == 28420 ){
+		if(countitem(25142) < 90){ 
+		mes .@npc$;
+		mes "^FF0000"+getitemname(25142)+"^000000數量不足，升為高級需要90個。";
+		close;	}
+		delequip .@part;
+		delitem 25142,90;
+		getitem2 28421,1,1,.@equip_refine,0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@equip_card[3];
+		mes .@npc$;
+		mes "升級完畢!";
+		close;}
+		mes .@npc$;
+		mes "你是不是裝錯飾品了?";
+		close;
+	case 4:
+	close;
+		}
+		
+}
+
+
+lroom00,149,41,3	script	癡情的老五	544,{
+	switch(select("- 1.^0AA770穆拉裝備^0000ff回收^000000","- 2.^0AA770貓族^ff0000製作^0000ff回收^000000")){
+
+
+	case 1:
+	menu
+
+	     " ^0000ff回收鈦合金魔杖^000000",a1,
+	     " ^0000ff回收鈦合金魔杖II^000000",a2,
+	     " ^0000ff回收鈦合金外袍^000000",a3,
+	     " ^0000ff回收鈦合金風靴^000000",a4,
+	     " ^0000ff回收鈦合金靈球^000000",a5,
+	     " ^0000ff回收水精靈魔杖^000000",a6,
+	     " ^0000ff回收水精靈魔杖II^000000",a7,
+	     " ^0000ff回收水精靈外袍^000000",a8,
+	     " ^0000ff回收水精靈雨靴^000000",a9,
+	     " ^0000ff回收水精靈靈球^000000",a10,
+	     " ^0000ff回收赤火焰魔杖^000000",a11,
+	     " ^0000ff回收赤火焰魔杖II^000000",a12,
+	     " ^0000ff回收赤火焰外袍^000000",a13,
+	     " ^0000ff回收赤火焰火靴^000000",a14,
+	     " ^0000ff回收赤火焰靈球^000000",a15,
+	     " ^0000ff回收叢林王魔杖^000000",a16,
+	     " ^0000ff回收叢林王魔杖II^000000",a17,
+	     " ^0000ff回收叢林王外袍^000000",a18,
+	     " ^0000ff回收叢林王綠靴^000000",a19,
+	     " ^0000ff回收叢林王靈球^000000",a20,
+	     " ^0000ff回收烏魯戰靴^000000",a21,
+	     " ^0000ff回收烏魯斗篷^000000",a22,
+	     " ^0000ff回收烏魯印鑑^000000",a23,
+	     " ^0000ff回收烏魯鎧甲^000000",a24,
+	     " ^0000ff回收費歐茲戰靴^000000",a25,
+	     " ^0000ff回收費歐茲斗篷^000000",a26,
+	     " ^0000ff回收費歐茲印鑑^000000",a27,
+	     " ^0000ff回收費歐茲鎧甲^000000",a28,
+	     " ^0000ff回收沙巴赫戰靴^000000",a29,
+	     " ^0000ff回收沙巴赫披風^000000",a30,
+	     " ^0000ff回收沙巴赫魔戒^000000",a31,
+	     " ^0000ff回收沙巴赫風衣^000000",a32,
+	     " ^0000ff回收納福戰靴^000000",a33,
+	     " ^0000ff回收納福披風^000000",a34,
+	     " ^0000ff回收納福魔界^000000",a35,
+	     " ^0000ff回收納福風衣^000000",a36,
+	     " ^0000ff回收天使羽翼戰靴^000000",a37,
+	     " ^0000ff回收天使羽翼斗篷^000000",a38,
+	     " ^0000ff回收天使羽翼胸針^000000",a39,
+	     " ^0000ff回收天使羽翼戰袍^000000",a40,
+	     " ^0000ff回收惡魔羽翼戰靴^000000",a41,
+	     " ^0000ff回收惡魔羽翼斗篷^000000",a42,
+	     " ^0000ff回收惡魔羽翼胸針^000000",a43,
+	     " ^0000ff回收惡魔羽翼戰袍^000000",a45,
+	     " ^0000ff回收慈悲法杖^000000",a46,
+	     " ^0000ff回收慈悲法杖II^000000",a47,
+	     " ^0000ff回收慈悲戰靴^000000",a48,
+	     " ^0000ff回收慈悲披巾^000000",a49,
+	     " ^0000ff回收慈悲外袍^000000",a50,
+	     " ^0000ff回收審判鐵錘^000000",a51,
+	     " ^0000ff回收審判鐵錘II^000000",a52,
+	     " ^0000ff回收審判戰靴^000000",a53,
+	     " ^0000ff回收審判披巾^000000",a54,
+	     " ^0000ff回收審判外袍^000000",a55,
+	     " ^0000ff回收誓言之書(壹)^000000",a56,
+	     " ^0000ff回收治癒之戒^000000",a57,
+	     " ^0000ff回收聖堂之戒^000000",a58,
+	     " ^0000ff回收大主教之戒^000000",a59;
+
+
+	a1:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:30個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(2007)< 1) goto NOitem;
+	delitem 2007,@s*1;
+	getitem 6380,@s*30;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a2:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:50個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(2011)< 1) goto NOitem;
+	delitem 2011,@s*1;
+	getitem 6380,@s*50;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a3:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:30個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(15025)< 1) goto NOitem;
+	delitem 15025,@s*1;
+	getitem 6380,@s*30;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a4:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:30個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(2467)< 1) goto NOitem;
+	delitem 2467,@s*1;
+	getitem 6380,@s*30;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a5:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:30個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(2859)< 1) goto NOitem;
+	delitem 2859,@s*1;
+	getitem 6380,@s*30;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a6:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:30個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(2008)< 1) goto NOitem;
+	delitem 2008,@s*1;
+	getitem 6380,@s*30;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a7:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:50個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(2012)< 1) goto NOitem;
+	delitem 2012,@s*1;
+	getitem 6380,@s*50;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a8:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:30個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(15026)< 1) goto NOitem;
+	delitem 15026,@s*1;
+	getitem 6380,@s*30;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a9:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:30個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(2468)< 1) goto NOitem;
+	delitem 2468,@s*1;
+	getitem 6380,@s*30;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a10:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:30個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(2860)< 1) goto NOitem;
+	delitem 2860,@s*1;
+	getitem 6380,@s*30;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a11:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:30個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(2009)< 1) goto NOitem;
+	delitem 2009,@s*1;
+	getitem 6380,@s*30;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a12:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:50個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(2013)< 1) goto NOitem;
+	delitem 2013,@s*1;
+	getitem 6380,@s*50;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a13:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:30個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(15027)< 1) goto NOitem;
+	delitem 15027,@s*1;
+	getitem 6380,@s*30;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a14:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:30個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(2469)< 1) goto NOitem;
+	delitem 2469,@s*1;
+	getitem 6380,@s*30;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a15:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:30個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(2861)< 1) goto NOitem;
+	delitem 2861,@s*1;
+	getitem 6380,@s*30;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a16:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:30個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(2010)< 1) goto NOitem;
+	delitem 2010,@s*1;
+	getitem 6380,@s*30;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a17:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:50個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(2014)< 1) goto NOitem;
+	delitem 2014,@s*1;
+	getitem 6380,@s*50;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a18:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:30個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(15028)< 1) goto NOitem;
+	delitem 15028,@s*1;
+	getitem 6380,@s*30;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a19:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:30個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(2470)< 1) goto NOitem;
+	delitem 2470,@s*1;
+	getitem 6380,@s*30;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a20:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:30個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(2862)< 1) goto NOitem;
+	delitem 2862,@s*1;
+	getitem 6380,@s*30;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a21:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:20個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(2475)< 1) goto NOitem;
+	delitem 2475,@s*1;
+	getitem 6380,@s*20;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a22:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:20個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(2574)< 1) goto NOitem;
+	delitem 2574,@s*1;
+	getitem 6380,@s*20;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a23:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:20個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(2883)< 1) goto NOitem;
+	delitem 2883,@s*1;
+	getitem 6380,@s*20;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a24:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:20個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(15036)< 1) goto NOitem;
+	delitem 15036,@s*1;
+	getitem 6380,@s*20;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a25:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:20個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(2476)< 1) goto NOitem;
+	delitem 2476,@s*1;
+	getitem 6380,@s*20;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a26:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:20個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(2575)< 1) goto NOitem;
+	delitem 2575,@s*1;
+	getitem 6380,@s*20;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a27:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:20個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(2884)< 1) goto NOitem;
+	delitem 2884,@s*1;
+	getitem 6380,@s*20;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a28:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:20個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(15037)< 1) goto NOitem;
+	delitem 15037,@s*1;
+	getitem 6380,@s*20;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a29:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:20個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(2477)< 1) goto NOitem;
+	delitem 2477,@s*1;
+	getitem 6380,@s*20;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a30:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:20個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(2577)< 1) goto NOitem;
+	delitem 2577,@s*1;
+	getitem 6380,@s*20;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a31:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:20個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(2886)< 1) goto NOitem;
+	delitem 2886,@s*1;
+	getitem 6380,@s*20;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a32:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:20個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(15038)< 1) goto NOitem;
+	delitem 15038,@s*1;
+	getitem 6380,@s*20;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a33:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:20個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(2478)< 1) goto NOitem;
+	delitem 2478,@s*1;
+	getitem 6380,@s*20;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a34:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:20個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(2578)< 1) goto NOitem;
+	delitem 2578,@s*1;
+	getitem 6380,@s*20;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a35:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:20個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(2887)< 1) goto NOitem;
+	delitem 2887,@s*1;
+	getitem 6380,@s*20;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a36:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:20個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(15039)< 1) goto NOitem;
+	delitem 15039,@s*1;
+	getitem 6380,@s*20;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a37:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:20個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(2479)< 1) goto NOitem;
+	delitem 2479,@s*1;
+	getitem 6380,@s*20;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a38:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:20個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(2580)< 1) goto NOitem;
+	delitem 2580,@s*1;
+	getitem 6380,@s*20;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a39:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:20個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(2890)< 1) goto NOitem;
+	delitem 2890,@s*1;
+	getitem 6380,@s*20;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a40:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:20個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(15042)< 1) goto NOitem;
+	delitem 15042,@s*1;
+	getitem 6380,@s*20;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a41:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:20個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(2480)< 1) goto NOitem;
+	delitem 2480,@s*1;
+	getitem 6380,@s*20;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a42:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:20個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(2581)< 1) goto NOitem;
+	delitem 2581,@s*1;
+	getitem 6380,@s*20;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a43:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:20個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(2891)< 1) goto NOitem;
+	delitem 2891,@s*1;
+	getitem 6380,@s*20;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a45:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:20個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(15043)< 1) goto NOitem;
+	delitem 15043,@s*1;
+	getitem 6380,@s*20;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a46:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:20個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(1657)< 1) goto NOitem;
+	delitem 1657,@s*1;
+	getitem 6380,@s*20;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a47:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:40個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(1660)< 1) goto NOitem;
+	delitem 1660,@s*1;
+	getitem 6380,@s*40;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a48:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:20個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(2471)< 1) goto NOitem;
+	delitem 2471,@s*1;
+	getitem 6380,@s*20;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a49:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:20個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(2569)< 1) goto NOitem;
+	delitem 2569,@s*1;
+	getitem 6380,@s*20;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a50:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:20個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(15029)< 1) goto NOitem;
+	delitem 15029,@s*1;
+	getitem 6380,@s*20;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a51:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:20個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(16013)< 1) goto NOitem;
+	delitem 16013,@s*1;
+	getitem 6380,@s*20;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a52:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:40個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(16018)< 1) goto NOitem;
+	delitem 16018,@s*1;
+	getitem 6380,@s*40;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a53:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:20個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(2472)< 1) goto NOitem;
+	delitem 2472,@s*1;
+	getitem 6380,@s*20;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a54:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:20個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(2570)< 1) goto NOitem;
+	delitem 2570,@s*1;
+	getitem 6380,@s*20;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a55:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:20個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(15030)< 1) goto NOitem;
+	delitem 15030,@s*1;
+	getitem 6380,@s*20;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a56:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:20個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(2156)< 1) goto NOitem;
+	delitem 2156,@s*1;
+	getitem 6380,@s*20;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a57:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:20個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(2864)< 1) goto NOitem;
+	delitem 2864,@s*1;
+	getitem 6380,@s*20;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a58:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:20個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(2865)< 1) goto NOitem;
+	delitem 2865,@s*1;
+	getitem 6380,@s*20;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+	a59:
+        mes " [穆拉裝備回收]";
+	mes " 回收這個1:20個穆拉村硬幣";
+	mes " 請輸入要兌換的裝備數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[穆拉裝備回收]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(2866)< 1) goto NOitem;
+	delitem 2866,@s*1;
+	getitem 6380,@s*20;
+
+        mes " [穆拉裝備回收]";
+	mes " 謝謝惠顧";
+	close;
+
+case 2:
+	menu
+
+	     " ^0000ff回收精美狐尾草模型[2]^000000",b1,
+	     " ^0000ff回收奇妙狐尾草手杖[2]^000000",b2,
+	     " ^0000ff回收喵族專屬斗篷[1]^000000",b3,
+	     " ^0000ff回收喵族專屬鞋子[1]^000000",b4,
+	     " ^0000ff回收喵族專屬外套[1]^000000",b5,
+	     " ^0000ff回收青澀草項鍊[1]^000000",b6,
+	     " ^0000ff回收下級兔子護符[1]^000000",b7,
+	     " ^0000ff回收胖嘟嘟蚯蚓護符[1]^000000",b8,
+	     " ^0000ff回收萌萌草項鍊[1]^000000",b9,
+	     " ^0000ff回收下級竹筴魚護符[1]^000000",b10,
+	     " ^0000ff回收新鮮鮪魚護符[1]^000000",b11,
+	     " ^0000ff回收護符草項鍊[1]^000000",b12,
+	     " ^0000ff回收下級楓葉護符[1]^000000",b13,
+	     " ^0000ff回收發光枝莖護符[1]^000000",b14,
+	     " ^0000ff回收精工狐尾草模型[2]^000000",b15,
+	     " ^0000ff回收魔力狐尾草手杖[2]^000000",b16,
+	     " ^0000ff回收喵族高級斗篷[1]^000000",b17,
+	     " ^0000ff回收喵族高級鞋子[1]^000000",b18,
+	     " ^0000ff回收喵族高級外套[1]^000000",b19,
+	     " ^0000ff回收中級兔子護符[1]^000000",b20,
+	     " ^0000ff回收中級竹筴魚護符[1]^000000",b21,
+	     " ^0000ff回收中級楓葉護符[1]^000000",b22,
+	     " ^0000ff回收精工黃色狐尾草模型[1]^000000",b23,
+	     " ^0000ff回收魔力黃色狐尾草手杖[1]^000000",b24,
+	     " ^0000ff回收喵族優雅斗篷[1]^000000",b25,
+	     " ^0000ff回收喵族優雅鞋子[1]^000000",b26,
+	     " ^0000ff回收喵族優雅外套[1]^000000",b27,
+	     " ^0000ff回收高級兔子護符[1]^000000",b28,
+	     " ^0000ff回收高級竹筴魚護符[1]^000000",b29,
+	     " ^0000ff回收高級楓葉護符[1]^000000",b30,
+	     " ^ff0000取得下級兔子護符[1]^000000",b31,
+	     " ^ff0000取得胖嘟嘟蚯蚓護符[1]^000000",b32,
+	     " ^ff0000取得下級竹筴魚護符[1]^000000",b33,
+	     " ^ff0000取得新鮮鮪魚護符[1]^000000",b34,
+	     " ^ff0000取得下級楓葉護符[1]^000000",b35,
+	     " ^ff0000取得發光枝莖護符[1]^000000",b36,
+	     " ^ff0000取得中級兔子護符[1]^000000",b37,
+	     " ^ff0000取得中級竹筴魚護符[1]^000000",b38,
+	     " ^ff0000取得中級楓葉護符[1]^000000",b39,
+	     " ^ff0000取得高級兔子護符[1]^000000",b40,
+	     " ^ff0000取得高級竹筴魚護符[1]^000000",b41,
+	     " ^ff0000取得高級楓葉護符[1]^000000",b42;
+
+
+	b1:
+        mes " [喵族裝備兌換]";
+	mes " 兌換這個物品1:3個喵族信物";
+	mes " 請輸入要兌換的數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[喵族裝備兌換]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(1695)< 1) goto NOitem;
+	delitem 1695,@s*1;
+	getitem 25142,@s*3;
+
+        mes " [喵族裝備兌換]";
+	mes " 謝謝惠顧";
+	close;
+
+	b2:
+        mes " [喵族裝備兌換]";
+	mes " 兌換這個物品1:3個喵族信物";
+	mes " 請輸入要兌換的數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[喵族裝備兌換]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(1691)< 1) goto NOitem;
+	delitem 1691,@s*1;
+	getitem 25142,@s*3;
+
+        mes " [喵族裝備兌換]";
+	mes " 謝謝惠顧";
+	close;
+
+	b3:
+        mes " [喵族裝備兌換]";
+	mes " 兌換這個物品1:3個喵族信物";
+	mes " 請輸入要兌換的數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[喵族裝備兌換]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(20788)< 1) goto NOitem;
+	delitem 20788,@s*1;
+	getitem 25142,@s*3;
+
+        mes " [喵族裝備兌換]";
+	mes " 謝謝惠顧";
+	close;
+
+	b4:
+        mes " [喵族裝備兌換]";
+	mes " 兌換這個物品1:3個喵族信物";
+	mes " 請輸入要兌換的數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[喵族裝備兌換]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(22083)< 1) goto NOitem;
+	delitem 22083,@s*1;
+	getitem 25142,@s*3;
+
+        mes " [喵族裝備兌換]";
+	mes " 謝謝惠顧";
+	close;
+
+	b5:
+        mes " [喵族裝備兌換]";
+	mes " 兌換這個物品1:3個喵族信物";
+	mes " 請輸入要兌換的數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[喵族裝備兌換]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(15126)< 1) goto NOitem;
+	delitem 15126,@s*1;
+	getitem 25142,@s*3;
+
+        mes " [喵族裝備兌換]";
+	mes " 謝謝惠顧";
+	close;
+
+	b6:
+        mes " [喵族裝備兌換]";
+	mes " 兌換這個物品1:3個喵族信物";
+	mes " 請輸入要兌換的數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[喵族裝備兌換]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(28380)< 1) goto NOitem;
+	delitem 28380,@s*1;
+	getitem 25142,@s*3;
+
+        mes " [喵族裝備兌換]";
+	mes " 謝謝惠顧";
+	close;
+
+	b7:
+        mes " [喵族裝備兌換]";
+	mes " 兌換這個物品1:3個喵族信物";
+	mes " 請輸入要兌換的數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[喵族裝備兌換]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(28419)< 1) goto NOitem;
+	delitem 28419,@s*1;
+	getitem 25142,@s*3;
+
+        mes " [喵族裝備兌換]";
+	mes " 謝謝惠顧";
+	close;
+
+	b8:
+        mes " [喵族裝備兌換]";
+	mes " 兌換這個物品1:3個喵族信物";
+	mes " 請輸入要兌換的數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[喵族裝備兌換]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(28424)< 1) goto NOitem;
+	delitem 28424,@s*1;
+	getitem 25142,@s*3;
+
+        mes " [喵族裝備兌換]";
+	mes " 謝謝惠顧";
+	close;
+
+	b9:
+        mes " [喵族裝備兌換]";
+	mes " 兌換這個物品1:3個喵族信物";
+	mes " 請輸入要兌換的數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[喵族裝備兌換]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(28381)< 1) goto NOitem;
+	delitem 28381,@s*1;
+	getitem 25142,@s*3;
+
+        mes " [喵族裝備兌換]";
+	mes " 謝謝惠顧";
+	close;
+
+	b10:
+        mes " [喵族裝備兌換]";
+	mes " 兌換這個物品1:3個喵族信物";
+	mes " 請輸入要兌換的數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[喵族裝備兌換]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(28413)< 1) goto NOitem;
+	delitem 28413,@s*1;
+	getitem 25142,@s*3;
+
+        mes " [喵族裝備兌換]";
+	mes " 謝謝惠顧";
+	close;
+
+	b11:
+        mes " [喵族裝備兌換]";
+	mes " 兌換這個物品1:3個喵族信物";
+	mes " 請輸入要兌換的數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[喵族裝備兌換]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(28423)< 1) goto NOitem;
+	delitem 28423,@s*1;
+	getitem 25142,@s*3;
+
+        mes " [喵族裝備兌換]";
+	mes " 謝謝惠顧";
+	close;
+
+	b12:
+        mes " [喵族裝備兌換]";
+	mes " 兌換這個物品1:3個喵族信物";
+	mes " 請輸入要兌換的數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[喵族裝備兌換]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(28382)< 1) goto NOitem;
+	delitem 28382,@s*1;
+	getitem 25142,@s*3;
+
+        mes " [喵族裝備兌換]";
+	mes " 謝謝惠顧";
+	close;
+
+	b13:
+        mes " [喵族裝備兌換]";
+	mes " 兌換這個物品1:3個喵族信物";
+	mes " 請輸入要兌換的數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[喵族裝備兌換]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(28416)< 1) goto NOitem;
+	delitem 28416,@s*1;
+	getitem 25142,@s*3;
+
+        mes " [喵族裝備兌換]";
+	mes " 謝謝惠顧";
+	close;
+
+	b14:
+        mes " [喵族裝備兌換]";
+	mes " 兌換這個物品1:3個喵族信物";
+	mes " 請輸入要兌換的數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[喵族裝備兌換]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(28422)< 1) goto NOitem;
+	delitem 28422,@s*1;
+	getitem 25142,@s*3;
+
+        mes " [喵族裝備兌換]";
+	mes " 謝謝惠顧";
+	close;
+
+	b15:
+        mes " [喵族裝備兌換]";
+	mes " 兌換這個物品1:4個喵族信物";
+	mes " 請輸入要兌換的數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[喵族裝備兌換]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(1696)< 1) goto NOitem;
+	delitem 1696,@s*1;
+	getitem 25142,@s*4;
+
+        mes " [喵族裝備兌換]";
+	mes " 謝謝惠顧";
+	close;
+
+	b16:
+        mes " [喵族裝備兌換]";
+	mes " 兌換這個物品1:4個喵族信物";
+	mes " 請輸入要兌換的數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[喵族裝備兌換]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(1692)< 1) goto NOitem;
+	delitem 1692,@s*1;
+	getitem 25142,@s*4;
+
+        mes " [喵族裝備兌換]";
+	mes " 謝謝惠顧";
+	close;
+
+	b17:
+        mes " [喵族裝備兌換]";
+	mes " 兌換這個物品1:4個喵族信物";
+	mes " 請輸入要兌換的數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[喵族裝備兌換]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(20789)< 1) goto NOitem;
+	delitem 20789,@s*1;
+	getitem 25142,@s*4;
+
+        mes " [喵族裝備兌換]";
+	mes " 謝謝惠顧";
+	close;
+
+	b18:
+        mes " [喵族裝備兌換]";
+	mes " 兌換這個物品1:4個喵族信物";
+	mes " 請輸入要兌換的數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[喵族裝備兌換]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(22084)< 1) goto NOitem;
+	delitem 22084,@s*1;
+	getitem 25142,@s*4;
+
+        mes " [喵族裝備兌換]";
+	mes " 謝謝惠顧";
+	close;
+
+	b19:
+        mes " [喵族裝備兌換]";
+	mes " 兌換這個物品1:4個喵族信物";
+	mes " 請輸入要兌換的數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[喵族裝備兌換]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(15129)< 1) goto NOitem;
+	delitem 15129,@s*1;
+	getitem 25142,@s*4;
+
+        mes " [喵族裝備兌換]";
+	mes " 謝謝惠顧";
+	close;
+
+	b20:
+        mes " [喵族裝備兌換]";
+	mes " 兌換這個物品1:4個喵族信物";
+	mes " 請輸入要兌換的數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[喵族裝備兌換]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(28420)< 1) goto NOitem;
+	delitem 28420,@s*1;
+	getitem 25142,@s*4;
+
+        mes " [喵族裝備兌換]";
+	mes " 謝謝惠顧";
+	close;
+
+	b21:
+        mes " [喵族裝備兌換]";
+	mes " 兌換這個物品1:4個喵族信物";
+	mes " 請輸入要兌換的數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[喵族裝備兌換]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(28414)< 1) goto NOitem;
+	delitem 28414,@s*1;
+	getitem 25142,@s*4;
+
+        mes " [喵族裝備兌換]";
+	mes " 謝謝惠顧";
+	close;
+
+	b22:
+        mes " [喵族裝備兌換]";
+	mes " 兌換這個物品1:4個喵族信物";
+	mes " 請輸入要兌換的數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[喵族裝備兌換]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(28417)< 1) goto NOitem;
+	delitem 28417,@s*1;
+	getitem 25142,@s*4;
+
+        mes " [喵族裝備兌換]";
+	mes " 謝謝惠顧";
+	close;
+
+	b23:
+        mes " [喵族裝備兌換]";
+	mes " 兌換這個物品1:5個喵族信物";
+	mes " 請輸入要兌換的數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[喵族裝備兌換]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(1697)< 1) goto NOitem;
+	delitem 1697,@s*1;
+	getitem 25142,@s*5;
+
+        mes " [喵族裝備兌換]";
+	mes " 謝謝惠顧";
+	close;
+
+	b24:
+        mes " [喵族裝備兌換]";
+	mes " 兌換這個物品1:5個喵族信物";
+	mes " 請輸入要兌換的數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[喵族裝備兌換]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(1693)< 1) goto NOitem;
+	delitem 1693,@s*1;
+	getitem 25142,@s*5;
+
+        mes " [喵族裝備兌換]";
+	mes " 謝謝惠顧";
+	close;
+
+	b25:
+        mes " [喵族裝備兌換]";
+	mes " 兌換這個物品1:5個喵族信物";
+	mes " 請輸入要兌換的數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[喵族裝備兌換]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(20790)< 1) goto NOitem;
+	delitem 20790,@s*1;
+	getitem 25142,@s*5;
+
+        mes " [喵族裝備兌換]";
+	mes " 謝謝惠顧";
+	close;
+
+	b26:
+        mes " [喵族裝備兌換]";
+	mes " 兌換這個物品1:5個喵族信物";
+	mes " 請輸入要兌換的數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[喵族裝備兌換]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(22085)< 1) goto NOitem;
+	delitem 22085,@s*1;
+	getitem 25142,@s*5;
+
+        mes " [喵族裝備兌換]";
+	mes " 謝謝惠顧";
+	close;
+
+	b27:
+        mes " [喵族裝備兌換]";
+	mes " 兌換這個物品1:5個喵族信物";
+	mes " 請輸入要兌換的數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[喵族裝備兌換]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(15156)< 1) goto NOitem;
+	delitem 15156,@s*1;
+	getitem 25142,@s*5;
+
+        mes " [喵族裝備兌換]";
+	mes " 謝謝惠顧";
+	close;
+
+	b28:
+        mes " [喵族裝備兌換]";
+	mes " 兌換這個物品1:5個喵族信物";
+	mes " 請輸入要兌換的數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[喵族裝備兌換]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(28421)< 1) goto NOitem;
+	delitem 28421,@s*1;
+	getitem 25142,@s*5;
+
+        mes " [喵族裝備兌換]";
+	mes " 謝謝惠顧";
+	close;
+
+	b29:
+        mes " [喵族裝備兌換]";
+	mes " 兌換這個物品1:5個喵族信物";
+	mes " 請輸入要兌換的數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[喵族裝備兌換]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(28415)< 1) goto NOitem;
+	delitem 28415,@s*1;
+	getitem 25142,@s*5;
+
+        mes " [喵族裝備兌換]";
+	mes " 謝謝惠顧";
+	close;
+
+	b30:
+        mes " [喵族裝備兌換]";
+	mes " 兌換這個物品1:5個喵族信物";
+	mes " 請輸入要兌換的數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[喵族裝備兌換]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(28418)< 1) goto NOitem;
+	delitem 28418,@s*1;
+	getitem 25142,@s*5;
+
+        mes " [喵族裝備兌換]";
+	mes " 謝謝惠顧";
+	close;
+
+	b31:
+        mes " [喵族裝備兌換]";
+	mes " 取得兌換這個物品需要10個信物";
+	mes " 請輸入要兌換的數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[喵族裝備兌換]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(25142)< 10) goto NOitem;
+	delitem 25142,@s*10;
+	getitem 28419,@s*1;
+
+        mes " [喵族裝備兌換]";
+	mes " 謝謝惠顧";
+	close;
+
+	b32:
+        mes " [喵族裝備兌換]";
+	mes " 取得兌換這個物品需要30個信物";
+	mes " 請輸入要兌換的數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[喵族裝備兌換]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(25142)< 30) goto NOitem;
+	delitem 25142,@s*30;
+	getitem 28424,@s*1;
+
+        mes " [喵族裝備兌換]";
+	mes " 謝謝惠顧";
+	close;
+
+	b33:
+        mes " [喵族裝備兌換]";
+	mes " 取得兌換這個物品需要10個信物";
+	mes " 請輸入要兌換的數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[喵族裝備兌換]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(25142)< 10) goto NOitem;
+	delitem 25142,@s*10;
+	getitem 28413,@s*1;
+
+        mes " [喵族裝備兌換]";
+	mes " 謝謝惠顧";
+	close;
+
+	b34:
+        mes " [喵族裝備兌換]";
+	mes " 取得兌換這個物品需要30個信物";
+	mes " 請輸入要兌換的數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[喵族裝備兌換]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(25142)< 30) goto NOitem;
+	delitem 25142,@s*30;
+	getitem 28423,@s*1;
+
+        mes " [喵族裝備兌換]";
+	mes " 謝謝惠顧";
+	close;
+
+	b35:
+        mes " [喵族裝備兌換]";
+	mes " 取得兌換這個物品需要10個信物";
+	mes " 請輸入要兌換的數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[喵族裝備兌換]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(25142)< 10) goto NOitem;
+	delitem 25142,@s*10;
+	getitem 28416,@s*1;
+
+        mes " [喵族裝備兌換]";
+	mes " 謝謝惠顧";
+	close;
+
+	b36:
+        mes " [喵族裝備兌換]";
+	mes " 取得兌換這個物品需要30個信物";
+	mes " 請輸入要兌換的數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[喵族裝備兌換]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(25142)< 30) goto NOitem;
+	delitem 25142,@s*30;
+	getitem 28422,@s*1;
+
+        mes " [喵族裝備兌換]";
+	mes " 謝謝惠顧";
+	close;
+
+	b37:
+        mes " [喵族裝備兌換]";
+	mes " 取得兌換這個物品需";
+	mes " 要30個信物+下級兔子護符";
+	mes " 請輸入要兌換的數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[喵族裝備兌換]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(25142)< 30) goto NOitem;
+	delitem 25142,@s*30;
+	delitem 28419,@s*1;
+	getitem 28420,@s*1;
+
+        mes " [喵族裝備兌換]";
+	mes " 謝謝惠顧";
+	close;
+
+	b38:
+        mes " [喵族裝備兌換]";
+	mes " 取得兌換這個物品需";
+	mes " 要30個信物+下級竹筴魚護符";
+	mes " 請輸入要兌換的數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[喵族裝備兌換]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(25142)< 30) goto NOitem;
+	delitem 25142,@s*30;
+	delitem 28413,@s*1;
+	getitem 28414,@s*1;
+
+        mes " [喵族裝備兌換]";
+	mes " 謝謝惠顧";
+	close;
+
+	b39:
+        mes " [喵族裝備兌換]";
+	mes " 取得兌換這個物品需";
+	mes " 要30個信物+下級楓葉護符";
+	mes " 請輸入要兌換的數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[喵族裝備兌換]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(25142)< 30) goto NOitem;
+	delitem 25142,@s*30;
+	delitem 28416,@s*1;
+	getitem 28417,@s*1;
+
+        mes " [喵族裝備兌換]";
+	mes " 謝謝惠顧";
+	close;
+
+	b40:
+        mes " [喵族裝備兌換]";
+	mes " 取得兌換這個物品需";
+	mes " 要90個信物+中級兔子護符";
+	mes " 請輸入要兌換的數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[喵族裝備兌換]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(25142)< 90) goto NOitem;
+	delitem 25142,@s*90;
+	delitem 28420,@s*1;
+	getitem 28421,@s*1;
+
+        mes " [喵族裝備兌換]";
+	mes " 謝謝惠顧";
+	close;
+
+	b41:
+        mes " [喵族裝備兌換]";
+	mes " 取得兌換這個物品需";
+	mes " 要90個信物+中級竹筴魚護符";
+	mes " 請輸入要兌換的數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[喵族裝備兌換]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(25142)< 90) goto NOitem;
+	delitem 25142,@s*90;
+	delitem 28414,@s*1;
+	getitem 28415,@s*1;
+
+        mes " [喵族裝備兌換]";
+	mes " 謝謝惠顧";
+	close;
+
+	b42:
+        mes " [喵族裝備兌換]";
+	mes " 取得兌換這個物品需";
+	mes " 要90個信物+中級楓葉護符";
+	mes " 請輸入要兌換的數量";
+	next;
+	set @s,0;
+	input @s;
+	if ( @s < 1 || @s > 600 ) {
+		mes "[喵族裝備兌換]";
+			mes "您輸入的數量不正確！";
+				close;	}
+	if(countitem(25142)< 90) goto NOitem;
+	delitem 25142,@s*90;
+	delitem 28417,@s*1;
+	getitem 28418,@s*1;
+
+        mes " [喵族裝備兌換]";
+	mes " 謝謝惠顧";
+	close;
+
+
+	NOitem:
+	mes " [裝備回收]";
+	mes " 如果沒有請不要來亂...";
+	close;
+}
+	}

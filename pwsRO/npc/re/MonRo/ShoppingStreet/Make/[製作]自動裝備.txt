@@ -1,0 +1,63 @@
+lroom00,141,76,3	script	研究員 米爾蓋斯	4_EP17_ELYUMINA,{
+	disable_items;
+	
+	if (checkweight(1201,1) == 0) {
+		mes "[自動裝備兌換人員]";
+		mes "你所擁有的物品太多了，請減少物品後再來。";
+		close;
+	}
+	if ((MaxWeight - Weight) < 10000) {
+		mes "[自動裝備兌換人員]";
+		mes "你負重太高了，請減輕負重再來。";
+		close;
+	}
+	
+	for( .@i = 0; .@i < getarraysize(.exchangeList); .@i++ ) 
+		.@menu$ = .@menu$ + getitemname(.exchangeList[.@i])+":";
+
+	.@idx = select(.@menu$)-1;
+	.@item = .exchangeList[.@idx];
+	.@needRefine = .refineMin[.@idx];
+	.@needTicket = .ticketAmount[.@idx];
+
+	.@ticketName$ = getitemname(.ticketId);
+	mes "[自動裝備兌換人員]";
+	mes "好的，你很有眼光！";
+	next;
+	if (select( "我現在沒有"+.@ticketName$, "我想要兌換" ) == 1) {
+		close;
+	}
+	mes "[自動裝備兌換人員]";
+	mes "你要準備 "+getitemname(.materialList[.@idx]) + (.@needRefine?"+"+.@needRefine:"");
+	mes "以及 " + .@needTicket + " 張 " +.@ticketName$;
+	next;
+	if (select( "我下次再來", "立即兌換" ) == 1) {
+		close;
+	}
+	
+	.@indice = .indices[.@idx];
+	
+	mes "[自動裝備兌換人員]";
+	if (getequipid(.@indice) != .materialList[.@idx])
+		mes "你身上穿的"+F_getpositionname(.@indice)+"不是"+getitemname(.materialList[.@idx])+"，帶著正確的材料後來找我。";
+	else if (getequiprefinerycnt(.@indice) < .@needRefine)
+		mes "你穿的"+F_getpositionname(.@indice)+"沒有精煉到+"+.@needRefine+"或以上。";
+	else if (countitem(.ticketId) < .@needTicket)
+		mes "你沒有足夠的"+.@ticketName$+"。";
+	else {
+		delitem .ticketId,.@needTicket;
+		delequip .@indice;
+		getitem .@item,1;
+		mes "東西給你吧！";
+	}
+	close;
+	
+OnInit:
+	setarray .exchangeList[0],450127,450128,470022,470023,480020,480021,490024,490025,490026,490027;
+	setarray .materialList[0],15376,15377,20933,20934,22196,22197,32207,32208,32209,32210;
+	setarray .refineMin[0],9,9,9,9,9,9,0,0,0,0;
+	setarray .ticketAmount[0],500,500,500,500,500,500,500,500,500,500;
+	setarray .indices[0],EQI_ARMOR,EQI_ARMOR,EQI_GARMENT,EQI_GARMENT,EQI_SHOES,EQI_SHOES,EQI_ACC_R,EQI_ACC_L,EQI_ACC_R,EQI_ACC_L;
+	.ticketId = 1000103;
+	end;
+}

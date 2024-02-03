@@ -1,0 +1,400 @@
+/*
+ - 合成特定職業頭飾的服務NPC
+ - 通常為 該時裝+1個職業之魂+20能量碎片換成該裝備
+ - 使用五倍即可保證成功
+ - 例如：
+ - 一個服裝符文頭飾、一個劍士之魂、20個能量碎片，至戰死者之墓的「淒惘靈魂的思念」機率取得；若後兩者為5倍材料則必取得。
+*/
+lroom00,114,62,5	script	淒惘靈魂的思念	4_M_DEATH,{
+	disable_items;
+	setarray .@itemTable[0], 18971, 18972, 18973, 18974, 18975, 18976,
+		18977, 18978, 18979, 18980, 18981, 18982, 18983, 18984,
+		20749;
+	setarray .@needItemID[0], 19961,6814, 19962,6819, 19963,6815, 19964,6815, 19965,6816, 19966,6818, 
+		19967,6815, 19968,6817, 19969,6819, 19970,6817, 19971,6818, 19973,6816, 19972,6814, 19974,6818,
+		20748,6471;
+	setarray .@needItemNums[0], 1,1,20, 1,1,20, 1,1,20, 1,1,20, 1,1,20, 1,1,20,
+		1,1,20, 1,1,20, 1,1,20, 1,1,20, 1,1,20, 1,1,20, 1,1,20, 1,1,20,
+		1,20,100;
+	.@npcName$ = "["+strnpcinfo(1)+"]";
+	npctalk "媽..啊..好痛..";
+	while(.@menuIdx!=2) {
+		.@talkFlag = 0;
+		mes .@npcName$;
+		mes "無數實驗體的...思念..";
+		mes "過去...現在..還有報仇...";
+		next;
+		mes .@npcName$;
+		mes "你是誰....";
+		mes "能把我們可憐..又痛苦的...";
+		mes "靈魂...找...回來嗎...？";
+		next;
+		mes .@npcName$;
+		mes "只要可以那樣的話..";
+		mes "可以送你們...";
+		mes "可能有幫助的...";
+		mes "東西....";
+		next;
+		if((.@menuIdx = select("交出他們充滿怨恨的靈魂:結束對話"))==1) {
+			mes .@npcName$;
+			mes "若交出我們靈魂的話...";
+			mes "我會幫你組合....";
+			mes "蘊含著.. 特殊力量的物品...";
+			mes "你想要... 什麼呢...";
+			do{
+				if(.@talkFlag) {
+					mes .@npcName$;
+					mes "我...";
+					mes "還有..什麼..";
+					mes "需要幫忙..的嗎？";
+				}else
+					.@talkFlag = 1;
+				next;
+			
+				.@menu$ = "回到上一選項:";
+				.@menuSize = getarraysize(.@itemTable);
+				for(.@i=0; .@i<.@menuSize; .@i++) 
+					.@menu$ += getitemname(.@itemTable[.@i]) + ":";		
+
+				if( (.@idx = select(.@menu$)-2) < 0 )
+					break;
+					
+				.@itemName1$ = getitemname(.@needItemID[.@idx*2]);
+				.@itemNums1 = .@needItemNums[.@idx*3];
+				.@itemName2$ = getitemname(.@needItemID[.@idx*2+1]);
+				.@itemNums2 = .@needItemNums[.@idx*3+1];
+				.@itemName3$ = getitemname(6820);
+				.@itemNums3 = .@needItemNums[.@idx*3+2];
+				.@itemID = .@itemTable[.@idx];
+				.@itemName$ = getitemname(.@itemTable[.@idx]);
+				
+				mes .@npcName$;
+				mes "<ITEM>"+.@itemName$+"<INFO>"+.@itemID+"</INFO></ITEM>";
+				next;
+				mes .@npcName$;
+				mes ""+.@itemName1$+" "+.@itemNums1+" 個...";
+				mes ""+.@itemName2$+" "+.@itemNums2+" 個...";
+				mes ""+.@itemName3$+" "+.@itemNums3+" 個...";
+				mes "當"+.@itemName2$+"和"+.@itemName3$+"..";
+				mes "聚集5倍時..就絕對..";
+				mes "不會失敗...你打算要怎麼做呢...？";
+				next;
+				
+				.@menu$ = "回到上一選項:";
+				.@menu$ += "使用"+.@itemName2$+.@itemNums2+"個、"+.@itemName3$+.@itemNums3+"個:"+
+						"使用"+.@itemName2$+(.@itemNums2*5)+"個、"+.@itemName3$+(.@itemNums3*5)+"個";
+				if(.@modeIdx = (select(.@menu$)-1)) {
+					if(.@modeIdx==1) {
+						.@pro = rand(100);
+						.@mul = 1;
+					}else{
+						.@pro = 0;
+						.@mul = 5;
+					}
+					
+					if(countitem(.@needItemID[.@idx*2]) < .@itemNums1 ||
+						countitem(.@needItemID[.@idx*2+1]) < .@itemNums2*.@mul ||
+						countitem(6820) < .@itemNums3*.@mul) {
+					   mes .@npcName$;
+					   mes "你沒有..足夠的...";
+					   mes "物品....";
+					   close;
+					}else{
+						.@aid = getcharid(3);
+						progressbar_npc "0xFF0000", 3;
+						specialeffect EF_GUMGANG4;
+						specialeffect EF_MAGICCRASHER2;
+						
+						if(attachrid(.@aid)) {
+							delitem .@needItemID[.@idx*2], .@itemNums1;
+							delitem .@needItemID[.@idx*2+1], .@itemNums2*.@mul;
+							delitem 6820, .@itemNums3*.@mul;
+							
+							mes .@npcName$;
+							if(.@pro < 30) {				
+								mes "^3e7002"+.@itemName$+"^000000...";
+								mes "在這裡...";
+								getitem .@itemID, 1;
+							}else
+								mes "你失敗了...";
+							next;
+							callfunc "funcDeathDamage";
+							next;
+						}
+					}
+				}			
+			}while(.@modeIdx);
+		}
+	}
+	close;
+}
+
+lroom00,114,54,5	script	冤魂的思念	4_M_DEATH2,{
+	
+if(select("逐件回收:背包內全部回收")==1){callfunc "recalllhz";}
+	mes "[冤魂的思念]";
+	mes "^ff0000請注意。除了穿著裝備將會全部回收。^000000";
+		set .@item$,"|1284|1285|1290|1291|1311|1392|1393|16000|16001|16010|18111|1745|18103|18109|1984|1985|1930|1433|1435|13046|13047|13061|13062|13069|13070|1189|1196|13421|13431|1646|1647|1659|2004|2005|1584|2161|1830|";	
+	cleararray @inventorylist_id[0],0,@inventorylist_id; 
+		getinventorylist(getcharid(0));
+		for (.@i = 0; .@i < getarraysize(@inventorylist_id); .@i++) {				
+		if (compare(.@item$,"|"+@inventorylist_id[.@i]+"|")) {
+				.@reitemname[getarraysize(.@reitemname)] = @inventorylist_id[.@i];
+				}
+		}
+		for(.@i=0;.@i < getarraysize(.@reitemname); .@i++) {	
+			if ( .@reitemname[.@i] == getequipid(9)){
+				set .@e0,1;
+				set .@equip0,.@reitemname[.@i];
+				set .@refine0,getequiprefinerycnt(9);
+				setarray .@equip_card0[0], getequipcardid(9,0), getequipcardid(9,1), getequipcardid(9,2), getequipcardid(9,3);
+			}	
+			if ( .@reitemname[.@i] == getequipid(8)){
+				set .@e1,1;
+				set .@equip0,.@reitemname[.@i];
+				set .@refine0,getequiprefinerycnt(8);
+				setarray .@equip_card0[0], getequipcardid(8,0), getequipcardid(8,1), getequipcardid(8,2), getequipcardid(8,3);
+			}	
+		}
+		if(select("確定回收:我在想想")==2){close;}
+		for (.@i = 0; .@i < getarraysize(.@reitemname); .@i++) {				
+		delitem .@reitemname[.@i],1;
+		getitem 6820,rand(1,3);
+		}
+		if(.@e0==1){
+		getitem2 .@equip0,1,1,.@refine0,0,.@equip_card0[0],.@equip_card0[1],.@equip_card0[2],.@equip_card0[3];}
+		if(.@e1==1){
+		getitem2 .@equip1,1,1,.@refine1,0,.@equip_card1[0],.@equip_card1[1],.@equip_card1[2],.@equip_card1[3];}
+	dispbottom "兌換完成";
+	close;
+}
+
+function	script	recalllhz	{
+	disable_items;
+	setarray.@menuTable$[0],"拳刃","斧頭","鈍器","弓","樂器/鞭子","長矛","短劍","長劍","魔杖","書本";
+	setarray.@menuVarTable$[0],".@katarsItem",".@axesItem",".@macesItem",".@bowsItem",".@whipsItem",".@spearsItem",".@daggersItem",".@swordsItem",".@stavesItem",".@booksItem";
+	setarray.@katarsItem[0],1284,1285,1290,1291;	
+	//克裡希納拳刃,恰克蘭拳刃,特務拳刃,斬首拳刃
+	setarray.@axesItem[0],1311,1392,1393;	
+	//貝伽勒巨斧,火焰戰斧,急凍戰斧
+	setarray.@macesItem[0],16000,16001,16010;						
+	//智慧之錘,紅手提包,紅色乙太包,(嗜血十字錘16017)
+	setarray.@bowsItem[0],	18111,1745,18103,18109;				//束縛之弓,(超異能十字弓18110),獵鷹閃電弓,水靈天弓,元戎弩
+	setarray.@whipsItem[0],1984,1985,1930;						
+	//植物梗鞭,紅玫瑰鞭,綠花草梗笛
+	setarray.@spearsItem[0],1433,1435;								
+	//帝國長矛,鈣礦石長矛,(守護巨人長矛1490)
+	setarray.@daggersItem[0],13046,13047,13061,13062,13069,13070;//刺針短劍,毒鋸短劍,齒輪短劍,遠古短劍,綠光魔短劍,紅光魔短劍
+	setarray.@swordsItem[0],1189,1196,13421,13431;				
+	//克拉斯拿雅劍,鉻合金雙手巨劍,紅寶石劍,鉻合金長劍
+	setarray.@stavesItem[0],1646,1647,1659,2004,2005;		//(智慧魔杖1654),暴風雪法杖,克羅琪聖杖,元氣之光魔杖,克羅納斯魔杖,女神之杖
+	setarray.@booksItem[0],1584,2161,1830;						
+	//寒氣篇魔法書,葛帔尼亞的古書,黃龍拳套
+	
+	.@npcName$ = "["+strnpcinfo(1)+"]";
+	while(.@typeIndex >= 0) {
+		.@menu$ = "離開:";
+		mes .@npcName$;
+		mes "你想要..把武器..";
+		mes "化為思念嗎？";
+		next;
+		.@menuSize = getarraysize(.@menuTable$);
+		for(.@i=0; .@i<.@menuSize; .@i++) 
+			.@menu$ += .@menuTable$[.@i] + ":";		
+
+		.@typeIndex = select(.@menu$)-2;
+		
+		while(.@typeIndex >= 0) {
+			mes .@npcName$;
+			mes "是蘊含著...";
+			mes "什麼思念的武器呢...";
+			next;
+			
+			.@menu$ = "回上一選項:";
+			.@menuSize = getarraysize(getd(.@menuVarTable$[.@typeIndex]));
+			for(.@i=0; .@i<.@menuSize; .@i++) {
+				.@itemID = getd(.@menuVarTable$[.@typeIndex]+"["+.@i+"]");
+				.@menu$ += (countitem(.@itemID)?"^000000":"^9b9595") + getitemname(.@itemID) + "^000000:";
+			}
+			.@itemIndex = select(.@menu$)-2;
+			if(.@itemIndex < 0) break;
+			
+			.@itemID = getd(.@menuVarTable$[.@typeIndex]+"["+.@itemIndex+"]");
+			mes .@npcName$;
+			if(!countitem(.@itemID)) {
+				mes "你沒有這個武器啊…";
+				mes "確認完後再來找我吧。";
+				close;
+			}else{
+				mes "你選的可是感受到";
+				mes "強烈思念的武器喔！";
+				mes "那必須要先轉換為^0000FF能量碎片^000000";
+				mes "你同意嗎？";
+				next;
+				if(select("不同意:交出武器獲得能量碎片")==2) {
+					.@aid = getcharid(3);
+					
+					progressbar_npc "0xFF0000", 3;
+					specialeffect EF_GUMGANG4;
+					specialeffect EF_MAGICCRASHER2;
+					if(attachrid(.@aid)) {
+						delitem .@itemID, 1;
+						set .@rand, rand(100);
+						if(.@rand < 10) getitem 6820, 3;
+						else if(.@rand < 30) getitem 6820, 2;
+						else getitem 6820, 1;
+						mes .@npcName$;
+						mes "將^3e7002"+getitemname(.@itemID)+"^000000轉換後，";
+						mes "製成能量碎片了…";
+						next;
+						callfunc "funcDeathDamage";
+						next;
+					}
+				}
+			}
+		}
+	}
+	close;
+}
+/*
+ - 劍士之魂3個
+ - 魔法師之魂3個
+ - 弓箭手之魂3個
+ - 商人之魂3個
+ - 盜賊之魂3個
+ - 服事之魂3個
+ -
+ - 都可換成亡魂之匭1個
+*/
+lhz_d_n2.gat,53,49,3	script	沉默的思念	4_CENERE,{
+	disable_items;
+	setarray .@itemTable[0], 6814, 6815, 6816, 6817, 6818, 6819;
+
+	.@npcName$ = "["+strnpcinfo(1)+"]";
+	mes .@npcName$;
+	mes "你想要.. 把靈魂..";
+	mes "重新組合嗎..？";
+	next;
+	mes .@npcName$;
+	mes "只要.. 給我3個靈魂...";
+	mes "就可以給你.. ^0000FF亡魂之匭^000000..";
+	next;
+	.@menu$ = "離開:";
+	.@menuSize = getarraysize(.@itemTable);
+	for(.@i=0; .@i<.@menuSize; .@i++) 
+		.@menu$ += (countitem(.@itemTable[.@i])>=3?"^000000":"^9b9595") + getitemname(.@itemTable[.@i]) + "3個^000000:";
+	
+	.@idx = select(.@menu$)-2;
+	if(.@idx >= 0) {
+		mes .@npcName$;
+		if(countitem(.@itemTable[.@idx]) >= 3) {
+			.@aid = getcharid(3);
+			progressbar_npc "0xFF0000", 3;
+			specialeffect EF_GUMGANG4;
+			specialeffect EF_MAGICCRASHER2;
+			if(!attachrid(.@aid)) end;
+			mes "^3e7002亡魂之匭^000000..";
+			mes "就在這裡了...";
+			delitem .@itemTable[.@idx], 3;
+			getitem 22679, 1;
+			callfunc "funcDeathDamage";
+			
+		}else{
+			mes "你沒有... 足夠的靈魂...";
+		}
+	}
+	close;
+}
+/*
+- 能量的碎片200個=勇者的意志1個
+- 能量的碎片200個=血的飢渴1個
+- 能量的碎片200個=亡者的寒氣1個
+*/
+lighthalzen,319,213,3	script	資深冒險家	4_M_MELODY,{
+	disable_items;
+	setarray .@itemTable[0],6469,6470,6471;
+	.@npcName$ = "["+strnpcinfo(1)+"]";
+	
+	mes .@npcName$;
+	mes "冒險家你好啊！";
+	mes "你有能量的碎片嗎？";
+	mes "如果給我200個的話…";
+	mes "我可以給你一個物品";
+	mes "那麼，你想跟我換什麼？";
+	next;
+	.@menu$ = "離開:";
+	.@menuSize = getarraysize(.@itemTable);
+	for(.@i=0; .@i<.@menuSize; .@i++)		
+		.@menu$ += "換"+getitemname(.@itemTable[.@i])+":";
+	
+	.@idx = select(.@menu$)-2;
+	if(.@idx >= 0 ) {		
+		mes .@npcName$;
+		mes "如果你給我 200個能量碎片 的話..";
+		mes "我會給你 1個"+getitemname(.@itemTable[.@idx]);
+		mes "你想要幾個？";
+		next;
+		input .@num;
+		if(!.@num) close;
+		if(countitem(6820) >= 200*.@num) {
+			delitem 6820, 200*.@num;
+			getitem .@itemTable[.@idx], .@num;
+			mes .@npcName$;
+			mes "你的東西在這，拿去吧。";
+		}else{
+			mes .@npcName$;
+			mes "你確定你有這麼多能量碎片嗎？";
+		}
+	}	
+	close;
+}
+/*
+ - 穩定的能量碎片2000個
+ - 微弱的能量碎片1000個
+ - 不穩定的能量碎片500個
+ - 不祥的能量碎片500個
+ - 散落的能量碎片50個
+ -
+ - 上述都可換成能量碎片1個
+ -
+ - 能量的碎片50個=邪念的碎片1個
+ - 能量碎片666個=怨念的碎片1個
+*/
+lighthalzen,312,296,3	script	小流氓	4_M_LGTPOOR,{
+	disable_items;
+	setarray .@itemTable[0],6820,6820,6820,6820,6820,22687,23016;
+	setarray .@needItem[0],25127,25128,25129,25130,25131,6820,6820;
+	setarray .@needQuantity[0],2000,1000,500,500,50,50,666;
+	.@npcName$ = "["+strnpcinfo(1)+"]";
+	
+	mes .@npcName$;
+	mes "怯...";
+	mes "找我有什麼事嗎？";
+	next;
+	.@menu$ = "離開:";
+	.@menuSize = getarraysize(.@itemTable);
+	for(.@i=0; .@i<.@menuSize; .@i++)		
+		.@menu$ += "拿" + getitemname(.@needItem[.@i]) + "換"+getitemname(.@itemTable[.@i])+":";
+	
+	.@idx = select(.@menu$)-2;
+	if(.@idx >= 0 ) {		
+		mes .@npcName$;
+		mes "如果你給我 "+.@needQuantity[.@idx]+"個 "+getitemname(.@needItem[.@idx])+" 的話..";
+		mes "我會給你1個 "+getitemname(.@itemTable[.@idx]);
+		mes "那麼..你想要幾個？";
+		next;
+		input .@num;
+		if(!.@num) close;
+		if(countitem(.@needItem[.@idx]) >= .@needQuantity[.@idx]*.@num) {
+			delitem .@needItem[.@idx], .@needQuantity[.@idx]*.@num;
+			getitem .@itemTable[.@idx], .@num;
+			mes .@npcName$;
+			mes "東西在這，拿了就快滾吧。";
+		}else{
+			mes .@npcName$;
+			mes "你身上沒有這麼多東西啊。";
+			mes "你在騙我嗎？";
+		}
+	}	
+	close;
+}

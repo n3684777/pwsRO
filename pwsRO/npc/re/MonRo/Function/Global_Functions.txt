@@ -1,0 +1,109 @@
+function	script	F_JoinReward	{
+	addrid(5,getarg(0));
+	getitem atoi(getarg(1)), atoi(getarg(2));
+	detachrid;
+	return;
+}
+
+function	script	F_GetInstancePrize	{
+	setarray .@mapTable$[0],
+		"2@nyd",	"1@ma_b",	"1@ma_c",	"1@ma_h",	"1@cash",	"1@pump",	"2@pump",	"2@gl_k",	"2@gl_kh",
+		"1@lhz",	"1@face",	"1@xm_d",	"1@cata",	"1@mist",	"6@tower",	"1@thall",	"2@thall",	"3@thall", "guild_vs3",
+		"1@jtb",	"2@orcs",	"market",	"1@spa",	"1@ge_st",	"1@glast",	"1@infi",	"1@lab",	"1@uns",
+		"1@air2",	"1@rev",	"1@dth3",	"1@eom",	"1@tnm3",	"1@mcd",	"1@sara",	"1@unk04",  "1@slw";
+	setarray .@prizeTable[0],
+		501,		501,		501,		501,		501,		501,		501,		501,		501,
+		501,		501,		501,		501,		501,		501,		61001,		61002,		61003,		61004,
+		501,		501,		501,		501,		501,		501,		501,		501,		501,
+		501,		501,		501,		501,		501,		501,		501,		501,        25155;
+	setarray .@instancePointTable[0],
+		0,		  0,		  0,		  0,		  0,		  0, 		  0,		  0,		  0,
+		0,		  0,		  0,		  0,		  0,		  0, 		  3,		  3,		  3,		 3,
+		0,		  0,		  0,		  0,		  0,		  0, 		  0,		  0,		  0,
+		0,		  0,		  0,		  0,		  0,		  0, 		  0,		  0,          8;
+	.@PointVarName$ = "#instancePoint";
+	// .@mapTable$ 			: 副本通關的最後一個地圖名稱
+	// .@prizeTable 		: 獎勵物品的物品編號 (若不想給物品請寫0)
+	// .@instancePointTable : 獎勵的副本點數 (若不想給點數請寫0)
+	// .@PointVarName$ 		: 副本點數的變數名稱
+	
+	if(!instance_id() || getargcount() < 2)
+		end;
+		
+	.@prizeMap$ = getarg(0);
+	.@party_id = getarg(1);
+	.@index = -1;
+	.@arySize = getarraysize(.@mapTable$);
+	for(.@i=0; .@i<.@arySize; .@i++) {
+		if(compare(.@prizeMap$, .@mapTable$[.@i])) {
+			.@index = .@i;
+			break;
+		}
+	}
+	if(.@index == -1)
+		return;
+		
+	getpartymember .@party_id,1;
+	set .@partymembercount,$@partymembercount;
+	copyarray .@partymembercid[0],$@partymembercid[0],.@partymembercount;
+	getpartymember .@party_id,2;
+	copyarray .@partymemberaid[0],$@partymemberaid[0],.@partymembercount;
+	
+	for(.@i=0; .@i<.@partymembercount; .@i++) {
+		if(isloggedin(.@partymemberaid[.@i],.@partymembercid[.@i])) {
+			attachrid .@partymemberaid[.@i];
+			getmapxy(.@map$, .@x, .@y, BL_PC);
+			if(.@prizeMap$ == .@map$) {
+				setd .@PointVarName$, getd(.@PointVarName$)+.@instancePointTable[.@index];
+				if(.@prizeTable[.@index])
+					getitem .@prizeTable[.@index], 1;
+			}
+		}
+	}
+	detachrid;
+	return;
+}
+function	script	WindowsCheck	{
+	query_sql("SELECT windows FROM `windowip` WHERE ip = '"+ getarg(1) +"'", .@windows);
+	set .@windows, .@windows / 2;
+	if(!.@windows) set .@windows,1;
+	
+	if(countstr(getarg(0),getarg(1)) > .@windows && getgmlevel() < 90) {
+		mes "[防多窗判斷系統]";
+		mes "IP：^FF6600"+ getarg(1)+ "^000000";
+		mes "隊伍裡超過 ^FF6600" + .@windows + "^000000 位同 IP 的玩家。";
+		mes "你無法進入副本！";
+		mes " ";
+		mes " ";
+		mes "^FF0000備註：只要有在隊伍內的都算。^000000";
+		close2;
+		cutin "", 255;
+		end;
+	}
+	return 0;
+}
+
+function	script	PartyIPCheck	{
+	set .@UserAID, getcharid(3);
+	getpartymember getcharid(1),2;
+	set .@partymembercount, $@partymembercount;
+	
+	if(.@partymembercount > 1)
+	{
+		copyarray .@partymemberaid[0],$@partymemberaid[0],.@partymembercount;
+		for(.@i=0;.@i<.@partymembercount;.@i++)
+		{
+			if(attachrid(.@partymemberaid[.@i]))
+			{
+				set .@playerIP$, getcharip($@partymemberaid[.@i]);
+				set .@ip$, .@ip$ + .@playerIP$ + "|";
+				set .@ip_array$[.@j], .@playerIP$;
+				.@j++;
+			}
+		}
+		attachrid(.@UserAID);
+		for(.@i=0;.@i<getarraysize(.@ip_array$);.@i++) 
+			callfunc("WindowsCheck",.@ip$,.@ip_array$[.@i]);   
+	}
+	return 1;
+}

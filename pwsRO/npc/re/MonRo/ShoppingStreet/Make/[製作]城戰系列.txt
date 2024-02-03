@@ -1,0 +1,204 @@
+//===== eAthena Script =======================================
+//= Euphy's Quest Shop
+//===== By: ==================================================
+//= Euphy
+//===== Current Version: =====================================
+//= 1.4a - eAthena
+//===== Description: =========================================
+//= A dynamic quest shop based on Lunar's, with easier config.
+//= Includes support for multiple shops & cashpoints.
+//= Item Preview script by ToastOfDoom.
+//============================================================
+lroom00,118,45,5	script	城戰系列裝備製作	407,{
+	disable_items;
+function str2 {
+	setarray .@a,0,40,34;
+	setarray .@b,1,2,1;
+	function GetCopyStr {
+		for(set .@i,getarg(0);.@i>0;set .@i,.@i-1)set .@h$,.@h$+" ";
+		return .@h$;
+	}
+	return GetCopyStr((.@a[getarg(1,0)]-(getstrlen(getarg(0))-(getarg(2,0)*7)))/.@b[getarg(1,0)]) + getarg(0);
+}
+	function refine_7;
+	function Add;
+	function Chk;
+	function Chk2;
+	function Slot;
+	if(!.Allow) end;
+	if(.Shops$ != "") set .@i,1;
+	else{
+		mes "["+strnpcinfo(1)+"]";
+		mes "^FF00001.^000000 請一次製作一種道具";
+		mes "^FF00002.^000000 查看道具材料並不會扣除金錢";
+		mes "^FF00003.^000000 攜帶所有材料即可製作";
+		set .@menu$,"";
+		for(set .@i,1; .@i<=getarraysize(.Shops$); set .@i,.@i+1) 
+			set .@menu$, .@menu$+(.Shops$[.@i])+":";
+		set .@i, select(.@menu$);
+		close2;
+		callshop "qshop_Craftsman_"+.@i,1;
+		npcshopattach "qshop_Craftsman_"+.@i;
+	}
+	end;
+	
+function refine_7 {
+	setarray .@refine_7,2315,2310,2320,2404,2406,2412,2504,2506;
+	.@index = inarray(.@refine_7,getarg(0));
+	if(.@index > -1) return .@index;
+	else return -1;
+}
+
+function Add {
+	if (getitemname(getarg(1))=="null") {
+		debugmes "道具編號 #"+getarg(1)+" 出現錯誤 (略過).";
+		return;
+	}
+	for(set .@n,5; .@n<127; set .@n,.@n+2) {
+		if (!getarg(.@n,0)) break;
+		if (getitemname(getarg(.@n))=="null") {
+			debugmes "製作材料超過最大值, 編號#"+getarg(.@n)+" (略過)."; return;
+		}
+	}
+	for(set .@i,2; .@i<.@n; set .@i,.@i+1)
+		set getd(".q_"+getarg(1)+"["+(.@i-2)+"]"), getarg(.@i);
+	npcshopadditem "qshop_Craftsman_"+getarg(0),getarg(1),((.ShowZeny)?getarg(3):0);
+	sleep 1;
+	return;
+}
+
+function Chk {
+	if (getarg(0)<getarg(1)){
+		set @qe0,1;
+		return "(^999999未完成^000000)";
+	} else return "(^D2691E已完成^000000)";
+}
+
+function Chk2 {
+	if(countitem2(getarg(0),1,9,0,0,0,0,0) < getarg(1)){
+		set @qe0,1;
+		return "(^999999未完成^000000)";
+	} else return "(^D2691E已完成^000000)";
+}
+
+function Slot {
+	set .@s$,getitemname(getarg(0));
+	if(refine_7(getarg(0)) > -1)
+		if(getarg(1,0) == 0) .@s$ = "+7 "+.@s$;
+	switch(.ShowSlot){
+		case 1: if (!getitemslots(getarg(0))) return .@s$;
+		case 2: if (getiteminfo(getarg(0),11)>0) return ""+.@s$+"["+getitemslots(getarg(0))+"]";
+		default: return .@s$;
+	}
+}
+
+OnBuyItem:
+	set .@q[0],@bought_nameid;
+	copyarray .@q[1],getd(".q_"+@bought_nameid+"[0]"),getarraysize(getd(".q_"+@bought_nameid+"[0]"));
+	if (!.@q[1]) {
+		message strcharinfo(0),"An error has occurred.";
+		end;
+	}
+	mes "[裝備製作宗師]";
+	mes "- 製作 ^FF0000"+((.@q[1]>1)?.@q[1]+"x ":"")+Slot(.@q[0])+"^000000";
+	mes "- 請準備好下面材料 :";
+	if (.@q[2]) mes "- ^FF1493製作費用 "+.@q[2]+" Zeny "+Chk(Zeny,.@q[2])+"^000000";
+	if (.@q[3]) mes "- ^009900製作P點 "+.@q[3]+" "+.Points$[1]+"^000000 ["+getd(.Points$[0])+"/"+.@q[3]+"] "+Chk(getd(.Points$[0]),.@q[3]);
+	if (.@q[4]) for(set .@i,4; .@i<getarraysize(.@q); set .@i,.@i+2){
+		if(refine_7(.@q[.@i]) > -1)
+			mes "- "+Slot(.@q[.@i])+" x "+.@q[.@i+1]+" [^009900"+countitem2(.@q[.@i],1,9,0,0,0,0,0)+"^000000/^FF6600"+.@q[.@i+1]+"^000000] "+Chk2(.@q[.@i],.@q[.@i+1]);
+		else
+			mes "- "+Slot(.@q[.@i])+" x "+.@q[.@i+1]+" [^009900"+countitem(.@q[.@i])+"^000000/^FF6600"+.@q[.@i+1]+"^000000] "+Chk(countitem(.@q[.@i]),.@q[.@i+1]);
+	}
+	set @qe1, getiteminfo(.@q[0],5);
+	set @qe2, getiteminfo(.@q[0],11);
+	addtimer 1000, strnpcinfo(1)+"::OnEnd";
+	while(1){
+		switch(select(" ~ 製作 ^FF0000"+getitemname(.@q[0])+"^000000:"+((((@qe1&1) || (@qe1&256) || (@qe1&512)) && @qe2>0 && !@qe6)?" ~ 查看外觀...":"")+": ~ ^777777結束對話^000000")) {
+			case 1:
+				clear;
+				if (@qe0) { 
+					mes "[裝備製作宗師]";
+					mes "材料不足，無法製作！";
+					close;
+				}
+				if (!checkweight(.@q[0],.@q[1])) {
+					mes "[裝備製作宗師]";
+					mes "^FF0000你需要 "+(((.@q[1]*getiteminfo(.@q[0],6))+Weight-MaxWeight)/10)+" 的負重量才能玩成此次交易.^000000";
+					close;
+				}
+				if (.@q[2]) set Zeny, Zeny-.@q[2];
+				if (.@q[3]) setd .Points$[0], getd(.Points$[0])-.@q[3];
+				if (.@q[4]){
+					for(set .@i,4; .@i<getarraysize(.@q); set .@i,.@i+2){
+						if(refine_7(.@q[.@i]) > -1)
+							delitem2 .@q[.@i],.@q[.@i+1],1,9,0,0,0,0,0;
+						else
+							delitem .@q[.@i],.@q[.@i+1];
+					}
+				}
+				getitem .@q[0],.@q[1];
+				specialeffect2 699;
+				mes "[裝備製作宗師]";
+				mes "製作完成!";
+				close;
+			case 2:
+				set @qe3, getlook(3);
+				set @qe4, getlook(4);
+				set @qe5, getlook(5);
+				if (@qe1&1) atcommand "@changelook 3 "+@qe2;
+				if (@qe1&256) atcommand "@changelook 1 "+@qe2;
+				if (@qe1&512) atcommand "@changelook 2 "+@qe2;
+				set @qe6,1;
+				break;
+			case 3:
+				close;
+		}
+	}
+OnEnd:
+	if (@qe6) {
+		atcommand "@changelook 3 "+@qe3;
+		atcommand "@changelook 1 "+@qe4;
+		atcommand "@changelook 2 "+@qe5;
+	}
+	for(set .@i,0; .@i<7; set .@i,.@i+1) setd "@qe"+.@i,0;
+	end;
+OnInit:
+// --------------------- Config ---------------------
+// 自定義變數, 新增方法 : "變數","變數名稱"
+
+	setarray .Points$[0],"#CASHPOINTS","CASH";
+
+	set .Announce,0;	// 是否廣播製作? (1: 是 / 0: 否)
+	set .ShowSlot,2;	// 是否顯示道具洞數? (2: 一律顯示 / 1: 洞數 > 0 才顯示 / 0: 不顯示)
+	set .DisplayID,0;	// 是否顯示道具編號? (1: 是 / 0: 否)
+	set .ShowZeny,1;	// 是否在商店顯示道具製作金錢? (1: 是 / 0: 否)
+	
+	setarray .Shops$[1],"城戰裝備";
+
+// Add(<shop number>,<reward ID>,<reward amount>,<Zeny cost>,<point cost>,<required item ID>,<required item amount>{,...});
+// Add(<分類>,<製作道具編號>,<製作道具數量>,<所需金錢>,<所需商城點數>,<所需材料編號>,<所需材料數量>{,...});
+	//===[ 城戰裝備 ]===
+	Add(1,15046,1,2000000,0,2315,1,943,500,935,500);//城戰鋼鐵鎧甲
+	Add(1,15047,1,2000000,0,2310,1,7063,300,949,500);//城戰戰袍
+	Add(1,15048,1,2000000,0,2320,1,7063,300,949,500);//城戰外袍
+	Add(1,2485,1,2000000,0,2404,1,923,500,7070,300);//城戰長靴
+	Add(1,2484,1,2000000,0,2406,1,923,500,7070,300);//城戰戰士長靴
+	Add(1,2483,1,2000000,0,2412,1,923,500,7070,300);//城戰重靴
+	Add(1,2587,1,2000000,0,2504,1,7063,300,949,500);//城戰披肩
+	Add(1,2586,1,2000000,0,2506,1,7063,300,949,500);//城戰斗篷
+// --------------------------------------------------
+	for(set .@i,1; .@i<=getarraysize(.Shops$); set .@i,.@i+1) npcshopdelitem "qshop_Craftsman_"+.@i,909;
+	set .Allow,1;
+	end;
+}
+
+// -------- Dummy data (duplicate as needed) --------
+-	shop	qshop_Craftsman_1	-1,909:-1
+-	shop	qshop_Craftsman_2	-1,909:-1
+-	shop	qshop_Craftsman_3	-1,909:-1
+-	shop	qshop_Craftsman_4	-1,909:-1
+-	shop	qshop_Craftsman_5	-1,909:-1
+-	shop	qshop_Craftsman_6	-1,909:-1
+-	shop	qshop_Craftsman_7	-1,909:-1
+

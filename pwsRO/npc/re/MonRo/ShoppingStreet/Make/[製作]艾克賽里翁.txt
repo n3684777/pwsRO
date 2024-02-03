@@ -1,0 +1,64 @@
+lroom00,126,61,3	script	PLUTO_09#1	10147,{
+		mes "[PLUTO_09]";
+		mes "你想做什麼呢？";
+		next;
+		switch(select("進行合成附魔設計圖:合成艾克賽里翁裝備")) {
+		case 1:
+			mes "[PLUTO_09]";
+			mes "要進行合成物品的話";
+			mes "需要以下材料才會運轉…";
+			mes "老舊油桶 x 5";
+			next;
+			if(select("進行合成:取消離開") == 2)
+				close;
+			if(countitem(6962) < 5) {
+				mes "[PLUTO_09]";
+				mes "你沒有足夠的老舊油桶來進行合成動作，請確認完再來。";
+				close;
+			}
+						
+			.@rand = rand(990);
+			if(.@rand < 40)
+				.@item = callfunc("F_Rand",6965,6966,6967,6968);
+			else if(.@rand < 120)
+				.@item = callfunc("F_Rand",6969,6970,6971,6972);
+			else if(.@rand < 200)
+				.@item = callfunc("F_Rand",6973,6974,6975,6976);
+			else if(.@rand < 215)
+				.@item = callfunc("F_Rand",6985,6977,6978);
+			else if(.@rand < 355)
+				.@item = callfunc("F_Rand",6979,6980,6981,6982,6983,6984,6986);
+			else if(.@rand < 895)
+				.@item = callfunc("F_Rand",998,1002,7054);
+			else if(.@rand < 990)
+				.@item = 999;
+				
+			delitem 6962, 5;
+			getitem .@item, 1;
+			mes "[PLUTO_09]";
+			mes "合成已經完成…";
+			mes "這是合成完的東西。";
+			close;
+		case 2:
+			mes "[PLUTO_09]";
+			mes "要進行合成裝備的話";
+			mes "需要以下材料才會運轉…";
+			mes "老舊油桶 x 5";
+			mes "大型廢鐵 x 10";
+			next;
+			if(select("進行合成:取消離開") == 2)
+				close;
+			if(countitem(6962) < 5 || countitem(6961) < 10) {
+				mes "[PLUTO_09]";
+				mes "你沒有足夠的材料啟動合成，請確認完再來。";
+				close;
+			}
+			delitem 6961, 10;
+			delitem 6962, 5;
+			getitem  callfunc("F_Rand",15128,20773), 1;
+			mes "[PLUTO_09]";
+			mes "裝備已經合成完畢…";
+			close;
+		}	
+}
+		

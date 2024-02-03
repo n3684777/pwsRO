@@ -1,0 +1,45 @@
+slabw01	monster	Human Chimera	3631,45
+slabw01	monster	Material Chimera	3632,45
+slabw01	boss_monster	Material Chimera	3633,1,3600000,600000,1
+// unknown timer
+
+thana_boss,135,126	boss_monster	"--ja--"	1708,1,14400000,600000,1
+dew_dun01,0,0	monster	"--ja--"	1311,20,0,0,0
+gld_dun03,0,0	monster	"--ja--"	1311,10,0,0,0
+
+
+
+
+
+prt_fild08,165,356	monster	"--ja--"	2411,1,0,0,0
+prt_fild08,175,356	monster	"--ja--"	2411,1,0,0,0
+prt_fild08,165,361	monster	"--ja--"	2411,1,0,0,0
+prt_fild08,175,361	monster	"--ja--"	2411,1,0,0,0
+prt_fild08,165,366	monster	"--ja--"	2411,1,0,0,0
+prt_fild08,175,366	monster	"--ja--"	2411,1,0,0,0
+
+
+
+
+
+
+tege_dun01,0,0	monster	"--ja--"	2415,18,0,0,0
+tege_dun01,0,0	monster	"--ja--"	2416,21,0,0,0
+tege_dun01,0,0	monster	"--ja--"	2417,18,0,0,0
+tege_dun01,0,0	monster	"--ja--"	2418,24,0,0,0
+tege_dun01,0,0	monster	"--ja--"	2419,31,0,0,0
+tege_dun01,0,0	monster	"--ja--"	2441,1,2400000,0,0
+
+
+tege_dun02,0,0	monster	"--ja--"	2421,20,0,0,0
+tege_dun02,0,0	monster	"--ja--"	2422,30,0,0,0
+tege_dun02,0,0	monster	"--ja--"	2423,20,0,0,0
+tege_dun02,0,0	monster	"--ja--"	2424,25,0,0,0
+tege_dun02,0,0	monster	"--ja--"	2426,30,0,0,0
+tege_dun02,0,0	monster	"--ja--"	2426,30,0,0,0
+tege_dun02,0,0	monster	"--ja--"	2427,30,0,0,0
+tege_dun02,0,0	monster	"--ja--"	2441,1,2400000,0,0
+
+
+
+tege_dun01	mapflag	nosave	SavePoint

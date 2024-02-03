@@ -1,0 +1,235 @@
+function	script	foreverwing	{
+	disable_items;
+	if (checkweight(1201,1) == 0) {
+		mes "您攜帶過多的物品,請減少他們再來!";
+		close;
+	}
+	if (MaxWeight - Weight < 10000) {
+		mes "您超重了,請酌減再來!";
+		close;
+	}
+	if (getequipid(EQI_GARMENT) == 2573) {
+		if (Zeny >= 1000000)
+			set .@menu$, "附魔永恆之翼";
+		else
+			set .@menu$, "^999999您的錢不夠!^000000";
+	} else
+		set .@menu$, "^999999您還沒裝備永恆之翼!^000000";
+	mes "[墮落天使]";
+	mes "您看起來像個很狼狽的傢伙!";
+	next;
+	mes "[墮落天使]";
+	mes "如果您有一個永恆之翼,我可使用我的能力附魔在第4個無用插槽,您想我這樣做?";
+	next;
+	switch(select("這是什麼?:"+.@menu$+":附魔初始化")) {
+	case 1:
+		switch(select("停止說話:那您打算怎麼辦?")) {
+		case 1:
+			mes "[墮落天使]";
+			mes "您說什麼?";
+			close;
+		case 2:
+			mes "[墮落天使]";
+			mes "如果您付1,000,000金幣,我可以用我的能力為你永恆之翼附魔,但是你不能再去換它無需重新設置它.";
+			next;
+			mes "[墮落天使]";
+			mes "附魔是很危險的,所以永恆之翼可能被損壞!不過,我的魔法將保留住卡和精煉的等級!";
+			close;
+		}
+	case 2:
+		if (Zeny < 1000000) {
+			mes "[墮落天使]";
+			mes "如果您支付不了,我就不能為您服務!";
+			close;
+		}
+		mes "[墮落天使]";
+		mes "有2個重要的通知!首先,在附魔需要 ^0000ff1,000,000 zeny^000000.";
+		next;
+		mes "[墮落天使]";
+		mes "其次,^ff0000雖然概率不高,但永恆之翼還是可能損壞^000000! 這是個非常不好的消息!";
+ 		mes "如果你能接受這些條件,我將為您附魔.";
+		next;
+		if(select("讓我好好想想...:我接受,讓我們開始!") == 1) {
+			mes "[墮落天使]";
+			mes "好吧!給您時間來考慮!";
+			close;
+		}
+		specialeffect2 EF_REPAIRWEAPON;
+		progressbar "ffff00",2;
+		if (getequipisequiped(EQI_GARMENT) == 0) {
+			mes "[墮落天使]";
+			mes "您沒有裝備永恆之翼!";
+			close;
+		}
+		if (getequipid(EQI_GARMENT) != 2573) {
+			mes "[墮落天使]";
+			mes "不要脫掉永恆之翼!";
+			close;
+		}
+		if (getequipcardid(EQI_GARMENT,3)) {
+			mes "[墮落天使]";
+			mes "這個永恆之翼已經附魔!請初始化它,或將另一個永恆之翼給我!";
+			close;
+		}
+		set .@equip_refine, getequiprefinerycnt(EQI_GARMENT);
+		setarray .@equip_card[0], getequipcardid(EQI_GARMENT,0),getequipcardid(EQI_GARMENT,1),getequipcardid(EQI_GARMENT,2);
+
+		set .@i, rand(1,900);
+		     if (.@i < 2)   set .@enchant,4848; //Immuned1
+		else if (.@i < 3)   set .@enchant,4849; //Cranial1
+		else if (.@i < 4)   set .@enchant,4852; //Heal_Amount5
+		else if (.@i < 9)   set .@enchant,4853; //S_Str
+		else if (.@i < 14)  set .@enchant,4854; //S_Agi
+		else if (.@i < 19)  set .@enchant,4855; //S_Vital
+		else if (.@i < 24)  set .@enchant,4856; //S_Int
+		else if (.@i < 29)  set .@enchant,4857; //S_Dex
+		else if (.@i < 34)  set .@enchant,4858; //S_Luck
+		else if (.@i < 39)  set .@enchant,4851; //Heal_Amount4
+		else if (.@i < 49)  set .@enchant,4850; //Heal_Amount3
+		else if (.@i < 74)  set .@enchant,4760; //Matk1
+		else if (.@i < 84)  set .@enchant,4761; //Matk2
+		else if (.@i < 109) set .@enchant,4817; //Sharp2
+		else if (.@i < 119) set .@enchant,4816; //Sharp3
+		else if (.@i < 144) set .@enchant,4814; //Spell2
+		else if (.@i < 154) set .@enchant,4813; //Spell3
+		else if (.@i < 179) set .@enchant,4833; //Expert_Archer2
+		else if (.@i < 189) set .@enchant,4834; //Expert_Archer3
+		else if (.@i < 214) set .@enchant,4810; //Fighting_Spirit2
+		else if (.@i < 224) set .@enchant,4809; //Fighting_Spirit3
+		else if (.@i < 259) set .@enchant,4701; //Strength2
+		else if (.@i < 294) set .@enchant,4731; //Agility2
+		else if (.@i < 329) set .@enchant,4721; //Dexterity2
+		else if (.@i < 364) set .@enchant,4741; //Vitality2
+		else if (.@i < 399) set .@enchant,4751; //Luck2
+		else if (.@i < 434) set .@enchant,4711; //Inteligence2
+		else if (.@i < 504) set .@enchant,4700; //Strength1
+		else if (.@i < 574) set .@enchant,4730; //Agility1
+		else if (.@i < 644) set .@enchant,4720; //Dexterity1
+		else if (.@i < 714) set .@enchant,4740; //Vitality1
+		else if (.@i < 784) set .@enchant,4750; //Luck1
+		else if (.@i < 854) set .@enchant,4710; //Inteligence1
+		else set .@enchant,0;
+
+		set Zeny, Zeny - 1000000;
+		delequip EQI_GARMENT;
+		if (.@enchant == 0) {
+			mes "[墮落天使]";
+			mes "可憐的倖存者,";
+			mes "送花送到死.";
+			next;
+			mes "[墮落天使]";
+			mes "幫助正義,";
+			mes "消除邪惡.";
+			next;
+			mes "[墮落天使]";
+			mes "但重要的一點是...永恆之翼可能會損壞!";
+			close;
+		}
+		getitem2 2573,1,1,.@equip_refine,0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@enchant; //Archangel_Wing
+		if (.@i < 4)
+			announce strcharinfo(0)+"將永恆之翼附魔了驚人的能力!",bc_all,0xFF0000,FW_NORMAL,10;
+		mes "[墮落天使]";
+		mes "拿去吧!";
+		mes "我相信您會成為新世界的主宰!";
+		close;
+	case 3:
+		mes "[墮落天使]";
+		mes "初始化需要3個獮猴桃果實,永恆之翼才不會損壞它原有的能力.";
+		next;
+		if(select("讓我好好想想...:好吧,我要對它進行初始化.") == 1) {
+			mes "[墮落天使]";
+			mes "好吧!給您時間來考慮!";
+			close;
+		}
+		specialeffect2 EF_REPAIRWEAPON;
+		progressbar "ffff00",2;
+		if (getequipisequiped(EQI_GARMENT) == 0) {
+			mes "[墮落天使]";
+			mes "您沒有裝備永恆之翼!";
+			close;
+		}
+		if (getequipid(EQI_GARMENT) != 2573) {
+			mes "[墮落天使]";
+			mes "啊哦...您未擁有永恆之翼!";
+			close;
+		}
+		if (countitem(6417) < 3) {
+			mes "[墮落天使]";
+			mes "如果您支付不了,我就不能為您服務!";
+			close;
+		}
+		if (getequipcardid(EQI_GARMENT,3) < 4700) { // Armor Enchant System
+			mes "[墮落天使]";
+			mes "該裝備還沒有附魔,請檢查一遍!";
+			close;
+		}
+		set .@equip_refine, getequiprefinerycnt(EQI_GARMENT);
+		setarray .@equip_card[0], getequipcardid(EQI_GARMENT,0),getequipcardid(EQI_GARMENT,1),getequipcardid(EQI_GARMENT,2);
+		delitem 6417,3; //Silvervine
+		delequip EQI_GARMENT;
+		getitem2 2573,1,1,.@equip_refine,0,.@equip_card[0],.@equip_card[1],.@equip_card[2],0; //Archangel_Wing
+		mes "[墮落天使]";
+		mes "拿去吧!";
+		close;
+	}
+}
+
+// Item Functions
+//============================================================
+function	script	F_Cat_Hard_Biscuit	{	//11536
+	switch (rand(1,4)) {
+	case 1:
+		heal -100,0;
+		break;
+	case 2:
+		showscript"Huuph...! Yucky..! Wa, Water...!!";
+		sc_start SC_Stun,3000,0,5000,0;
+		break;
+	case 3:
+		showscript"Yeeyuck...!! This is rotten!!";
+		sc_start SC_POISON,50000,0;
+		break;
+	case 4:
+		specialeffect2 EF_HIT4;
+		showscript"Arrrrrgggg...!! Bu, Bu, Bugggggg!!!!!";
+		getitem 11537,1; //Rice_Weevil_Bug
+		break;
+	}
+	return;
+}
+
+function	script	F_Rice_Weevil_Bug	{	//11537
+	switch (rand(1,6)) {
+	case 1:
+		specialeffect2 EF_POISONHIT;
+		showscript"Errrgg!!! This is so... bitter....!!";
+		heal 0,-50;
+		break;
+	case 2:
+		specialeffect2 EF_HEAL;
+		showscript"....well, at least this is good for my health.";
+		percentheal 15,0;
+		break;
+	case 3:
+		specialeffect2 EF_POISONHIT;
+		showscript"Phewphew!! Argh.... Is this poisoned or what?!";
+		heal 0,-100;
+		break;
+	case 4:
+		specialeffect2 EF_POISONHIT;
+		showscript"Whasdfhwkljhrtklwert....!!";
+		heal 0,-200;
+		break;
+	case 5:
+		specialeffect2 EF_HEAL;
+		showscript"It's ok, no one saw me yet...";
+		percentheal 10,0;
+		break;
+	case 6:
+		specialeffect2 EF_HEAL;
+		showscript"I really need something to eat... ?? Sorry, little buggy.";
+		percentheal 5,0;
+		break;
+	}
+	return;
+}

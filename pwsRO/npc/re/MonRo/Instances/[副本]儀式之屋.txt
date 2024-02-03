@@ -1,0 +1,997 @@
+//===== rAthena Script =======================================
+//= Instance Room of Consciousness.
+//===== Description: =========================================
+//- [Walkthrough conversion]
+//- Require Banquet main quest.
+//===== Changelogs: ==========================================
+//= 1.0 First version. [Capuche]
+//============================================================
+
+prt_lib_q,91,85,3	script	魔法師 邁倫#ep16_lib_q	4_M_JOB_WIZARD,{
+	if (banquet_main_quest_temp == 0) {
+		mes "[邁倫]";
+		mes "哇，我們成功了，";
+		mes "雖然不知道是何時，但確實是過去存在的 ^4d4dff王室的記憶^000000!";
+		next;
+		npctalk "哈~!我真是天才!", bc_self;
+		mes "[邁倫]";
+		mes "但是我們要去的目的地，得在扭曲一次才行。";
+		next;
+		mes "[邁倫]";
+		mes "你問我辦的到嗎？";
+		mes "哈哈哈，當然行阿！";
+		npctalk "我是這圈子獨一無二的時空大魔法師 邁倫！", bc_self;
+		next;
+		mes "[邁倫]";
+		mes "雖然是第一次嘗試，";
+		mes "我會像這樣那樣的再一次扭曲時空，";
+		npctalk "呀-!", bc_self;
+		specialeffect EF_BEGINSPELL;
+		next;
+		classchange( 4_ENERGY_RED, "飄動的空間#evt_gate0", bc_self );
+		mes "[邁倫]";
+		mes "強制地連-接-空-間!!";
+		mes "我們來看看這裡發生了甚麼事吧！";
+		next;
+		mes "[邁倫]";
+		mes "準備好了嗎？";
+		mes "準備完畢時，跟我講一聲-。";
+		banquet_main_quest_temp = 1;
+		close;
+	}
+	if (banquet_main_quest_temp == 1) {
+		if (getcharid(1) == 0 || is_party_leader() == false) {
+			mes "^4d4dff這是一個副本活動。";
+			mes "只有隊伍的領導才能繼續進行副本活動。 在組建派對後再試一次^000000";
+			close;
+		}
+		classchange( 4_ENERGY_RED, "飄動的空間#evt_gate0", bc_self );
+		mes "[邁倫]";
+		mes "那我們去看一下到底儀式之屋裡發生甚麼事吧！";
+		mes "因為再次強制地連接扭曲的空間與時間，所以我必須盡力的維持這東西。";
+		next;
+		mes "[邁倫]";
+		mes "請你務必活著回來-";
+		next;
+		if (select( "現在替我連結吧！", "不去" ) == 2) {
+			mes "[邁倫]";
+			mes "哈哈，這已經不太好了......";
+			close;
+		}
+		if (instance_create("儀式之屋") < 0) {
+			mes "[邁倫]";
+			mes "歐...等等...";
+			mes "讓我再次收集我的力量......";
+			next;
+			mes "[邁倫]";
+			mes ".....我會讓它工作，等一下。";
+			close;
+		}
+		announce "★ 副本公告 ★ 隊伍 [ "+getpartyname(getcharid(1)) +" ] 準備挑戰【 儀式之屋 】副本！",15,0x33ea91;
+		mes "[邁倫]";
+		mes "已開啟可以去下一區的大門~~~~";
+		mes "好，進去吧！";
+		close;
+	}
+}
+
+prt_lib_q,88,90,1	script	飄動的空間#evt_gate0	HIDDEN_WARP_NPC,{
+	if (banquet_main_quest_temp == 1) {
+		if (getcharid(1) == 0 || is_party_leader() == false) {// solo instance
+			mes "^4d4dff只有隊伍的領導才能進入 [儀式之屋].^000000";
+			close;
+		}
+		set .@playtime, checkquest(7706,PLAYTIME);
+		if (.@playtime == 0 || .@playtime == 1) {
+			mes "儀式之屋現在還沒辦法進入，";
+			mes "請晚點再來。";
+			close;
+		}
+		if (.@playtime == 2) erasequest 7706;
+		mes "可以移動到過去存在著伊美樂的心臟碎片的地方。";
+		next;
+		if (select( "進去。", "取消" ) == 1) {
+			if (getcharid(1) == 0 || is_party_leader() == false) {
+				mes "^4d4dff只有隊伍的領導才能進入 [儀式之屋].^000000";
+				close;
+			}
+			switch( instance_enter("儀式之屋") ) {
+			case IE_OTHER:
+				mes "出現未知錯誤。";
+				close;
+			case IE_NOINSTANCE:
+				mes "[邁倫]";
+				mes "嗯，強行連接是否太難了？";
+				mes "你等一下。";
+				close;
+			case IE_NOMEMBER:
+				end;
+			case IE_OK:
+				mapannounce strnpcinfo(4), "隊伍  " + getpartyname( getcharid(1) ) + " 的 " + strcharinfo(0) + " 正在進入儀式之屋.", bc_map,0xFF99,FW_NORMAL,12;
+				set getvariableofinstance('party_id, instance_id(IM_PARTY)), getcharid(1);
+				//warp "1@mir",101,10;
+				setquest 7706;
+				end;
+			}
+		}
+		mes "[邁倫]";
+		mes "恩...我剛剛使出用力連接這些空間，沒想到成功了哈哈";
+		mes "可能因為我是天才所以這樣的事情才有可能發生吧？";
+		close;
+	}
+}
+
+1@mir,103,40,3	script	潘利爾#1mir	4_F_FENRIR,{
+	if (is_party_leader() == false)	// it shouldn't happen
+		end;
+	cutin "fenrir_a",2;
+	mes "[潘利爾]";
+	mes "再普龍德拉王城地下";
+	mes "被封印的此處...";
+	mes "沒想到有這麼寬的空間阿...";
+	next;
+	cutin "hero_iris_01",2;
+	mes "[艾斯]";
+	mes "這裡面有甚麼？";
+	next;
+	cutin "fenrir_a",2;
+	mes "[潘利爾]";
+	mes "這個嘛...首先調查一下裡面吧！";
+	close2;
+	cutin "",255;
+	disablenpc instance_npcname("艾斯#1mir");
+	disablenpc instance_npcname("潘利爾#1mir");
+	end;
+
+OnInstanceInit:
+	'map_name$ = instance_mapname("1@mir");
+	disablenpc instance_npcname("畢尤#2mir");
+
+	disablenpc instance_npcname("潘利爾#3mir");
+	disablenpc instance_npcname("艾斯#3mir");
+	disablenpc instance_npcname("畢尤#3mir");
+	disablenpc instance_npcname("改造的闇答萊屍#3mir");
+
+	disablenpc instance_npcname("潘利爾#4mir");
+	disablenpc instance_npcname("艾斯#4mir");
+	disablenpc instance_npcname("畢尤#4mir");
+
+	disablenpc instance_npcname("潘利爾#5mir");
+	disablenpc instance_npcname("艾斯#5mir");
+	disablenpc instance_npcname("畢尤#5mir");
+	disablenpc instance_npcname("莎拉#5mir");
+
+	disablenpc instance_npcname("潘利爾#6mir");
+	disablenpc instance_npcname("艾斯#6mir");
+	disablenpc instance_npcname("畢尤#6mir");
+	disablenpc instance_npcname("莎拉#6mir");
+
+	disablenpc instance_npcname("潘利爾#boss1a");
+	disablenpc instance_npcname("潘利爾#boss1b");
+	disablenpc instance_npcname("潘利爾#boss1c");
+	disablenpc instance_npcname("潘利爾#boss1d");
+	disablenpc instance_npcname("艾斯#boss1a");
+	disablenpc instance_npcname("艾斯#boss1b");
+	disablenpc instance_npcname("艾斯#boss1c");
+	disablenpc instance_npcname("艾斯#boss1d");
+
+	disablenpc instance_npcname("潘利爾#boss2a");
+	disablenpc instance_npcname("潘利爾#boss2b");
+	disablenpc instance_npcname("潘利爾#boss2c");
+	disablenpc instance_npcname("潘利爾#boss2d");
+	disablenpc instance_npcname("艾斯#boss2a");
+	disablenpc instance_npcname("艾斯#boss2b");
+	disablenpc instance_npcname("艾斯#boss2c");
+	disablenpc instance_npcname("艾斯#boss2d");
+
+	disablenpc instance_npcname("eq#mir2");
+	disablenpc instance_npcname("eq#mir3");
+	disablenpc instance_npcname("eq#mir4");
+	disablenpc instance_npcname("eq#mir5");
+	disablenpc instance_npcname("eq#mir6");
+	end;
+}
+
+1@mir,100,94,7	script	艾斯#2mir	4_F_IRIS,{
+	if (is_party_leader() == false)	// it shouldn't happen
+		end;
+	mes "[艾斯]";
+	mes "這是....這一定是...";
+	mes "依美樂的心臟...";
+	next;
+	cutin "fenrir_a",2;
+	mes "[潘利爾]";
+	mes "這就是...";
+	mes "這就是依美樂的心臟...";
+	next;
+	cutin "hero_iris_01",255;
+	mes "~轟隆隆隆隆~";
+	next;
+	specialeffect EF_SCREEN_QUAKE,AREA, instance_npcname("艾斯#2mir");
+	cutin "hero_iris_01",2;
+	mes "[艾斯]";
+	mes "怎..怎麼回事，這震動是？";
+	next;
+	cutin "fenrir_b",2;
+	mes "[潘利爾]";
+	mes "哇.難道那些傢伙們開始往這邊進攻了嗎？";
+	next;
+	enablenpc instance_npcname("畢尤#2mir");
+	cutin "bijou_01",2;
+	mes "[畢尤]";
+	mes "呵呵呵...你們好啊！";
+	next;
+	cutin "fenrir_b",2;
+	mes "[潘利爾]";
+	mes "!!";
+	mes "你在開玩笑吧....?!";
+	next;
+	cutin "bijou_01",2;
+	mes "[畢尤]";
+	mes "此刻起這裡，就是巴基力希梅爾茲旗下的無敵部隊";
+	mes "由我們不死軍團來接管。";
+	next;
+	specialeffect EF_SCREEN_QUAKE,AREA, instance_npcname("艾斯#2mir");
+	cutin "hero_iris_01",2;
+	mes "[艾斯]";
+	mes "甚麼！你知道這裡是甚麼地方嗎？";
+	mes "放馬過來！我來對付你們！";
+	next;
+	cutin "bijou_01",2;
+	mes "[畢尤]";
+	mes "哼...你以為我會直接應付像你這種不起眼的傢伙嘛？人類。";
+	mes "我會讓你稍微嘗一嘗我們不死軍團的力量！";
+	next;
+	cutin "fenrir_b",2;
+	mes "[潘利爾]";
+	mes "哇.何時那麼多的兵力已到來這裡了？";
+	close2;
+	cutin "",255;
+	donpcevent instance_npcname("eq#mir1") + "::OnEvent";
+	disablenpc instance_npcname("艾斯#2mir");
+	end;
+}
+
+1@mir,101,104,0	script	eq#mir1	HIDDEN_WARP_NPC,{
+	end;
+OnEvent:
+	initnpctimer;
+	end;
+OnTimer200:
+	disablenpc instance_npcname("艾斯#1mir");
+	disablenpc instance_npcname("潘利爾#1mir");
+	disablenpc instance_npcname("潘利爾#2mir");
+	disablenpc instance_npcname("畢尤#2mir");
+	mapannounce 'map_name$, "潘利爾： 請小心！敵人們即將出現！", bc_map,0xFFFF00,FW_NORMAL,12;
+	end;
+OnTimer2200:
+	mapannounce 'map_name$, "潘利爾： 務必要消滅所有蜂擁而來的敵人！", bc_map,0xFFFF00,FW_NORMAL,12;
+	// coords inaccurate
+	monster 'map_name$,83,67,"強化邪骸戰士",3446,1, instance_npcname("eq#mir1") + "::OnMobDead";// P_SKELETON
+	monster 'map_name$,91,51,"強化邪骸戰士",3446,1, instance_npcname("eq#mir1") + "::OnMobDead";// P_SKELETON
+	monster 'map_name$,111,67,"強化邪骸戰士",3446,1, instance_npcname("eq#mir1") + "::OnMobDead";// P_SKELETON
+	monster 'map_name$,92,69,"強化邪骸士兵",3447,1, instance_npcname("eq#mir1") + "::OnMobDead";// P_SOLDIER_SKELETON
+	monster 'map_name$,109,50,"強化邪骸士兵",3447,1, instance_npcname("eq#mir1") + "::OnMobDead";// P_SOLDIER_SKELETON
+	monster 'map_name$,109,47,"強化邪骸弓箭手",3445,1, instance_npcname("eq#mir1") + "::OnMobDead";// P_ARCHER_SKELETON
+	monster 'map_name$,90,48,"強化邪骸弓箭手",3445,1, instance_npcname("eq#mir1") + "::OnMobDead";// P_ARCHER_SKELETON
+	'skeleton_wave[0] = 7;
+	stopnpctimer;
+	end;
+
+OnMobDead:
+	'skeleton_wave[0]--;
+	if ('skeleton_wave[0] == 0) {
+		mapannounce 'map_name$, "艾斯： 呼嗚...全部都擊倒了嗎？", bc_map,0xFFFF00,FW_NORMAL,12;
+		startnpctimer;
+	}
+	end;
+OnTimer4200:
+	mapannounce 'map_name$, "潘利爾：看起來還剩一些。請小心！", bc_map,0xFFFF00,FW_NORMAL,12;
+	end;
+OnTimer6200:
+	// coords inaccurate
+	monster 'map_name$,83,67,"強化邪骸戰士",3446,1, instance_npcname("eq#mir1") + "::OnMobDead2";// P_SKELETON
+	monster 'map_name$,91,51,"強化邪骸戰士",3446,1, instance_npcname("eq#mir1") + "::OnMobDead2";// P_SKELETON
+	monster 'map_name$,111,67,"強化邪骸戰士",3446,1, instance_npcname("eq#mir1") + "::OnMobDead2";// P_SKELETON
+	monster 'map_name$,92,69,"強化邪骸士兵",3447,1, instance_npcname("eq#mir1") + "::OnMobDead2";// P_SOLDIER_SKELETON
+	monster 'map_name$,109,50,"強化邪骸士兵",3447,1, instance_npcname("eq#mir1") + "::OnMobDead2";// P_SOLDIER_SKELETON
+	monster 'map_name$,109,47,"強化邪骸弓箭手",3445,1, instance_npcname("eq#mir1") + "::OnMobDead2";// P_ARCHER_SKELETON
+	monster 'map_name$,90,48,"強化邪骸弓箭手",3445,1, instance_npcname("eq#mir1") + "::OnMobDead2";// P_ARCHER_SKELETON
+	'skeleton_wave[1] = 7;
+	stopnpctimer;
+	end;
+
+OnMobDead2:
+	'skeleton_wave[1]--;
+	if ('skeleton_wave[1] == 0) {
+		mapannounce 'map_name$, "潘利爾： 呼嗚...看來終於擊垮所有敵人了。", bc_map,0xFFFF00,FW_NORMAL,12;
+		enablenpc instance_npcname("潘利爾#3mir");
+		enablenpc instance_npcname("艾斯#3mir");
+		enablenpc instance_npcname("畢尤#2mir");
+		disablenpc instance_npcname("eq#mir1");
+	}
+	end;
+}
+
+1@mir,103,85,1	script	艾斯#3mir	4_F_IRIS,{
+	if (is_party_leader() == false)	// it shouldn't happen
+		end;
+	mes "[畢尤]";
+	mes "哈哈...沒想到你這人類撐下來了。";
+	next;
+	cutin "bijou_02",2;
+	mes "[畢尤]";
+	mes "但是你撐得過這次嗎？起來吧！我的劊子手！";
+	specialeffect EF_WARP,AREA, instance_npcname("改造的闇答萊屍#3mir");
+	sleep2 3000;
+	specialeffect EF_ENTRY,AREA, instance_npcname("改造的闇答萊屍#3mir");
+	enablenpc instance_npcname("改造的闇答萊屍#3mir");
+	next;
+	cutin "hero_iris_01",2;
+	mes "[艾斯]";
+	mes "什..什麼，這是甚麼怪物！";
+	next;
+	cutin "bijou_01",2;
+	mes "[畢尤]";
+	mes "阿...";
+	mes "就當作你死前送你的禮物吧！";
+	mes "我叫做畢尤，";
+	mes "我是巴基力希梅爾茲的副官。";
+	next;
+	cutin "fenrir_b",2;
+	mes "[潘利爾]";
+	mes "呵..";
+	mes "果然是巴基力的部下...";
+	mes "拿走依美樂的心臟那麼強大的能量原，到底是要用在哪裡？";
+	next;
+	cutin "bijou_01",2;
+	mes "[畢尤]";
+	mes "......";
+	mes "你們不必知道這些吧，反正你們也活不久了。";
+	next;
+	cutin "fenrir_b",2;
+	mes "[潘利爾]";
+	mes "說的也是，不可能用再好的地方吧？";
+	mes "我會阻止畢尤拿走依美樂的心臟，那隻巨大的怪物就拜託你了！";
+	close2;
+	cutin "",255;
+	donpcevent instance_npcname("eq#mir2") + "::OnEvent";
+	end;
+}
+
+1@mir,101,104,0	script	eq#mir2	HIDDEN_WARP_NPC,{
+	end;
+OnEvent:
+	enablenpc instance_npcname("eq#mir2");
+	enablenpc instance_npcname("eq#mir3");
+	disablenpc instance_npcname("畢尤#2mir");
+	disablenpc instance_npcname("潘利爾#3mir");
+	disablenpc instance_npcname("艾斯#3mir");
+	disablenpc instance_npcname("改造的闇答萊屍#3mir");
+
+	monster 'map_name$,101,95,"改造的闇答萊屍",3448,1, instance_npcname("eq#mir2") + "::OnMobDead";// P_AMDARAIS
+	'boss_id = $@mobid[0];
+	'target_event = 1;	// Amdarais
+	initnpctimer;
+	end;
+OnTimer1000:
+	getunitdata 'boss_id, .@data;
+	if (.@data[UMOB_HP] == .@data[UMOB_MAXHP]) {
+		initnpctimer;
+		end;
+	}
+	mapannounce 'map_name$, "艾斯： 這傢伙..不管怎麼攻擊，好像體力也不會削減...", bc_map,0xFFFF00,FW_NORMAL,12;
+	end;
+OnTimer3000:
+	mapannounce 'map_name$, "畢尤： 哈哈哈...這麼輕易會被打倒就不是我的劊子手拉！", bc_map,0xFFFF00,FW_NORMAL,12;
+	end;
+OnTimer5000:
+	mapannounce 'map_name$, "潘利爾： 這傢伙好像跟其他一般的不死怪不同...", bc_map,0xFFFF00,FW_NORMAL,12;
+	end;
+OnTimer7000:
+	mapannounce 'map_name$, "潘利爾： 對了！就是核！若集中攻擊那傢伙的核，應該可以給予更大的傷害吧！", bc_map,0xFFFF00,FW_NORMAL,12;
+	end;
+OnTimer9000:
+	donpcevent instance_npcname("eq#mir3") + "::OnEvent";
+	stopnpctimer;
+	end;
+OnMobDead:
+	stopnpctimer;
+	donpcevent instance_npcname("eq#mir3") + "::OnStop";
+	if ('random_letter$ != "")
+		donpcevent instance_npcname( "潘利爾#boss1" + 'random_letter$ ) + "::OnStop";
+	disablenpc instance_npcname("eq#mir2");
+
+	enablenpc instance_npcname("潘利爾#4mir");
+	enablenpc instance_npcname("艾斯#4mir");
+	end;
+}
+
+1@mir,101,104,0	script	eq#mir3	HIDDEN_WARP_NPC,{
+	end;
+OnEvent:
+	callsub S_Announce, true;
+OnEvent2:
+	callsub S_Announce, false;
+S_Announce:
+	setarray .@list$[0],"a","b","c","d";
+	'random_letter$ = .@list$[ rand(4) ];
+	donpcevent instance_npcname( "潘利爾#boss" + 'target_event + "" + 'random_letter$ ) + "::OnEvent";	// 1: P_AMDARAIS / 2: BIJOU
+	if (getarg(0) == true)
+		mapannounce 'map_name$, "潘利爾： 引誘那傢伙來到我這裡！", bc_map,0xFFFF00,FW_NORMAL,12;
+	end;
+OnStart:
+	initnpctimer;
+	end;
+OnTimer25000:
+	donpcevent instance_npcname("eq#mir3") + "::OnEvent";
+	stopnpctimer;
+	end;
+OnStop:
+	stopnpctimer;
+	disablenpc instance_npcname("eq#mir3");
+	end;
+}
+
+1@mir,103,80,3	script	潘利爾#boss1a	4_F_FENRIR,2,2,{
+	end;
+OnEvent:
+	'fenrir_name$ = instance_npcname( strnpcinfo(0) );
+	'iris_name$ = instance_npcname( "艾斯#" + strnpcinfo(2) );
+	enablenpc 'fenrir_name$;
+	enablenpc 'iris_name$;
+	end;
+
+OnTouchNPC:
+	if ('touch_mob == 0) {
+		npctalk "潘利爾： 幹的好！艾斯就拜託你了！", 'fenrir_name$;
+		'touch_mob = 1;
+		initnpctimer;
+	}
+	end;
+OnTimer2000:
+	npctalk "艾斯： 好，我來試試看！我艾斯艾琳很樂意！", 'iris_name$;
+	specialeffect EF_BEGINSPELL,AREA, 'iris_name$;
+	end;
+OnTimer4000:
+	npctalk "艾斯： 麻痺符咒", 'iris_name$;
+	if ('target_event == 1)
+		unittalk 'boss_id, "哇ㄚㄚ---!!";
+	else
+		unittalk 'boss_id, "畢尤： 怎麼會...!!";
+	end;
+OnTimer5000:
+	npctalk "艾斯： 有效了！", 'iris_name$;
+	end;
+OnTimer7000:
+	npctalk "潘利爾： 現在換我了，哈伊呀阿！", 'fenrir_name$;
+	specialeffect EF_BEGINSPELL,AREA, 'fenrir_name$;
+	specialeffect EF_TETRACASTING,AREA, 'fenrir_name$;
+	progressbar_npc "000000",3;
+	end;
+OnTimer10000:
+	npctalk "潘利爾： 來吧!!", 'fenrir_name$;
+	specialeffect EF_SUI_EXPLOSION,AREA, 'fenrir_name$;
+	specialeffect EF_LORD,AREA, 'fenrir_name$;
+	specialeffect EF_FLAMELAUNCHER,AREA, 'fenrir_name$;
+	if ('target_event == 1)
+		unittalk 'boss_id, "~哇阿阿~";
+	else
+		unittalk 'boss_id, "畢尤： 可惡..沒想到是比我想像還要強大的傷害......！";
+	getunitdata 'boss_id, .@data;
+	if (.@data[UMOB_HP] > 0) {
+		.@damage = rand(700,1300) * 1000;
+		if (.@damage >= .@data[UMOB_HP])
+			.@mob_hp = 0;
+		else
+			.@mob_hp = .@data[UMOB_HP] - .@damage;
+		setunitdata 'boss_id, UMOB_HP, .@mob_hp;
+	}
+	end;
+OnTimer13000:
+	npctalk "潘利爾： 雖然不是很完美，但好像還是有給予很大傷害！", 'fenrir_name$;
+	end;
+OnTimer14500:
+	npctalk "潘利爾： 我已經消耗太多魔法了，我先休息一下，這段時間就拜託你了！", 'fenrir_name$;
+	end;
+OnTimer16500:
+	donpcevent instance_npcname("eq#mir3") + "::OnStart";
+OnStop:
+	stopnpctimer;
+	disablenpc instance_npcname( strnpcinfo(0) );
+	disablenpc instance_npcname( "艾斯#" + strnpcinfo(2) );
+	'touch_mob = 0;
+	'random_letter$ = "";
+	end;
+}
+
+1@mir,100,90,7	script	艾斯#4mir	4_F_IRIS,{
+	if (is_party_leader() == false)	// it shouldn't happen
+		end;
+	mes "[艾斯]";
+	mes "解...解決掉了嗎？";
+	mes "那麼，現在剩下...";
+	next;
+	enablenpc instance_npcname("畢尤#4mir");
+	cutin "bijou_01",2;
+	mes "[畢尤]";
+	mes "剩下我一個人...是嗎？";
+	next;
+	cutin "hero_iris_01",2;
+	mes "[艾斯]";
+	mes "甚麼?!";
+	next;
+	mes "~碰!~";
+	specialeffect EF_SUI_EXPLOSION,AREA, instance_npcname("艾斯#4mir");
+	next;
+	cutin "hero_iris_01",2;
+	mes "[艾斯]";
+	mes "阿阿阿阿---!!!";
+	next;
+	cutin "bijou_01",2;
+	mes "[畢尤]";
+	mes "老實說我有點意外了，呵呵..";
+	mes "我花了三年的時間才完成的闇答萊屍，居然被你打敗了...";
+	next;
+	cutin "bijou_02",2;
+	mes "[畢尤]";
+	mes "這三年的代價..";
+	mes "我會向你討回來的！";
+	mes "慢慢的...";
+	mes "讓你生不如死！";
+	close2;
+	cutin "",255;
+	donpcevent instance_npcname("eq#mir4") + "::OnEvent";
+	end;
+}
+
+1@mir,101,104,0	script	eq#mir4	HIDDEN_WARP_NPC,{
+	end;
+OnEvent:
+	enablenpc instance_npcname("eq#mir4");
+	disablenpc instance_npcname("潘利爾#4mir");
+	disablenpc instance_npcname("艾斯#4mir");
+	disablenpc instance_npcname("畢尤#4mir");
+	monster 'map_name$,102,95,"畢尤",3450,1, instance_npcname("eq#mir4") + "::OnMobDead";// BIJOU
+	'boss_id = $@mobid[0];
+	initnpctimer;
+	end;
+OnTimer1000:
+	getunitdata 'boss_id, .@data;
+	if (.@data[UMOB_HP] == .@data[UMOB_MAXHP]) {
+		initnpctimer;
+		end;
+	}
+	donpcevent instance_npcname("eq#mir4") + "::OnMobDead";
+	end;
+OnMobDead:
+	killmonster 'map_name$, instance_npcname("eq#mir4") + "::OnMobDead";
+	stopnpctimer;
+	enablenpc instance_npcname("潘利爾#5mir");
+	enablenpc instance_npcname("艾斯#5mir");
+	enablenpc instance_npcname("畢尤#5mir");
+	disablenpc instance_npcname("eq#mir4");
+	end;
+}
+
+1@mir,103,90,1	script	潘利爾#5mir	4_F_FENRIR,{
+	if (is_party_leader() == false)	// it shouldn't happen
+		end;
+	mes "[潘利爾]";
+	mes "哇，竟然甚麼都行不通！";
+	next;
+	cutin "bijou_01",2;
+	mes "[畢尤]";
+	mes "呵呵呵";
+	mes "我會讓你嘗到挫折的感覺的。";
+	next;
+	cutin "bijou_02",2;
+	mes "[畢尤]";
+	mes "冰凍術!";
+	specialeffect EF_LOCKON,AREA, instance_npcname("潘利爾#5mir");
+	sleep2 3000;
+	specialeffect EF_FREEZE,AREA, instance_npcname("潘利爾#5mir");
+	next;
+	cutin "fenrir_b",2;
+	mes "[潘利爾]";
+	mes "嗚阿阿";
+	next;
+	cutin "bijou_01",2;
+	mes "[畢尤]";
+	mes "如何？很痛苦吧？";
+	mes "你現在應該動彈不得了吧！";
+	mes "...但我不想這麼輕易的殺死你。";
+	next;
+	mes "[畢尤]";
+	mes "我會先處理掉那個令人討厭的牧師小丫頭。";
+	next;
+	cutin "fenrir_b",2;
+	mes "[潘利爾]";
+	mes "阿..艾斯!!";
+	next;
+	cutin "sarah_hero3",2;
+	mes "[莎拉]";
+	mes "......";
+	enablenpc instance_npcname("莎拉#5mir");
+	next;
+	cutin "bijou_02",2;
+	mes "[畢尤]";
+	mes "莎..莎拉...?";
+	next;
+	cutin "sarah_hero3",2;
+	mes "[莎拉]";
+	mes "是這個地方嗎...？";
+	mes "普龍德拉城堡的地下...";
+	mes "第一個依美樂的心臟被封印的地方。";
+	next;
+	mes "[莎拉]";
+	mes "還有那個就是...";
+	mes "依美樂的心臟...";
+	next;
+	cutin "bijou_02",2;
+	mes "[畢尤]";
+	mes "怎...怎麼會來到這裡，";
+	mes "莎拉艾琳，";
+	mes "怎麼會親自來到這裡.";
+	next;
+	cutin "sarah_hero3",2;
+	mes "[莎拉]";
+	mes "畢尤你現在來這裡做甚麼？";
+	next;
+	cutin "bijou_01",2;
+	mes "[畢尤]";
+	mes "是，如您所看，我正在修理那些令人討厭的傢伙。";
+	next;
+	cutin "sarah_hero3",2;
+	mes "[莎拉]";
+	mes "畢尤你在胡說甚麼阿？";
+	next;
+	mes "[莎拉]";
+	mes "我問的是，你怎麼還在這裡消磨時間，而且依美樂的心臟，怎麼還是被封印在那裡？";
+	next;
+	cutin "bijou_02",2;
+	mes "[畢尤]";
+	mes "那..那個嘛！我已經解開了第一次封印，";
+	mes "反正我很快就會處理好這裡，沙拉大人不必特地跑來這裡。";
+	next;
+	mes "[畢尤]";
+	mes "這裡請交給我處理，身為巴基力，你應該要顧及顏面。";
+	next;
+	cutin "bijou_01",2;
+	mes "[畢尤]";
+	mes "(哼..急性子的巴基力傢伙..像你這樣的毛頭小子，怎麼會跟希梅爾茲相提並論，太不像話了。)";
+	next;
+	cutin "sarah_hero3_2",2;
+	mes "[莎拉]";
+	mes "畢尤你瘋了嗎？..希梅爾茲不再這裡。";
+	next;
+	cutin "bijou_03",2;
+	mes "[畢尤]";
+	mes "....~嗚！咳...咳~";
+	mes "呼..呼吸！";
+	next;
+	cutin "sarah_hero3_2",2;
+	mes "[莎拉]";
+	mes "嘴巴不是用來胡言亂語的..哼。";
+	next;
+	cutin "bijou_03",2;
+	mes "[畢尤]";
+	mes "咳...咳....";
+	mes "咳咳 咳咳...";
+	next;
+	cutin "sarah_hero3",2;
+	mes "[莎拉]";
+	mes "像這種為了小事，就一直拖延時間下手，乾脆不要也罷了。";
+	mes "依美樂的心臟..我會親自拿走。";
+	disablenpc instance_npcname("莎拉#5mir");
+	next;
+	cutin "bijou_02",2;
+	mes "[畢尤]";
+	mes "(果然是巴基力，雖然有點痛恨...！)";
+	next;
+	cutin "fenrir_b",2;
+	mes "[潘利爾]";
+	mes "趁現在吧！";
+	mes "冰凍術！";
+	specialeffect EF_FREEZE,AREA, instance_npcname("畢尤#5mir");
+	next;
+	cutin "bijou_03",2;
+	mes "[畢尤]";
+	mes "什..什麼！";
+	next;
+	mes "[畢尤]";
+	mes "哇.好險好險..";
+	mes "到底怎麼會？！";
+	next;
+	cutin "fenrir_a",2;
+	mes "[潘利爾]";
+	mes "這個魔法...";
+	mes "難道是出乎意料的高階魔法嘛？比想像中的還要難施放。";
+	next;
+	cutin "bijou_02",2;
+	mes "[畢尤]";
+	mes "(甚麼？難道是剛才被我擊中的魔法，就學會了嗎？)";
+	next;
+	cutin "fenrir_a",2;
+	mes "[潘利爾]";
+	mes "艾斯!這是治癒藥水！";
+	mes "喝了就會恢復精神。";
+	next;
+	sleep2 500;
+	specialeffect EF_POTION1,AREA, instance_npcname("艾斯#5mir");
+	cutin "hero_iris_01",2;
+	mes "[艾斯]";
+	mes "咕嚕...咕嚕嚕...";
+	next;
+	sleep2 500;
+	specialeffect EF_POTION1,AREA, instance_npcname("艾斯#5mir");
+	cutin "fenrir_a",2;
+	mes "[潘利爾]";
+	mes "阿！恢復精神了嗎？";
+	next;
+	cutin "hero_iris_01",2;
+	mes "[艾斯]";
+	mes "喔....";
+	mes "啊啊啊啊啊！！";
+	mes "好苦喔！";
+	mes "這是甚麼啊！！";
+	mes "你到底讓我喝甚麼！";
+	next;
+	cutin "fenrir_a",2;
+	mes "[潘利爾]";
+	mes "終於恢復精神了！";
+	mes "太好了，艾斯。";
+	next;
+	cutin "hero_iris_01",2;
+	mes "[艾斯]";
+	mes "啊哈...不過潘利爾！";
+	mes "依美樂的心臟呢？";
+	next;
+	cutin "bijou_02",2;
+	mes "[畢尤]";
+	mes "(他是潘利爾嘛？！我只顧著依美樂的心臟，完全忘了他，她要是潘利爾....！)";
+	next;
+	mes "[畢尤]";
+	mes "呼...沒錯！原來如此。";
+	mes "你體內流著魔獸之血...這就是答案！";
+	next;
+	cutin "bijou_01",2;
+	mes "[畢尤]";
+	mes "那我應該用適合你的招式對付你，哇哈哈！";
+	mes "沒想到在這裡能見到一千年前的英雄！";
+	next;
+	cutin "bijou_03",2;
+	mes "[畢尤]";
+	mes "去死吧！！";
+	next;
+	cutin "fenrir_b",2;
+	mes "[潘利爾]";
+	mes "...小心！他要攻擊了！";
+	close2;
+	cutin "",255;
+	donpcevent instance_npcname("eq#mir5") + "::OnEvent";
+	end;
+}
+
+1@mir,101,104,0	script	eq#mir5	HIDDEN_WARP_NPC,{
+	end;
+OnEvent:
+	enablenpc instance_npcname("eq#mir3");
+	enablenpc instance_npcname("eq#mir5");
+	disablenpc instance_npcname("畢尤#5mir");
+	disablenpc instance_npcname("潘利爾#5mir");
+	disablenpc instance_npcname("艾斯#5mir");
+
+	monster 'map_name$,102,95,"畢尤",3450,1, instance_npcname("eq#mir5") + "::OnMobDead";// BIJOU
+	'boss_id = $@mobid[0];
+	'target_event = 2;
+	initnpctimer;
+	end;
+OnTimer1000:
+	getunitdata 'boss_id, .@data;
+	if (.@data[UMOB_HP] == .@data[UMOB_MAXHP]) {
+		initnpctimer;
+		end;
+	}
+	end;
+OnTimer3000:
+	mapannounce 'map_name$, "艾斯： 這次也一起戰鬥的話，一訂可以很快的擊倒她！", bc_map,0xFFFF00,FW_NORMAL,12;
+	end;
+OnTimer5000:
+	mapannounce 'map_name$, "潘利爾： 沒錯，這次也引誘那傢伙來我這邊吧！", bc_map,0xFFFF00,FW_NORMAL,12;
+	end;
+OnTimer7000:
+	mapannounce 'map_name$, "畢尤： ......", bc_map,0xFFFF00,FW_NORMAL,12;
+	donpcevent instance_npcname("eq#mir3") + "::OnEvent2";
+	donpcevent instance_npcname("eq#mir6") + "::OnTalk";
+	stopnpctimer;
+	end;
+OnMobDead:
+	stopnpctimer;
+	donpcevent instance_npcname("eq#mir3") + "::OnStop";
+	donpcevent instance_npcname("eq#mir6") + "::OnStop";
+	if ('random_letter$ != "")
+		donpcevent instance_npcname( "潘利爾#boss2" + 'random_letter$ ) + "::OnStop";
+	disablenpc instance_npcname("eq#mir5");
+
+	enablenpc instance_npcname("潘利爾#6mir");
+	enablenpc instance_npcname("艾斯#6mir");
+	enablenpc instance_npcname("畢尤#6mir");
+	end;
+}
+
+1@mir,101,104,0	script	eq#mir6	HIDDEN_WARP_NPC,{
+	end;
+OnTalk:
+	enablenpc instance_npcname("eq#mir6");
+	initnpctimer;
+	end;
+OnTimer20000:
+	.@r = rand(3);
+	if (.@r == 0)
+		unittalk 'boss_id, "畢尤： 巴基力萬歲！";
+	else if (.@r == 1)
+		unittalk 'boss_id, "畢尤： 恩...還活著哦！";
+	else
+		unittalk 'boss_id, "畢尤： 呵呵...你感覺到痛苦了嗎？";
+	initnpctimer;
+	end;
+OnStop:
+	stopnpctimer;
+}
+
+1@mir,100,95,5	script	艾斯#6mir	4_F_IRIS,{
+	if (is_party_leader() == false)	// it shouldn't happen
+		end;
+	mes "[艾斯]";
+	mes "恩..恩！";
+	next;
+	cutin "bijou_01",2;
+	mes "[畢尤]";
+	mes "哈哈哈！去死吧！";
+	mes "令人討厭的牧師！";
+	specialeffect EF_TETRACASTING,AREA, instance_npcname("艾斯#6mir");
+	next;
+	cutin "fenrir_b",2;
+	mes "[潘利爾]";
+	mes "艾斯!!";
+	mes "不行!給我住手!";
+	specialeffect EF_TETRACASTING,AREA, instance_npcname("艾斯#6mir");
+	next;
+	cutin "bijou_01",2;
+	mes "[畢尤]";
+	mes "哈哈哈...";
+	mes "你想要救夥伴？";
+	mes "但是好像已經太遲了喔？";
+	specialeffect EF_TETRACASTING,AREA, instance_npcname("艾斯#6mir");
+	next;
+	mes "[畢尤]";
+	mes "那是因為...";
+	mes "這會是最後一次攻擊！哈哈哈哈！";
+	specialeffect EF_TETRACASTING,AREA, instance_npcname("艾斯#6mir");
+	next;
+	sleep2 300;
+	enablenpc instance_npcname("莎拉#6mir");
+	cutin "bijou_03",2;
+	mes "[畢尤]";
+	mes "....哈阿...";
+	mes "嗯？...我的肚子...";
+	mes "這把刀是...";
+	mes "莎...沙拉？..怎麼會？";
+	specialeffect EF_HFLIMOON1,AREA, instance_npcname("畢尤#6mir");
+	next;
+	cutin "bijou_death",4;
+	mes "[莎拉]";
+	mes "已經把遺言說完了嗎？";
+	mes "放心吧！我會幫你好好跟希梅爾茲解釋，你就不要怨恨我了，畢尤。";
+	next;
+	mes "[畢尤]";
+	mes "為什麼...你為什麼？你為什麼要這樣做？";
+	mes "...因為那個...小丫頭..是你...妹妹的關係嗎？所以..你才這樣做嗎！莎拉！";
+	next;
+	mes "[畢尤]";
+	mes "嗚..嗚嗚..";
+	specialeffect EF_HFLIMOON1,AREA, instance_npcname("畢尤#6mir");
+	disablenpc instance_npcname("畢尤#6mir");
+	next;
+	mes "[莎拉]";
+	mes "......";
+	mes "你的靈魂終於獲得自由了，畢尤。";
+	next;
+	cutin "hero_iris_01",2;
+	mes "[艾斯]";
+	mes "(你救了我...?)";
+	next;
+	mes "[艾斯]";
+	mes "莎拉...";
+	mes "是莎拉姐姐，對吧？";
+	mes "聽說小時候離開的...";
+	next;
+	mes "[艾斯]";
+	mes "...到底你想要幹甚麼？..為什麼...為什麼要救我？";
+	mes "你以為你救了我，我就會改變主意了嗎？我絕不會饒怒你！";
+	next;
+	mes "[艾斯]";
+	mes "爸爸...媽媽...還有村民的仇人..！";
+	next;
+	cutin "sarah_hero3",2;
+	mes "[莎拉]";
+	mes "閉嘴！";
+	mes "你以為只有你是受害人，別再胡鬧了...";
+	mes "他們只是付出代價而已...在12年前殺害了我的母親的代價...";
+	next;
+	mes "[莎拉]";
+	mes "要我告訴你真相嗎？你心愛的爸爸大長老和村民們..其實是..";
+	next;
+	mes "[莎拉]";
+	mes "......";
+	mes "算了吧...";
+	mes "現在重要的是依美樂的心臟。";
+	next;
+	mes "[莎拉]";
+	mes "給我牢牢記住，";
+	mes "這不表示我救了你，";
+	mes "我一定會親手殺了妳，";
+	mes "下次見面時，我一定會殺了妳。";
+	next;
+	mes "[莎拉]";
+	mes "在我親手殺死你之前，你絕對不能死，艾斯。";
+	mes "今天就到此為止，撤退吧？";
+	disablenpc instance_npcname("莎拉#6mir");
+	next;
+	specialeffect EF_SCREEN_QUAKE,AREA, instance_npcname("艾斯#6mir");
+	cutin "fenrir_b",2;
+	mes "[潘利爾]";
+	mes "嗚...那個巴基力拿走依美樂的心臟時，連天花板都弄垮了！";
+	next;
+	mes "[潘利爾]";
+	mes "我們也要趕緊離開這裡，這裡實在是太危險了！";
+	close2;
+	getitem 6919,10;
+	//callfunc "F_GetInstancePrize", instance_mapname("1@mir"), 'party_id;
+	if (banquet_main_quest == 21) {
+		erasequest 7700;// Once More!
+		setquest 7701;// Lost Imir Heart
+		banquet_main_quest = 22;
+	}
+	warp "prt_lib_q",88,83;
+	end;
+}
+
+1@mir,100,40,5	script	艾斯#1mir	4_F_IRIS,{ end; }
+1@mir,103,94,1	duplicate(艾斯#1mir)	潘利爾#2mir	4_F_FENRIR
+1@mir,102,98,3	duplicate(艾斯#1mir)	畢尤#2mir	4_F_BIJOU
+
+1@mir,100,85,7	duplicate(艾斯#1mir)	潘利爾#3mir	4_F_FENRIR
+1@mir,102,88,3	duplicate(艾斯#1mir)	畢尤#3mir	4_F_BIJOU
+1@mir,101,95,1	duplicate(艾斯#1mir)	改造的闇答萊屍#3mir	3448
+
+1@mir,94,73,3	duplicate(潘利爾#boss1a)	潘利爾#boss1b	4_F_FENRIR,2,2
+1@mir,112,73,3	duplicate(潘利爾#boss1a)	潘利爾#boss1c	4_F_FENRIR,2,2
+1@mir,103,60,3	duplicate(潘利爾#boss1a)	潘利爾#boss1d	4_F_FENRIR,2,2
+
+1@mir,100,80,5	duplicate(艾斯#1mir)	艾斯#boss1a	4_F_IRIS
+1@mir,91,73,5	duplicate(艾斯#1mir)	艾斯#boss1b	4_F_IRIS
+1@mir,109,73,5	duplicate(艾斯#1mir)	艾斯#boss1c	4_F_IRIS
+1@mir,100,60,5	duplicate(艾斯#1mir)	艾斯#boss1d	4_F_IRIS
+
+1@mir,103,76,3	duplicate(潘利爾#boss1a)	潘利爾#boss2a	4_F_FENRIR,2,2
+1@mir,94,70,3	duplicate(潘利爾#boss1a)	潘利爾#boss2b	4_F_FENRIR,2,2
+1@mir,112,70,3	duplicate(潘利爾#boss1a)	潘利爾#boss2c	4_F_FENRIR,2,2
+1@mir,103,63,3	duplicate(潘利爾#boss1a)	潘利爾#boss2d	4_F_FENRIR,2,2
+
+1@mir,100,76,5	duplicate(艾斯#1mir)	艾斯#boss2a	4_F_IRIS
+1@mir,91,70,5	duplicate(艾斯#1mir)	艾斯#boss2b	4_F_IRIS
+1@mir,109,70,5	duplicate(艾斯#1mir)	艾斯#boss2c	4_F_IRIS
+1@mir,100,63,5	duplicate(艾斯#1mir)	艾斯#boss2d	4_F_IRIS
+
+1@mir,102,95,3	duplicate(艾斯#1mir)	畢尤#4mir	4_F_BIJOU
+1@mir,103,90,1	duplicate(艾斯#1mir)	潘利爾#4mir	4_F_FENRIR
+
+1@mir,102,95,3	duplicate(艾斯#1mir)	畢尤#5mir	4_F_BIJOU
+1@mir,99,95,5	duplicate(艾斯#1mir)	莎拉#5mir	4_F_SARAH
+1@mir,100,90,7	duplicate(艾斯#1mir)	艾斯#5mir	4_F_IRIS
+
+1@mir,102,95,3	duplicate(艾斯#1mir)	畢尤#6mir	4_F_BIJOU
+1@mir,104,95,3	duplicate(艾斯#1mir)	莎拉#6mir	4_F_SARAH
+1@mir,103,90,1	duplicate(艾斯#1mir)	潘利爾#6mir	4_F_FENRIR

@@ -1,0 +1,125 @@
+
+function	script	RS26	{//模組改造 17.1
+setarray .@shoes[1],25670,25671,25684,25685,25686,25694,25700,25701,25702,25703,25704,25705;
+setarray .@Xshoes[1],29527,29528,29531,29530,29533,29541,29547,29548,29549,29550,29551,29552;
+setarray .@shoescount[1],3,3,2,2,2,1,1,1,1,1,1,1;
+
+setarray .@garment[1],25670,25671,25690,25691,25692,25695;
+setarray .@Xgarment[1],29527,29528,29537,29538,29539,29542;
+setarray .@garmentcount[1],3,3,2,2,2,1;
+
+setarray .@armor[1],25670,25671,25687,25688,25689,25693;
+setarray .@Xarmor[1],29527,29528,29534,29535,29536,29540;
+setarray .@armorcount[1],3,3,2,2,2,1;
+
+setarray .@Lacc[1],25672,25673,25676,25677,25679,25680,25681,25682,25683,25697,25699;
+setarray .@XLacc[1],4742,4752,4712,4722,29532,4826,4881,4866,4836,29544,29546;
+setarray .@Lacccount[1],3,3,3,3,2,1,1,1,1,1,1;
+
+setarray .@Racc[1],25672,25673,25674,25675,25678,25680,25681,25682,25683,25696,25698;
+setarray .@XRacc[1],4742,4752,4702,4732,29529,4826,4881,4866,4836,29543,29545;
+setarray .@Racccount[1],3,3,3,3,2,1,1,1,1,1,1;
+setarray .@equipid$[1],getequipname(7),getequipname(3),getequipname(2),getequipname(1),getequipname(0);
+setarray .@equiprefine[1],getequiprefinerycnt(7),getequiprefinerycnt(3),getequiprefinerycnt(2),getequiprefinerycnt(1),getequiprefinerycnt(0);
+setarray .@part[1],7,3,2,1,0;
+setarray .@equippair$[1],"[鎧甲]","[披肩]","[鞋子]","[飾品(右)]","[飾品(左)]";
+set .@equipcheck$,"|32207|32208|32209|32210|15376|15377|20933|20934|22196|22197|";
+mes "[RS26]";
+mes "這裡有提供模組改造的服務";
+next;
+for(.@i=1; .@i<getarraysize(.@equippair$); .@i++) 
+set .@menu$,.@menu$+(getequipisequiped(.@part[.@i])?
+.@equippair$[.@i]+" - ^FF0000"+"+"+.@equiprefine[.@i]+"^000000^0066CC "+.@equipid$[.@i]:""+.@equippair$[.@i]+" - ^666666尚未裝備^000000")+"^000000:";
+	set .@equipchoes,select(.@menu$);
+	set .@eqid,getequipid(.@part[.@equipchoes]);
+	if(.@eqid<=0){mes "[RS26]"; mes "沒有裝備"; close; }
+	if(!compare(.@equipcheck$,"|"+.@eqid+"|")) {mes "[RS26]";mes"^ff0000※此項裝備無法使用魔改※^000000"; close;}
+	set .@eqre,getequiprefinerycnt(.@part[.@equipchoes]);
+	next;
+	mes "[RS26]";
+	mes "請選用來改造的模組吧?";
+	next;
+	if(.@part[.@equipchoes]==7){
+	for(.@i=1; .@i<getarraysize(.@armor); .@i++) 
+	set .@itemmenu$,.@itemmenu$+"持有^0000ff"+getitemname(.@armor[.@i])+"^000000("+countitem(.@armor[.@i])+")個:";
+	set .@orechoes,select(.@itemmenu$);
+	set .@choes,.@armor[.@orechoes];
+	set .@choesX,.@Xarmor[.@orechoes];
+	set .@choesmax,.@armorcount[.@orechoes];
+	}
+	if(.@part[.@equipchoes]==3){
+	for(.@i=1; .@i<getarraysize(.@garment); .@i++) 
+	set .@itemmenu$,.@itemmenu$+"持有^0000ff"+getitemname(.@garment[.@i])+"^000000("+countitem(.@garment[.@i])+")個:";
+	set .@orechoes,select(.@itemmenu$);
+	set .@choes,.@garment[.@orechoes];
+	set .@choesX,.@Xgarment[.@orechoes];
+	set .@choesmax,.@garmentcount[.@orechoes];
+	}
+	if(.@part[.@equipchoes]==2){
+	for(.@i=1; .@i<getarraysize(.@shoes); .@i++) 
+	set .@itemmenu$,.@itemmenu$+"持有^0000ff"+getitemname(.@shoes[.@i])+"^000000("+countitem(.@shoes[.@i])+")個:";
+	set .@orechoes,select(.@itemmenu$);
+	set .@choes,.@shoes[.@orechoes];
+	set .@choesX,.@Xshoes[.@orechoes];
+	set .@choesmax,.@shoescount[.@orechoes];
+	}
+	if(.@part[.@equipchoes]==1){
+	for(.@i=1; .@i<getarraysize(.@Racc); .@i++) 
+	set .@itemmenu$,.@itemmenu$+"持有^0000ff"+getitemname(.@Racc[.@i])+"^000000("+countitem(.@Racc[.@i])+")個:";
+	set .@orechoes,select(.@itemmenu$);
+	set .@choes,.@Racc[.@orechoes];
+	set .@choesX,.@XRacc[.@orechoes];
+	set .@choesmax,.@Racccount[.@orechoes];
+	}
+	if(.@part[.@equipchoes]==0){
+	for(.@i=1; .@i<getarraysize(.@Lacc); .@i++) 
+	set .@itemmenu$,.@itemmenu$+"持有^0000ff"+getitemname(.@Lacc[.@i])+"^000000("+countitem(.@Lacc[.@i])+")個:";
+	set .@orechoes,select(.@itemmenu$);
+	set .@choes,.@Lacc[.@orechoes];
+	set .@choesX,.@XLacc[.@orechoes];
+	set .@choesmax,.@Lacccount[.@orechoes];
+	}
+	if (countitem(.@choes) < 1){mes "[RS26]"; mes "數量不足";close;}
+	setarray .@equip_card[0], getequipcardid(.@part[.@equipchoes],0), getequipcardid(.@part[.@equipchoes],1), getequipcardid(.@part[.@equipchoes],2), getequipcardid(.@part[.@equipchoes],3);
+	
+	setarray .@Optrandom[0],getequiprandomoption(.@part[.@equipchoes],0,0),getequiprandomoption(.@part[.@equipchoes],1,0),getequiprandomoption(.@part[.@equipchoes],2,0),getequiprandomoption(.@part[.@equipchoes],3,0),getequiprandomoption(.@part[.@equipchoes],4,0);
+	
+	setarray .@Optrandomval[0],getequiprandomoption(.@part[.@equipchoes],0,1),getequiprandomoption(.@part[.@equipchoes],1,1),getequiprandomoption(.@part[.@equipchoes],2,1),getequiprandomoption(.@part[.@equipchoes],3,1),getequiprandomoption(.@part[.@equipchoes],4,1);
+	
+	setarray .@Optran[0],0,0,0,0,0;
+	if(.@equip_card[0] >0&&.@equip_card[1] >0){mes "[RS26]"; mes "這個位置已經被卡片佔據了";close;}
+	if(.@equip_card[0]==0&&.@equip_card[1] >0){set .@sout,0;set .@equip_card[0],.@choesX;}
+	if(.@equip_card[1]==0&&.@equip_card[2] >0){set .@sout,1;set .@equip_card[1],.@choesX;}
+	if(.@equip_card[2]==0&&.@equip_card[3] >0){set .@sout,2;set .@equip_card[2],.@choesX;}
+	if(.@equip_card[3]==0){set .@sout,3;set .@equip_card[3],.@choesX;}
+	if (.@sout==3){
+	if(.@equip_card[3]==.@equip_card[2]){if((.@equip_card[3]+.@equip_card[2])/.@choesmax !=.@equip_card[3]) {mes "[RS26]"; mes"同樣類型模組已達上限";close;}}
+	if(.@equip_card[3]==.@equip_card[1]){if((.@equip_card[3]+.@equip_card[1])/.@choesmax !=.@equip_card[3]) {mes "[RS26]"; mes"同樣類型模組已達上限";close;}}
+	if(.@equip_card[3]==.@equip_card[0]){if((.@equip_card[3]+.@equip_card[0])/.@choesmax !=.@equip_card[3]) {mes "[RS26]"; mes"同樣類型模組已達上限";close;}}}
+	if (.@sout==2){
+	if(.@equip_card[2]==.@equip_card[3]){if((.@equip_card[2]+.@equip_card[3])/.@choesmax !=.@equip_card[2]) {mes "[RS26]"; mes"同樣類型模組已達上限";close;}}
+	if(.@equip_card[2]==.@equip_card[1]){if((.@equip_card[2]+.@equip_card[1])/.@choesmax !=.@equip_card[2]) {mes "[RS26]"; mes"同樣類型模組已達上限";close;}}
+	if(.@equip_card[2]==.@equip_card[0]){if((.@equip_card[2]+.@equip_card[0])/.@choesmax !=.@equip_card[2]) {mes "[RS26]"; mes"同樣類型模組已達上限";close;}}}
+	if (.@sout==1){
+	if(.@equip_card[1]==.@equip_card[0]){if((.@equip_card[1]+.@equip_card[0])/.@choesmax !=.@equip_card[1]) {mes "[RS26]"; mes"同樣類型模組已達上限";close;}}
+	if(.@equip_card[1]==.@equip_card[2]){if((.@equip_card[1]+.@equip_card[2])/.@choesmax !=.@equip_card[1]) {mes "[RS26]"; mes"同樣類型模組已達上限";close;}}
+	if(.@equip_card[1]==.@equip_card[3]){if((.@equip_card[1]+.@equip_card[3])/.@choesmax !=.@equip_card[1]) {mes "[RS26]"; mes"同樣類型模組已達上限";close;}}}
+	if (.@sout==0){
+	if(.@equip_card[0]==.@equip_card[1]){if((.@equip_card[0]+.@equip_card[1])/.@choesmax !=.@equip_card[0]) {mes "[RS26]"; mes"同樣類型模組已達上限";close;}}
+	if(.@equip_card[0]==.@equip_card[2]){if((.@equip_card[0]+.@equip_card[2])/.@choesmax !=.@equip_card[0]) {mes "[RS26]"; mes"同樣類型模組已達上限";close;}}
+	if(.@equip_card[0]==.@equip_card[3]){if((.@equip_card[0]+.@equip_card[3])/.@choesmax !=.@equip_card[0]) {mes "[RS26]"; mes"同樣類型模組已達上限";close;}}}	
+	
+	if(.@equip_card[3]==.@equip_card[2]&&.@equip_card[3]==.@equip_card[1]){ if((.@equip_card[3]+.@equip_card[2]+.@equip_card[1])/.@choesmax !=.@equip_card[3]) {mes "[RS26]"; mes"同樣類型模組已達上限";close;}}
+	if(.@equip_card[3]==.@equip_card[2]&&.@equip_card[3]==.@equip_card[0]){ if((.@equip_card[3]+.@equip_card[2]+.@equip_card[0])/.@choesmax !=.@equip_card[3]) {mes "[RS26]"; mes"同樣類型模組已達上限";close;}}
+	if(.@equip_card[3]==.@equip_card[1]&&.@equip_card[3]==.@equip_card[0]){ if((.@equip_card[3]+.@equip_card[1]+.@equip_card[0])/.@choesmax !=.@equip_card[3]) {mes "[RS26]"; mes"同樣類型模組已達上限";close;}}
+	if(.@equip_card[2]==.@equip_card[1]&&.@equip_card[2]==.@equip_card[0]){ if((.@equip_card[2]+.@equip_card[1]+.@equip_card[0])/.@choesmax !=.@equip_card[2]) {mes "[RS26]"; mes"同樣類型模組已達上限";close;}}
+	mes "[RS26]";
+	mes "改造成功";
+	specialeffect 49;
+	specialeffect 50;
+	delitem .@choes,1;
+	delequip .@part[.@equipchoes];
+	getitem3 .@eqid,1,1,.@eqre,0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@equip_card[3],.@Optrandom[0],.@Optrandomval[0],.@Optran[0];
+	close;
+	}
+	

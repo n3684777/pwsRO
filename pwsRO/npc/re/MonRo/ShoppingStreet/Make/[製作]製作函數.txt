@@ -1,0 +1,27 @@
+function	script	MakeFunc_	{
+	.@Count = getargcount();
+	mes "製作 "+getitemname(getarg(0))+" x "+getarg(1)+"";
+	mes "需要 "+getarg(2)+" z.";
+	for ( .@i = 3; .@i < (.@count-1); .@i+=2 )
+	mes " 需要 "+getitemname(getarg(.@i))+" x "+getarg(.@i+1)+"";
+	next;
+	select("製作");
+	if ( Zeny < getarg(2) )
+	{
+		mes "金錢不足.";
+		end;
+	}
+	for ( .@i = 3; .@i < (.@count-1); .@i+=2 )
+	{
+		if ( countitem(getarg(.@i)) < getarg(.@i+1) )
+		{
+			mes "材料不足.";
+			end;
+		}
+	}
+	for ( .@i = 3; .@i < (.@count-1); .@i+=2 )
+		delitem getarg(.@i),getarg(.@i+1);
+	Zeny -= getarg(2);
+	getitem getarg(0),getarg(1);
+	end;
+}
