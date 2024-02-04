@@ -1,4 +1,4 @@
-anger,174,215,5	script	理查德::CardSeparation_mal	559,{
+lroom00,136,73,5	script	理查德::CardSeparation_mal	559,{
 
 	disable_items;
 	
@@ -126,7 +126,7 @@ anger,174,215,5	script	理查德::CardSeparation_mal	559,{
 			set Zeny, Zeny - 300000;
 			break;
 		case 3:
-			set .@success,60;
+			set .@success,100;
 			if (countitem(25239) == 0) {
 				mes "[^0044BB"+strnpcinfo(1)+"^000000]";
 				mes "你身上並沒有新式高級潤滑油呢!";
