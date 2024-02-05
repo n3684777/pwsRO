@@ -118,8 +118,9 @@ OnInstanceInit:
 	if (select("我確定要領取！","讓我好好考慮一下！")==2) {close;}
 	if (checkquest(55153,PLAYTIME)== 2){erasequest 55153;}
 	if (checkquest(55153,PLAYTIME)== -1){
-			getitem 61004,18;
+			getitem 61004,20;
                         getitem 6316,10;
+                        getitem 7582,100;
 			set #CASHPOINTS,#CASHPOINTS+300;
 			setquest 55153;
 			dispbottom "此為今日首次通關，獲得兩倍獎勵。";
@@ -127,8 +128,8 @@ OnInstanceInit:
 			warp "egg1",214,167;
 			end;	
 		}
-	getitem 61004,9;
-        getitem 6316,5;
+	getitem 61004,10;
+        getitem 7582,500;
 	set #CASHPOINTS,#CASHPOINTS+150;
 	dispbottom "獲得點數 [150]，目前累積MVP點數為 ["+#CASHPOINTS+"]。";
 	set #DOKANPOINTS,#DOKANPOINTS+5;

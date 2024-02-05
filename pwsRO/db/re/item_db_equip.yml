@@ -100958,6 +100958,116 @@ Body:
       .@r = getrefine();
       bonus bMaxHP,.@r*10;
       bonus2 bSkillAtk,"CR_GRANDCROSS",20+.@r*5;
+  - Id: 58330
+    AegisName: S_Crusader_Armor
+    Name: 悠悠影子鎧甲LV1
+    Type: Shadowgear
+    Buy: 10
+    Locations:
+      Shadow_Armor: true
+    EquipLevelMin: 1
+    Refineable: true
+    Slots: 1
+    Script: |
+      bonus bMaxHP,-45000;
+      bonus2 bAddSize,Size_All,10;
+      bonus2 bMagicAddSize,Size_Small,10;
+      bonus2 bMagicAddSize,Size_Medium,10;
+      bonus2 bMagicAddSize,Size_Large,10;
+      .@r = getrefine();
+      bonus bShortAtkRate,.@r*2;
+      bonus bLongAtkRate,.@r*2;
+      bonus2 bMagicAddSize,Size_Small,.@r*2;
+      bonus2 bMagicAddSize,Size_Medium,.@r*2;
+      bonus2 bMagicAddSize,Size_Large,.@r*2;
+  - Id: 58331
+    AegisName: S_Crusader_Armor
+    Name: 悠悠影子鎧甲LV2
+    Type: Shadowgear
+    Buy: 10
+    Locations:
+      Shadow_Armor: true
+    EquipLevelMin: 1
+    Refineable: true
+    Slots: 2
+    Script: |
+      bonus bMaxHP,-40000;
+      bonus2 bAddSize,Size_All,20;
+      bonus2 bMagicAddSize,Size_Small,20;
+      bonus2 bMagicAddSize,Size_Medium,20;
+      bonus2 bMagicAddSize,Size_Large,20;
+      .@r = getrefine();
+      bonus bShortAtkRate,.@r*2;
+      bonus bLongAtkRate,.@r*2;
+      bonus2 bMagicAddSize,Size_Small,.@r*2;
+      bonus2 bMagicAddSize,Size_Medium,.@r*2;
+      bonus2 bMagicAddSize,Size_Large,.@r*2;
+  - Id: 58332
+    AegisName: S_Crusader_Armor
+    Name: 悠悠影子鎧甲LV3
+    Type: Shadowgear
+    Buy: 10
+    Locations:
+      Shadow_Armor: true
+    EquipLevelMin: 1
+    Refineable: true
+    Slots: 2
+    Script: |
+      bonus bMaxHP,-35000;
+      bonus2 bAddSize,Size_All,30;
+      bonus2 bMagicAddSize,Size_Small,30;
+      bonus2 bMagicAddSize,Size_Medium,30;
+      bonus2 bMagicAddSize,Size_Large,30;
+      .@r = getrefine();
+      bonus bShortAtkRate,.@r*2;
+      bonus bLongAtkRate,.@r*2;
+      bonus2 bMagicAddSize,Size_Small,.@r*2;
+      bonus2 bMagicAddSize,Size_Medium,.@r*2;
+      bonus2 bMagicAddSize,Size_Large,.@r*2;
+  - Id: 58333
+    AegisName: S_Crusader_Armor
+    Name: 悠悠影子鎧甲LV4
+    Type: Shadowgear
+    Buy: 10
+    Locations:
+      Shadow_Armor: true
+    EquipLevelMin: 1
+    Refineable: true
+    Slots: 2
+    Script: |
+      bonus bMaxHP,-30000;
+      bonus2 bAddSize,Size_All,50;
+      bonus2 bMagicAddSize,Size_Small,50;
+      bonus2 bMagicAddSize,Size_Medium,50;
+      bonus2 bMagicAddSize,Size_Large,50;
+      .@r = getrefine();
+      bonus bShortAtkRate,.@r*2;
+      bonus bLongAtkRate,.@r*2;
+      bonus2 bMagicAddSize,Size_Small,.@r*2;
+      bonus2 bMagicAddSize,Size_Medium,.@r*2;
+      bonus2 bMagicAddSize,Size_Large,.@r*2;
+  - Id: 58334
+    AegisName: S_Crusader_Armor
+    Name: 悠悠影子鎧甲LV5
+    Type: Shadowgear
+    Buy: 10
+    Locations:
+      Shadow_Armor: true
+    EquipLevelMin: 1
+    Refineable: true
+    Slots: 3
+    Script: |
+      bonus bMaxHP,-25000;
+      bonus2 bAddSize,Size_All,70;
+      bonus2 bMagicAddSize,Size_Small,70;
+      bonus2 bMagicAddSize,Size_Medium,70;
+      bonus2 bMagicAddSize,Size_Large,70;
+      .@r = getrefine();
+      bonus bShortAtkRate,.@r*2;
+      bonus bLongAtkRate,.@r*2;
+      bonus2 bMagicAddSize,Size_Small,.@r*2;
+      bonus2 bMagicAddSize,Size_Medium,.@r*2;
+      bonus2 bMagicAddSize,Size_Large,.@r*2;
   - Id: 24271
     AegisName: S_Blacksmith_Armor
     Name: 影子鐵匠鎧甲
@@ -148940,7 +149050,7 @@ Body:
     Refineable: true
     Script: |
       bonus bSpeedRate,120;
-      bonus bAddMaxWeight,150000;
+      bonus bAddMaxWeight,250000;
   - Id: 58102
     AegisName: Sandals_LV2
     Name: 輕便鞋LV2
@@ -148954,7 +149064,7 @@ Body:
     Refineable: true
     Script: |
       bonus bSpeedRate,150;
-      bonus bAddMaxWeight,150000;
+      bonus bAddMaxWeight,250000;
   - Id: 58103
     AegisName: Sandals_LV3
     Name: 輕便鞋LV3
@@ -148968,7 +149078,7 @@ Body:
     Refineable: true
     Script: |
       bonus bSpeedRate,180;
-      bonus bAddMaxWeight,150000;
+      bonus bAddMaxWeight,250000;
   - Id: 58104
     AegisName: Sandals_LV4
     Name: 輕便鞋LV4
@@ -148982,7 +149092,7 @@ Body:
     Refineable: true
     Script: |
       bonus bSpeedRate,210;
-      bonus bAddMaxWeight,150000;
+      bonus bAddMaxWeight,250000;
   - Id: 58105
     AegisName: Sandals_LV5
     Name: 輕便鞋LV5
@@ -148997,7 +149107,7 @@ Body:
     Script: |
       bonus bSpeedRate,250;
       bonus bUnbreakableShoes;
-      bonus bAddMaxWeight,150000;
+      bonus bAddMaxWeight,250000;
   - Id: 58201
     AegisName: HoodLV1
     Name: 連帽披肩LV1
@@ -149464,6 +149574,8 @@ Body:
     Slots: 4
     Jobs:
       Mage: true
+      Wizard: true
+      Sage: true
     Locations:
       Right_Hand: true
     WeaponLevel: 4
@@ -149473,6 +149585,11 @@ Body:
       bonus bInt,30;
       bonus bDex,30;
       bonus bVit,25;
+    Script: |
+      .@r = getrefine();
+      if (.@r>=11) {
+         bonus2 bSkillCooldown,"WL_COMET",-4000;
+      }
   - Id: 59205
     AegisName: Wand_
     Name: 智杖 LV2
@@ -149486,6 +149603,8 @@ Body:
     Slots: 4
     Jobs:
       Mage: true
+      Sage: true
+      Wizard: true
     Locations:
       Right_Hand: true
     WeaponLevel: 4
@@ -149497,6 +149616,10 @@ Body:
       bonus bVit,25;
       bonus2 bSkillAtk,"MG_FIREBOLT",40;
       bonus2 bSkillAtk,"MG_COLDBOLT",40;
+      .@r = getrefine();
+      if (.@r>=11) {
+         bonus2 bSkillCooldown,"WL_COMET",-6000;
+      }
   - Id: 59206
     AegisName: Wand_
     Name: 智杖 LV3
@@ -149510,6 +149633,8 @@ Body:
     Slots: 4
     Jobs:
       Mage: true
+      Sage: true
+      Wizard: true
     Locations:
       Right_Hand: true
     WeaponLevel: 4
@@ -149521,7 +149646,12 @@ Body:
       bonus bVit,25;
       bonus2 bSkillAtk,"MG_FIREBOLT",80;
       bonus2 bSkillAtk,"MG_COLDBOLT",80;
-      bonus2 bMagicAddRace,RC_All,50;
+      bonus2 bMagicAddRace,RC_All,25;
+    Script: |
+      .@r = getrefine();
+      if (.@r>=11) {
+         bonus2 bSkillCooldown,"WL_COMET",-8000;
+      }
   - Id: 59207
     AegisName: Rod__
     Name: 超級棒棒 LV1
@@ -149568,7 +149698,7 @@ Body:
     Refineable: true
     Script: |
       .@r = getrefine();
-      if (.@r>=11) {
+      if (.@r>=10) {
          bonus2 bSkillCooldown,"AB_ADORAMUS",-500;
       }
       bonus2 bSkillAtk,"AB_ADORAMUS",25;
@@ -149602,6 +149732,84 @@ Body:
       bonus2 bMagicAtkEle,Ele_Holy,30;
       bonus bInt,50;
       bonus bDex,50;
+  - Id: 59210
+    AegisName: Bde_
+    Name: YAYA小劍劍 LV1
+    Type: Weapon
+    SubType: 1hSword
+    Buy: 2900
+    Weight: 0
+    Attack: 250
+    Range: 1
+    Slots: 4
+    Jobs:
+      Alchemist: true
+      Blacksmith: true
+      Merchant: true
+    Locations:
+      Right_Hand: true
+    WeaponLevel: 4
+    EquipLevelMin: 10
+    Refineable: true
+    Script: |
+      bonus bStr,30;
+      bonus bDex,30;
+      bonus2 bSkillAtk,"GN_CART_TORNADO",20;
+  - Id: 59211
+    AegisName: Bde_
+    Name: YAYA小劍劍 LV2
+    Type: Weapon
+    SubType: 1hSword
+    Buy: 2900
+    Weight: 0
+    Attack: 350
+    Range: 1
+    Slots: 4
+    Jobs:
+      Alchemist: true
+      Blacksmith: true
+      Merchant: true
+    Locations:
+      Right_Hand: true
+    WeaponLevel: 4
+    EquipLevelMin: 10
+    Refineable: true
+    Script: |
+      .@r = getrefine();
+      if (.@r>=10) {
+         bonus2 bSkillCooldown,"GN_CART_TORNADO",-300;
+      }
+      bonus bStr,45;
+      bonus bDex,45;
+      bonus2 bSkillAtk,"GN_CART_TORNADO",35;
+  - Id: 59212
+    AegisName: Bde_
+    Name: YAYA小劍劍 LV3
+    Type: Weapon
+    SubType: 1hSword
+    Buy: 2900
+    Weight: 0
+    Attack: 550
+    Range: 1
+    Slots: 4
+    Jobs:
+      Alchemist: true
+      Blacksmith: true
+      Merchant: true
+    Locations:
+      Right_Hand: true
+    WeaponLevel: 4
+    EquipLevelMin: 10
+    Refineable: true
+    Script: |
+      .@r = getrefine();
+      if (.@r>=9) {
+         bonus2 bSkillCooldown,"GN_CART_TORNADO",-500;
+      }
+      bonus bStr,65;
+      bonus bDex,50;
+      bonus2 bSkillAtk,"GN_CART_TORNADO",60;
+      bonus2 bAddRace,RC_All,10;
   - Id: 59290
     AegisName: Guard_
     Name: 阿斯拉盾牌 LV1

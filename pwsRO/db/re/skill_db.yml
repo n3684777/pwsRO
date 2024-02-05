@@ -10467,7 +10467,7 @@ Body:
       TargetTrap: true
     Range: 11
     Hit: Multi_Hit
-    HitCount: 1
+    HitCount: 2
     Element: Weapon
     SplashArea: 2
     ActiveInstance: 14
@@ -27367,7 +27367,7 @@ Body:
       Splash: true
     Range: 1
     Hit: Single
-    HitCount: 3
+    HitCount: 5
     Element: Weapon
     SplashArea: 2
     Knockback: 2

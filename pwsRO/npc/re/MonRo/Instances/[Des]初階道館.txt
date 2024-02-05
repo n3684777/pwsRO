@@ -111,7 +111,7 @@ OnInstanceInit:
 	if (checkquest(55150,PLAYTIME)== -1){
 			getitem 61001,20;
                         getitem 7582,10;
-                        getitem 6316,10;
+                        getitem 6316,4;
 			set #CASHPOINTS,#CASHPOINTS+10;
 			setquest 55150;
 			dispbottom "此為今日首次通關，獲得兩倍獎勵。";
@@ -120,8 +120,8 @@ OnInstanceInit:
 			end;	
 		}
 	getitem 61001,10;
-        getitem 7723,2;
-        getitem 6316,5;
+        getitem 7582,5;
+        getitem 6316,2;
 	set #CASHPOINTS,#CASHPOINTS+5;
 	dispbottom "獲得點數 [5]，目前累積商城點數為 ["+#CASHPOINTS+"]。";
 	set #DOKANPOINTS,#DOKANPOINTS+1;

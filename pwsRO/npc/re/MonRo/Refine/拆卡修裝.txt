@@ -41,7 +41,7 @@ set @xlItem,999;
 		close;
 }
 
-prt_in,55,68,4	script	拆卡師	558,{
+lroom00,136,73,4	script	拆卡師	558,{
 //		set .@zeny,1000000;		//拆卡費用
 //		setarray .@a1[1],EQI_HEAD_TOP, EQI_HEAD_MID, EQI_HEAD_LOW, EQI_ARMOR, EQI_HAND_L, EQI_HAND_R, EQI_GARMENT, EQI_SHOES, EQI_ACC_L,  EQI_ACC_R;
 //		setarray .@a2$[1],"[頭上]","[頭中]","[頭下]","[鎧甲]","[左手]","[右手]","[披肩]","[靴子]","[裝飾品左]","[裝飾品右]";

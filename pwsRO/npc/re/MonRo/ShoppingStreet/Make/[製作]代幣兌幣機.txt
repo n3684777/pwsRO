@@ -108,6 +108,96 @@ lroom00,159,42,3	script	代幣兌幣機CS-1	564,{
 	mes "我換取 ^003399"+.@exchange_name$[.@i]+"硬幣^000000，扣除 ^003399"+.@exchange_loss[(!.@i)]+"^000000個，剩餘^003399"+.@exchange_total+"^000000個";
 	close;
 }
+lroom00,137,70,3	script	破幣換破寶	554,{
+	if (checkweight(1201,1) == 0) {
+		mes "你身上有太多的物品了，減少了一些再來找我吧!!";
+		close;
+	}
+	if (MaxWeight - Weight < 300) {
+		mes "你身上的重量太重了，試著減輕重量再來吧!?";
+		close;
+	}
+	mes "[黑暗的換錢商]";
+	mes "感謝您的交易。";
+	mes "每^ff000050個 破滅硬幣^000000 可幫您換成^3333ff破滅寶石1個^000000，那麼..要開始交易了?";
+	next;
+	setarray .@coin_amount[0],100,300,500,1000,2000;
+	while(1) {
+		.@menu$ = "";
+		for(.@i = 0; .@i<getarraysize(.@coin_amount); .@i++) {
+			if (countitem(7606) >= .@coin_amount[.@i])
+				.@menu$ = .@menu$ + "兌換"+(.@coin_amount[.@i]/50)+"破滅寶石:";
+			else
+				.@menu$ = .@menu$ + "^aaaaaa兌換"+(.@coin_amount[.@i]/1)+"破滅寶石(不足)^000000:";
+		}
+		.@i = select(.@menu$+"離開")-1;
+		if (.@i == getarraysize(.@coin_amount)) {
+			mes "[黑暗的換錢商]";
+			mes "讓我們再其他的時間交換吧.";
+			close;
+		}
+		if (countitem(7606) < .@coin_amount[.@i]) {
+			mes "[黑暗的換錢商]";
+			mes "你需要^ff0000"+.@coin_amount[.@i]+"^000000破滅硬幣來執行交換。但你似乎沒有足夠的代幣。";
+			close;
+		}
+		delitem 7606,.@coin_amount[.@i]; //Cgrade_Coin
+		getitem 7582,.@coin_amount[.@i]/50; //Mora_Coin
+		mes "[黑暗的換錢商]";
+		mes "破滅硬幣 ^003399"+.@coin_amount[.@i]+"^000000 深受歡迎。"; //FIXME: Dialogue.
+		mes "交換到 ^003399"+(.@coin_amount[.@i]/50)+"^000000破滅寶石。";
+		next;
+		mes "[黑暗的換錢商]";
+		mes "你想要繼續嗎？";
+		next;
+	}
+}
+
+lroom00,134,70,3	script	破寶換鑽石	554,{
+	if (checkweight(1201,1) == 0) {
+		mes "你身上有太多的物品了，減少了一些再來找我吧!!";
+		close;
+	}
+	if (MaxWeight - Weight < 300) {
+		mes "你身上的重量太重了，試著減輕重量再來吧!?";
+		close;
+	}
+	mes "[黑暗的換錢商]";
+	mes "感謝您的交易。";
+	mes "每^ff00005個 破滅寶石^000000 可幫您換成^3333ff破滅鑽石1個^000000，那麼..要開始交易了?";
+	next;
+	setarray .@coin_amount[0],10,100,500,1000;
+	while(1) {
+		.@menu$ = "";
+		for(.@i = 0; .@i<getarraysize(.@coin_amount); .@i++) {
+			if (countitem(7582) >= .@coin_amount[.@i])
+				.@menu$ = .@menu$ + "兌換"+(.@coin_amount[.@i]/5)+"破滅鑽石:";
+			else
+				.@menu$ = .@menu$ + "^aaaaaa兌換"+(.@coin_amount[.@i]/1)+"破滅鑽石(不足)^000000:";
+		}
+		.@i = select(.@menu$+"離開")-1;
+		if (.@i == getarraysize(.@coin_amount)) {
+			mes "[黑暗的換錢商]";
+			mes "讓我們再其他的時間交換吧.";
+			close;
+		}
+		if (countitem(7582) < .@coin_amount[.@i]) {
+			mes "[黑暗的換錢商]";
+			mes "你需要^ff0000"+.@coin_amount[.@i]+"^000000破滅寶石來執行交換。但你似乎沒有足夠的代幣。";
+			close;
+		}
+		delitem 7582,.@coin_amount[.@i]; //Cgrade_Coin
+		getitem 7723,.@coin_amount[.@i]/5; //Mora_Coin
+		mes "[黑暗的換錢商]";
+		mes "破滅寶石 ^003399"+.@coin_amount[.@i]+"^000000 深受歡迎。"; //FIXME: Dialogue.
+		mes "交換到 ^003399"+(.@coin_amount[.@i]/5)+"^000000破滅鑽石。";
+		next;
+		mes "[黑暗的換錢商]";
+		mes "你想要繼續嗎？";
+		next;
+	}
+}
+
 lroom00,149,38,3	script	黑暗的換錢商	554,{
 	if (checkweight(1201,1) == 0) {
 		mes "你身上有太多的物品了，減少了一些再來找我吧!!";

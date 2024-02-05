@@ -91,6 +91,7 @@ prt_fild07,225,110,5,5	monster	Black Mushroom	1084,3,360000,180000
 // prt_fild08 - Prontera Field
 //==================================================
 prt_fild08,0,0	monster	Maya	1147,3,3000
+prt_fild08,0,0	monster	DARK_SNAKE_LORD	1418,3,3000
 prt_fild08,0,0	monster	Phreeoni	1159,3,3000
 prt_fild08,0,0	monster	Pharaoh	1157,3,5000
 prt_fild08,0,0	monster	Moonlight Flower	1150,3,3000
@@ -130,6 +131,10 @@ prt_fild08,0,0	monster	High Wizard Kathryne	1651,3,3000
 prt_fild08,0,0	monster	Vesper	1685,3,3000
 prt_fild08,0,0	monster	Thanatos Phantom	1708,3,3000
 prt_fild08,0,0	monster	IFRIT	1832,3,3000
+prt_fild08,0,0	monster	KIEL	1734,3,3000
+prt_fild08,0,0	monster	DETALE	1719,3,3000
+prt_fild08,0,0	monster	MD_C_HEMEL	20572,2,3000
+prt_fild08,0,0	monster	Gioia	2251,2,3000
 //==================================================
 // prt_fild08 - Duplicates
 //==================================================

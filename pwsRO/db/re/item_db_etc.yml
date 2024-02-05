@@ -2617,6 +2617,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -2645,6 +2646,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -2837,6 +2839,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -2872,6 +2875,40 @@ Body:
       DropEffect: CLIENT
     Script: |
       bonus bMaxSP,80;
+  - Id: 59010
+    AegisName: Wilow_Card
+    Name: 毀滅彗星卡片
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Head_Low: true
+      Head_Mid: true
+      Head_Top: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus2 bSkillAtk,"WL_COMET",10;
+      bonus2 bSkillCooldown,"WL_COMET",-2000;
+      bonus bUseSPrate,20;
+  - Id: 59011
+    AegisName: Wilow_Card
+    Name: 毀滅彗星PRO卡片
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Head_Low: true
+      Head_Mid: true
+      Head_Top: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus2 bSkillAtk,"WL_COMET",15;
+      bonus2 bSkillCooldown,"WL_COMET",-4000;
+      bonus bUseSPrate,20;
   - Id: 4011
     AegisName: Picky__Card
     Name: 蛋殼小雞卡片
@@ -2880,6 +2917,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -2920,6 +2958,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -2947,6 +2986,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -3015,6 +3055,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -3024,7 +3065,7 @@ Body:
       bonus2 bAddRace,RC_Undead,25;
       bonus2 bAddRace,RC_Angel,25;
       if (eaclass()&EAJL_THIRD && BaseJob == Job_Archer) {
-         bonus bLongAtkRate,15;
+         bonus bLongAtkRate,8;
       }
   - Id: 4022
     AegisName: Spore_Card
@@ -3049,6 +3090,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -3164,6 +3206,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -3323,6 +3366,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -3396,6 +3440,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -3498,6 +3543,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -3594,6 +3640,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -3829,6 +3876,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -3983,6 +4031,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -4112,6 +4161,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -4126,6 +4176,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -4154,6 +4205,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -4211,6 +4263,36 @@ Body:
       skill "CR_FULLPROTECTION",5;
     UnEquipScript: |
       sc_end SC_SIGHT;
+  - Id: 59012
+    AegisName: Dps_Card
+    Name: 手推車龍捲風卡片
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus2 bSkillAtk,"GN_CART_TORNADO",15;
+      bonus2 bSkillCooldown,"AB_ADORAMUS",-300;
+      bonus bUseSPrate,20;
+  - Id: 59013
+    AegisName: Dps_Card
+    Name: 手推車龍捲風PRO卡片
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus2 bSkillAtk,"GN_CART_TORNADO",30;
+      bonus2 bSkillCooldown,"AB_ADORAMUS",-400;
+      bonus bUseSPrate,10;
   - Id: 4104
     AegisName: Requiem_Card
     Name: 諾可伊卡片
@@ -4232,6 +4314,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -4359,6 +4442,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -4427,6 +4511,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -4653,6 +4738,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -4733,6 +4819,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -4865,6 +4952,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -4985,6 +5073,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -5046,6 +5135,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -5104,6 +5194,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -5163,6 +5254,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -5205,6 +5297,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -5330,6 +5423,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -5449,6 +5543,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -5477,6 +5572,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -5520,6 +5616,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -5630,6 +5727,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -5804,6 +5902,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -5846,6 +5945,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -5872,6 +5972,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -5904,6 +6005,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -5932,6 +6034,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -6104,6 +6207,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -6119,6 +6223,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -6239,6 +6344,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -6254,6 +6360,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -6486,6 +6593,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -6656,6 +6764,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -6793,6 +6902,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -6809,6 +6919,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -6895,6 +7006,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -7027,6 +7139,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -7070,6 +7183,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -7083,6 +7197,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -7098,6 +7213,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -7111,6 +7227,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -7124,11 +7241,16 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
     Script: |
-      bonus bMaxHPrate,25;
+      bonus bMaxHPrate,35;
+      bonus bStr,-10;
+      bonus bAgi,-10;
+      bonus bInt,-10;
+      bonus bDex,-10;
   - Id: 4303
     AegisName: Whisper_Boss_Card
     Name: 巨大白幽靈卡片
@@ -7175,7 +7297,7 @@ Body:
       BuyingStore: true
       DropEffect: CLIENT
     Script: |
-      bonus2 bAddClass,Class_All,25;
+      bonus2 bAddClass,Class_All,35;
   - Id: 4306
     AegisName: Toad_Card
     Name: 蛙王卡片
@@ -7315,6 +7437,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -7442,6 +7565,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -7567,6 +7691,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -7581,6 +7706,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -7640,6 +7766,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -7654,6 +7781,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -7667,6 +7795,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -7707,6 +7836,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -7769,6 +7899,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -7878,6 +8009,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -8032,6 +8164,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -8123,6 +8256,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -8136,6 +8270,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -8149,6 +8284,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -8331,6 +8467,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -8345,6 +8482,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -8388,6 +8526,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -8403,6 +8542,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -8480,6 +8620,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -8493,6 +8634,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -8589,6 +8731,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -8602,6 +8745,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -8651,6 +8795,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -8664,6 +8809,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -8707,6 +8853,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -8723,6 +8870,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -8739,6 +8887,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -8876,6 +9025,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -8979,6 +9129,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -9050,9 +9201,10 @@ Body:
       BuyingStore: true
       DropEffect: CLIENT
     Script: |
-      bonus bBaseAtk,150;
-      bonus bCritical,(JobLevel/10);
-      bonus bHit,(JobLevel/10);
+      bonus bCritical,12;
+      bonus bAtk,60;
+      bonus bShortAtkRate,13;
+      bonus bLongAtkRate,8;
   - Id: 4431
     AegisName: Kasa_Card
     Name: 火鳥卡片
@@ -9243,11 +9395,11 @@ Body:
       BuyingStore: true
       DropEffect: CLIENT
     Script: |
-      bonus bMatkRate,10;
-      bonus bMaxSPrate,-50;
-      bonus2 bMagicAddRace,RC_Angel,50;
-      bonus2 bMagicAddRace,RC_DemiHuman,50;
-      bonus2 bMagicAddRace,RC_Player_Human,50;
+      bonus bMatkRate,15;
+      bonus bMaxSPrate,-20;
+      bonus2 bMagicAddRace,RC_Angel,20;
+      bonus2 bMagicAddRace,RC_DemiHuman,20;
+      bonus2 bMagicAddRace,RC_Player_Human,20;
   - Id: 4442
     AegisName: Tatacho_Card
     Name: 塔塔丘卡片
@@ -9368,6 +9520,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -9382,6 +9535,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -9444,6 +9598,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -9459,6 +9614,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -9537,6 +9693,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -9829,6 +9986,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -9889,6 +10047,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -10010,6 +10169,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -10125,6 +10285,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -10138,6 +10299,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -10367,6 +10529,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -10466,6 +10629,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -10516,6 +10680,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -10530,6 +10695,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -10636,6 +10802,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -10768,6 +10935,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -10783,6 +10951,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -10840,6 +11009,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -10922,6 +11092,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -11023,6 +11194,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -11037,6 +11209,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -11051,6 +11224,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -11065,6 +11239,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -11079,6 +11254,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -11093,6 +11269,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -11107,6 +11284,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -11267,8 +11445,8 @@ Body:
       BuyingStore: true
       DropEffect: CLIENT
     Script: |
-      bonus2 bMagicAtkEle,Ele_Wind,100;
-      bonus2 bMagicAtkEle,Ele_Ghost,100;
+      bonus2 bMagicAtkEle,Ele_Wind,60;
+      bonus2 bMagicAtkEle,Ele_Ghost,60;
       bonus2 bSubEle,Ele_All,-30;
   - Id: 4577
     AegisName: Elvira_Card
@@ -11406,6 +11584,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -11481,6 +11660,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -11495,6 +11675,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -11509,6 +11690,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -11639,6 +11821,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -11657,6 +11840,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -11707,6 +11891,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -11792,6 +11977,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -11950,6 +12136,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -12000,6 +12187,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -12205,6 +12393,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -12219,6 +12408,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -12327,6 +12517,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -12401,6 +12592,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -12426,6 +12618,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -14560,6 +14753,7 @@ Body:
       Shoes: true
       Both_Hand: true
       Armor: true
+      Shadow_Armor: true
       Garment: true
       Both_Accessory: true
     Script: |
@@ -14579,6 +14773,7 @@ Body:
       Shoes: true
       Both_Hand: true
       Armor: true
+      Shadow_Armor: true
       Garment: true
       Both_Accessory: true
     Script: |
@@ -14598,6 +14793,7 @@ Body:
       Shoes: true
       Both_Hand: true
       Armor: true
+      Shadow_Armor: true
       Garment: true
       Both_Accessory: true
     Script: |
@@ -14617,6 +14813,7 @@ Body:
       Shoes: true
       Both_Hand: true
       Armor: true
+      Shadow_Armor: true
       Garment: true
       Both_Accessory: true
     Script: |
@@ -14636,6 +14833,7 @@ Body:
       Shoes: true
       Both_Hand: true
       Armor: true
+      Shadow_Armor: true
       Garment: true
       Both_Accessory: true
     Script: |
@@ -14655,6 +14853,7 @@ Body:
       Shoes: true
       Both_Hand: true
       Armor: true
+      Shadow_Armor: true
       Garment: true
       Both_Accessory: true
     Script: |
@@ -14674,6 +14873,7 @@ Body:
       Shoes: true
       Both_Hand: true
       Armor: true
+      Shadow_Armor: true
       Garment: true
       Both_Accessory: true
     Script: |
@@ -14693,6 +14893,7 @@ Body:
       Shoes: true
       Both_Hand: true
       Armor: true
+      Shadow_Armor: true
       Garment: true
       Both_Accessory: true
     Script: |
@@ -14712,6 +14913,7 @@ Body:
       Shoes: true
       Both_Hand: true
       Armor: true
+      Shadow_Armor: true
       Garment: true
       Both_Accessory: true
     Script: |
@@ -14731,6 +14933,7 @@ Body:
       Shoes: true
       Both_Hand: true
       Armor: true
+      Shadow_Armor: true
       Garment: true
       Both_Accessory: true
     Script: |
@@ -14751,6 +14954,7 @@ Body:
       Shoes: true
       Both_Hand: true
       Armor: true
+      Shadow_Armor: true
       Garment: true
       Both_Accessory: true
     Script: |
@@ -14771,6 +14975,7 @@ Body:
       Shoes: true
       Both_Hand: true
       Armor: true
+      Shadow_Armor: true
       Garment: true
       Both_Accessory: true
     Script: |
@@ -14791,6 +14996,7 @@ Body:
       Shoes: true
       Both_Hand: true
       Armor: true
+      Shadow_Armor: true
       Garment: true
       Both_Accessory: true
     Script: |
@@ -18892,15 +19098,6 @@ Body:
     Name: 獼猴桃果實
     Type: Etc
     Buy: 20
-    Trade:
-      Override: 100
-      NoDrop: true
-      NoTrade: true
-      NoSell: true
-      NoCart: true
-      NoGuildStorage: true
-      NoMail: true
-      NoAuction: true
   - Id: 6418
     AegisName: Agrade_Coin
     Name: A級代幣
@@ -22903,30 +23100,12 @@ Body:
     Type: Etc
     Buy: 10
     Weight: 10
-    Trade:
-      Override: 100
-      NoDrop: true
-      NoTrade: true
-      NoSell: true
-      NoCart: true
-      NoGuildStorage: true
-      NoMail: true
-      NoAuction: true
   - Id: 6911
     AegisName: Limited_Purified_Eluminium
     Name: "[限量]高級濃縮鋁"
     Type: Etc
     Buy: 10
     Weight: 10
-    Trade:
-      Override: 100
-      NoDrop: true
-      NoTrade: true
-      NoSell: true
-      NoCart: true
-      NoGuildStorage: true
-      NoMail: true
-      NoAuction: true
   - Id: 6912
     AegisName: Piece_Of_Soul_Sheep
     Name: 羊的靈魂碎片
@@ -28019,15 +28198,6 @@ Body:
     AegisName: Poring_Coin
     Name: 波利錢幣
     Type: Etc
-    Trade:
-      Override: 100
-      NoDrop: true
-      NoTrade: true
-      NoCart: true
-      NoStorage: true
-      NoGuildStorage: true
-      NoMail: true
-      NoAuction: true
   - Id: 7540
     AegisName: Lotto39
     Name: 39號球
@@ -28753,45 +28923,18 @@ Body:
     Type: Etc
     Buy: 2
     Weight: 10
-    Trade:
-      Override: 100
-      NoDrop: true
-      NoTrade: true
-      NoSell: true
-      NoCart: true
-      NoGuildStorage: true
-      NoMail: true
-      NoAuction: true
   - Id: 7620
     AegisName: Enriched_Oridecon
     Name: 濃縮神之金屬
     Type: Etc
     Buy: 2
     Weight: 10
-    Trade:
-      Override: 100
-      NoDrop: true
-      NoTrade: true
-      NoSell: true
-      NoCart: true
-      NoGuildStorage: true
-      NoMail: true
-      NoAuction: true
   - Id: 7621
     AegisName: Token_Of_Siegfried
     Name: 原地復活之證
     Type: Etc
     Buy: 2
     Weight: 10
-    Trade:
-      Override: 100
-      NoDrop: true
-      NoTrade: true
-      NoSell: true
-      NoCart: true
-      NoGuildStorage: true
-      NoMail: true
-      NoAuction: true
   - Id: 7622
     AegisName: New_Style_Coupon
     Name: 美髮禮券
@@ -40569,7 +40712,7 @@ Body:
     Script: |
       bonus2 bMagicAtkEle,Ele_Neutral,60;
       bonus2 bMagicAtkEle,Ele_Holy,60;
-      bonus2 bSubEle,Ele_All,-20;
+      bonus2 bSubEle,Ele_All,-30;
   - Id: 27382
     AegisName: C_CorruptionRoot_Card
     Name: 墮落根莖的幻影卡片

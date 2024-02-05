@@ -113,6 +113,8 @@ OnInstanceInit:
 	if(checkquest(55151,PLAYTIME) == 2){erasequest 55151;}
 	if (checkquest(55151,PLAYTIME)== -1){
 			getitem 61002,6;
+                        getitem 7582,20;
+                        getitem 6316,10;
 			set #CASHPOINTS,#CASHPOINTS+20;
 			setquest 55151;
 			dispbottom "此為今日首次通關，獲得兩倍獎勵。";
@@ -121,6 +123,8 @@ OnInstanceInit:
 			end;	
 		}
 	getitem 61002,3;
+        getitem 7582,10;
+        getitem 6316,5;
 	set #CASHPOINTS,#CASHPOINTS+10;
 	dispbottom "獲得點數 [10]，目前累積MVP點數為 ["+#CASHPOINTS+"]。";
 	set #DOKANPOINTS,#DOKANPOINTS+2;

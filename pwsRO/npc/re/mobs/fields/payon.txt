@@ -53,8 +53,6 @@ pay_fild04,0,0	monster	Angeling	1096,6,500
 pay_fild04,0,0	monster	Ghostring	1120,3,500
 pay_fild04,0,0	monster	Mastering	1090,6,500
 pay_fild04,0,0	monster	Deviling	1582,6,500
-pay_fild04,0,0	monster	Shining Plant	1083,1,1800000,900000
-pay_fild04,0,0	monster	Green Plant	1080,5,360000,180000
 
 //==================================================
 // pay_fild05 - Disabled on Renewal

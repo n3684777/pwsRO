@@ -1350,20 +1350,6 @@ Body:
     Modes:
       Detector: true
     Drops:
-      - Item: Scales_Shell
-        Rate: 5335
-      - Item: Circlet_
-        Rate: 5
-      - Item: Necklace
-        Rate: 1
-      - Item: Crystal_Jewel___
-        Rate: 150
-      - Item: Crystal_Jewel__
-        Rate: 20
-      - Item: Shining_Scales
-        Rate: 1000
-      - Item: Crystal_Jewel_
-        Rate: 5
       - Item: Isis_Card
         Rate: 1
         StealProtected: true
@@ -2816,20 +2802,8 @@ Body:
     Modes:
       Detector: true
     Drops:
-      - Item: Horseshoe
+      - Item: Black_Powder
         Rate: 6000
-      - Item: Blue_Herb
-        Rate: 500
-      - Item: Rosary
-        Rate: 2
-      - Item: Old_Blue_Box
-        Rate: 30
-      - Item: Blue_Potion
-        Rate: 100
-      - Item: Infiltrator
-        Rate: 1
-      - Item: Oridecon
-        Rate: 60
       - Item: Nightmare_Card
         Rate: 1
         StealProtected: true
@@ -8351,20 +8325,6 @@ Body:
     DamageMotion: 480
     Ai: 21
     Drops:
-      - Item: Fox_Tail
-        Rate: 4656
-      - Item: Glass_Bead
-        Rate: 200
-      - Item: Old_Blue_Box
-        Rate: 100
-      - Item: Branch_Of_Dead_Tree
-        Rate: 100
-      - Item: Royal_Jelly
-        Rate: 250
-      - Item: Panacea
-        Rate: 350
-      - Item: Oridecon_Stone
-        Rate: 100
       - Item: Nine_Tail_Card
         Rate: 1
         StealProtected: true
@@ -8895,20 +8855,6 @@ Body:
     Modes:
       Detector: true
     Drops:
-      - Item: Round_Shell
-        Rate: 3500
-      - Item: Sticky_Mucus
-        Rate: 3000
-      - Item: Solid_Shell
-        Rate: 800
-      - Item: Zargon
-        Rate: 450
-      - Item: Red_Gemstone
-        Rate: 300
-      - Item: Great_Nature
-        Rate: 20
-      - Item: Zargon
-        Rate: 2500
       - Item: Arclouse_Card
         Rate: 1
         StealProtected: true
@@ -11052,8 +10998,6 @@ Body:
     Drops:
       - Item: Coin
         Rate: 4000
-      - Item: Poring_Hat
-        Rate: 1
       - Item: Marin_Card
         Rate: 1
         StealProtected: true
@@ -18449,13 +18393,13 @@ Body:
     AegisName: DARK_SNAKE_LORD
     Name: Evil Snake Lord
     JapaneseName: 墨蛇君
-    Level: 105
-    Hp: 1101000
+    Level: 225
+    Hp: 2501000
     BaseExp: 432000
     JobExp: 346500
     MvpExp: 78120
-    Attack: 2882
-    Attack2: 1986
+    Attack: 18882
+    Attack2: 11986
     Defense: 314
     MagicDefense: 185
     Str: 122
@@ -18486,8 +18430,6 @@ Body:
     Drops:
       - Item: Gem_Of_Ruin
         Rate: 550
-      - Item: Sway_Apron
-        Rate: 2000
       - Item: Dark_Snake_Lord_Card
         Rate: 1
         StealProtected: true
@@ -21284,18 +21226,6 @@ Body:
     DamageMotion: 576
     Ai: 04
     Drops:
-      - Item: Piece_Of_Black_Cloth
-        Rate: 3200
-      - Item: Ectoplasm
-        Rate: 5723
-      - Item: Wing_Of_Fly
-        Rate: 1000
-      - Item: Poison_Powder
-        Rate: 100
-      - Item: Oridecon_Stone
-        Rate: 10
-      - Item: Black_Powder
-        Rate: 500
       - Item: Quve_Card
         Rate: 1
         StealProtected: true
@@ -23191,6 +23121,12 @@ Body:
     DamageMotion: 672
     Ai: 21
     Class: Boss
+    Drops:
+      - Item: Coin
+        Rate: 4000
+      - Item: Angeling_Card
+        Rate: 1
+        StealProtected: true
   - Id: 1569
     AegisName: G_BLOODY_KNIGHT
     Name: Bloody Knight
@@ -24823,20 +24759,6 @@ Body:
     DamageMotion: 360
     Ai: 04
     Drops:
-      - Item: Battered_Kettle
-        Rate: 1000
-      - Item: Burn_Tree
-        Rate: 1000
-      - Item: Tear_Gas
-        Rate: 200
-      - Item: Lusty_Iron
-        Rate: 50
-      - Item: Elder_Branch
-        Rate: 100
-      - Item: Branch_Of_Dead_Tree
-        Rate: 50
-      - Item: Old_Steel_Plate
-        Rate: 3800
       - Item: Waste_Stove_Card
         Rate: 1
         StealProtected: true
@@ -29307,12 +29229,12 @@ Body:
     BaseExp: 2808000
     JobExp: 1881000
     MvpExp: 2160000
-    Attack: 6108
-    Attack2: 2662
+    Attack: 15108
+    Attack2: 10662
     Defense: 364
     MagicDefense: 166
-    Str: 165
-    Agi: 153
+    Str: 347
+    Agi: 341
     Vit: 171
     Int: 136
     Dex: 278
@@ -29775,21 +29697,21 @@ Body:
     AegisName: KIEL_
     Name: Kiel D-01
     JapaneseName: 齊爾-D-01
-    Level: 125
-    Hp: 2502000
+    Level: 225
+    Hp: 3802000
     BaseExp: 1170000
     JobExp: 792000
     MvpExp: 900000
-    Attack: 4112
-    Attack2: 3580
+    Attack: 18112
+    Attack2: 12580
     Defense: 314
     MagicDefense: 232
-    Str: 166
-    Agi: 187
-    Vit: 155
-    Int: 141
+    Str: 367
+    Agi: 263
+    Vit: 80
+    Int: 241
     Dex: 279
-    Luk: 180
+    Luk: 284
     AttackRange: 3
     SkillRange: 10
     ChaseRange: 12
@@ -29812,8 +29734,6 @@ Body:
     Drops:
       - Item: Gem_Of_Ruin
         Rate: 550
-      - Item: Morrigane's_Belt
-        Rate: 1000
       - Item: Kiel_Card
         Rate: 1
         StealProtected: true
@@ -31596,20 +31516,6 @@ Body:
     DamageMotion: 360
     Ai: 10
     Drops:
-      - Item: Sticky_Poison
-        Rate: 3000
-      - Item: Blossom_Of_Maneater
-        Rate: 3000
-      - Item: Singing_Flower
-        Rate: 2
-      - Item: Root_Of_Maneater
-        Rate: 2000
-      - Item: Stem
-        Rate: 1000
-      - Item: Deadly_Noxious_Herb
-        Rate: 3
-      - Item: Mandragora_Flowerpot
-        Rate: 200
       - Item: Muscipular_Card
         Rate: 1
         StealProtected: true
@@ -31644,20 +31550,6 @@ Body:
     DamageMotion: 336
     Ai: 10
     Drops:
-      - Item: Sticky_Poison
-        Rate: 3000
-      - Item: Drocera_Tentacle
-        Rate: 200
-      - Item: Blossom_Of_Maneater
-        Rate: 2000
-      - Item: Root_Of_Maneater
-        Rate: 2000
-      - Item: Bitter_Herb
-        Rate: 3
-      - Item: Stem
-        Rate: 1000
-      - Item: Mandragora_Flowerpot
-        Rate: 50
       - Item: Drosera_Card
         Rate: 1
         StealProtected: true
@@ -31779,18 +31671,8 @@ Body:
     DamageMotion: 432
     Ai: 02
     Drops:
-      - Item: Jellopy
-        Rate: 1000
-      - Item: Jubilee
-        Rate: 1000
-      - Item: Apple
-        Rate: 1000
-      - Item: Large_Jellopy
-        Rate: 100
-      - Item: Yellow_Live
-        Rate: 10
-      - Item: Seismic_Fist
-        Rate: 3
+      - Item: Lab_Staff_Record
+        Rate: 2500
       - Item: Stapo_Card
         Rate: 1
         StealProtected: true
@@ -33596,10 +33478,6 @@ Body:
     DamageMotion: 288
     Ai: 02
     Drops:
-      - Item: Burning_Heart
-        Rate: 3000
-      - Item: Elunium_Stone
-        Rate: 34
       - Item: Magmaring_Card
         Rate: 1
         StealProtected: true
@@ -35089,12 +34967,12 @@ Body:
     Name: Beelzebub
     JapaneseName: 詛咒蠅王
     Level: 147
-    Hp: 23005000
+    Hp: 18005000
     BaseExp: 4582500
     JobExp: 3877500
     MvpExp: 3525000
-    Attack: 6666
-    Attack2: 4444
+    Attack: 26666
+    Attack2: 24444
     Defense: 418
     MagicDefense: 265
     Str: 638
@@ -35541,7 +35419,7 @@ Body:
     Name: Gopinich
     JapaneseName: 青冠龍
     Level: 97
-    Hp: 1120500
+    Hp: 4120500
     BaseExp: 428544
     JobExp: 290160
     MvpExp: 357120
@@ -35549,12 +35427,12 @@ Body:
     Attack2: 1861
     Defense: 355
     MagicDefense: 121
-    Str: 127
-    Agi: 102
-    Vit: 143
-    Int: 102
-    Dex: 182
-    Luk: 76
+    Str: 247
+    Agi: 202
+    Vit: 101
+    Int: 187
+    Dex: 276
+    Luk: 176
     AttackRange: 3
     SkillRange: 10
     ChaseRange: 12
@@ -49265,21 +49143,21 @@ Body:
     AegisName: GIOIA
     Name: Gioia
     JapaneseName: 喬伊亞
-    Level: 146
-    Hp: 2507989
+    Level: 225
+    Hp: 250000000
     BaseExp: 1503451
     JobExp: 1433901
     MvpExp: 751725
-    Attack: 1105
-    Attack2: 2601
+    Attack: 51105
+    Attack2: 42601
     Defense: 436
     MagicDefense: 218
-    Str: 180
-    Agi: 201
-    Vit: 156
-    Int: 190
-    Dex: 299
-    Luk: 77
+    Str: 780
+    Agi: 401
+    Vit: 656
+    Int: 590
+    Dex: 599
+    Luk: 377
     AttackRange: 1
     SkillRange: 10
     ChaseRange: 12
@@ -49287,35 +49165,21 @@ Body:
     Race: Formless
     Element: Wind
     ElementLevel: 4
-    WalkSpeed: 100
-    AttackDelay: 1344
-    AttackMotion: 2592
-    DamageMotion: 432
+    WalkSpeed: 200
+    AttackDelay: 41344
+    AttackMotion: 42592
+    DamageMotion: 5432
     DamageTaken: 10
     Ai: 21
     Class: Boss
     Modes:
       Mvp: true
     MvpDrops:
-      - Item: Magic_Card_Album
-        Rate: 5000
-      - Item: Old_Violet_Box
-        Rate: 5000
-      - Item: Old_Violet_Box
-        Rate: 5000
+      - Item: Gem_Of_Ruin
+        Rate: 1300
     Drops:
-      - Item: High_Weapon_Box
-        Rate: 100
-      - Item: Old_Violet_Box
-        Rate: 3000
-      - Item: Old_Card_Album
-        Rate: 500
-      - Item: Sg_Weapon_Supply_Box
-        Rate: 3000
-      - Item: Sg_White_Potion_Box
-        Rate: 2000
-      - Item: Sg_Blue_Potion_Box
-        Rate: 1000
+      - Item: Gem_Of_Ruin
+        Rate: 1300
       - Item: Gioia_Card
         Rate: 1
         StealProtected: true
@@ -62891,20 +62755,8 @@ Body:
     DamageMotion: 480
     Ai: 02
     Drops:
-      - Item: Jellopy
-        Rate: 7000
-      - Item: Knife_
-        Rate: 100
-      - Item: Sticky_Mucus
-        Rate: 400
-      - Item: Apple
-        Rate: 1000
-      - Item: Wing_Of_Fly
-        Rate: 1500
-      - Item: Apple
-        Rate: 150
-      - Item: Unripe_Apple
-        Rate: 20
+      - Item: Coin
+        Rate: 4000
       - Item: Poring_Card
         Rate: 1
         StealProtected: true
@@ -63129,20 +62981,8 @@ Body:
     DamageMotion: 480
     Ai: 02
     Drops:
-      - Item: Sticky_Mucus
-        Rate: 5500
-      - Item: Garlet
-        Rate: 1500
-      - Item: Green_Herb
-        Rate: 500
-      - Item: Grape
-        Rate: 200
-      - Item: Apple
-        Rate: 5
-      - Item: Main_Gauche
-        Rate: 5
-      - Item: Wing_Of_Fly
-        Rate: 250
+      - Item: Coin
+        Rate: 4000
       - Item: Poporing_Card
         Rate: 1
         StealProtected: true
@@ -96943,21 +96783,21 @@ Body:
     AegisName: MD_C_HEMEL
     Name: MD_C_HEMEL
     JapaneseName: 希梅爾茲的幻影
-    Level: 195
-    Hp: 450000000
+    Level: 225
+    Hp: 250000000
     BaseExp: 2291324
     JobExp: 2416730
     MvpExp: 472831
-    Attack: 8899
-    Attack2: 13131
+    Attack: 58899
+    Attack2: 53131
     Defense: 514
     MagicDefense: 92
-    Str: 255
-    Agi: 39
-    Vit: 90
-    Int: 399
-    Dex: 166
-    Luk: 20
+    Str: 875
+    Agi: 552
+    Vit: 341
+    Int: 678
+    Dex: 666
+    Luk: 420
     AttackRange: 3
     SkillRange: 10
     ChaseRange: 12
@@ -96966,14 +96806,19 @@ Body:
     Element: Holy
     ElementLevel: 4
     WalkSpeed: 150
-    AttackDelay: 1152
-    AttackMotion: 376
+    AttackDelay: 45152
+    AttackMotion: 9376
     Ai: 21
     Class: Guardian
     Modes:
       Detector: true
       Mvp: true
+    MvpDrops:
+      - Item: Gem_Of_Ruin
+        Rate: 1300
     Drops:
+      - Item: Gem_Of_Ruin
+        Rate: 1300
       - Item: C_Himel_Card
         Rate: 1
         StealProtected: true
