@@ -86590,6 +86590,18 @@ Body:
       Costume_Head_Top: true
     EquipLevelMin: 1
     View: 1104
+  - Id: 59120
+    AegisName: C_Love_Ddy_2013
+    Name: "[時裝]父愛羽翼頭飾"
+    Type: Armor
+    Locations:
+      Costume_Head_Top: true
+    EquipLevelMin: 1
+    View: 1104
+    Script: |
+      bonus bAtk,50;
+      bonus bMatk,50;
+      bonus bMaxHPrate,3;
   - Id: 20080
     AegisName: C_Shaman's_Hair_Orna
     Name: "[時裝]薩滿頭飾"
@@ -88337,6 +88349,18 @@ Body:
       Costume_Head_Top: true
     EquipLevelMin: 1
     View: 385
+  - Id: 59123
+    AegisName: C_Baon_Hat
+    Name: "[時裝]氣球帽子"
+    Type: Armor
+    Locations:
+      Costume_Head_Top: true
+    EquipLevelMin: 1
+    View: 385
+    Script: |
+      bonus bAtk,50;
+      bonus bMatk,50;
+      bonus bMaxHPrate,3;
   - Id: 20278
     AegisName: C_Man_Medal
     Name: "[時裝]男人的黑勳章"
@@ -89567,12 +89591,24 @@ Body:
     View: 955
   - Id: 20448
     AegisName: C_Cons_Of_Water
-    Name: "[時裝]水之力"
+    Name: "[時裝]水之支配者"
     Type: Armor
     Locations:
       Costume_Head_Low: true
     EquipLevelMin: 1
     View: 1451
+  - Id: 59126
+    AegisName: C_Co_Of_Water
+    Name: "[時裝]水之支配者"
+    Type: Armor
+    Locations:
+      Costume_Head_Low: true
+    EquipLevelMin: 1
+    View: 1451
+    Script: |
+      bonus bAtk,50;
+      bonus bMatk,50;
+      bonus bMaxHPrate,3;
   - Id: 20449
     AegisName: C_White_Black_Temp
     Name: "[時裝]白與黑的誘惑"
@@ -116345,6 +116381,18 @@ Body:
       Costume_Head_Low: true
     EquipLevelMin: 1
     View: 1499
+  - Id: 59119
+    AegisName: C_Pori_Soap_Pipe
+    Name: "[時裝]波利泡泡煙斗"
+    Type: Armor
+    Locations:
+      Costume_Head_Low: true
+    EquipLevelMin: 1
+    View: 1499
+    Script: |
+      bonus bAtk,50;
+      bonus bMatk,50;
+      bonus bMaxHPrate,3;
   - Id: 31056
     AegisName: C_Furious_Wave
     Name: "[時裝]紅焰爆裂波動"
@@ -116976,6 +117024,18 @@ Body:
       Costume_Head_Top: true
     EquipLevelMin: 1
     View: 1555
+  - Id: 59121
+    AegisName: Cck_Casket
+    Name: "[時裝]艾爾帕蘭時鐘帽"
+    Type: Armor
+    Locations:
+      Costume_Head_Top: true
+    EquipLevelMin: 1
+    View: 1555
+    Script: |
+      bonus bAtk,50;
+      bonus bMatk,50;
+      bonus bMaxHPrate,3;
   - Id: 31137
     AegisName: C_Blue_Rose_Ornament
     Name: "[時裝]青鳥玫瑰髮飾"
@@ -117115,6 +117175,18 @@ Body:
       Costume_Head_Top: true
     EquipLevelMin: 1
     View: 1565
+  - Id: 59124
+    AegisName: C_Cher_Ear
+    Name: "[時裝]契休的貓耳"
+    Type: Armor
+    Locations:
+      Costume_Head_Top: true
+    EquipLevelMin: 1
+    View: 1565
+    Script: |
+      bonus bAtk,50;
+      bonus bMatk,50;
+      bonus bMaxHPrate,3;
   - Id: 31152
     AegisName: C_Piamette_BowTie_Red
     Name: "[時裝]匹阿漫特紅色領結"
@@ -117906,6 +117978,18 @@ Body:
       Costume_Head_Top: true
     EquipLevelMin: 1
     View: 1638
+  - Id: 59125
+    AegisName: C_Cat_E_at_White
+    Name: "[時裝]白貓耳帽"
+    Type: Armor
+    Locations:
+      Costume_Head_Top: true
+    EquipLevelMin: 1
+    View: 1638
+    Script: |
+      bonus bAtk,50;
+      bonus bMatk,50;
+      bonus bMaxHPrate,3;
   - Id: 31253
     AegisName: C_Rinzu_Helmet
     Name: C Rinzu Helmet
@@ -120203,14 +120287,24 @@ Body:
       Costume_Head_Top: true
     EquipLevelMin: 1
     View: 1808
+  - Id: 59122
+    AegisName: C_Cat_r_Wich_Hat
+    Name: "[時裝]大耳魔女帽"
+    Type: Armor
+    Locations:
+      Costume_Head_Top: true
+    EquipLevelMin: 1
+    View: 1808
+    Script: |
+      bonus bAtk,50;
+      bonus bMatk,50;
+      bonus bMaxHPrate,3;
   - Id: 31608
     AegisName: C_Magicstone_of_Grace
     Name: C Magic Stone of Grace
     Type: Armor
     Locations:
       Costume_Head_Top: true
-      Costume_Head_Mid: true
-      Costume_Head_Low: true
     EquipLevelMin: 1
     View: 1420
   - Id: 31609
