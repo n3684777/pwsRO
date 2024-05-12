@@ -1,0 +1,29 @@
+-	script	dummy_npc	-1,{ end; }
+-	script	dummy_cloaked_npc	-1,{
+	end;
+OnInit:
+	cloakonnpc strnpcinfo(0);
+	end;
+}
+//EDDA生體實驗研究所腳本副加 未知用途
+
+function	script	Gol1_Box03	{ 
+	setarray .@box1[0],23016,22687;
+	setarray .@box2[0],6814,6815,6816,6817,6818,6819;
+	.@rand = rand(1,10000);
+	if(.@rand>0 && .@rand<=900)
+		getitem .@box1[rand(getarraysize(.@box1))],1;
+	else
+		getitem .@box2[rand(getarraysize(.@box2))],1;
+	end;
+}
+function	script	Gol1_Box02	{ 
+	setarray .@box1[0],25786,25787;
+	setarray .@box2[0],12246,616;
+	.@rand = rand(1,10000);
+	if(.@rand>0 && .@rand<=9000)
+		getitem .@box1[rand(getarraysize(.@box1))],1;
+	else
+		getitem .@box2[rand(getarraysize(.@box2))],1;
+	end;
+}

@@ -1,0 +1,905 @@
+ba_maison,312,203,3	script	路易南	4_EP17_SCISSORE,{
+//function	script	失落的農場	{
+	set $@MaxWimdows,3;
+{
+           query_sql("SELECT last_ip FROM `login` WHERE account_id = "+getcharid(3)+"", .@LastIp$);
+              //檢查同IP帳號
+              query_sql("SELECT account_id FROM `login` WHERE last_ip = '"+.@LastIp$+"'", .@AccountId);
+                 set .@aidtemp,getcharid(3,strcharinfo(0));
+               //檢查同IP在線人數
+                  for(set .@i ,0;.@i<getarraysize(.@AccountId);set .@i,.@i+1)
+                   {
+                             if(attachrid(.@AccountId[.@i]))
+                                  {
+if ( compare(strcharinfo(3),"@")  && !checkvending()) set .@j,.@j+1;//設定限制地圖
+                                      }
+                                 detachrid;
+                         }
+                        attachrid .@aidtemp;
+                        if(.@j >= $@MaxWimdows)
+                          {           
+                             dispbottom "相同IP不可超過3個角色進入副本ㄛ。";
+                             end;
+                          }
+
+        }
+if( checkquest(66913,PLAYTIME) == 0 ) {mes"副本處於冷卻中";close;}
+if( checkquest(66913,PLAYTIME) == 2 ) {erasequest 66913;}
+set .@md_name$,"失落的農場";
+mes "-----------[副本訊息]-----------";
+mes "副本名稱:^0066FF "+.@md_name$+" ^000000";
+mes "限制人數:^FF00CC 不限制 ^000000";
+mes "限制等級:^9966FF 170等以上 ^000000";
+mes "副本時間:^009900 6小時 ^000000";
+mes "玩家 ^0000FF"+strcharinfo(0) +"^000000 你好~!";
+mes "要來挑戰看看嗎?";
+if (!instance_check_party(getcharid(1),1,170,250)) { mes "請隊長來申請，且隊員至少需要170等以上再來挑戰"; close;}
+switch(select("建立副本:進入副本")){
+case 1:
+if (instance_create(.@md_name$) < 0) {
+next;
+mes "隊伍名稱: "+getpartyname(getcharid(1));
+mes "隊伍隊長: "+strcharinfo(0);
+mes "^0000ff"+.@md_name$+" ^000000- 創建失敗!";
+close;
+}
+mes ""+.md_name$+"已經創立了, 請選擇^0066CC進入"+.@md_name$+"^000000.";
+close;
+case 2:
+switch(instance_enter(.@md_name$)) {
+case 3:
+mes "主開關錯誤(3)!";
+close;
+case 2:
+mes "主開關錯誤(2)!";
+close;
+case 1:
+mes "主開關錯誤(1)!";
+close;
+case 0:
+setquest 66913;
+if(getpartyleader(getcharid(1),2) == getcharid(0)) {
+announce "【副本公告】 隊伍 「"+getpartyname(getcharid(1))+"」 準備開始挑戰《"+.@md_name$+"》副本╭。☆",15,0xFF7744; 
+}
+end;
+}
+}
+close;
+}
+1@lost	mapflag	noteleport
+1@lost	mapflag	nowarp
+1@lost	mapflag	partylock
+1@lost	mapflag	nosave
+1@lost	mapflag	nomemo
+1@lost	mapflag	nobranch
+1@lost	mapflag	noicewall
+1@lost	mapflag	restricted	6
+/******************************
+ - 區域1
+******************************/
+1@lost,163,47,0	script	裝有皮塔亞的箱子#1	4_WOODBOX,{
+	if(is_party_leader() == true && getd("'finish_feeding_"+atoi(strnpcinfo(2))) == 0)
+	{
+		mes "[農場導覽員]";
+		mes "歡迎來到失落的農場! 我已經聽聯絡人說了! 我是負責皮塔亞的飼養員!";
+		npctalk "農場導覽員: 歡迎來到失落的農場! 我已經聽聯絡人說了! 我是負責皮塔亞的飼養員!";
+		next;
+		mes "[農場導覽員]";
+		mes "先救救我再說!";
+		npctalk "農場導覽員: 先救救我再說!";
+		close2;
+		setd "'finish_feeding_"+atoi(strnpcinfo(2)), 1;
+		areamonster 'map$,157,49,163,43,"--ja--",20660,rand(1,2),instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+		areamonster 'map$,157,49,163,43,"--ja--",20661,rand(1,2),instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+		areamonster 'map$,157,49,163,43,"--ja--",20662,rand(1,2),instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+		areamonster 'map$,157,49,163,43,"--ja--",20663,rand(1,2),instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+		areamonster 'map$,157,49,163,43,"--ja--",20664,rand(1,2),instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+	}
+	end;
+
+OnMyMobDead:
+	if(mobcount('map$,instance_npcname(strnpcinfo(0))+"::OnMyMobDead") < 1)
+	{
+		setd "'finish_feeding_"+atoi(strnpcinfo(2)), 2;
+		disablenpc instance_npcname(strnpcinfo(0));
+		enablenpc instance_npcname("農場導覽員#1");
+	}
+	end;
+	
+OnInstanceInit:
+	'map$ = instance_mapname("1@lost");
+	end;
+}
+
+1@lost,163,47,3	script	農場導覽員#1	4_EP17_BASKET,{
+	if(is_party_leader() == true && getd("'finish_feeding_"+atoi(strnpcinfo(2))) == 2)
+	{
+		mes "["+strnpcinfo(1)+"]";
+		mes "非常謝謝你，真是幫了大忙! 路易斯安說這些皮塔亞是非常安靜乖巧的!";
+		npctalk strnpcinfo(1)+" : 非常謝謝你，真是幫了大忙! 路易斯安說這些皮塔亞是非常安靜乖巧的!";
+		next;
+		mes "["+strnpcinfo(1)+"]";
+		mes "不過你現在看見啦! 都快嚇死我了!";
+		npctalk strnpcinfo(1)+" : 不過你現在看見啦! 都快嚇死我了!";
+		next;
+		mes "["+strnpcinfo(1)+"]";
+		mes "餵牠的時候並抱抱他5分鐘? 從現在開始我都不知道該怎麼接近, 更別說要摸牠了...";
+		npctalk strnpcinfo(1)+" : 餵牠的時候並抱抱他5分鐘? 從現在開始我都不知道該怎麼接近, 更別說要摸牠了...";
+		next;
+		mes "["+strnpcinfo(1)+"]";
+		mes "整整5分鐘耶!!!!";
+		npctalk strnpcinfo(1)+" : 整整5分鐘耶!!!!";
+		next;
+		mes "["+strnpcinfo(1)+"]";
+		mes "...";
+		npctalk strnpcinfo(1)+" : ...";
+		next;
+		mes "["+strnpcinfo(1)+"]";
+		mes "桑尼姆...";
+		npctalk strnpcinfo(1)+" : 桑尼姆...";
+		next;
+		mes "["+strnpcinfo(1)+"]";
+		mes "路易斯安說他採集速度不夠快是因為還有其他的工作耽擱了";
+		npctalk strnpcinfo(1)+" : 路易斯安說他採集速度不夠快是因為還有其他的工作耽擱了";
+		next;
+		mes "["+strnpcinfo(1)+"]";
+		mes "不過我覺得抓著牠比慢慢安撫來的效率還要好.";
+		npctalk strnpcinfo(1)+" : 不過我覺得抓著牠比慢慢安撫來的效率還要好.";
+		next;
+		mes "["+strnpcinfo(1)+"]";
+		mes "不過我不敢抓...";
+		npctalk strnpcinfo(1)+" : 不過我不敢抓...";
+		next;
+		mes "["+strnpcinfo(1)+"]";
+		mes "接下來可不像這裡. 我要到下一個牠們的棲地了, 你準備好了嗎? 我們走吧!";
+		npctalk strnpcinfo(1)+" : 接下來可不像這裡. 我要到下一個牠們的棲地了, 你準備好了嗎? 我們走吧!";
+		close2;
+		enablenpc instance_npcname("農場導覽員#2");
+		mapwarp 'map$,'map$,218,150;
+	}
+	end;
+	
+OnInstanceInit:
+	disablenpc instance_npcname(strnpcinfo(0));
+	end;
+}
+
+/******************************
+ - 區域2
+******************************/
+1@lost,214,146,3	script	農場導覽員#2	4_EP17_BASKET,{
+	if(is_party_leader() == false) end;
+	switch(getd("'finish_feeding_"+atoi(strnpcinfo(2))))
+	{
+		case 0:
+			mes "["+strnpcinfo(1)+"]";
+			mes "如你所見, 這些生物具有堅硬的皮膚, 使很容易在雨林聚集生存的, 這就是牠們的棲息地.";
+			npctalk strnpcinfo(1)+" : 如你所見, 這些生物具有堅硬的皮膚, 使很容易在雨林聚集生存的, 這就是牠們的棲息地.";
+			next;
+			mes "["+strnpcinfo(1)+"]";
+			mes "不論是植物或是動物, 在這裡我都會保持著一定的溫度和濕度.";
+			npctalk strnpcinfo(1)+" : 不論是植物或是動物, 在這裡我都會保持著一定的溫度和濕度.",strnpcinfo(0);
+			next;
+			mes "["+strnpcinfo(1)+"]";
+			mes "我聽說這裡的環境對人來說不太好，甚至還有點危險，你還好嗎?";
+			npctalk strnpcinfo(1)+" : 我聽說這裡的環境對人來說不太好，甚至還有點危險，你還好嗎?";
+			next;
+			mes "["+strnpcinfo(1)+"]";
+			mes "那我現在要餵牠了, 我們動作快一點, 完成後就趕快走吧!";
+			npctalk strnpcinfo(1)+" : 那我現在要餵牠了, 我們動作快一點, 完成後就趕快走吧!";
+			next;
+			mes "["+strnpcinfo(1)+"]";
+			mes "嗯? 你說智慧機器人會不會感到恐懼嗎? 恐懼往往會導致意外發生的，不是嗎?";
+			npctalk strnpcinfo(1)+" : 嗯? 你說智慧機器人會不會感到恐懼嗎? 恐懼往往會導致意外發生的，不是嗎?";
+			next;
+			mes "["+strnpcinfo(1)+"]";
+			mes "好了，我要打開箱子了，你抓緊時機了!";
+			npctalk strnpcinfo(1)+" : 好了，我要打開箱子了，你抓緊時機了!";
+			close2;
+			hideonnpc instance_npcname(strnpcinfo(0));
+			enablenpc instance_npcname("裝有皮塔亞的箱子#2");
+			npctalk strnpcinfo(1)+" : 我要餵囉~ 牠就要跑出來啦~.";
+			sleep 1000;
+			getmapxy .@m$,.@x,.@y,BL_NPC;
+			areamonster 'map$,.@x-5,.@y+5,.@x+5,.@y-5,"--ja--",20660,rand(1,2),instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+			areamonster 'map$,.@x-5,.@y+5,.@x+5,.@y-5,"--ja--",20661,rand(1,2),instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+			areamonster 'map$,.@x-5,.@y+5,.@x+5,.@y-5,"--ja--",20662,rand(1,2),instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+			areamonster 'map$,.@x-5,.@y+5,.@x+5,.@y-5,"--ja--",20663,rand(1,2),instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+			areamonster 'map$,.@x-5,.@y+5,.@x+5,.@y-5,"--ja--",20664,rand(1,2),instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+			end;
+		case 1:
+			mes "["+strnpcinfo(1)+"]";
+			mes "呼~ 真是可怕!";
+			npctalk strnpcinfo(1)+" : 呼~ 真是可怕!";
+			next;
+			mes "["+strcharinfo(0)+"]";
+			mes "我做的對嗎?";
+			unittalk getcharid(3),"我做的對嗎?";
+			next;
+			mes "["+strnpcinfo(1)+"]";
+			mes "我覺得你做的挺好的，看見牠們的尾巴了嗎...這就是為什麼我害怕他們的原因.";
+			npctalk strnpcinfo(1)+" : 我覺得你做的挺好的，看見牠們的尾巴了嗎...這就是為什麼我害怕他們的原因.";
+			next;
+			mes "["+strnpcinfo(1)+"]";
+			mes "總之，讓我們移動到下一個區域吧...? 還有其他工作呢...";
+			npctalk strnpcinfo(1)+" : 總之，讓我們移動到下一個區域吧...? 還有其他工作呢...";
+			next;
+			mes "["+strnpcinfo(1)+"]";
+			mes "下一個地區充滿著沙子與石頭，在採集結束時我總要去清掃...";
+			npctalk strnpcinfo(1)+" : 下一個地區充滿著沙子與石頭，在採集結束時我總要去清掃...";
+			close2;
+			enablenpc instance_npcname("農場導覽員#3");
+			mapwarp 'map$,'map$,87,99;
+			end;
+	}
+	end;
+	
+OnMyMobDead:
+	if(mobcount('map$,instance_npcname(strnpcinfo(0))+"::OnMyMobDead") < 1)
+	{
+		hideoffnpc instance_npcname(strnpcinfo(0));
+		disablenpc instance_npcname("裝有皮塔亞的箱子#2");
+		setd "'finish_feeding_"+atoi(strnpcinfo(2)), 1;
+	}
+	end;
+	
+OnInstanceInit:
+	disablenpc instance_npcname(strnpcinfo(0));
+	end;
+}
+
+1@lost,214,146,0	script	裝有皮塔亞的箱子#2	4_WOODBOX,{
+	end;
+	
+OnInstanceInit:
+	disablenpc instance_npcname(strnpcinfo(0));
+	end;
+}
+
+/******************************
+ - 區域3
+******************************/
+1@lost,91,92,3	script	農場導覽員#3	4_EP17_BASKET,{
+	if(is_party_leader() == false) end;
+	switch(getd("'finish_feeding_"+atoi(strnpcinfo(2))))
+	{
+		case 0:
+			mes "["+strnpcinfo(1)+"]";
+			mes "不要管我在哪裡";
+			npctalk strnpcinfo(1)+" : 不要管我在哪裡";
+			next;
+			mes "["+strnpcinfo(1)+"]";
+			mes "即使這裡看起來相當有趣好玩，但至少我不這麼認為";
+			npctalk strnpcinfo(1)+" : 即使這裡看起來相當有趣好玩，但至少我不這麼認為";
+			next;
+			mes "["+strnpcinfo(1)+"]";
+			mes "不過是和客人一起玩一樣! 來吧!";
+			npctalk strnpcinfo(1)+" : 不過是和客人一起玩一樣! 來吧!";
+			next;
+			mes "["+strnpcinfo(1)+"]";
+			mes "無論如何，請幫助我採集下一個區域! 孩子們~該吃飯了~~";
+			npctalk strnpcinfo(1)+" : 無論如何，請幫助我採集下一個區域! 孩子們~該吃飯了~~";
+			close2;
+			hideonnpc instance_npcname(strnpcinfo(0));
+			enablenpc instance_npcname("裝有皮塔亞的箱子#3");
+			npctalk strnpcinfo(1)+" : 我要餵牠們囉~ 牠們就要出來了.";
+			sleep 1000;
+			areamonster 'map$,83,103,91,97,"--ja--",20660,rand(1,2),instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+			areamonster 'map$,83,103,91,97,"--ja--",20661,rand(1,2),instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+			areamonster 'map$,83,103,91,97,"--ja--",20662,rand(1,2),instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+			areamonster 'map$,83,103,91,97,"--ja--",20663,rand(1,2),instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+			areamonster 'map$,83,103,91,97,"--ja--",20664,rand(1,2),instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+			npctalk strnpcinfo(1)+" : 啊! 別往我這裡過來~~~";
+			end;
+		case 1:
+			mes "["+strnpcinfo(1)+"]";
+			mes "啊!";
+			npctalk strnpcinfo(1)+" : 啊!";
+			next;
+			mes "["+strnpcinfo(1)+"]";
+			mes "弄得我們全身上下都是沙子了~";
+			npctalk strnpcinfo(1)+" : 弄得我們全身上下都是沙子了~";
+			next;
+			mes "["+strnpcinfo(1)+"]";
+			mes "喔! 這是防水以及防塵的，所以對我來說還好!";
+			npctalk strnpcinfo(1)+" : 喔! 這是防水以及防塵的，所以對我來說還好!";
+			next;
+			mes "["+strnpcinfo(1)+"]";
+			mes "你還好嗎? 你可是客人呢!";
+			npctalk strnpcinfo(1)+" : 你還好嗎? 你可是客人呢!";
+			next;
+			mes "["+strnpcinfo(1)+"]";
+			mes "你說智慧型機器人感受不到任何情緒嗎?";
+			npctalk strnpcinfo(1)+" : 你說智慧型機器人感受不到任何情緒嗎?";
+			next;
+			mes "["+strnpcinfo(1)+"]";
+			mes "其實不然，我們也會有情緒的，只是現在沒有罷了";
+			npctalk strnpcinfo(1)+" : 其實不然，我們也會有情緒的，只是現在沒有罷了";
+			next;
+			mes "["+strnpcinfo(1)+"]";
+			mes "下一個地方是類似綠洲的棲地，是個遊樂場呢。 走吧!";
+			npctalk strnpcinfo(1)+" : 下一個地方是類似綠洲的棲地，是個遊樂場呢。 走吧!";
+			close2;
+			enablenpc instance_npcname("農場導覽員#4");
+			mapwarp 'map$,'map$,226,257;
+			end;
+	}
+	end;
+
+OnMyMobDead:
+	.@mob_cnt = mobcount('map$,instance_npcname(strnpcinfo(0))+"::OnMyMobDead");
+	if(.@mob_cnt < 1)
+	{
+		setd "'finish_feeding_"+atoi(strnpcinfo(2)), 1;
+		hideoffnpc instance_npcname(strnpcinfo(0));
+		disablenpc instance_npcname("裝有皮塔亞的箱子#3");
+		npctalk strnpcinfo(1)+" : !!";
+		sleep 2000;
+		npctalk strnpcinfo(1)+" : 不是我啊~ 不要過來~~~";
+	}
+	else
+		npctalk strnpcinfo(1)+" : 還有 "+.@mob_cnt+" 個皮塔亞.";
+	end;
+	
+OnInstanceInit:
+	disablenpc instance_npcname(strnpcinfo(0));
+	end;
+}
+
+1@lost,91,92,0	script	裝有皮塔亞的箱子#3	4_WOODBOX,{
+	end;
+	
+OnInstanceInit:
+	disablenpc instance_npcname(strnpcinfo(0));
+	end;
+}
+
+/******************************
+ - 區域4
+******************************/
+1@lost,232,257,3	script	農場導覽員#4	4_EP17_BASKET,{
+	if(is_party_leader() == false) end;
+	switch(getd("'finish_feeding_"+atoi(strnpcinfo(2))))
+	{
+		case 0:
+			mes "["+strnpcinfo(1)+"]";
+			mes "麻煩再注意一下我的位置";
+			npctalk strnpcinfo(1)+" : 麻煩再注意一下我的位置";
+			next;
+			mes "["+strnpcinfo(1)+"]";
+			mes "怎麼樣! 從開始到現在我覺得你做得越來越好了!";
+			npctalk strnpcinfo(1)+" : 怎麼樣! 從開始到現在我覺得你做得越來越好了!";
+			next;
+			mes "["+strnpcinfo(1)+"]";
+			mes "畢竟客人總是非常具有採集天賦呢! 沒錯! 對吧!!";
+			npctalk strnpcinfo(1)+" : 畢竟客人總是非常具有採集天賦呢! 沒錯! 對吧!!";
+			next;
+			mes "["+strnpcinfo(1)+"]";
+			mes "你甚至沒辦法跟我這智慧型機器人說話聊天吧? 因為我只會說出我知道的事情而已.";
+			npctalk strnpcinfo(1)+" : 你甚至沒辦法跟我這智慧型機器人說話聊天吧? 因為我只會說出我知道的事情而已.";
+			next;
+			mes "["+strnpcinfo(1)+"]";
+			mes "看見那些厲害的客人們, 嚇到我都把我的食物灑出來了呢! 好囉~~孩子們出來吧~~~~";
+			npctalk strnpcinfo(1)+" : 看見那些厲害的客人們, 嚇到我都把我的食物灑出來了呢! 好囉~~孩子們出來吧~~~~";
+			close2;
+			hideonnpc instance_npcname(strnpcinfo(0));
+			enablenpc instance_npcname("裝有皮塔亞的箱子#4");
+			sleep 1000;
+			npctalk strnpcinfo(1)+" : Hey! 孩子們~~~ 不是我啊~",instance_npcname(strnpcinfo(0));
+			areamonster 'map$,221,262,228,253,"--ja--",20660,rand(1,2),instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+			areamonster 'map$,221,262,228,253,"--ja--",20661,rand(1,2),instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+			areamonster 'map$,221,262,228,253,"--ja--",20662,rand(1,2),instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+			areamonster 'map$,221,262,228,253,"--ja--",20663,rand(1,2),instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+			areamonster 'map$,221,262,228,253,"--ja--",20664,rand(1,2),instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+			npctalk strnpcinfo(1)+" : Oh. 別過來~~~",instance_npcname(strnpcinfo(0));
+			npctalk "!!",instance_npcname(strnpcinfo(0));
+			sleep 2000;
+			npctalk strnpcinfo(1)+" : 這裡!";
+			sleep 2000;
+			npctalk strnpcinfo(1)+" : 救我!";
+			end;
+		case 1:
+			mes "["+strnpcinfo(1)+"]";
+			mes "...";
+			npctalk strnpcinfo(1)+" : ...";
+			next;
+			mes "["+strcharinfo(0)+"]";
+			mes "妳還好嗎?";
+			unittalk getcharid(3), strcharinfo(0)+" : 妳還好嗎?";
+			next;
+			mes "["+strnpcinfo(1)+"]";
+			mes "我覺得您特別熟悉呢，不過聲音聽起來好像有一點點不一樣.";
+			npctalk strnpcinfo(1)+" : 我覺得您特別熟悉呢，不過聲音聽起來好像有一點點不一樣.";
+			next;
+			mes "["+strnpcinfo(1)+"]";
+			mes "那我們就移動到下一個地方囉!";
+			npctalk strnpcinfo(1)+" : 那我們就移動到下一個地方囉!";
+			next;
+			mes "["+strcharinfo(0)+"]";
+			mes "還有下一個地方?";
+			unittalk getcharid(3), strcharinfo(0)+" : 還有下一個地方?";
+			next;
+			mes "["+strnpcinfo(1)+"]";
+			mes "這個農場從外面看起來像一個小型溫室一樣. 不過這都是錯覺. 抬頭看看這些頂棚，是不是非常高!?";
+			npctalk strnpcinfo(1)+" : 這個農場從外面看起來像一個小型溫室一樣. 不過這都是錯覺. 抬頭看看這些頂棚，是不是非常高!?";
+			next;
+			mes "["+strnpcinfo(1)+"]";
+			mes "這就是為什麼這些參觀者們需要我去導覽";
+			npctalk strnpcinfo(1)+" : 這就是為什麼這些參觀者們需要我去導覽";
+			next;
+			mes "["+strnpcinfo(1)+"]";
+			mes "下一個地方離入口蠻近的, 根據路易斯安告訴我的資訊, 那個地方可能蠻大的，你準備好了嗎?";
+			npctalk strnpcinfo(1)+" : 下一個地方離入口蠻近的, 根據路易斯安告訴我的資訊, 那個地方可能蠻大的，你準備好了嗎?";
+			close2;
+			enablenpc instance_npcname("農場導覽員#5");
+			mapwarp 'map$,'map$,242,117;
+			end;
+	}
+	end;
+
+OnMyMobDead:
+	.@mob_cnt = mobcount('map$,instance_npcname(strnpcinfo(0))+"::OnMyMobDead");
+	if(.@mob_cnt < 1)
+	{
+		setd "'finish_feeding_"+atoi(strnpcinfo(2)), 1;
+		hideoffnpc instance_npcname(strnpcinfo(0));
+		disablenpc instance_npcname("裝有皮塔亞的箱子#4");
+		sleep 2000;
+		npctalk strnpcinfo(1)+" : ...呼...",instance_npcname("農場導覽員#4");
+	}
+	else
+		npctalk strnpcinfo(1)+" : 還有 "+.@mob_cnt+" 個皮塔亞.";
+	end;
+	
+OnInstanceInit:
+	disablenpc instance_npcname(strnpcinfo(0));
+	end;
+}
+
+1@lost,232,257,0	script	裝有皮塔亞的箱子#4	4_WOODBOX,{
+	end;
+	
+OnInstanceInit:
+	disablenpc instance_npcname(strnpcinfo(0));
+	end;
+}
+
+/******************************
+ - 區域5
+******************************/
+1@lost,247,119,3	script	農場導覽員#5	4_EP17_BASKET,{
+	if(is_party_leader() == false) end;
+	switch(getd("'finish_feeding_"+atoi(strnpcinfo(2))))
+	{
+		case 0:
+			mes "["+strnpcinfo(1)+"]";
+			mes "深呼吸...呼...";
+			npctalk strnpcinfo(1)+" : 深呼吸...呼...";
+			next;
+			mes "["+strnpcinfo(1)+"]";
+			mes "恩? 你問我會不會深呼吸嗎? 如果你不會的話抓住這個吧!";
+			npctalk strnpcinfo(1)+" : 恩? 你問我會不會深呼吸嗎? 如果你不會的話抓住這個吧!";
+			next;
+			mes "["+strnpcinfo(1)+"]";
+			mes "不過牠們沒有肺 ... 那牠們到底是怎麼叫的. 這是我該想的嗎?";
+			npctalk strnpcinfo(1)+" : 不過牠們沒有肺 ... 那牠們到底是怎麼叫的. 這是我該想的嗎?";
+			next;
+			mes "["+strnpcinfo(1)+"]";
+			mes "...我會試著不去想想那恐懼的";
+			npctalk strnpcinfo(1)+" : ...我會試著不去想想那恐懼的";
+			next;
+			mes "["+strnpcinfo(1)+"]";
+			mes "那我們就繼續囉 ... 這裡的皮塔亞看起來昏昏欲睡的，可能叫醒牠們反應會跟我想得不太一樣. 我不想來...這裡...";
+			npctalk strnpcinfo(1)+" : 那我們就繼續囉 ... 這裡的皮塔亞看起來昏昏欲睡的，可能叫醒牠們反應會跟我想得不太一樣. 我不想來...這裡...";
+			close2;
+			hideonnpc instance_npcname(strnpcinfo(0));
+			enablenpc instance_npcname("裝有皮塔亞的箱子#5");
+			sleep 1000;
+			npctalk "...",instance_npcname(strnpcinfo(0));
+			areamonster 'map$,237,120,245,113,"--ja--",20660,rand(1,2),instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+			areamonster 'map$,237,120,245,113,"--ja--",20661,rand(1,2),instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+			areamonster 'map$,237,120,245,113,"--ja--",20662,rand(1,2),instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+			areamonster 'map$,237,120,245,113,"--ja--",20663,rand(1,2),instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+			areamonster 'map$,237,120,245,113,"--ja--",20664,rand(1,2),instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+			end;
+		case 1:
+			mes "["+strnpcinfo(1)+"]";
+			mes "...嘿 ..你...";
+			npctalk strnpcinfo(1)+" : ...嘿 ..你...";
+			next;
+			mes "["+strcharinfo(0)+"]";
+			mes "你還好嗎?";
+			unittalk getcharid(3), strcharinfo(0)+" : 你還好嗎?";
+			next;
+			mes "["+strnpcinfo(1)+"]";
+			mes "我只是被輕輕咬了一下. 可愛的動物都這麼可怕嗎!";
+			npctalk strnpcinfo(1)+" : 我只是被輕輕咬了一下. 可愛的動物都這麼可怕嗎!";
+			next;
+			mes "["+strcharinfo(0)+"]";
+			mes "我想也是";
+			unittalk getcharid(3), strcharinfo(0)+" : 我想也是";
+			next;
+			mes "["+strnpcinfo(1)+"]";
+			mes "可愛的東西都會咬人的嗎?";
+			npctalk strnpcinfo(1)+" : 可愛的東西都會咬人的嗎?";
+			next;
+			mes "["+strnpcinfo(1)+"]";
+			mes "畢竟 ... 快樂是需要付出代價的. 這是天然法則.";
+			npctalk strnpcinfo(1)+" : 畢竟 ... 快樂是需要付出代價的. 這是天然法則.";
+			next;
+			mes "["+strnpcinfo(1)+"]";
+			mes "每次付出時間總是要能享受可愛又療癒的事情嘛!";
+			npctalk strnpcinfo(1)+" : 每次付出時間總是要能享受可愛又療癒的事情嘛!";
+			next;
+			mes "["+strnpcinfo(1)+"]";
+			mes "當我看到客人總是非常尊敬你們呢. 當然, 我從一開始就非常尊敬你.";
+			npctalk strnpcinfo(1)+" : 當我看到客人總是非常尊敬你們呢. 當然, 我從一開始就非常尊敬你.";
+			next;
+			mes "["+strnpcinfo(1)+"]";
+			mes "你問我是不是在說笑? 哈哈, 你還真是好笑呢. 我是非常認真的.";
+			npctalk strnpcinfo(1)+" : 你問我是不是在說笑? 哈哈, 你還真是好笑呢. 我是非常認真的.";
+			next;
+			mes "["+strnpcinfo(1)+"]";
+			mes "你有什麼東西落在這的嗎? 沒有的話.. 我們就到下一個區域囉!";
+			npctalk strnpcinfo(1)+" : 你有什麼東西落在這的嗎? 沒有的話.. 我們就到下一個區域囉!";
+			close2;
+			enablenpc instance_npcname("農場導覽員#6");
+			mapwarp 'map$,'map$,116,165;
+			end;
+	}
+	end;
+
+OnMyMobDead:
+	.@mob_cnt = mobcount('map$,instance_npcname(strnpcinfo(0))+"::OnMyMobDead");
+	if(.@mob_cnt < 1)
+	{
+		npctalk strnpcinfo(1)+" : 你好了嗎?";
+		setd "'finish_feeding_"+atoi(strnpcinfo(2)), 1;
+		hideoffnpc instance_npcname(strnpcinfo(0));
+		disablenpc instance_npcname("裝有皮塔亞的箱子#5");
+		sleep 2000;
+		npctalk strnpcinfo(1)+" : .......感覺得出有哪裡不同嗎?...",instance_npcname("農場導覽員#5");
+	}
+	else
+		npctalk strnpcinfo(1)+" : 還有 "+.@mob_cnt+" 個皮塔亞.";
+	end;
+	
+OnInstanceInit:
+	disablenpc instance_npcname(strnpcinfo(0));
+	end;
+}
+
+1@lost,247,119,0	script	裝有皮塔亞的箱子#5	4_WOODBOX,{
+	end;
+	
+OnInstanceInit:
+	disablenpc instance_npcname(strnpcinfo(0));
+	end;
+}
+
+/******************************
+ - 區域6
+******************************/
+1@lost,106,160,3	script	農場導覽員#6	4_EP17_BASKET,{
+	if(is_party_leader() == false) end;
+	switch(getd("'finish_feeding_"+atoi(strnpcinfo(2))))
+	{
+		case 0:
+			mes "["+strnpcinfo(1)+"]";
+			mes strnpcinfo(1)+": 我有點擔心";
+			npctalk strnpcinfo(1)+" : 我有點擔心";
+			next;
+			mes "["+strnpcinfo(1)+"]";
+			mes strnpcinfo(1)+": 我們之間沒有區別, 但是這些是. 你在說不同的話嗎?";
+			npctalk strnpcinfo(1)+" : 我們之間沒有區別, 但是這些是. 你在說不同的話嗎?";
+			next;
+			mes "["+strnpcinfo(1)+"]";
+			mes strnpcinfo(1)+": 這聞起來像我嗎?.";
+			npctalk strnpcinfo(1)+" : 這聞起來像我嗎?.";
+			next;
+			mes "["+strnpcinfo(1)+"]";
+			mes strnpcinfo(1)+": 對了... 今天的工作量終於完成一半了";
+			npctalk strnpcinfo(1)+" : 對了... 今天的工作量終於完成一半了";
+			next;
+			mes "["+strnpcinfo(1)+"]";
+			mes strnpcinfo(1)+": 都是您的幫忙，非常感謝您~";
+			npctalk strnpcinfo(1)+" : 都是您的幫忙，非常感謝您~";
+			next;
+			mes "["+strnpcinfo(1)+"]";
+			mes strnpcinfo(1)+": 那我就把皮塔亞給放出來囉...";
+			npctalk strnpcinfo(1)+" : 那我就把皮塔亞給放出來囉...";
+			close2;
+			hideonnpc instance_npcname(strnpcinfo(0));
+			enablenpc instance_npcname("裝有皮塔亞的箱子#6");
+			sleep 1000;
+			npctalk strnpcinfo(1)+" : 那隻~~~",instance_npcname(strnpcinfo(0));
+			areamonster 'map$,110,168,118,160,"--ja--",20660,rand(1,2),instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+			areamonster 'map$,110,168,118,160,"--ja--",20661,rand(1,2),instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+			areamonster 'map$,110,168,118,160,"--ja--",20662,rand(1,2),instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+			areamonster 'map$,110,168,118,160,"--ja--",20663,rand(1,2),instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+			areamonster 'map$,110,168,118,160,"--ja--",20664,rand(1,2),instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+			sleep 1000;
+			npctalk strnpcinfo(1)+" : 還有那隻~~~~~",instance_npcname(strnpcinfo(0));
+			end;
+		case 1:
+			mes "["+strnpcinfo(1)+"]";
+			mes "我突然想到一件事情...";
+			npctalk strnpcinfo(1)+" : 我突然想到一件事情...";
+			next;
+			mes "["+strnpcinfo(1)+"]";
+			mes "還有一隻最可怕的...BOSS級的米奧...";
+			npctalk strnpcinfo(1)+" : 還有一隻最可怕的...BOSS級的米奧...";
+			next;
+			mes "["+strcharinfo(0)+"]";
+			mes "BOSS級?";
+			unittalk getcharid(3), strcharinfo(0)+" : BOSS級?";
+			next;
+			mes "["+strnpcinfo(1)+"]";
+			mes "我幫你問一下那隻可愛的BOSS米奧...如果那隻狀態還行的話...";
+			npctalk strnpcinfo(1)+" : 我幫你問一下那隻可愛的BOSS米奧...如果那隻狀態還行的話...";
+			next;
+			mes "["+strnpcinfo(1)+"]";
+			mes "你想要試試看嗎?";
+			npctalk strnpcinfo(1)+" : 你想要試試看嗎?";
+			next;
+			mes "["+strnpcinfo(1)+"]";
+			mes "他的四肢相當可愛，不僅可以享受親吻的感覺，還可以隨時隨地欣賞其他的喔!";
+			npctalk strnpcinfo(1)+" : 他的四肢相當可愛，不僅可以享受親吻的感覺，還可以隨時隨地欣賞其他的喔!";
+			next;
+			mes "["+strnpcinfo(1)+"]";
+			mes "我對你真是非常的尊敬...";
+			npctalk strnpcinfo(1)+" : 我對你真是非常的尊敬...";
+			next;
+			mes "["+strnpcinfo(1)+"]";
+			mes "你真的要過去嗎?";
+			npctalk strnpcinfo(1)+" : 你真的要過去嗎?";
+			close2;
+			setd "'finish_feeding_"+atoi(strnpcinfo(2)), 2;
+			npctalk strnpcinfo(1)+" : Boss米奧通常都在二樓的玫瑰園附近休息.";
+			sleep 2000;
+			npctalk strnpcinfo(1)+" : 讓我們來看看路易斯安在那裡的紀錄, 你需要將他叫醒才行.";
+			enablenpc instance_npcname("#LostTouchmob");
+			enablenpc instance_npcname("#LostTouchmob1");
+			enablenpc instance_npcname("#LostTouchmob2");
+			enablenpc instance_npcname("#LostTouchmob3");
+			enablenpc instance_npcname("#LostTouchmob4");
+			end;
+		case 2:
+			npctalk strnpcinfo(1)+" : Boss米奧通常都在二樓的玫瑰園附近休息.";
+			sleep 2000;
+			npctalk strnpcinfo(1)+" : 讓我們來看看路易斯安在那裡的紀錄, 你需要將他叫醒才行.";
+			end;
+	}
+	end;
+
+OnMyMobDead:
+	.@mob_cnt = mobcount('map$,instance_npcname(strnpcinfo(0))+"::OnMyMobDead");
+	if(.@mob_cnt < 1)
+	{
+		sleep 2000;
+		npctalk strnpcinfo(1)+" : 呼~";
+		setd "'finish_feeding_"+atoi(strnpcinfo(2)), 1;
+		hideoffnpc instance_npcname(strnpcinfo(0));
+		disablenpc instance_npcname("裝有皮塔亞的箱子#6");
+	}
+	else
+		npctalk strnpcinfo(1)+" : 還有 "+.@mob_cnt+" 個皮塔亞.";
+	end;
+	
+OnInstanceInit:
+	disablenpc instance_npcname(strnpcinfo(0));
+	end;
+}
+
+1@lost,106,160,0	script	裝有皮塔亞的箱子#6	4_WOODBOX,{
+	end;
+	
+OnInstanceInit:
+	disablenpc instance_npcname(strnpcinfo(0));
+	end;
+}
+
+/******************************
+ - 區域7 (2樓階梯)
+******************************/
+1@lost,39,255,5	script	#LostTouchmob	20651,6,6,{
+	end;
+OnTouch:
+	if(mobcount('map$,instance_npcname(strnpcinfo(0))+"::OnMyMobDead") == 0)
+	{
+		npctalk " !!!";
+		getmapxy .@m$,.@x,.@y,BL_NPC;
+		areamonster 'map$,.@x-5,.@y+5,.@x+5,.@y-5,"--ja--",20660,rand(1,2),instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+		areamonster 'map$,.@x-5,.@y+5,.@x+5,.@y-5,"--ja--",20661,rand(1,2),instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+		areamonster 'map$,.@x-5,.@y+5,.@x+5,.@y-5,"--ja--",20662,rand(1,2),instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+		areamonster 'map$,.@x-5,.@y+5,.@x+5,.@y-5,"--ja--",20663,rand(1,2),instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+		areamonster 'map$,.@x-5,.@y+5,.@x+5,.@y-5,"--ja--",20664,rand(1,2),instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+		hideonnpc instance_npcname(strnpcinfo(0));
+		mapannounce 'map$,"農場導覽員: 我幫您詢問過了!!",bc_map;
+		sleep 3000;
+		mapannounce 'map$,"農場導覽員: 他的狀態還可以 !!!!!!",bc_map;
+		sleep 3000;
+		mapannounce 'map$,"農場導覽員: Boss 米奧正在前方等著!",bc_map;
+	}
+	end;
+	
+OnMyMobDead:
+	if(mobcount('map$,instance_npcname(strnpcinfo(0))+"::OnMyMobDead") == 0)
+	{
+		'invisible_box ++;
+		disablenpc instance_npcname(strnpcinfo(0));
+		if('invisible_box == 5) 
+			enablenpc instance_npcname("米奧休憩區#1");
+	}
+	end;
+	
+OnInstanceInit:
+	disablenpc instance_npcname(strnpcinfo(0));
+	end;
+}
+
+1@lost,38,293,5	script	#LostTouchmob1	139,6,6,{
+	end;
+OnTouch:
+	if(mobcount('map$,instance_npcname(strnpcinfo(0))+"::OnMyMobDead") == 0)
+	{
+		getmapxy .@m$,.@x,.@y,BL_NPC;
+		areamonster 'map$,.@x-5,.@y+5,.@x+5,.@y-5,"--ja--",20660,rand(1,2),instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+		areamonster 'map$,.@x-5,.@y+5,.@x+5,.@y-5,"--ja--",20661,rand(1,2),instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+		areamonster 'map$,.@x-5,.@y+5,.@x+5,.@y-5,"--ja--",20662,rand(1,2),instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+		areamonster 'map$,.@x-5,.@y+5,.@x+5,.@y-5,"--ja--",20663,rand(1,2),instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+		areamonster 'map$,.@x-5,.@y+5,.@x+5,.@y-5,"--ja--",20664,rand(1,2),instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+		hideonnpc instance_npcname(strnpcinfo(0));
+	}
+	end;
+	
+OnMyMobDead:
+	if(mobcount('map$,instance_npcname(strnpcinfo(0))+"::OnMyMobDead") == 0)
+	{
+		'invisible_box ++;
+		disablenpc instance_npcname(strnpcinfo(0));
+		if('invisible_box == 5) 
+			enablenpc instance_npcname("米奧休憩區#1");
+	}
+	end;
+	
+OnInstanceInit:
+	disablenpc instance_npcname(strnpcinfo(0));
+	end;
+}
+
+1@lost,48,317,5	duplicate(#LostTouchmob1)	#LostTouchmob2	139,6,6
+1@lost,87,317,5	duplicate(#LostTouchmob1)	#LostTouchmob3	139,6,6
+1@lost,111,317,5	duplicate(#LostTouchmob1)	#LostTouchmob4	139,6,6
+	
+
+/******************************
+ - 區域8(MVP區域)
+******************************/
+1@lost,161,315,5	script	米奧休憩區#1	4_WOODBOX,{
+	if(is_party_leader() == false) end;
+	switch(getd("'Mio_feeding_"+atoi(strnpcinfo(2))))
+	{
+		case 0:
+			mes "[農場導覽員]";
+			mes "...過來我這邊.";
+			npctalk "農場導覽員 : ...過來我這邊.";
+			next;
+			mes "[農場導覽員]";
+			mes "Boss米奧...!";
+			npctalk "農場導覽員 : Boss米奧...!";
+			close2;
+			setd "'Mio_feeding_"+atoi(strnpcinfo(2)), 1;
+			hideonnpc instance_npcname(strnpcinfo(0));
+			hideoffnpc instance_npcname(strnpcinfo(0));
+			areamonster 'map$,155,332,171,315,"--ja--",20659,1,instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+			initnpctimer;
+			end;
+		case 1:
+			mes "[農場導覽員]";
+			mes "BOSS級的更可愛了…但也更危險了…";
+			close;
+		case 2:
+			mes "[農場導覽員]";
+			mes "桑尼姆... Wait...";
+			npctalk "農場導覽員 : 桑尼姆... Wait...";
+			next;
+			mes "[農場導覽員]";
+			mes "我想這一點都不可怕嘛 ... ";
+			npctalk "農場導覽員 : 我想這一點都不可怕嘛 ... ";
+			next;
+			mes "[農場導覽員]";
+			mes "為什麼我們都一樣但變成路易斯安! 我不能...";
+			npctalk "農場導覽員 : 為什麼我們都一樣但變成路易斯安! 我不能...";
+			next;
+			mes "["+strcharinfo(0)+"]";
+			mes "先出來吧!";
+			unittalk getcharid(3), strcharinfo(0)+" : 先出來吧!";
+			next;
+			mes "[農場導覽員]";
+			mes "哇!";
+			npctalk "農場導覽員 : 哇!";
+			hideonnpc instance_npcname(strnpcinfo(0));
+			enablenpc instance_npcname("農場導覽員#7");
+			end;
+	}
+	end;
+	
+OnMyMobDead:
+	stopnpctimer;
+addrid(2,0,getcharid(1));
+if (strcharinfo(3)==instance_mapname("1@lost")){
+set #hunter,#hunter+1;
+		.@tatol = countitem(1000093) + countitem(1000094) + countitem(1000098) + countitem(1000095) + countitem(1000096) + countitem(1000097);
+		getitem 1000103,.@tatol > 10 ? 4 : 3;
+if (getequipid(EQI_COSTUME_HEAD_MID) == 31900||getequipid(EQI_HEAD_TOP) == 31600){set #hunter,#hunter+1;} 
+dispbottom "<系統訊息> 副本結束了";
+}
+	npctalk "農場導覽員 : 結束了!";
+	setd "'Mio_feeding_"+atoi(strnpcinfo(2)), 2;
+	end;
+	
+OnTimer3000:
+	getmapxy .@m$,.@x,.@y,BL_NPC;
+	areamonster 'map$,155,332,171,315,"--ja--",rand(20660,20664),1;
+	initnpctimer;
+	end;
+	
+OnInstanceInit:
+	disablenpc instance_npcname(strnpcinfo(0));
+	end;
+}
+
+1@lost,161,315,3	script	農場導覽員#7	4_EP17_BASKET,{
+	if('FINISH && inarray('Instance_reward, getcharid(3)) == -1)
+	{
+		mes "["+strcharinfo(0)+"]";
+		mes "恩...讓我看看你總共採集了幾個尾巴呢?";
+		next;
+		.@tatol = countitem(1000093) + countitem(1000094) + countitem(1000098) + countitem(1000095) + countitem(1000096) + countitem(1000097);
+		mes "["+strcharinfo(0)+"]";
+		mes "總共有 "+.@tatol+" 條尾巴. 真是辛苦了!";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "您想要離開了嘛?";
+		next;
+		if(select("離開.","留下來逛逛.") == 2) close;
+		'Instance_reward[getarraysize('Instance_reward)] = getcharid(3);
+		getitem 1000103,.@tatol > 20 ? 6 : 3;
+		warp "Save",0,0;
+		end;
+	}
+	if(is_party_leader() && 'FINISH == 0)
+	{
+		mes "["+strnpcinfo(1)+"]";
+		mes "因為組成每個部分的部分不同，我們能把它拼湊起來嗎?";
+		npctalk strnpcinfo(1)+" : 因為組成每個部分的部分不同，我們能把它拼湊起來嗎?";
+		next;
+		mes "["+strnpcinfo(1)+"]";
+		mes "然後在未來的日子裡，採集是沒得選的....?";
+		npctalk strnpcinfo(1)+" : 然後在未來的日子裡，採集是沒得選的....?";
+		next;
+		mes "["+strnpcinfo(1)+"]";
+		mes "我什麼都不能說! 你覺得如何呢?";
+		npctalk strnpcinfo(1)+" : 我什麼都不能說! 你覺得如何呢?";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "真是好玩!";
+		unittalk getcharid(3), strcharinfo(0)+" : 真是好玩!";
+		next;
+		mes "["+strnpcinfo(1)+"]";
+		mes "對吧! 因為所有的工作都結束啦~ 太好了!";
+		npctalk strnpcinfo(1)+" : 對吧! 因為所有的工作都結束啦~ 太好了!";
+		next;
+		mes "["+strnpcinfo(1)+"]";
+		mes "每一次參觀皮塔亞農場都是一個不同的經驗. 是時候該回去了!";
+		npctalk strnpcinfo(1)+" : 每一次參觀皮塔亞農場都是一個不同的經驗. 是時候該回去了!";
+		'FINISH = 1;
+		close;
+	}
+	end;
+	
+OnInstanceInit:
+	disablenpc instance_npcname(strnpcinfo(0));
+	end;
+}

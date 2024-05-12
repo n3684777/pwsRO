@@ -1,0 +1,2348 @@
+//===== rAthena Script =======================================
+//= Wolfchev Laboratory
+//===== By: ==================================================
+//= Kisuka
+//===== Current Version: =====================================
+//= 1.2
+//===== Compatible With: =====================================
+//= rAthena Project
+//===== Description: =========================================
+//= Defeat Wolfchev Laboratory MVP.
+//===== Additional Comments: =================================
+//= 1.0 First version, edited. [Euphy]
+//= 1.1 Moved the Enchant (Sorcerer#Bio4Reward) and Reward
+//=		(Weird old man#Bio4Reward) NPC in merchant folder. [Capuche]
+//= 1.2 翻譯成繁體中文及修正部分問題 [天波工作組]
+//============================================================
+1@lhz	mapflag	nosave	SavePoint
+1@lhz	mapflag	nomemo
+1@lhz	mapflag	noteleport
+1@lhz	mapflag	nodrop
+1@lhz	mapflag	partylock
+
+lhz_dun04,144,277,5	script	保羅協夫的實驗室#02	837,{
+	mes "----------------------------";	
+	mes ">> 副本獎勵清單";
+	mes "----------------------------";
+	mes "<ITEM>血的飢渴<INFO>6470</INFO></ITEM>";
+	mes "<ITEM>亡者的寒氣<INFO>6471</INFO></ITEM>";
+	mes "<ITEM>綠光魔短劍<INFO>13069</INFO></ITEM>";
+	mes "<ITEM>紅光魔短劍<INFO>13070</INFO></ITEM>";
+	mes "<ITEM>特務拳刃<INFO>1290</INFO></ITEM>";
+	mes "<ITEM>斬首拳刃<INFO>1291</INFO></ITEM>";
+	mes "<ITEM>火焰戰斧<INFO>1392</INFO></ITEM>";
+	mes "<ITEM>急凍戰斧<INFO>1393</INFO></ITEM>";
+	mes "<ITEM>鈣礦石長矛<INFO>1435</INFO></ITEM>";
+	mes "<ITEM>守護巨人長矛<INFO>1490</INFO></ITEM>";
+	mes "<ITEM>寒氣篇魔法書<INFO>1584</INFO></ITEM>";
+	mes "<ITEM>元氣之光魔杖<INFO>1659</INFO></ITEM>";
+	mes "<ITEM>嗜血十字錘<INFO>16017</INFO></ITEM>";
+	mes "<ITEM>元戎弩<INFO>18109</INFO></ITEM>";
+	mes "<ITEM>超異能十字弓<INFO>18110</INFO></ITEM>";
+	mes "<ITEM>古代的金飾<INFO>18570</INFO></ITEM>";
+	mes "<ITEM>綠色研究服<INFO>15044</INFO></ITEM>";
+	mes "<ITEM>救援斗篷<INFO>2582</INFO></ITEM>";
+	mes "<ITEM>守護巨人鋼盾<INFO>2160</INFO></ITEM>";
+	mes "<ITEM>葛帔尼亞的古書(水)<INFO>2161</INFO></ITEM>";
+	mes "<ITEM>誓言之書(貳)<INFO>2162</INFO></ITEM>";
+	mes "<ITEM>刺客的手銬<INFO>2892</INFO></ITEM>";
+	mes "----------------------------";
+	close2;
+	cutin "",255;
+	end;
+}
+/*
+// Giacomo Girolam
+//============================================================
+lighthalzen,303,303,6	script	賈科莫 吉洛拉莫#kiup2	4_M_KHMAN,3,3,{
+	if ((MaxWeight - Weight) < 1000 || !checkweight(1201, 1)) {
+		mes "^FF0000檢查你的背包。你有太多的物品在身上。^000000";
+		close;
+	}
+	if (lhz_boss > 30) {
+		if (!lght_duk01) {
+			if (Sex == SEX_MALE) {
+				emotion ET_HNG;
+				mes "[賈科莫 吉洛拉莫]";
+				mes "先生…？";
+				next;
+				mes "[賈科莫 吉洛拉莫]";
+				mes "啊，嘿！先生！";
+				next;
+				select("怎麼了？");
+				emotion ET_QUESTION, playerattached();
+				mes "[賈科莫 吉洛拉莫]";
+				mes "你有沒有聽說過位於里希塔樂鎮的雷肯公司總部的可怕的人體實驗？";
+				next;
+				select("什麼？！人體實驗？");
+				emotion ET_HUK, playerattached();
+				mes "[賈科莫 吉洛拉莫]";
+				mes "是的！人體實驗！！";
+				mes "有很多傳言說實際上是在進行可怕的人類實驗，但這些人在貧民窟…由於雷肯的生活福利很好，他們不肯相信。";
+				next;
+				emotion ET_PROFUSELY_SWEAT;
+				mes "[賈科莫 吉洛拉莫]";
+				mes "好！那些富人似乎知道一些東西，但他們從來沒有提到…";
+				next;
+				mes "[賈科莫 吉洛拉莫]";
+				mes "啊！這是一些人才知道的秘密。我從雷肯實驗室那裡聽到一個叫…保…的人。";
+				next;
+				emotion ET_SCRATCH;
+				mes "[賈科莫 吉洛拉莫]";
+				mes "無論如何！！一個名叫保羅什麼的科學家突然被解雇了。我想…他一定與這個傳言有關。";
+				next;
+				select("你是指保羅協夫…？");
+				emotion ET_SURPRISE;
+				mes "[賈科莫 吉洛拉莫]";
+				mes "喔喔喔喔！是保羅協夫！對，他叫做保羅協夫，是個瘋狂的科學家…";
+				next;
+				emotion ET_OK;
+				mes "[賈科莫 吉洛拉莫]";
+				mes "那麼我想你可以更快地理解這個故事…我相信他參與了這個謠言，我發誓。";
+				next;
+				mes "[賈科莫 吉洛拉莫]";
+				mes "喔對了，你呢？你有知道些什麼嗎？";
+				next;
+				if (select("假裝你什麼都不知道", "告訴他你知道的事情") == 1) {
+					mes "["+ strcharinfo(0) +"]";
+					mes "沒有耶…我聽說過他的名字，但我對他一無所知。";
+					next;
+					mes "[賈科莫 吉洛拉莫]";
+					mes "呃....你聽起來很可疑，老兄！是吧？";
+					next;
+				} else {
+					mes "["+ strcharinfo(0) +"]";
+					mes "他在沒有告知雷肯公司的情況下，研究人類'生命體'，然而他被人檢舉至雷肯公司，所以就被解雇了。";
+					next;
+					emotion ET_BEST;
+					mes "[賈科莫 吉洛拉莫]";
+					mes "哦！老兄，你看起來很瞭解，你很長關注雷肯公司嗎？";
+					next;
+					emotion ET_THINK;
+					mes "["+ strcharinfo(0) +"]";
+					mes "… … …";
+					next;
+				}
+				emotion ET_SCRATCH;
+				mes "[賈科莫 吉洛拉莫]";
+				mes "別擔心，我沒有其它意思。";
+				next;
+				mes "[賈科莫 吉洛拉莫]";
+				mes "好！我只是因為貧民窟和一些冒險家的失?而感到好奇，";
+				mes "我聽說雷肯公司正在對這些失?人員進行人體實驗。";
+				mes "希望你不要誤解我的意思。";
+				next;
+				lght_duk01 = 1;
+				setquest 5109;
+				mes "事實上，這不是一個有趣的傳聞。";
+				mes "應該調查正在進行實驗的實驗室。";
+				close;
+			} else {
+				emotion ET_THROB;
+				mes "[賈科莫 吉洛拉莫]";
+				mes "哦‵，多麼美麗的女士！";
+				next;
+				emotion ET_QUESTION;
+				mes "[賈科莫 吉洛拉莫]";
+				mes "你來到美麗又有危險的謠言這裡做什麼呢？";
+				next;
+				switch(select("走路…", "閒逛…", "購物…")) {
+				case 1:
+					mes "[賈科莫 吉洛拉莫]";
+					mes "啊，女士，即使你只是走路，你也是如此優雅。";
+					next;
+					break;
+				case 2:
+					mes "[賈科莫 吉洛拉莫]";
+					mes "淑女。即使你在這個貧窮的城鎮閒逛，你也是一位端莊的女士。";
+					next;
+					break;
+				case 3:
+					mes "[賈科莫 吉洛拉莫]";
+					mes "啊…女士…在貧民區購物！你是否需要環顧每一家商店？";
+					next;
+					break;
+				}
+			}
+			select("… … ……");
+			mes "[賈科莫 吉洛拉莫]";
+			mes "好的，我怎麼敢繼續騷擾你呢…";
+			next;
+			emotion ET_OK;
+			mes "[賈科莫 吉洛拉莫]";
+			mes "我只是希望這位女士離開有危險傳言的城鎮。";
+			next;
+			select("危險傳言？");
+			emotion ET_QUESTION, playerattached();
+			mes "[賈科莫 吉洛拉莫]";
+			mes "啊…女士可能沒有聽說過這個傳言。";
+			next;
+			mes "[賈科莫 吉洛拉莫]";
+			mes "最近，這個城鎮的一些人，實際上是從貧民窟…還有一些冒險家都失?了。";
+			next;
+			mes "[賈科莫 吉洛拉莫]";
+			mes "然後謠言出現了，因為失?案件經常發生，雷肯公司在他們的秘密實驗室進行了一個可怕的人體實驗。";
+			next;
+			select("什麼？人體實驗？！");
+			emotion ET_HUK, playerattached();
+			mes "[賈科莫 吉洛拉莫]";
+			mes "是啊！人體實驗！";
+			mes "有很多傳言說實際上是在進行可怕的人類實驗，但這些在貧民窟的人，由於雷肯的生活福利很好，他們不肯相信。";
+			next;
+			mes "[賈科莫 吉洛拉莫]";
+			mes "好！有錢的人要麼相信…我想…。啊！幾週前，嗯…他的名字是什麼？保羅協夫？";
+			next;
+			mes "[賈科莫 吉洛拉莫]";
+			mes "無論如何！！那個研究員從實驗室裡被解雇了。我認為他是參與這個謠言的人。";
+			next;
+			mes "[賈科莫 吉洛拉莫]";
+			mes "所以，女士。請不要在這樣的地方，並注意安全。";
+			next;
+			lght_duk01 = 1;
+			setquest 5109;
+			mes "……這似乎是一個相當嚴重的問題。";
+			mes "應該調查進行實驗的實驗室。";
+			close;
+		} else {
+			mes "[賈科莫 吉洛拉莫]";
+			if (Sex == SEX_MALE) {
+				emotion ET_WRAP;
+				mes "保重身體，不要失蹤！";
+			} else {
+				emotion ET_BIGTHROB;
+				mes "小心點，女士。";
+			}
+			close;
+		}
+	} else {
+		if (Sex == SEX_MALE) {
+			emotion ET_DELIGHT;
+			mes "[賈科莫 吉洛拉莫]";
+			mes "我活著的原因正是那些美麗的女士！";
+			mes "我，賈科莫吉洛拉莫從來沒有對你這樣的傢伙感興趣過！";
+			next;
+			emotion ET_FRET;
+			mes "[賈科莫 吉洛拉莫]";
+			mes "但我可以聽你的…你想對我說什麼嗎？";
+			next;
+			switch(select("不…", "關於女士們…", "你是女人？", "羨慕你…", "最近有什麼傳聞？")) {
+			case 1:
+				emotion ET_SCRATCH;
+				mes "[賈科莫 吉洛拉莫]";
+				mes "嘿！你，離開我的視線。";
+				close;
+			case 2:
+				emotion ET_FRET;
+				mes "[賈科莫 吉洛拉莫]";
+				mes "我不想拿尊貴的女士們來消遣娛樂，你和你的朋友聊吧。";
+				close;
+			case 3:
+				mes "[賈科莫 吉洛拉莫]";
+				mes "嘿，打擾一下，但我不是一個“女人”，我只是一個崇拜女人的人";
+				next;
+				emotion ET_OK;
+				mes "[賈科莫 吉洛拉莫]";
+				mes "是啊…如果我是一個女人，地球上的所有男人也是！";
+				close;
+			case 4:
+				emotion ET_QUESTION;
+				mes "[賈科莫 吉洛拉莫]";
+				mes "哈…你…？ 你身邊沒有任何女人，只有你的妹妹和母親？";
+				next;
+				mes "[賈科莫 吉洛拉莫]";
+				mes "… … …";
+				next;
+				emotion ET_PROFUSELY_SWEAT;
+				mes "[賈科莫 吉洛拉莫]";
+				mes "哦…對不起…我知道你的意思了…";
+				close;
+			case 5:
+				mes "[賈科莫 吉洛拉莫]";
+				mes "你…看起來不像那麼有趣…？";
+				next;
+				mes "[賈科莫 吉洛拉莫]";
+				mes "實際上最近有很多來自貧民窟和一些冒險家都消失了。我不知道為什麼。";
+				next;
+				mes "[賈科莫 吉洛拉莫]";
+				mes "你也要小心…";
+				close;
+			}
+		} else {
+			emotion ET_QUESTION;
+			mes "[賈科莫 吉洛拉莫]";
+			mes "嘿，女士？";
+			next;
+			mes "[賈科莫 吉洛拉莫]";
+			switch(rand(1,10)) {
+			case 1:
+				mes "我的天使，當你從天上掉了下來，是不是很痛？";
+				next;
+				break;
+			case 2:
+				mes "你一定很累了，因為你總是在我的腦海中游盪。";
+				next;
+				break;
+			case 3:
+				mes "你昨天晚上在我夢裡走的累嗎？";
+				next;
+				break;
+			case 4:
+				mes "打擾一下，我想我失去了我的心，我可以跟你借嗎？";
+				next;
+				break;
+			case 5:
+				mes "你相信一見鍾情嗎？？或者我們可以重新開始…？";
+				next;
+				break;
+			case 6:
+				mes "我很抱歉，但是，你可以吻一個剛見過的人嗎？不行？好吧，讓我介紹一下自己。";
+				next;
+				break;
+			case 7:
+				mes "因為這是第一次，所以我迷路了。你能讓我知道哪一條是通往你的心嗎？";
+				next;
+				break;
+			case 8:
+				mes "請給我一張地圖…為了得到通往你的道路…我已墜落你的眼睛。";
+				next;
+				break;
+			case 9:
+				mes "你的眼睛....我想永遠在那裡。";
+				next;
+				break;
+			case 10:
+				mes "我保證無論如何，在任何困難的情況下，我都會成為你的一切。";
+				next;
+				break;
+			}
+			emotion ET_BIGTHROB;
+			mes "[賈科莫 吉洛拉莫]";
+			mes "今天是我們見面的第一天，但是我愛你，女士<3";
+			next;
+			mes "[賈科莫 吉洛拉莫]";
+			mes "我正在告訴你，因為我只是在擔心你。你需要走出這個充滿失?案例的城鎮。";
+			close;
+		}
+	}
+
+OnTouch:
+	if (!lght_duk01)
+		emotion (Sex == SEX_MALE? ET_HNG : ET_BIGTHROB), "賈科莫 吉洛拉莫#kiup2";
+	end;
+}
+
+// Warp portal to the 4th Fl.
+//============================================================
+lhz_dun03,239,78,1	script	lhz_dun03_lhz_dun04	WARPNPC,1,1,{
+	end;
+
+OnTouch:
+	if (lght_duk01 > 0 && lght_duk01 < 6) {
+		mes "為了調查人類的實驗，我不得不因為可怕的聲音而下樓。";
+		close2;
+		if (lght_duk01 < 3) {
+			warp "que_lhz", 245, 56;
+		} else if (lght_duk01 == 3) {
+			warp "que_lhz", 96, 136;
+		} else {
+			warp "que_lhz", 148, 215;
+		}
+	} else {
+		if (lhz_boss < 31) {
+			mes "- 呼嘯聲 -";
+			mes "從下面，有一陣可怕的聲音混合在一起。";
+			close2;
+		}
+		warp "lhz_dun04", 245, 56;
+	}
+	end;
+}
+
+// Warp Portal to the 3rd Fl.
+//============================================================
+lhz_dun04,244,61,1	warp	lhz_dun04_lhz_dun03	1,1,lhz_dun03,240,75
+
+// Inside the Lab
+//============================================================
+que_lhz,242,50,0	script	#01Startpoint	-1,3,3,{
+	end;
+
+OnInit:
+	initnpctimer;
+	end;
+
+OnTimer60000:
+	mapannounce "que_lhz", "男人的耳語：請…請…救我…我不想死…哇啊啊啊…", bc_map, "0x7DCBF0";
+	end;
+
+OnTimer120000:
+	mapannounce "que_lhz", "女人的耳語：救…救…我們…", bc_map, "0x7DCBF0";
+	end;
+
+OnTimer180000:
+	mapannounce "que_lhz", "小孩的耳語：我在哪…？媽媽…嗚…嗚嗚…", bc_map, "0x7DCBF0";
+	end;
+
+OnTimer240000:
+	mapannounce "que_lhz", "老人的耳語：請…幫…幫助…", bc_map, "0x7DCBF0";
+	end;
+
+OnTimer300000:
+	stopnpctimer;
+	initnpctimer;
+	end;
+
+OnTouch:
+	if (lght_duk01 == 1) {
+		mes "我到達了一個似乎一直使用到現在的研究設施。";
+		next;
+		mes "有一些被摧毀的部分，但基本設施似乎還很好。";
+		next;
+		lght_duk01 = 2;
+		mes "多走走看看一些…";
+		close;
+	}
+	end;
+}
+
+que_lhz,206,74,4	script	研究員#02	4_LGTSCIENCE,3,3,{
+	end;
+
+OnTouch:
+	if (lght_duk01 == 2) {
+		emotion ET_HUK, playerattached();
+		mes "["+ strcharinfo(0) +"]";
+		mes "你！！是保羅協夫？！";
+		next;
+		emotion ET_KIK;
+		mes "[保羅協夫]";
+		mes "人類！人們往往討厭這個地方，你為什麼在這裡？";
+		next;
+		mes "["+ strcharinfo(0) +"]";
+		mes "你！！！我聽說你正在進行人體實驗，保羅協夫！！";
+		next;
+		mes "["+ strcharinfo(0) +"]";
+		mes "而我看到你還在做這個！";
+		next;
+		emotion ET_KIK;
+		mes "[保羅協夫]";
+		mes "看起來你對我有些了解，誰告訴你的？";
+		mes "你知道這樣，怎麼還敢來找我。";
+		next;
+		mes "[保羅協夫]";
+		mes "我很久沒看到人了，我感到很開心。";
+		mes "不過我得走了。";
+		next;
+		mes "- 保羅協夫跑出去，發出尷尬的笑聲。 -";
+		next;
+		erasequest 5109;
+		setquest 5110;
+		lght_duk01 = 3;
+		emotion ET_HUK, playerattached();
+		mes "["+ strcharinfo(0) +"]";
+		mes "喂！！保羅協夫，停下來！";
+		close2;
+		warp "que_lhz", 96, 136;
+	}
+	end;
+}
+
+que_lhz,94,119,4	script	研究員#03	4_LGTSCIENCE,{
+	if ((MaxWeight - Weight) < 1000 || !checkweight(1201, 1)) {
+		mes "^FF0000檢查你的背包，你身上有太多的物品。^000000";
+		close;
+	}
+	if (lght_duk01 == 3) {
+		emotion ET_PROFUSELY_SWEAT;
+		mes "[保羅協夫]";
+		mes "（喘氣）你還在跟著我。嘿，你為什麼一直跟著我？";
+		next;
+		mes "["+ strcharinfo(0) +"]";
+		mes "保羅協夫…你之前說過，你正在為每個人做研究。";
+		next;
+		mes "[保羅協夫]";
+		mes "我必須說，這是他們要的。";
+		next;
+		mes "["+ strcharinfo(0) +"]";
+		mes "但是，你的實驗看起來非常危險。這怎麼是每個人都想要的？";
+		next;
+		emotion ET_KIK;
+		mes "[保羅協夫]";
+		mes "每個人都渴望變得更強壯，想要主宰別人，讓別人順從和敬佩你。你沒有這個願望嗎？";
+		next;
+		mes "["+ strcharinfo(0) +"]";
+		mes "… … …";
+		next;
+		mes "[保羅協夫]";
+		mes "如果你想救自己，應該停止跟著我。開溜！";
+		next;
+		mes "保羅協夫又一次發出奇怪的聲音。";
+		next;
+		lght_duk01 = 4;
+		mes "["+ strcharinfo(0) +"]";
+		mes "啊啊！！你又跑走了！停下來！";
+		close2;
+		warp "que_lhz", 148, 215;
+	}
+	end;
+}
+
+que_lhz,147,224,4	script	研究員#04	4_LGTSCIENCE,{
+	if ((MaxWeight - Weight) < 1000 || !checkweight(1201, 1)) {
+		mes "^FF0000檢查你的背包，你身上有太多的物品。^000000";
+		close;
+	}
+	if (lght_duk01 == 4) {
+		mes "[保羅協夫]";
+		mes "你很執著，不是嗎？或者我覺得…你是喜歡我？哈哈哈…";
+		next;
+		emotion ET_THINK;
+		mes "["+ strcharinfo(0) +"]";
+		mes "… … …";
+		next;
+		specialeffect EF_SIGHTRASHER;
+		mes "保羅協夫嘲笑你的沉默，並按下一個按鈕。然後生命體在他身邊醒來。";
+		next;
+		for(.@i = 1; .@i < 9; .@i++)
+			donpcevent "人類生命體#0"+.@i+"::OnEnable";
+		mes "[保羅協夫]";
+		mes "是時候再次說再見了。";
+		next;
+		emotion ET_SURPRISE;
+		mes "[保羅協夫]";
+		mes "好！也許…";
+		next;
+		mes "[保羅協夫]";
+		mes "如果你來找我做實驗，我可以更好地對待你。";
+		next;
+		donpcevent "#Eventctrl::OnEnable";
+		progressbar "FF00FF", 5;
+		emotion ET_HUK;
+		mes "[保羅協夫]";
+		mes "哦，我的，…發生了什麼？";
+		next;
+		donpcevent "#Eventctrl::OnEnable2";
+		for(.@i = 1; .@i < 9; .@i++)
+			donpcevent "人類生命體#0"+.@i+"::OnDisable";
+		mes "[保羅協夫]";
+		mes "不！不要來找我！別！！";
+		next;
+		lght_duk01 = 5;
+		mes "首先，我要處理掉那些生命體！";
+		close;
+	} else if (lght_duk01 == 5) {
+		.@i = rand(1,3);
+		if (.@i == 2) {
+			mes "保羅協夫自從那些怪物也在攻擊他，現在已經不知所措了。";
+			next;
+			specialeffect EF_STUNATTACK;
+			specialeffect EF_STUNATTACK;
+			mes "- 打他把他叫醒 -";
+			next;
+			specialeffect EF_DARKBREATH;
+			emotion ET_STARE_ABOUT;
+			mes "["+ strcharinfo(0) +"]";
+			mes "你好，哥們！無論如何，我們先離開這裡！有沒有他們無法追到的地方？";
+			next;
+			mes "[保羅協夫]";
+			mes "嗚…我的實驗室…我的實驗室…";
+			next;
+			mes "["+ strcharinfo(0) +"]";
+			mes "你的實驗室？好的，那是哪裡？";
+			next;
+			mes "[保羅協夫]";
+			mes "去北邊…。離這裡不遠";
+			next;
+			erasequest 5110;
+			setquest 5111;
+			lght_duk01 = 6;
+			mes "在12點鐘的方向前往'^0000FF保羅協夫的實驗室^000000'…";
+			close;
+		} else {
+			emotion ET_CONFUSE;
+			mes "保羅協夫自從那些怪物也在攻擊他，現在已經不知所措了。";
+			close;
+		}
+	} else if (lght_duk01 == 6) {
+		mes "在12點鐘的方向前往'^0000FF保羅協夫的實驗室^000000'…";
+		close;
+	}
+	end;
+}
+
+// Warp to lhz_dun04 from 保羅協夫's Lab
+//============================================================
+que_lhz,148,251,0	script	#Move2lab	-1,12,0,{
+	end;
+
+OnTouch:
+	if (lght_duk01 == 6) {
+		mes "我抵達了'^0000FF保羅協夫的實驗室^000000'。";
+		close2;
+		warp "lhz_dun04", 148, 269;
+		end;
+	} else {
+		mes "我還跟保羅協夫有關係。";
+		close;
+	}
+}
+
+// Event Controller
+//============================================================
+que_lhz,1,1,0	script	#Eventctrl	-1,{
+	end;
+
+OnEnable:
+	initnpctimer;
+	end;
+
+OnEnable2:
+	monster "que_lhz", 139, 232, "人類生命體", 2244, 1, "#Eventctrl::OnMyMobDead";
+	monster "que_lhz", 147, 232, "人類生命體", 2244, 1, "#Eventctrl::OnMyMobDead";
+	monster "que_lhz", 156, 232, "人類生命體", 2244, 1, "#Eventctrl::OnMyMobDead";
+	monster "que_lhz", 156, 224, "人類生命體", 2244, 1, "#Eventctrl::OnMyMobDead";
+	monster "que_lhz", 156, 215, "人類生命體", 2244, 1, "#Eventctrl::OnMyMobDead";
+	monster "que_lhz", 147, 215, "人類生命體", 2244, 1, "#Eventctrl::OnMyMobDead";
+	monster "que_lhz", 139, 215, "人類生命體", 2244, 1, "#Eventctrl::OnMyMobDead";
+	monster "que_lhz", 139, 224, "人類生命體", 2244, 1, "#Eventctrl::OnMyMobDead";
+	end;
+
+OnTimer1000:
+	specialeffect EF_SUI_EXPLOSION,AREA, "#01";
+	specialeffect EF_BEGINASURA, AREA, "人類生命體#01";
+	end;
+
+OnTimer2000:
+	specialeffect EF_SUI_EXPLOSION,AREA, "#02";
+	specialeffect EF_BEGINASURA, AREA, "人類生命體#02";
+	end;
+
+OnTimer3000:
+	specialeffect EF_SUI_EXPLOSION,AREA, "#03";
+	specialeffect EF_BEGINASURA, AREA, "人類生命體#03";
+	end;
+
+OnTimer4000:
+	specialeffect EF_SUI_EXPLOSION,AREA, "#04";
+	specialeffect EF_BEGINASURA, AREA, "人類生命體#04";
+	end;
+
+OnTimer5000:
+	specialeffect EF_SUI_EXPLOSION,AREA, "#05";
+	specialeffect EF_BEGINASURA, AREA, "人類生命體#05";
+	end;
+
+OnTimer6000:
+	specialeffect EF_SUI_EXPLOSION,AREA, "#06";
+	specialeffect EF_BEGINASURA, AREA, "人類生命體#06";
+	end;
+
+OnTimer7000:
+	specialeffect EF_SUI_EXPLOSION,AREA, "#07";
+	specialeffect EF_BEGINASURA, AREA, "人類生命體#07";
+	end;
+
+OnTimer8000:
+	specialeffect EF_SUI_EXPLOSION,AREA, "#08";
+	specialeffect EF_BEGINASURA, AREA, "人類生命體#08";
+	stopnpctimer;
+	end;
+
+OnMyMobDead:
+	if (mobcount("que_lhz", "#Eventctrl::OnMyMobDead") < 4)
+		killmonster "que_lhz", "#Eventctrl::OnMyMobDead";
+}
+que_lhz,139,232,0	script	#01	-1,{ end; }
+que_lhz,147,232,0	script	#02	-1,{ end; }
+que_lhz,156,232,0	script	#03	-1,{ end; }
+que_lhz,156,224,0	script	#04	-1,{ end; }
+que_lhz,156,215,0	script	#05	-1,{ end; }
+que_lhz,147,215,0	script	#06	-1,{ end; }
+que_lhz,139,215,0	script	#07	-1,{ end; }
+que_lhz,139,224,0	script	#08	-1,{ end; }
+
+// 人類生命體s
+//============================================================
+que_lhz,140,231,1	script	人類生命體#01	2224,{
+	end;
+
+OnInit:
+	disablenpc strnpcinfo(0);
+	end;
+
+OnEnable:
+	enablenpc strnpcinfo(0);
+	end;
+
+OnDisable:
+	specialeffect EF_FLASHER;
+	disablenpc strnpcinfo(0);
+	end;
+}
+que_lhz,147,231,0	duplicate(人類生命體#01)	人類生命體#02	2224
+que_lhz,155,231,7	duplicate(人類生命體#01)	人類生命體#03	2224
+que_lhz,155,224,6	duplicate(人類生命體#01)	人類生命體#04	2224
+que_lhz,155,216,5	duplicate(人類生命體#01)	人類生命體#05	2224
+que_lhz,147,216,4	duplicate(人類生命體#01)	人類生命體#06	2224
+que_lhz,140,216,3	duplicate(人類生命體#01)	人類生命體#07	2224
+que_lhz,140,224,2	duplicate(人類生命體#01)	人類生命體#08	2224
+*/
+// Instance Creation
+//============================================================
+/*
+lhz_dun04,151,276,3	script	研究員#memo	4_LGTSCIENCE,{
+	if ((MaxWeight - Weight) < 1000 || !checkweight(1201, 1)) {
+		mes "^FF0000檢查你的背包，你身上有太多的物品。^000000";
+		close;
+	}
+	.@quest_time = checkquest(5112, PLAYTIME);
+	.@killed_bosses = true;
+	for(.@quest_id = 5113; .@quest_id <= 5125; .@quest_id++) {
+		if (checkquest(.@quest_id, HUNTING) <= 1)
+			.@killed_bosses = false;
+	}
+	if (lght_duk01 < 6) {
+		/*mes "[研究員]";
+		mes "什麼！你在這裡有什麼生意嗎？";
+		next;
+		if (select("是的", "嗯…沒有…") == 1) {
+			mes "[研究員]";
+			mes "為什麼在路上不停的盯著別人的實驗室？";
+			close;
+		}
+		mes "[研究員]";
+		mes "別在這裡徘徊了…";
+		close;*/
+		/*
+		if (getcharid(1) > 0) {
+			mes "[保羅協夫]";
+			mes "你們都在那裡？如果你是那個隊長，我會準備讓你們進去的。";
+			next;
+			switch(select("任何警告？", "進入實驗室", "不要進入")) {
+			case 1:
+				mes "[保羅協夫]";
+				mes "我不知道按緊急報警會導致這樣的問題。管理系統似乎變成了緊急模式。";
+				next;
+				mes "[保羅協夫]";
+				mes "實驗室內設置了很多系統，所以現在我不能確定系統是如何運作的。";
+				next;
+				mes "[保羅協夫]";
+				mes "啊！如果應急系統啟動，只有隊長能控制一切。這是我所知道的。";
+				next;
+				mes "[保羅協夫]";
+				mes "只要你不要因為好奇而接觸任何東西。我想，不會讓你受傷。";
+				close;
+			case 2:
+				if (.@quest_time == 0) {
+					mes "[保羅協夫]";
+					mes "我很抱歉，但是你似乎還不能進入實驗室。";
+					mes "你還會回來嗎？你知道的，這個系統有點棘手。";
+					close;
+				} else {
+					//if (.@quest_time == 2)
+						//recall_completequest 5112;
+					if (isbegin_quest(5112))
+						erasequest 5112;
+					if (!.@killed_bosses) {
+						mes "[保羅協夫]";
+						mes "嗯…那些首領生命體再次再生…";
+						next;
+						mes "[保羅協夫]";
+						mes "你能再幫我一次嗎？";
+						next;
+						if (select("我不確定", "答應他") == 1) {
+							mes "[保羅協夫]";
+							mes "我懂了，我明白你為什麼猶豫，";
+							mes "不想再逼你了！但是，";
+							mes "我仍然不確定你為什麼要去那裡。";
+							next;
+						} else {
+							for(.@i = 5113; .@i <= 5125; .@i++) {
+								if (checkquest(.@i) == -1)
+									setquest .@i;
+							}
+							mes "[保羅協夫]";
+							mes "謝謝你，"+strcharinfo(0)+"";
+							mes "你想快速進入，對嗎？";
+							next;
+						}
+					}
+				}
+				if (getpartyleader(getcharid(1),2) == getcharid(0)) {
+					if (instance_create("保羅協夫實驗室") < 0) {
+						mes "[保羅協夫]";
+						mes "嗯…實驗室進入系統有點怪異。等我檢查一下系統？";
+						close;
+					}
+					'party_id = getcharid(1);
+					mes "[保羅協夫]";
+					mes "請稍等…";
+					next;
+					mes "保羅協夫開始控制某個齒輪。";
+					next;
+					progressbar "FF00FF", 2;
+					mes "[保羅協夫]";
+					mes "好的！我已經為進入系統標記";
+					mes "^0000ff"+ strcharinfo(1) +"^000000 隊長名稱 ^0000ff"+ strcharinfo(0) +"^000000！！";
+					next;
+					mes "[保羅協夫]";
+					mes "現在，你的隊伍可以自由通過入口。";
+					close;
+				} else {
+					mes "[保羅協夫]";
+					mes "你不是^0000ff隊長^000000，請他來找我吧。";
+					close;
+				}
+			case 3:
+				mes "[保羅協夫]";
+				mes "需要更多的準備？我們沒有太多時間。";
+				close;
+			}
+		} else {
+			mes "[保羅協夫]";
+			mes "你想去那裡嗎？那是自殺！我的實驗室進入系統並不像你想像的那麼容易。";
+			close;
+		}		
+	} else if (lght_duk01 == 6) {
+		mes "保羅協夫說，實驗動物似乎不能靠近實驗室。";
+		next;
+		mes "["+ strcharinfo(0) +"]";
+		mes "嘿，有什麼辦法阻止這些生命體？你應該知道些什麼，處理一下！";
+		next;
+		mes "[保羅協夫]";
+		mes "痾…我沒想到他們會不受控制…";
+		next;
+		mes "[保羅協夫]";
+		mes "這整件事情不知道出了什麼錯誤？";
+		next;
+		mes "[保羅協夫]";
+		mes "痾…我認為他們會毀掉我的整個實驗室！";
+		next;
+		emotion ET_BLABLA, playerattached();
+		mes "["+ strcharinfo(0) +"]";
+		mes "嘿！保羅協夫！！";
+		next;
+		mes "[保羅協夫]";
+		mes "你！？嘿，請阻止他們！";
+		mes "生命體是和^9f6077相同工作領域的生命體^000000相互連接。";
+		next;
+		mes "[保羅協夫]";
+		mes "有一個特殊的生命體是他們的^46B951首領生命體^000000…";
+		mes "如果你可以消滅這個生命體，所有在這裡走動的^A1BB44守衛生命體^000000將立即停止移動。";
+		next;
+		mes "["+ strcharinfo(0) +"]";
+		mes "首領生命體？";
+		mes "嘿！保羅協夫！^46B951首領生命體^000000在哪裡？";
+		next;
+		mes "[保羅協夫]";
+		mes "實驗室裡面…現在應該醒了。摧毀它我很難過，但我不能再接受這個…";
+		next;
+		mes "["+ strcharinfo(0) +"]";
+		mes "我要怎麼進保羅協夫的實驗室呢？";
+		next;
+		mes "[保羅協夫]";
+		mes "哦…等等。";
+		mes "我會幫助你進去。";
+		next;
+		mes "[保羅協夫]";
+		mes "好消息是，儘管守衛生命體全部醒來，但首領生物卻不是如此。";
+		next;
+		erasequest 5111;
+		lght_duk01 = 7;
+		for(.@i = 5113; .@i <= 5125; .@i++)
+			setquest .@i;
+		mes "[保羅協夫]";
+		mes "但是，因為我們不知道他們什麼時候會逃離，所以這真的很危險。";
+		mes "所以，請準備你的隊員，並照顧這些首領生命體。我不確定這個地方能持續多久。";
+		close;
+	} else if (lght_duk01 > 6) {
+		if (getcharid(1) > 0) {
+			mes "[保羅協夫]";
+			mes "你們都在那裡？如果你是那個隊長，我會準備讓你們進去的。";
+			next;
+			switch(select("任何警告？", "進入實驗室", "不要進入")) {
+			case 1:
+				mes "[保羅協夫]";
+				mes "我不知道按緊急報警會導致這樣的問題。管理系統似乎變成了緊急模式。";
+				next;
+				mes "[保羅協夫]";
+				mes "實驗室內設置了很多系統，所以現在我不能確定系統是如何運作的。";
+				next;
+				mes "[保羅協夫]";
+				mes "啊！如果應急系統啟動，只有隊長能控制一切。這是我所知道的。";
+				next;
+				mes "[保羅協夫]";
+				mes "只要你不要因為好奇而接觸任何東西。我想，不會讓你受傷。";
+				close;
+			case 2:
+				if (.@quest_time == 0) {
+					mes "[保羅協夫]";
+					mes "我很抱歉，但是你還不能進入實驗室。";
+					mes "你還會回來嗎？你知道的，這個系統有點棘手。";
+					close;
+				} else {
+					//if (.@quest_time == 2)
+						//recall_completequest 5112;
+					if (isbegin_quest(5112))
+						erasequest 5112;
+					if (!.@killed_bosses) {
+						if (lght_duk01 == 9) {
+							mes "[保羅協夫]";
+							mes "你回來了，哈哈哈。";
+							next;
+							mes "[保羅協夫]";
+							mes "你離開後，我正在修理一些系統零件。就突然發生了奇怪的事情。";
+							next;
+							mes "["+ strcharinfo(0) +"]";
+							mes "什麼東西？";
+							next;
+							mes "[保羅協夫]";
+							mes "你照顧的這些首領生命體開始自己再生。";
+							next;
+							mes "["+ strcharinfo(0) +"]";
+							mes "怎麼可能…？";
+							next;
+							mes "[保羅協夫]";
+							mes "我也想不透為什麼，但是，這不應該發生…";
+							next;
+							mes "["+ strcharinfo(0) +"]";
+							mes "… … …";
+							next;
+							mes "[保羅協夫]";
+							mes "正如你所看到的，你是我唯一可以信任的人。你和你的隊伍能否幫助我再次消滅這些生命體？";
+							next;
+							if (select("我不確定", "答應他") == 1) {
+								mes "[保羅協夫]";
+								mes "我懂了，我明白你為什麼猶豫，不想再逼你了！但是，我仍然不確定你為什麼要去那裡。";
+								next;
+							} else {
+								for(.@i = 5113; .@i <= 5125; .@i++) {
+									if (checkquest(.@i) == -1)
+										setquest .@i;
+								}
+								lght_duk01 = 10;
+								mes "[保羅協夫]";
+								mes "非常謝謝你，"+strcharinfo(0)+"";
+								mes "我會馬上幫助你進入實驗室。";
+								next;
+							}
+						} else {
+							mes "[保羅協夫]";
+							mes "嗯…那些首領生命體再次再生…";
+							next;
+							mes "[保羅協夫]";
+							mes "你能再幫我一次嗎？";
+							next;
+							if (select("我不確定", "答應他") == 1) {
+								mes "[保羅協夫]";
+								mes "我懂了，我明白你為什麼猶豫，不想再逼你了！但是，我仍然不確定你為什麼要去那裡。";
+								next;
+							} else {
+								for(.@i = 5113; .@i <= 5125; .@i++) {
+									setquest .@i;
+								}
+								lght_duk01 = 10;
+								mes "[保羅協夫]";
+								mes "謝謝你，"+strcharinfo(0)+"";
+								mes "你想快速進入，對嗎？";
+								next;
+							}
+						}
+					}
+				}
+				if (getpartyleader(getcharid(1),2) == getcharid(0)) {
+					if (instance_create("保羅協夫實驗室") < 0) {
+						mes "[保羅協夫]";
+						mes "嗯…實驗室進入系統有點怪異。等我檢查一下系統？";
+						close;
+					}
+					mes "[保羅協夫]";
+					mes "請稍等…";
+					next;
+					mes "保羅協夫開始控制某個齒輪。";
+					next;
+					progressbar "FF00FF", 2;
+					mes "[保羅協夫]";
+					mes "好的！我已經為進入系統標記";
+					mes "^0000ff"+ strcharinfo(1) +"^000000 隊長名稱 ^0000ff"+ strcharinfo(0) +"^000000！！";
+					next;
+					mes "[保羅協夫]";
+					mes "現在，你的隊伍可以自由通過入口。";
+					close;
+				} else {
+					mes "[保羅協夫]";
+					mes "你不是^0000ff隊長^000000，請他來找我吧。";
+					close;
+				}
+			case 3:
+				mes "[保羅協夫]";
+				mes "需要更多的準備？我們沒有太多時間。";
+				close;
+			}
+		} else {
+			mes "[保羅協夫]";
+			mes "你想去那裡嗎？那是自殺！我的實驗室進入系統並不像您想像的那麼容易。";
+			close;
+		}
+	} else {
+		mes "[保羅協夫]";
+		mes "有些奇怪的事情發生。如果這種情況繼續發生，也許我們應該嘗試其他方式…";
+		close;
+	}
+}
+*/
+/*
+lhz_dun04,147,279,0	script	實驗室門口	CLEAR_NPC,{
+	if ((MaxWeight - Weight) < 1000 || !checkweight(1201, 1)) {
+		mes "^FF0000由於身上有太多的物品，你的要求被拒絕。^000000";
+		close;
+	}
+	.@lhz_time = checkquest(5112, PLAYTIME);
+	if (.@lhz_time == -1) {
+		mes "這是保羅協夫實驗室的門口，";
+		mes "有東西在裡面嚎叫著…";
+		next;
+		if (select("一探究竟！","還是小心微妙，別進去好了。") == 2) {
+			mes "你停止進入保羅協夫的實驗室。";
+			close;
+		}else if(BaseLevel < 140) {
+			mes "裡面看起來很危險…"; 
+			mes "還是等到Lv.140後再來吧…"; 
+			close;
+		}
+		set .@party_id,getcharid(1);
+		set .@ins_mas,getpartyleader(.@party_id,2);
+		set .@p_name$,getpartyname(.@party_id);
+		set .@p_reader$,strcharinfo(0);
+		set .@md_name$,"保羅協夫的實驗室";
+		
+		mes "[保羅協夫]";
+		mes "你確定要進入了嗎?";
+		mes "如果你願意你已經可以進入實驗室。";
+		next;
+		mes "[保羅協夫]";
+		mes "按下緊急按鈕嘗試更改系統，便可以進入實驗室。";
+		next;
+		mes "[保羅協夫]";
+		mes "許多警報系統只要把他們關了便不會再運作。";
+		next;
+		mes "[保羅協夫]";
+		mes "阿！如果在使用緊急系統的時候會變得相當不穩定，發生在這實驗室裡的事情實在太神祕了。";
+		next;
+		mes "[保羅協夫]";
+		mes "我不知道這麼做會發生甚麼事，也許你會因此受傷也不一定。";
+		next;
+		mes "[保羅協夫]";
+		mes "你真的想要進入" + .@md_name$ + "？";
+		next;
+		switch(select("進入實驗室","離開"))
+		{		
+		case 1:
+			//callfunc "PartyIPCheck";
+			switch(instance_enter(.@md_name$)) {
+			case IE_OTHER:
+			case IE_NOINSTANCE:
+			case IE_NOMEMBER:
+				mes "^FF0000(警告)^000000";
+				mes ""+strcharinfo(0)+"...";
+				mes "^FF0000(未認證的使用者)^000000";
+				next;
+				pushpc 0, 10;
+				percentheal -5,0;
+				specialeffect EF_AUTOCOUNTER;
+				specialeffect2 EF_BASH;
+				mes "你已經受到實驗室保護機制的攻擊";
+				close;
+			case IE_OK:						
+				mapannounce strnpcinfo(4),"實驗室入口系統授予 " + getpartyname(getcharid(1)) + " 隊伍的 " + strcharinfo(0) + " 存取權限…",bc_map,"0x0DF297";
+				setquest 5112;
+				//warp "1@lhz", 45, 148;
+				close;
+			}			
+		case 2:
+			close;
+		}
+	} else if (.@lhz_time == 0) {
+		mes "滴～～！滴滴～！";
+		next;
+		mes ""+ strcharinfo(0) +"…";
+		mes "^FF0000禁止人員^000000";
+		next;
+		mes "系統拒絕你的進入。";
+		close;
+	} else if (.@lhz_time >= 1) {
+		mes "滴～～！滴滴～！";
+		next;
+		//if (.@lhz_time == 2)
+			//recall_completequest 5112;
+		erasequest 5112;
+		mes ""+ strcharinfo(0) +". . .";
+		mes "^FF0000訪問拒絕已被取消^000000";
+		close;
+	} else {
+		mes "^FF0000錯誤！錯誤！^000000";
+		mes "^FF0000請再試一次。^000000";
+		close;
+	}
+	end;
+}
+*/
+lhz_dun04,151,276,3	script	研究員	4_LGTSCIENCE,{
+	set .@quest_time,checkquest(5112,PLAYTIME);
+	set .@party_id,getcharid(1);
+	switch(select("創建記憶迷宮:進入保羅協夫實驗室:取消")){
+		case 1:
+		if (BaseLevel < 90) {	mes "^00C400 此任務最低等級限制為 90 ^000000";		close;	}
+		if (.@quest_time == 0 || .@quest_time == 1) {	mes "副本冷卻中";close;
+		}else{
+			if (isbegin_quest(5112))
+				erasequest 5112;
+			if (getpartyleader(getcharid(1),2) == getcharid(0)) {
+			if (instance_create("保羅協夫實驗室") < 0)  {	mes "通道已經打開了!";	close;}
+				announce "★ 副本公告 ★ 隊伍 [ "+getpartyname(getcharid(1)) +" ] 準備挑戰【 保羅協夫實驗室 】副本！",15,0x33ea91;
+
+				mes "通道已經打開了!";
+				close;
+				}
+				mes "請隊長與我談話吧!";
+				close;
+		}
+		case 2: 
+		if (.@quest_time == 0 || .@quest_time == 1) {mes "副本冷卻中";	close;}
+			if (isbegin_quest(5112))
+				erasequest 5112;
+			if (instance_enter("保羅協夫實驗室") != 0) { 
+				mes "請先開啟通道";
+				close;
+				}
+				if(checkquest(5113) == -1){setquest 5113;}
+				if(checkquest(5114) == -1){setquest 5114;}
+				if(checkquest(5115) == -1){setquest 5115;}
+				if(checkquest(5116) == -1){setquest 5116;}
+				if(checkquest(5117) == -1){setquest 5117;}
+				if(checkquest(5118) == -1){setquest 5118;}
+				if(checkquest(5119) == -1){setquest 5119;}
+				if(checkquest(5120) == -1){setquest 5120;}
+				if(checkquest(5121) == -1){setquest 5121;}
+				if(checkquest(5122) == -1){setquest 5122;}
+				if(checkquest(5123) == -1){setquest 5123;}
+				if(checkquest(5124) == -1){setquest 5124;}
+				if(checkquest(5125) == -1){setquest 5125;}
+					setquest 5112;
+				end;
+			
+		case 3:
+		close;
+	
+		}
+}	
+
+// The Lab No.1 : System 1_1
+//============================================================
+1@lhz,35,108,4	script	實驗室1#1_1	CLEAR_NPC,{
+	end;
+
+OnInstanceInit:
+	initnpctimer;
+	end;
+
+OnDisable:
+	stopnpctimer;
+	end;
+
+OnType_02:
+	donpcevent instance_npcname("文件#1_1")+"::OnEnable";
+	donpcevent instance_npcname("閥#1_2")+"::OnEnable";
+	donpcevent instance_npcname("閥#1_3")+"::OnEnable";
+	mapannounce instance_mapname("1@lhz"),"[安全系統] 有關人士訪問與緊急存取方法",bc_map,"0xff9977";
+	end;
+
+OnTimer1000:
+	mapannounce instance_mapname("1@lhz"),"[安全系統] 這是一個警告通知!警告提示!入侵偵測.",bc_map,"0xff9977";
+	end;
+
+OnTimer2000:
+	mapannounce instance_mapname("1@lhz"),"[安全系統] 在5秒內, 該實驗室1號的安全系統將被啟動.",bc_map,"0xff9977";
+	end;
+
+OnTimer7000:
+	donpcevent instance_npcname("怪物控制1#mob01")+"::OnEnable";
+	end;
+}
+
+// The Lab No.1 Monster Control
+//============================================================
+1@lhz,37,108,4	script	怪物控制1#mob01	CLEAR_NPC,{
+	end;
+
+OnEnable:
+	.@map$ = instance_mapname("1@lhz");
+	mapannounce .@map$,"[安全系統] 安全系統啟動!實驗動物被釋放.有關人員必須撤離.",bc_map,"0xff9977";
+	areamonster .@map$,35,159,50,169,"饑餓的動物實驗",2242,rand(10,15),instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+	initnpctimer;
+	end;
+
+OnDisable:
+	killmonster instance_mapname("1@lhz"),instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+	end;
+
+OnTimer180000:
+	stopnpctimer;
+	if (mobcount(instance_mapname("1@lhz"), instance_npcname(strnpcinfo(0))+"::OnMyMobDead") < 1) {
+		donpcevent instance_npcname("實驗室1#1_1")+"::OnType_02";
+		mapannounce instance_mapname("1@lhz"),"[安全系統] 該實驗室1號的安全系統已經停止.",bc_map,"0xff9977";
+	} else {
+		initnpctimer;
+	}
+	end;
+
+OnMyMobDead:
+	if (mobcount(instance_mapname("1@lhz"), instance_npcname(strnpcinfo(0))+"::OnMyMobDead") < 1) {
+		donpcevent instance_npcname("實驗室1#1_1")+"::OnType_02";
+		mapannounce instance_mapname("1@lhz"),"[安全系統] 該實驗室1號的安全系統已經停止.",bc_map,"0xff9977";
+		stopnpctimer;
+	}
+	end;
+}
+
+// Emergency Access Valve Manual
+//============================================================
+1@lhz,39,168,0	script	文件#1_1	CLEAR_NPC,{
+	mes "一疊散落在地上的文件.";
+	next;
+	if (getpartyleader(getcharid(1),2) == getcharid(0)) {
+		mes "你開始閱讀使用說明書.";
+		next;
+		mes "[手動閥門說明書]";
+		switch(lght_duk02) {
+		case 0:
+			switch(rand(1,6)) {
+			case 1:
+				lght_duk02 = 1;
+				mes "打開左側閥門順時針兩次, 一次逆時針, 順時針一次";
+				break;
+			case 2:
+				lght_duk02 = 2;
+				mes "打開左側閥門順時針一次, 兩次逆時針, 順時針一次";
+				break;
+			case 3:
+				lght_duk02 = 3;
+				mes "旋轉左邊的閥門一次順時針, 逆時針一次, 兩次順時針";
+				break;
+			case 4:
+				lght_duk02 = 4;
+				mes "打開右側閥逆時針兩次, 一次順時針, 逆時針一次";
+				break;
+			case 5:
+				lght_duk02 = 5;
+				mes "打開右側閥逆時針一次, 兩次順時針, 逆時針一次";
+				break;
+			case 6:
+				lght_duk02 = 6;
+				mes "打開右側閥逆時針一次, 一次順時針, 逆時針兩次";
+				break;
+			default:
+				mes "這是一個未知的錯誤.如果您嘗試一次後得到了同樣的問題, 聯繫GM ";
+				break;
+			}
+			break;
+		case 1:
+			mes "打開左側閥門順時針兩次, 一次逆時針, 順時針一次";
+			break;
+		case 2:
+			mes "打開左側閥門順時針一次, 兩次逆時針, 順時針一次";
+			break;
+		case 3:
+			mes "旋轉左邊的閥門一次順時針, 逆時針一次, 兩次順時針";
+			break;
+		case 4:
+			mes "打開右側閥逆時針兩次, 一次順時針, 逆時針一次";
+			break;
+		case 5:
+			mes "打開右側閥逆時針一次, 兩次順時針, 逆時針一次";
+			break;
+		case 6:
+			mes "打開右側閥逆時針一次, 一次順時針, 逆時針兩次";
+			break;
+		default:
+			mes "這是一個未知的錯誤.如果您嘗試一次後得到了同樣的問題, 聯繫GM.";
+			break;
+		}
+	} else {
+		mes "讓你們的隊長來控制閥門.";
+	}
+	close;
+
+OnInstanceInit:
+	disablenpc instance_npcname("文件#1_1");
+	end;
+
+OnEnable:
+	specialeffect EF_LIGHTSPHERE;
+	enablenpc instance_npcname("文件#1_1");
+	end; 
+}
+
+// Left Valve
+//============================================================
+1@lhz,41,172,0	script	閥#1_2	CLEAR_NPC,{
+	.@open_portal = 0;
+	mes "這是左側手動閥的緊急開關";
+	if (getpartyleader(getcharid(1),2) == getcharid(0)) {
+		next;
+		mes "你要向哪個方向轉?";
+		next;
+		if (lght_duk02 < 1 || lght_duk02 > 3) {
+			for(.@i = 1; .@i <= 4; .@i++) {
+				select("順時針", "逆時針");
+				mes "-金屬的聲音-";
+				if (.@i != 4)
+					mes "然後向哪個方向?";
+				next;
+			}
+		} else {
+			// lght_duk02 == 1 : Clockwise, Clockwise, Counterclockwise, Clockwise
+			// lght_duk02 == 2 : Clockwise, Counterclockwise, Counterclockwise, Clockwise
+			// lght_duk02 == 3 : Clockwise, Counterclockwise, Clockwise, Clockwise
+			for(.@i = 1; .@i <= 4; .@i++) {
+				switch(select("順時針", "逆時針")) {
+				case 1:
+					if ((.@i == 1 || .@i == 4) || (.@i == 2 && lght_duk02 == 1) || (.@i == 3 && lght_duk02 == 3)) {
+						.@open_portal += 1;
+					}
+				case 2:
+					if ((.@i == 2 && lght_duk02 != 1) || (.@i == 3 && lght_duk02 != 3)) {
+						.@open_portal += 1;
+					}
+				}
+				mes "-金屬的聲音-";
+				if (.@i != 4)
+					mes "然後向哪個方向?";
+				next;
+			}
+		}
+		if (.@open_portal == 4) {
+			donpcevent instance_npcname("#potal_01")+"::OnEnable";
+			lght_duk02 = 0;
+			mes "-門開了-";
+			next;
+			mes "它連接到2號實驗室的門現在是開放的";
+		} else {
+			lght_duk02 = 0;
+			mes "什麼都沒有發生.";
+			next;
+			mes "你需要重新來過";
+		}
+	}
+	close;
+
+OnInstanceInit:
+	disablenpc instance_npcname("閥#1_2");
+	end;
+
+OnEnable:
+	specialeffect EF_LIGHTSPHERE;
+	enablenpc instance_npcname("閥#1_2");
+	end;
+}
+
+// Right Valve
+//============================================================
+1@lhz,52,172,0	script	閥#1_3	CLEAR_NPC,{
+	.@open_portal = 0;
+	mes "這是右側手動閥的緊急開關";
+	if (getpartyleader(getcharid(1),2) == getcharid(0)) {
+		next;
+		mes "你要向哪個方向轉?";
+		next;
+		if (lght_duk02 < 4 || lght_duk02 > 6) {
+			for(.@i = 1; .@i <= 4; .@i++) {
+				select("順時針", "逆時針");
+				mes "-金屬的聲音-";
+				if (.@i != 4)
+					mes "然後向哪個方向?";
+				next;
+			}
+		} else {
+			// lght_duk02 == 4 : Counterclockwise, Counterclockwise, Clockwise, Counterclockwise
+			// lght_duk02 == 5 : Counterclockwise, Clockwise, Clockwise, Counterclockwise
+			// lght_duk02 == 6 : Counterclockwise, Clockwise, Counterclockwise, Counterclockwise
+			for(.@i = 1; .@i <= 4; .@i++) {
+				switch(select("順時針", "逆時針")) {
+				case 1:
+					if ((.@i == 2 && lght_duk02 != 4) || (.@i == 3 && lght_duk02 != 6))
+						.@open_portal += 1;
+					break;
+				case 2:
+					if ((.@i == 1 || .@i == 4) || (.@i == 2 && lght_duk02 == 4) || (.@i == 3 && lght_duk02 == 6))
+						.@open_portal += 1;
+					break;
+				}
+				mes "-金屬的聲音-";
+				if (.@i != 4)
+					mes "然後向哪個方向?";
+				next;
+			}
+		}
+		if (.@open_portal == 4) {
+			donpcevent instance_npcname("#potal_01")+"::OnEnable";
+			lght_duk02 = 0;
+			mes "-門開了-";
+			next;
+			mes "它連接到2號實驗室的門現在是開放的";
+		} else {
+			lght_duk02 = 0;
+			mes "什麼都沒發生.";
+			next;
+			mes "你需要重新來過.";
+		}
+	}
+	close;
+
+OnInstanceInit:
+	disablenpc instance_npcname("閥#1_3");
+	end;
+
+OnEnable:
+	specialeffect EF_LIGHTSPHERE;
+	enablenpc instance_npcname("閥#1_3");
+	end;
+}
+
+
+// The Lab No.1 >> The Lab No.2 Warp portal
+//============================================================
+1@lhz,45,173,0	script	#potal_01	WARPNPC,2,2,{
+	end;
+
+OnInstanceInit:
+OnDisable:
+	disablenpc instance_npcname("#potal_01");
+	end;
+
+OnEnable:
+	mapannounce instance_mapname("1@lhz"),"[管理系統] 它連接到2號實驗室的門現在是開放的.",bc_map,"0xff9977";
+	enablenpc instance_npcname("#potal_01");
+	end;
+
+OnTouch:
+	warp instance_mapname("1@lhz"), 151, 29;
+	end;
+}
+
+// The Lab No.2
+//============================================================
+1@lhz,151,29,0	script	#2_0	-1,1,1,{
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("#2_0");
+	end;
+
+OnDisable:
+	disablenpc instance_npcname("#2_0");
+	end;
+
+OnTouch:
+	donpcevent instance_npcname("實驗室2#2_1")+"::OnEnable";
+	donpcevent instance_npcname("#2_0")+"::OnDisable";
+	end;
+}
+
+// The Lab No.2 2_1 System - Control of Monster Wave and Pipe right before exploding
+//============================================================
+1@lhz,35,106,4	script	實驗室2#2_1	CLEAR_NPC,{
+	end;
+
+OnInstanceInit:
+OnDisable:
+	stopnpctimer;
+	end;
+
+OnEnable:
+	initnpctimer;
+	end;
+
+OnTimer1000:
+	mapannounce instance_mapname("1@lhz"),"[安全系統] 這是一個警告通知!警告提示!2號實驗室入侵偵測中!!",bc_map,"0xff9977";
+	end;
+
+OnTimer3000:
+	mapannounce instance_mapname("1@lhz"),"[安全系統] 在5秒內, 實驗室2號安全系統將開始運行.",bc_map,"0xff9977";
+	end;
+
+OnTimer5000:
+	mapannounce instance_mapname("1@lhz"),"[管理系統] 警告!第二實驗室管道壓力過高.",bc_map,"0xff99ff";
+	end;
+
+OnTimer8000:
+	mapannounce instance_mapname("1@lhz"),"[安全系統] 第一安全系統啟動!有關人員必須撤離",bc_map,"0xff9977";
+	donpcevent instance_npcname("怪物控制2#mob02")+"::On01";
+	end;
+
+OnTimer10000:
+	mapannounce instance_mapname("1@lhz"),"[管理系統] 警告!管網壓力過高.打開閥門.",bc_map,"0xff99ff";
+	donpcevent instance_npcname("實驗室2#2_2")+"::OnPipePressure";
+	end;
+
+OnTimer190000:
+	mapannounce instance_mapname("1@lhz"),"[管理系統] 警告!管網壓力過高.打開閥門.",bc_map,"0xff99ff";
+	donpcevent instance_npcname("實驗室2#2_2")+"::OnPipePressure";
+	end;
+
+OnTimer303000:
+	mapannounce instance_mapname("1@lhz"),"[安全系統] 在5秒內, 第二安全系統將開始運行.",bc_map,"0xff9977";
+	end;
+
+OnTimer308000:
+	mapannounce instance_mapname("1@lhz"),"[安全系統] 第二安全系統被啟動!有關人員必須撤離.",bc_map,"0xff9977";
+	donpcevent instance_npcname("怪物控制2#mob02")+"::On02";
+	end;
+
+OnTimer370000:
+	mapannounce instance_mapname("1@lhz"),"[管理系統] 警告!管網壓力過高.打開閥門",bc_map,"0xff99ff";
+	donpcevent instance_npcname("實驗室2#2_2")+"::OnPipePressure";
+	end;
+
+OnTimer550000:
+	mapannounce instance_mapname("1@lhz"),"[管理系統] 警告!管網壓力過高.打開閥門.",bc_map,"0xff99ff";
+	donpcevent instance_npcname("實驗室2#2_2")+"::OnPipePressure";
+	end;
+
+OnTimer603000:
+	mapannounce instance_mapname("1@lhz"),"[安全系統] 在5秒內, 第三安全系統將開始工作.",bc_map,"0xff9977";
+	end;
+
+OnTimer608000:
+	mapannounce instance_mapname("1@lhz"),"[安全系統] 第三安全系統啟動!有關人員必須撤離.",bc_map,"0xff9977";
+	donpcevent instance_npcname("怪物控制2#mob02")+"::On03";
+	end;
+
+OnTimer730000:
+	mapannounce instance_mapname("1@lhz"),"[管理系統] 警告!管網壓力過高.打開閥門.",bc_map,"0xff99ff";
+	donpcevent instance_npcname("實驗室2#2_2")+"::OnPipePressure";
+	end;
+
+OnTimer903000:
+	mapannounce instance_mapname("1@lhz"),"[安全系統] 在5秒內, 第四安全系統將開始運行",bc_map,"0xff9977";
+	end;
+
+OnTimer908000:
+	mapannounce instance_mapname("1@lhz"),"[安全系統] 第四安全系統啟動!有關人員必須撤離.",bc_map,"0xff9977";
+	donpcevent instance_npcname("怪物控制2#mob02")+"::On04";
+	end;
+
+OnTimer910000:
+	mapannounce instance_mapname("1@lhz"),"[管理系統] 警告!管網壓力過高.打開閥門.",bc_map,"0xff99ff";
+	donpcevent instance_npcname("實驗室2#2_2")+"::OnPipePressure";
+	end;
+
+OnTimer1090000:
+	mapannounce instance_mapname("1@lhz"),"[管理系統] 警告!管網壓力過高.打開閥門.",bc_map,"0xff99ff";
+	donpcevent instance_npcname("實驗室2#2_2")+"::OnPipePressure";
+	end;
+
+OnTimer1203000:
+	mapannounce instance_mapname("1@lhz"),"[安全系統] 在5秒內, 第五安全系統將開始工作.",bc_map,"0xff9977";
+	end;
+
+OnTimer1208000:
+	mapannounce instance_mapname("1@lhz"),"[安全系統] 第五安防系統啟動!有關人員必須撤離.",bc_map,"0xff9977";
+	donpcevent instance_npcname("怪物控制2#mob02")+"::On05";
+	end;
+
+OnTimer1270000:
+	mapannounce instance_mapname("1@lhz"),"[管理系統] 警告!管網壓力過高.打開閥門",bc_map,"0xff99ff";
+	donpcevent instance_npcname("實驗室2#2_2")+"::OnPipePressure";
+	stopnpctimer;
+	end;
+}
+
+// The Lab No.2 2_2 System - Pipe Operation Control
+// When 3 pipes explode, system will shut down.
+//============================================================
+1@lhz,37,106,4	script	實驗室2#2_2	CLEAR_NPC,{
+	end;
+
+OnInstanceInit:
+	'broken_pipes = 0;
+	stopnpctimer;
+	end;
+
+OnPipePressure:
+	switch(rand(1,6)) {
+	case 1:
+		donpcevent instance_npcname("閥#2_1")+"::OnEnable";
+		donpcevent instance_npcname("怪物控制2#mob02")+"::On2_01";
+	case 2:
+		donpcevent instance_npcname("閥#2_2")+"::OnEnable";
+		donpcevent instance_npcname("怪物控制2#mob02")+"::On2_02";
+	case 3:
+		donpcevent instance_npcname("閥#2_3")+"::OnEnable";
+		donpcevent instance_npcname("怪物控制2#mob02")+"::On2_03";
+	case 4:
+		donpcevent instance_npcname("閥#2_4")+"::OnEnable";
+		donpcevent instance_npcname("怪物控制2#mob02")+"::On2_04";
+	case 5:
+		donpcevent instance_npcname("閥#2_5")+"::OnEnable";
+		donpcevent instance_npcname("怪物控制2#mob02")+"::On2_05";
+	case 6:
+		donpcevent instance_npcname("閥#2_6")+"::OnEnable";
+		donpcevent instance_npcname("怪物控制2#mob02")+"::On2_06";
+	}
+	initnpctimer;
+	end;
+
+OnDisableValve1:
+	disablenpc instance_npcname("閥#2_1");
+	stopnpctimer;
+	end;
+
+OnDisableValve2:
+	disablenpc instance_npcname("閥#2_2");
+	stopnpctimer;
+	end;
+
+OnDisableValve3:
+	disablenpc instance_npcname("閥#2_3");
+	stopnpctimer;
+	end;
+
+OnDisableValve4:
+	disablenpc instance_npcname("閥#2_4");
+	stopnpctimer;
+	end;
+
+OnDisableValve5:
+	disablenpc instance_npcname("閥#2_5");
+	stopnpctimer;
+	end;
+
+OnDisableValve6:
+	disablenpc instance_npcname("閥#2_6");
+	stopnpctimer;
+	end;
+
+OnTimer63000:
+	for(.@i = 1; .@i < 7; .@i++) {
+		specialeffect EF_SUI_EXPLOSION, AREA, instance_npcname("閥#2_"+.@i+"");
+		disablenpc instance_npcname("閥#2_"+.@i+"");
+	}
+	'broken_pipes += 1;
+	if ('broken_pipes == 3) {
+		donpcevent instance_npcname("#2_3")+"::OnEnable";
+		stopnpctimer;
+	} else {
+		mapannounce instance_mapname("1@lhz"),"[管理系統] 爆管檢測! 如果實驗室被更多的突破, 系統將停止.",bc_map,"0xff99ff";
+	}
+	end;
+}
+
+// The Lab No.2 2_3 System
+//============================================================
+1@lhz,151,48,0	script	#2_3	-1,20,20,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("#2_3");
+	end;
+
+OnEnable:
+	initnpctimer;
+	end;
+
+OnTimer1000:
+	mapannounce instance_mapname("1@lhz"),"[管理系統] 系統死機!系統死機!10秒內從實驗室裡撤離!!",bc_map,"0xff99ff";
+	end;
+
+OnTimer11000:
+	mapannounce instance_mapname("1@lhz"),"[管理系統] 疏散!!",bc_map,"0xff99ff";
+	enablenpc instance_npcname("#2_3");
+	end;
+
+OnTouch:
+	warp "lhz_dun04", 147, 273;
+	end;
+}
+
+// The Lab No.2 Monster Control
+//============================================================
+1@lhz,39,106,4	script	怪物控制2#mob02	CLEAR_NPC,{
+	end;
+
+On01:
+	.@map$ = instance_mapname("1@lhz");
+	.@label$ = instance_npcname("怪物控制2#mob02")+"::OnMyMobDead";
+	areamonster .@map$,139,37,164,58,"饑餓的動物實驗",2242,10,.@label$;
+	end;
+
+On02:
+	.@map$ = instance_mapname("1@lhz");
+	.@label$ = instance_npcname("怪物控制2#mob02")+"::OnMyMobDead";
+	areamonster .@map$,139,37,164,58,"饑餓的動物實驗",2242,20,.@label$;
+	end;
+
+On03:
+	.@map$ = instance_mapname("1@lhz");
+	.@label$ = instance_npcname("怪物控制2#mob02")+"::OnMyMobDead";
+	areamonster .@map$,139,37,164,58,"饑餓的動物實驗",2242,16,.@label$;
+	end;
+
+On04:
+	.@map$ = instance_mapname("1@lhz");
+	.@label$ = instance_npcname("怪物控制2#mob02")+"::OnMyMobDead";
+	areamonster .@map$,139,37,164,58,"饑餓的動物實驗",2242,19,.@label$;
+	end;
+
+On05:
+	.@map$ = instance_mapname("1@lhz");
+	.@label$ = instance_npcname("怪物控制2#mob02")+"::OnMyMobDead";
+	areamonster .@map$,139,37,164,58,"饑餓的動物實驗",2242,20,.@label$;
+	end;
+
+On2_01:
+	.@label$ = instance_npcname("怪物控制2#mob02")+"::OnMyMobDead";
+	areamonster instance_mapname("1@lhz"),155,43,161,49,"饑餓的動物實驗",2243,5,.@label$;
+	end;
+
+On2_02:
+	.@label$ = instance_npcname("怪物控制2#mob02")+"::OnMyMobDead";
+	areamonster instance_mapname("1@lhz"),137,40,143,46,"饑餓的動物實驗",2243,5,.@label$;
+	end;
+
+On2_03:
+	.@label$ = instance_npcname("怪物控制2#mob02")+"::OnMyMobDead";
+	areamonster instance_mapname("1@lhz"),137,51,143,57,"饑餓的動物實驗",2243,5,.@label$;
+	end;
+
+On2_04:
+	.@label$ = instance_npcname("怪物控制2#mob02")+"::OnMyMobDead";
+	areamonster instance_mapname("1@lhz"),143,56,149,62,"饑餓的動物實驗",2243,5,.@label$;
+	end;
+
+On2_05:
+	.@label$ = instance_npcname("怪物控制2#mob02")+"::OnMyMobDead";
+	areamonster instance_mapname("1@lhz"),160,48,166,54,"饑餓的動物實驗",2243,5,.@label$;
+	end;
+
+On2_06:
+	.@label$ = instance_npcname("怪物控制2#mob02")+"::OnMyMobDead";
+	areamonster instance_mapname("1@lhz"),135,44,141,50,"饑餓的動物實驗",2243,5,.@label$;
+	end;
+
+OnDisable:
+	killmonster instance_mapname("1@lhz"),instance_npcname("怪物控制2#mob02")+"::OnMyMobDead";
+	end;
+
+OnMyMobDead:
+	if (mobcount(instance_mapname("1@lhz"),instance_npcname("怪物控制2#mob02")+"::OnMyMobDead") < 1) {
+		donpcevent instance_npcname("#potal_02")+"::OnEnable";
+		donpcevent instance_npcname("實驗室2#2_1")+"::OnDisable";
+		mapannounce instance_mapname("1@lhz"),"[安全系統] 2號實驗室的安全系統已經停止.",bc_map,"0xff9977";
+	}
+	end;
+}
+
+// The Lab No.2 Valves
+//============================================================
+-	script	bio4FLab2Valve	-1,{
+	if (getpartyleader(getcharid(1),2) == getcharid(0)) {
+		progressbar "0xffff00", 20;
+		stopnpctimer;
+		donpcevent instance_npcname("實驗室2#2_2")+"::OnDisableValve1";
+		disablenpc instance_npcname(strnpcinfo(0));
+		end;
+	} else {
+		mes "讓你們的隊長來控制這個閥門.";
+		close;
+	}
+
+OnInstanceInit:
+	disablenpc instance_npcname(strnpcinfo(0));
+	end;
+
+OnEnable:
+	enablenpc instance_npcname(strnpcinfo(0));
+	initnpctimer;
+	end;
+
+OnTimer3000:
+	specialeffect EF_DRAGONSMOKE,AREA,instance_npcname(strnpcinfo(0));
+	stopnpctimer;
+	initnpctimer;
+	end;
+}
+1@lhz,158,46,0	duplicate(bio4FLab2Valve)	閥#2_1	CLEAR_NPC
+1@lhz,138,43,0	duplicate(bio4FLab2Valve)	閥#2_2	CLEAR_NPC
+1@lhz,139,54,0	duplicate(bio4FLab2Valve)	閥#2_3	CLEAR_NPC
+1@lhz,145,60,0	duplicate(bio4FLab2Valve)	閥#2_4	CLEAR_NPC
+1@lhz,165,51,0	duplicate(bio4FLab2Valve)	閥#2_5	CLEAR_NPC
+1@lhz,137,47,0	duplicate(bio4FLab2Valve)	閥#2_6	CLEAR_NPC
+
+// The Lab No.2 >> The Lab No.3 Warp portal(General)
+//============================================================
+1@lhz,151,64,0	script	#potal_02	WARPNPC,2,2,{
+	end;
+
+OnInstanceInit:
+OnDisable:
+	disablenpc instance_npcname("#potal_02");
+	end;
+
+OnEnable:
+	mapannounce instance_mapname("1@lhz"),"[管理系統] 連接到3號實驗室的門已經打開",bc_map,"0xff99ff";
+	enablenpc instance_npcname("#potal_02");
+	end;
+
+OnTouch:
+	warp instance_mapname("1@lhz"), 84, 28;
+	end;
+}
+
+// The Lab No.3
+//============================================================
+1@lhz,84,28,0	script	#3_0	-1,1,1,{
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("#3_0");
+	end;
+
+OnDisable:
+	disablenpc instance_npcname("#3_0");
+	end;
+
+OnTouch:
+	donpcevent instance_npcname("實驗室3#3_1")+"::OnEnable";
+	donpcevent instance_npcname("#3_0")+"::OnDisable";
+	end;
+}
+
+// The Lab No.3 3_1 System - Monster wave control
+//============================================================
+1@lhz,35,104,4	script	實驗室3#3_1	CLEAR_NPC,{
+	end;
+
+OnEnable:
+	initnpctimer;
+	end;
+
+OnDisable:
+	stopnpctimer;
+	end;
+
+OnTimer1000:
+	mapannounce instance_mapname("1@lhz"),"[安全系統] 這是一個警告通知!警告提示!",bc_map,"0xff9977";
+	donpcevent instance_npcname("怪物控制3#mob03")+"::OnDisable";
+	end;
+
+OnTimer5000:
+	mapannounce instance_mapname("1@lhz"),"[安全系統] 3號實驗室入侵偵測中!!",bc_map,"0xff9977";
+	end;
+
+OnTimer7000:
+	mapannounce instance_mapname("1@lhz"),"[安全系統] 在5秒內, 3號實驗室的安全系統將開始工作",bc_map,"0xff9977";
+	end;
+
+OnTimer12000:
+	mapannounce instance_mapname("1@lhz"),"[安全系統] 3號實驗室的第一安全系統啟動!有關人員必須撤離.",bc_map,"0xff9977";
+	donpcevent instance_npcname("怪物控制3#mob03")+"::On01";
+	end;
+
+OnTimer192000:
+	mapannounce instance_mapname("1@lhz"),"[安全系統] 3號實驗室的第二安全系統啟動!有關人員必須撤離.",bc_map,"0xff9977";
+	donpcevent instance_npcname("怪物控制3#mob03")+"::On02";
+	end;
+
+OnTimer372000:
+	mapannounce instance_mapname("1@lhz"),"[安全系統] 3號實驗室的第三安全系統啟動!有關人員必須撤離.",bc_map,"0xff9977";
+	donpcevent instance_npcname("怪物控制3#mob03")+"::On03";
+	end;
+
+OnTimer552000:
+	mapannounce instance_mapname("1@lhz"),"[安全系統] 3號實驗室的第四安全系統啟動!有關人員必須撤離.",bc_map,"0xff9977";
+	donpcevent instance_npcname("怪物控制3#mob03")+"::On04";
+	end;
+
+OnTimer732000:
+	mapannounce instance_mapname("1@lhz"),"[安全系統] 3號實驗室的第五安全系統啟動!有關人員必須撤離.",bc_map,"0xff9977";
+	donpcevent instance_npcname("怪物控制3#mob03")+"::On05";
+	stopnpctimer;
+	end;
+}
+
+// The Lab No.3 Monster Control
+//============================================================
+1@lhz,37,104,4	script	怪物控制3#mob03	CLEAR_NPC,{
+	end;
+
+On01:
+	.@map$ = instance_mapname("1@lhz");
+	.@label$ = instance_npcname("怪物控制3#mob03")+"::OnMyMobDead";
+	monster .@map$,80,60,"饑餓的動物",2242,1,.@label$;
+	monster .@map$,81,58,"饑餓的動物",2242,1,.@label$;
+	monster .@map$,82,56,"饑餓的動物",2242,1,.@label$;
+	monster .@map$,84,60,"饑餓的動物",2242,1,.@label$;
+	monster .@map$,85,58,"饑餓的動物",2242,1,.@label$;
+	monster .@map$,82,60,"饑餓的動物",2243,1,.@label$;
+	monster .@map$,83,58,"饑餓的動物",2243,1,.@label$;
+	monster .@map$,85,56,"饑餓的動物",2243,1,.@label$;		
+	monster .@map$,86,60,"饑餓的動物",2243,1,.@label$;
+	monster .@map$,87,58,"饑餓的動物",2243,1,.@label$;
+	end;
+
+On02:
+	.@map$ = instance_mapname("1@lhz");
+	.@amount1 = rand(1,5);
+	.@amount2 = rand(1,5);
+	.@label$ = instance_npcname("怪物控制3#mob03")+"::OnMyMobDead";
+	monster .@map$,80,60,"饑餓的動物",2242,.@amount1,.@label$;
+	monster .@map$,82,60,"饑餓的動物",2242,.@amount2,.@label$;
+	monster .@map$,84,60,"饑餓的動物",2243,.@amount1,.@label$;
+	monster .@map$,86,60,"饑餓的動物",2242,.@amount2,.@label$;
+	monster .@map$,81,58,"饑餓的動物",2242,.@amount1,.@label$;
+	monster .@map$,83,58,"饑餓的動物",2243,.@amount2,.@label$;
+	monster .@map$,85,58,"饑餓的動物",2242,.@amount1,.@label$;
+	monster .@map$,87,58,"饑餓的動物",2242,.@amount2,.@label$;
+	monster .@map$,82,56,"饑餓的動物",2243,.@amount1,.@label$;
+	monster .@map$,85,56,"饑餓的動物",2242,.@amount2,.@label$;
+	end;
+
+On03:
+	.@map$ = instance_mapname("1@lhz");
+	.@amount1 = rand(1,5);
+	.@amount2 = rand(1,5);
+	.@amount3 = rand(1,5);
+	.@label$ = instance_npcname("怪物控制3#mob03")+"::OnMyMobDead";
+	monster .@map$,80,60,"饑餓的動物",2242,.@amount1,.@label$;
+	monster .@map$,82,60,"饑餓的動物",2242,.@amount2,.@label$;
+	monster .@map$,84,60,"饑餓的動物",2242,.@amount3,.@label$;
+	monster .@map$,86,60,"饑餓的動物",2243,.@amount1,.@label$;
+	monster .@map$,81,58,"饑餓的動物",2242,.@amount2,.@label$;
+	monster .@map$,83,58,"饑餓的動物",2242,.@amount3,.@label$;
+	monster .@map$,85,58,"饑餓的動物",2242,.@amount1,.@label$;
+	monster .@map$,87,58,"饑餓的動物",2243,.@amount2,.@label$;
+	monster .@map$,82,56,"饑餓的動物",2242,.@amount3,.@label$;
+	monster .@map$,85,56,"饑餓的動物",2242,.@amount1,.@label$;
+	end;
+
+On04:
+	.@map$ = instance_mapname("1@lhz");
+	.@amount1 = rand(1,5);
+	.@amount2 = rand(1,5);
+	.@amount3 = rand(1,5);
+	.@amount4 = rand(1,5);
+	.@label$ = instance_npcname("怪物控制3#mob03")+"::OnMyMobDead";
+	monster .@map$,80,60,"饑餓的動物",2242,.@amount1,.@label$;
+	monster .@map$,82,60,"饑餓的動物",2242,.@amount2,.@label$;
+	monster .@map$,84,60,"饑餓的動物",2242,.@amount3,.@label$;
+	monster .@map$,86,60,"饑餓的動物",2242,.@amount4,.@label$;
+	monster .@map$,81,58,"饑餓的動物",2243,.@amount1,.@label$;
+	monster .@map$,83,58,"饑餓的動物",2242,.@amount2,.@label$;
+	monster .@map$,85,58,"饑餓的動物",2242,.@amount3,.@label$;
+	monster .@map$,87,58,"饑餓的動物",2242,.@amount4,.@label$;
+	monster .@map$,82,56,"饑餓的動物",2243,.@amount1,.@label$;
+	monster .@map$,85,56,"饑餓的動物",2242,.@amount2,.@label$;
+	end;
+
+On05:
+	.@map$ = instance_mapname("1@lhz");
+	.@amount1 = rand(1,5);
+	.@amount2 = rand(1,5);
+	.@amount3 = rand(1,5);
+	.@amount4 = rand(1,5);
+	.@amount5 = rand(1,5);
+	.@label$ = instance_npcname("怪物控制3#mob03")+"::OnMyMobDead";
+	monster .@map$,80,60,"饑餓的動物",2243,.@amount1,.@label$;
+	monster .@map$,82,60,"饑餓的動物",2242,.@amount2,.@label$;
+	monster .@map$,84,60,"饑餓的動物",2242,.@amount3,.@label$;
+	monster .@map$,86,60,"饑餓的動物",2243,.@amount4,.@label$;
+	monster .@map$,81,58,"饑餓的動物",2242,.@amount5,.@label$;
+	monster .@map$,83,58,"饑餓的動物",2242,.@amount1,.@label$;
+	monster .@map$,85,58,"饑餓的動物",2243,.@amount2,.@label$;
+	monster .@map$,87,58,"饑餓的動物",2242,.@amount3,.@label$;
+	monster .@map$,82,56,"饑餓的動物",2242,.@amount4,.@label$;
+	monster .@map$,85,56,"饑餓的動物",2243,.@amount5,.@label$;
+	end;
+
+OnDisable:
+	killmonster instance_mapname("1@lhz"),instance_npcname("怪物控制3#mob03")+"::OnMyMobDead";
+	end;
+
+OnMyMobDead:
+	if (mobcount(instance_mapname("1@lhz"),instance_npcname("怪物控制3#mob03")+"::OnMyMobDead") < 1) {
+		donpcevent instance_npcname("#potal_03")+"::OnEnable";
+		donpcevent instance_npcname("實驗室3#3_1")+"::OnDisable";
+		mapannounce instance_mapname("1@lhz"),"[安全系統] 3號實驗室的安全系統已經停止!",bc_map,"0xff9977";
+	}
+	end;
+}
+
+// The Lab No.3 >> Boss's Room Warp portal
+//============================================================
+1@lhz,83,62,0	script	#potal_03	WARPNPC,2,2,{
+	end;
+
+OnInstanceInit:
+	disablenpc instance_npcname("#potal_03");
+	end;
+
+OnEnable:
+	mapannounce instance_mapname("1@lhz"),"[管理系統] 連接到4號實驗室的門已經打開",bc_map,"0x7799ff";
+	enablenpc instance_npcname("#potal_03");
+	end;
+
+OnDisable:
+	disablenpc instance_npcname("#potal_03");
+	end;
+
+OnTouch:
+	warp instance_mapname("1@lhz"), 137, 100;
+	end;
+}
+
+// The Lab No.4
+//============================================================
+1@lhz,137,100,0	script	#4_0	-1,1,1,{
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("#4_0");
+	end;
+
+OnDisable:
+	disablenpc instance_npcname("#4_0");
+	end;
+
+OnTouch:
+	donpcevent instance_npcname("實驗室4#4_1")+"::OnEnable";
+	donpcevent instance_npcname("#4_0")+"::OnDisable";
+	end;
+}
+
+// The Lab No.4 4_1 System - Summon of Boss Monster
+//============================================================
+1@lhz,35,102,4	script	實驗室4#4_1	CLEAR_NPC,{
+	end;
+
+OnEnable:
+	initnpctimer;
+	end;
+
+OnDisable:
+	stopnpctimer;
+	end;
+
+OnTimer1000:
+	mapannounce instance_mapname("1@lhz"),"耳語: 你是誰....",bc_map,"0x7DCBF0";
+	specialeffect EF_SPHERE,AREA,instance_npcname("闇●騎士領主 賽依連#boss01");
+	end;
+
+OnTimer2000:
+	specialeffect EF_SPHERE,AREA,instance_npcname("闇●神射手 迪文#boss02");
+	end;
+
+OnTimer3000:
+	mapannounce instance_mapname("1@lhz"),"耳語: 不要靠近...",bc_map,"0x7DCBF0";
+	specialeffect EF_SPHERE,AREA,instance_npcname("闇●神行太保 科迪#boss03");
+	end;
+
+OnTimer4000:
+	specialeffect EF_SPHERE,AREA,instance_npcname("闇●十字刺客 艾勒梅斯#boss04");
+	end;
+
+OnTimer5000:
+	mapannounce instance_mapname("1@lhz"),"耳語: 這是一個非常危險的地方..",bc_map,"0x7DCBF0";
+	specialeffect EF_SPHERE,AREA,instance_npcname("闇●冷豔舞姬 特蘭提尼#boss05");
+	end;
+
+OnTimer6000:
+	specialeffect EF_SPHERE,AREA,instance_npcname("闇●武術宗師 陳理歐#boss06");
+	end;
+
+OnTimer7000:
+	mapannounce instance_mapname("1@lhz"),"耳語: 你不會活著出去....",bc_map,"0x7DCBF0";
+	specialeffect EF_SPHERE,AREA,instance_npcname("闇●搞笑藝人 雅歐帕奇爾#boss07");
+	end;
+
+OnTimer8000:
+	specialeffect EF_SPHERE,AREA,instance_npcname("闇●創造者 普拉梅姆#boss08");
+	end;
+
+OnTimer9000:
+	mapannounce instance_mapname("1@lhz"),"耳語: 如果你不希望成為我們的一部分....",bc_map,"0x7DCBF0";
+	specialeffect EF_SPHERE,AREA,instance_npcname("闇●聖殿十字軍 蘭達#boss09");
+	end;
+
+OnTimer10000:
+	specialeffect EF_SPHERE,AREA,instance_npcname("闇●智者 西里亞#boss10");
+	end;
+
+OnTimer11000:
+	mapannounce instance_mapname("1@lhz"),"耳語: 現在離開....",bc_map,"0x7DCBF0";
+	specialeffect EF_SPHERE,AREA,instance_npcname("闇●超魔導師 凱特莉娜#boss11");
+	end;
+
+OnTimer12000:
+	specialeffect EF_SPHERE,AREA,instance_npcname("闇●神官 瑪嘉雷特#boss12");
+	end;
+
+OnTimer13000:
+	mapannounce instance_mapname("1@lhz"),"耳語: 之前這個地方是徹底充滿了悲傷和痛苦....",bc_map,"0x7DCBF0";
+	specialeffect EF_SPHERE,AREA,instance_npcname("闇●神工匠 哈沃得#boss13");
+	end;
+
+OnTimer14000:
+	specialeffect EF_SPHERE,AREA,instance_npcname("實驗體 格蘭#boss14");
+	end;
+
+OnTimer15000:
+	specialeffect EF_SPHERE,AREA,instance_npcname("實驗體 洛基#boss15");
+	end;
+
+OnTimer16000:
+	specialeffect EF_SPHERE,AREA,instance_npcname("實驗體 狄瑞#boss16");
+	end;
+
+OnTimer17000:
+	mapannounce instance_mapname("1@lhz"),"耳語: 啊....這....這是為時已晚......",bc_map,"0x7DCBF0";
+	donpcevent instance_npcname("怪物控制4#mob04")+"::OnEnable";
+	stopnpctimer;
+	end;
+}
+
+// Area No. 4 - Boss Summon Control
+//============================================================
+1@lhz,37,102,4	script	怪物控制4#mob04	CLEAR_NPC,{
+	end;
+
+OnEnable:
+	switch(rand(1,13)) {
+	case 1:
+		donpcevent instance_npcname("闇●騎士領主 賽依連#boss01")+"::OnEnable";
+		end;
+	case 2:
+		donpcevent instance_npcname("闇●神射手 迪文#boss02")+"::OnEnable";
+		end;
+	case 3:
+		donpcevent instance_npcname("闇●神行太保 科迪#boss03")+"::OnEnable";
+		end;
+	case 4:
+		donpcevent instance_npcname("闇●十字刺客 艾勒梅斯#boss04")+"::OnEnable";
+		end;
+	case 5:
+		donpcevent instance_npcname("闇●冷豔舞姬 特蘭提尼#boss05")+"::OnEnable";
+		end;
+	case 6:
+		donpcevent instance_npcname("闇●武術宗師 陳理歐#boss06")+"::OnEnable";
+		end;
+	case 7:
+		donpcevent instance_npcname("闇●搞笑藝人 雅歐帕奇爾#boss07")+"::OnEnable";
+		end;
+	case 8:
+		donpcevent instance_npcname("闇●創造者 普拉梅姆#boss08")+"::OnEnable";
+		end;
+	case 9:
+		donpcevent instance_npcname("闇●聖殿十字軍 蘭達#boss09")+"::OnEnable";
+		end;
+	case 10:
+		donpcevent instance_npcname("闇●智者 西里亞#boss10")+"::OnEnable";
+		end;
+	case 11:
+		donpcevent instance_npcname("闇●超魔導師 凱特莉娜#boss11")+"::OnEnable";
+		end;
+	case 12:
+		donpcevent instance_npcname("闇●神官 瑪嘉雷特#boss12")+"::OnEnable";
+		end;
+	case 13:
+		donpcevent instance_npcname("闇●神工匠 哈沃得#boss13")+"::OnEnable";
+		end; 
+	}
+
+OnDisable:
+	//stopnpctimer;
+	end;
+}
+
+// Random Experiments in Tubes
+//============================================================
+1@lhz,156,148,3	script	實驗體 格蘭#boss14	4_M_03,{ end; }
+1@lhz,152,152,3	script	實驗體 洛基#boss15	4_M_HUMAN_01,{ end; }
+1@lhz,148,156,3	script	實驗體 狄瑞#boss16	4_M_DWARF,{ end; }
+
+// Bosses
+//============================================================
+-	script	bio4FBoss	-1,{
+	end;
+
+OnEnable:
+	.@map$ = instance_mapname("1@lhz");
+	.@label$ = instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+	specialeffect EF_SUI_EXPLOSION;
+
+	if (strnpcinfo(0) == "闇●騎士領主 賽依連#boss01")
+		monster .@map$,129,154,"暗●騎士領主 賽依連",1646,1,.@label$;
+	else if (strnpcinfo(0) == "闇●神射手 迪文#boss02")
+		monster .@map$,125,150,"暗●神射手 迪文",1650,1,.@label$;
+	else if (strnpcinfo(0) == "闇●神行太保 科迪#boss03")
+		monster .@map$,121,146,"闇●神行太保 格蒂",2239,1,.@label$;
+	else if (strnpcinfo(0) == "闇●十字刺客 艾勒梅斯#boss04")
+		monster .@map$,117,142,"闇●十字刺客 艾勒梅斯",1647,1,.@label$;
+	else if (strnpcinfo(0) == "闇●冷豔舞姬 特蘭提尼#boss05")
+		monster .@map$,117,125,"闇●冷豔舞姬 特蘭提妮",2241,1,.@label$;
+	else if (strnpcinfo(0) == "闇●武術宗師 陳理歐#boss06")
+		monster .@map$,121,121,"闇●武術宗師 陳",2238,1,.@label$;
+	else if (strnpcinfo(0) == "闇●搞笑藝人 雅歐帕奇爾#boss07")
+		monster .@map$,125,117,"闇●搞笑藝人 阿弗克希奧",2240,1,.@label$;
+	else if (strnpcinfo(0) == "闇●創造者 普拉梅姆#boss08")
+		monster .@map$,129,113,"闇●創造者 弗拉梅爾",2236,1,.@label$;
+	else if (strnpcinfo(0) == "闇●聖殿十字軍 蘭達#boss09")
+		monster .@map$,146,113,"闇●聖殿十字軍 蘭德爾",2235,1,.@label$;
+	else if (strnpcinfo(0) == "闇●智者 西里亞#boss10")
+		monster .@map$,150,117,"闇●智者 希莉亞",2237,1,.@label$;
+	else if (strnpcinfo(0) == "闇●超魔導師 凱特莉娜#boss11")
+		monster .@map$,154,121,"闇●超魔導師 凱特莉娜",1651,1,.@label$;
+	else if (strnpcinfo(0) == "闇●神官 瑪嘉雷特#boss12")
+		monster .@map$,158,125,"闇●神官 瑪嘉雷特",1649,1,.@label$;
+	else if (strnpcinfo(0) == "闇●神工匠 哈沃得#boss13")
+		monster .@map$,158,142,"闇●神工匠 哈沃得",1648,1,.@label$;
+
+	end;
+
+OnDisable:
+	killmonster instance_mapname("1@lhz"),instance_npcname(strnpcinfo(0))+"::OnMyMobDead";
+	disablenpc instance_npcname(strnpcinfo(0));
+	end;
+
+OnMyMobDead:
+	if (mobcount(instance_mapname("1@lhz"), instance_npcname(strnpcinfo(0))+"::OnMyMobDead") < 1) {
+		.@map$ = instance_mapname("1@lhz");
+
+		if (strnpcinfo(0) == "闇●騎士領主 賽依連#boss01")
+			mapannounce .@map$,"呀, 在哪裡都是我的同伴....",bc_map,"0xFD3B02";
+		else if (strnpcinfo(0) == "闇●神射手 迪文#boss02")
+			mapannounce .@map$,"任何..之一, 請大家幫忙..請.....",bc_map,"0xFD3B02";
+		else if (strnpcinfo(0) == "闇●神行太保 科迪#boss03")
+			mapannounce .@map$,"我的行為..太貿然..",bc_map,"0xFD3B02";
+		else if (strnpcinfo(0) == "闇●十字刺客 艾勒梅斯#boss04")
+			mapannounce .@map$,"啊.....我絕對打敗....",bc_map,"0xFD3B02";
+		else if (strnpcinfo(0) == "闇●冷豔舞姬 特蘭提尼#boss05")
+			mapannounce .@map$,"啊..曾經可以......舞蹈和唱歌.... ...開心....",bc_map,"0xFD3B02";
+		else if (strnpcinfo(0) == "闇●武術宗師 陳理歐#boss06")
+			mapannounce .@map$,"我...我..對不起....",bc_map,"0xFD3B02";
+		else if (strnpcinfo(0) == "闇●搞笑藝人 雅歐帕奇爾#boss07")
+			mapannounce .@map$,"...新的歌......是....對.....她....",bc_map,"0xFD3B02";
+		else if (strnpcinfo(0) == "闇●創造者 普拉梅姆#boss08")
+			mapannounce .@map$,"哈...我想向大家展示....新的藥水....",bc_map,"0xFD3B02";
+		else if (strnpcinfo(0) == "闇●聖殿十字軍 蘭達#boss09")
+			mapannounce .@map$,"每個人都被打敗了.....?",bc_map,"0xFD3B02";
+		else if (strnpcinfo(0) == "闇●智者 西里亞#boss10")
+			mapannounce .@map$,"這個實驗是.",bc_map,"0xFD3B02";
+		else if (strnpcinfo(0) == "闇●超魔導師 凱特莉娜#boss11")
+			mapannounce .@map$,"噢..是大家....?",bc_map,"0xFD3B02";
+		else if (strnpcinfo(0) == "闇●神官 瑪嘉雷特#boss12")
+			mapannounce .@map$,"我的好孩子......不要哭...啊....我們偉大的奧丁..請救救我們......",bc_map,"0xFD3B02";
+		else if (strnpcinfo(0) == "闇●神工匠 哈沃得#boss13")
+			mapannounce .@map$,"哦...不....不能呼吸....和我的妹妹...... ?",bc_map,"0xFD3B02";
+
+		donpcevent instance_npcname("保羅協夫#last")+"::OnEnable";
+		donpcevent instance_npcname(strnpcinfo(0))+"::OnDisable";
+	}
+	end;
+}
+1@lhz,127,156,5	duplicate(bio4FBoss)	闇●騎士領主 賽依連#boss01	1646
+1@lhz,123,152,5	duplicate(bio4FBoss)	闇●神射手 迪文#boss02	1650
+1@lhz,119,148,5	duplicate(bio4FBoss)	闇●神行太保 科迪#boss03	2239
+1@lhz,115,144,5	duplicate(bio4FBoss)	闇●十字刺客 艾勒梅斯#boss04	1647
+1@lhz,115,123,7	duplicate(bio4FBoss)	闇●冷豔舞姬 特蘭提尼#boss05	2241
+1@lhz,119,119,7	duplicate(bio4FBoss)	闇●武術宗師 陳理歐#boss06	2238
+1@lhz,123,115,7	duplicate(bio4FBoss)	闇●搞笑藝人 雅歐帕奇爾#boss07	2240
+1@lhz,127,111,7	duplicate(bio4FBoss)	闇●創造者 普拉梅姆#boss08	2236
+1@lhz,148,111,1	duplicate(bio4FBoss)	闇●聖殿十字軍 蘭達#boss09	2235
+1@lhz,152,115,1	duplicate(bio4FBoss)	闇●智者 西里亞#boss10	2237
+1@lhz,156,119,1	duplicate(bio4FBoss)	闇●超魔導師 凱特莉娜#boss11	1651
+1@lhz,160,123,1	duplicate(bio4FBoss)	闇●神官 瑪嘉雷特#boss12	1649
+1@lhz,160,144,3	duplicate(bio4FBoss)	闇●神工匠 哈沃得#boss13	1648
+
+// Wolfchev - Final encounter
+//============================================================
+1@lhz,137,156,7	script	保羅協夫#last	4_LGTSCIENCE,{
+			mes "[保羅協夫]";
+			mes "終於, 打敗所有的生物.再次感謝您.";
+			next;
+			mes "[保羅協夫]";
+			mes "想要離開時請告訴我吧, 我有禮物要送您。";
+			next;
+			mes "[保羅協夫]";
+			mes "你想離開這裡嗎?";
+			next;
+			if (select("不", "是的") == 1) {
+				mes "[保羅協夫]";
+				mes "等你想離開的時候告訴我";
+				close;
+			}
+			if(	  checkquest(5113,HUNTING) == 2
+				||checkquest(5114,HUNTING) == 2
+				||checkquest(5115,HUNTING) == 2
+				||checkquest(5116,HUNTING) == 2
+				||checkquest(5117,HUNTING) == 2
+				||checkquest(5118,HUNTING) == 2
+				||checkquest(5119,HUNTING) == 2
+				||checkquest(5120,HUNTING) == 2
+				||checkquest(5121,HUNTING) == 2
+				||checkquest(5122,HUNTING) == 2
+				||checkquest(5123,HUNTING) == 2
+				||checkquest(5124,HUNTING) == 2
+				||checkquest(5125,HUNTING) == 2){
+			mes "[保羅協夫]";
+			mes "好的, 我再次想說, "+ strcharinfo(0) +" 太謝謝您了, 打敗了試驗品. 這不是一個大禮物, 但我希望你能收下, 我不需要這個了.";
+			next;
+				
+			.@r = rand(1, 1000);
+			if      (.@r < 84)  getitem 2582,  1; //Salvage_Cape
+			else if (.@r < 167) getitem 18570, 1; //Ancient_Gold_Deco
+			else if (.@r < 250) getitem 1490,  1; //Giant_Lance
+			else if (.@r < 333) getitem 16017, 1; //Bloody_Cross
+			else if (.@r < 416) getitem 1291,  1; //Guillotine_Katar
+			else if (.@r < 499) getitem 1584,  1; //Chilly_Spell_Book
+			else if (.@r < 582) getitem 6471, 10; //Goast_Chill
+			else if (.@r < 665) getitem 6470, 10; //Blood_Thirst
+			else if (.@r < 748) getitem 6469, 10; //Will_Of_Warrior
+			else if (.@r < 831) getitem 6471, 20; //Goast_Chill
+			else if (.@r < 914) getitem 6470, 20; //Blood_Thirst
+			else                getitem 6469, 20; //Will_Of_Warrior		
+			close2;
+				}
+				
+			erasequest 5113;
+			erasequest 5114;
+			erasequest 5115;
+			erasequest 5116;
+			erasequest 5117;
+			erasequest 5118;
+			erasequest 5119;
+			erasequest 5120;
+			erasequest 5121;
+			erasequest 5122;
+			erasequest 5123;
+			erasequest 5124;
+			erasequest 5125;
+			mes "[保羅協夫]";
+			mes "那麼我將送您離開.";	
+			warp "egg1",214,167;
+			end;
+		
+
+	
+OnInstanceInit:
+OnDisable:
+	disablenpc instance_npcname("保羅協夫#last");
+	end;
+
+OnEnable:
+	enablenpc instance_npcname("保羅協夫#last");
+	end;
+}
+
+
+

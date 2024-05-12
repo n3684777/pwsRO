@@ -1,0 +1,934 @@
+1@cor	mapflag	noteleport
+1@cor	mapflag	monster_noteleport
+1@cor	mapflag	nosave	SavePoint
+1@cor	mapflag	nomemo
+1@cor	mapflag	nobranch
+1@cor	mapflag	noicewall
+1@cor	mapflag	restricted	6
+
+sp_cor,109,132,6	script	核心記憶#02	837,{
+
+	mes "----------------------------";	
+	mes ">> 副本獎勵清單";
+	mes "----------------------------";
+	mes "<ITEM>核心元件<INFO>25723</INFO></ITEM>";
+	mes "<ITEM>神秘零件<INFO>25669</INFO></ITEM>";
+	mes "<ITEM>加農刺劍-OS<INFO>13493</INFO></ITEM>";
+	mes "<ITEM>綠光巨劍-OS<INFO>21047</INFO></ITEM>";
+	mes "<ITEM>紅魔鬼手杖-OS<INFO>26151</INFO></ITEM>";
+	mes "<ITEM>殺人電路板-OS<INFO>28629</INFO></ITEM>";
+	mes "<ITEM>光明戰斧-OS<INFO>28136</INFO></ITEM>";
+	mes "<ITEM>藍寶石棒鎚-OS<INFO>16088</INFO></ITEM>";
+	mes "<ITEM>虛幻天弓-OS<INFO>18178</INFO></ITEM>";
+	mes "<ITEM>MH-P89-OS<INFO>18179</INFO></ITEM>";
+	mes "<ITEM>綠光拳刃-OS<INFO>28038</INFO></ITEM>";
+	mes "<ITEM>燃燒指虎-OS<INFO>1862</INFO></ITEM>";
+	mes "<ITEM>HR-S55-OS<INFO>28253</INFO></ITEM>";
+	mes "<ITEM>暗黑白珠短劍-OS<INFO>28755</INFO></ITEM>";
+	mes "<ITEM>AC-B44-OS<INFO>18180</INFO></ITEM>";
+	mes "<ITEM>推進器長槍-OS<INFO>32019</INFO></ITEM>";
+	mes "<ITEM>烏爾蒂奧流星錘-OS<INFO>16089</INFO></ITEM>";
+	mes "<ITEM>電流狐尾草-OS<INFO>26164</INFO></ITEM>";
+	mes "<ITEM>幻象機甲A型<INFO>15376</INFO></ITEM>";
+	mes "<ITEM>幻象機甲B型<INFO>15377</INFO></ITEM>";
+	mes "<ITEM>幻象推進翼A型<INFO>20933</INFO></ITEM>";
+	mes "<ITEM>幻象推進翼B型<INFO>20934</INFO></ITEM>";
+	mes "<ITEM>幻象戰靴A型<INFO>22196</INFO></ITEM>";
+	mes "<ITEM>幻象戰靴B型<INFO>22197</INFO></ITEM>";
+	mes "<ITEM>幻象助推器R<INFO>32207</INFO></ITEM>";
+	mes "<ITEM>幻象助推器L<INFO>32208</INFO></ITEM>";
+	mes "<ITEM>幻象戰鬥晶片R<INFO>32209</INFO></ITEM>";
+	mes "<ITEM>幻象戰鬥晶片L<INFO>32210</INFO></ITEM>";
+	mes "----------------------------";
+	close2;
+	cutin "",255;
+	end;
+}
+sp_cor,113,130,3	script	反叛者隊員	10198,{	
+	if(BaseLevel < 110) {
+		mes "[反叛者隊員]";
+		mes "這個作戰行動對你來說太危險了。";
+		mes "至少到110級再來吧。";
+		close;
+	}
+	if(checkquest(16362, PLAYTIME) == 2) {
+		erasequest 16362;
+	}
+	if(checkquest(16362, PLAYTIME) == 0 || checkquest(16362, PLAYTIME) == 1) {
+		mes "[反叛者隊員]";
+		mes "現在還沒到作戰時間，所以請先休息吧。";
+		close;
+	}
+	mes "[反叛者隊員]";
+	mes "現在是米那孩子的起床時間了！冒險者。";
+	mes "讓其他人靜靜地等著，";
+	mes "你會乖乖聽我講故事然後去睡覺的吧？";
+	next;
+	mes "[艾琉米那]";
+	mes "...低電量冷卻時間結束後防範設施和陷阱就會重新啟動的。";
+	cutin "ep171_elyumina03.bmp", 0;
+	next;	
+	mes "[艾琉米那]";
+	mes "你會再次請我介紹核心裡的傢伙並收集數據吧？";
+	mes "說是吧。求你了。我會跟著你的。";
+	mes "我想離開這小子身邊。";
+	cutin "ep171_elyumina02.bmp", 0;
+	next;	
+	mes "[反叛者隊員]";
+	mes "嗚嗚嗚，那真是可惜啊。冒險者。";
+	mes "如果你想參加作戰的話請先向我申請作戰。";
+	cutin "ep171_elyumina03.bmp", 255;
+	next;
+/*未獲得確切判定條件
+	mes "[反叛者隊員]";
+	mes "創建副本後請全部隊員使用投入作戰指令進入，";
+	mes "作戰會以全部隊員的進入為信號而開始。";
+	next;
+*/
+	mes "^ff0000如果馴服副本中的任意魔物，";
+	mes "可能會導致副本不能正常進行。";
+	mes "敬請留意。^000000";
+	next;
+	switch(select("準備作戰","投入作戰","取消")) {
+		case 1:
+			.@party_id = getcharid(1);
+			if (!.@party_id) {	
+				mes "[反叛者隊員]";
+				mes "前方很危險，你需要組成一支隊伍前往。";
+				close;
+			}
+			if (getcharid(0) != getpartyleader(getcharid(1),2)) {
+				mes "[反叛者隊員]";
+				mes "請讓你們隊長來找我。";
+				close;
+			}
+			if (instance_mapname("1@cor") != "" && instance_mapname("1@cor") != "1@cor") {
+				mes "[反叛者隊員]";
+				mes "行動已經成功申請，請迅速做好準備投入作戰。";
+				close;
+			}
+			if(instance_create("核心記憶") < 0) {
+				mes "[反叛者隊員]";
+				mes "核心記憶作戰申請失敗。";
+				close;
+			}
+			announce "★ 副本公告 ★ 隊伍 [ "+getpartyname(getcharid(1)) +" ] 準備挑戰【 核心記憶 】副本！",15,0x33ea91;
+			mes "[反叛者隊員]";
+			mes "作戰申請成功，做好準備就來找我吧。";
+			close;	
+		case 2:
+			.@party_id = getcharid(1);
+			if (!.@party_id) {	
+				mes "[反叛者隊員]";
+				mes "前方很危險，你需要組成一支隊伍前往。";
+				close;
+			}
+		//	if (instance_mapname("1@cor") == "" || instance_mapname("1@cor") == "1@cor") {
+		//		mes "[反叛者隊員]";
+		//		mes "讓你們隊長來申請行動。";
+		//		close;	
+		//	}
+//			announce "★ 副本公告 ★ 隊伍 [ "+getpartyname(getcharid(1)) +" ] 準備挑戰【 核心記憶 】副本！",15,0x33ea91;
+			switch(instance_enter("核心記憶")) {
+				case 3:
+					mes "發生一個未知錯誤。";
+					close;
+				case 2:
+					mes "副本進度 "+"核心記憶"+" 不存在。";
+					mes "隊長還沒有建立副本進度。";
+					close;
+				case 1:
+					mes "只有註冊過的成員可以進入副本 "+"核心記憶"+"。";
+					close;
+				case 0:
+					mapannounce "sp_cor",getpartyname(getcharid(1))+"小隊成員 "+strcharinfo(0)+" 進入副本核心記憶。",bc_map,"0x00ff99";
+					setquest 16362;
+					//warp "1@cor",176,169;
+					end;
+			}
+		case 3:
+			mes "[反叛者隊員]";
+			mes "做好準備再來吧。";
+			close;
+	}
+}
+
+sp_cor,111,130,3	script	艾琉米那#spositem	10301,{}
+
+1@cor,180,169,3	script	埃琳娜·博克巴#cord1	10192,5,5,{
+	if (getcharid(0) != getpartyleader(getcharid(1),2)) {
+		mes "[埃琳娜·博克巴]";
+		mes "你們的隊長呢。";
+		cutin "162elena_01.bmp", 2;
+		close2;
+		cutin "162elena_01.bmp", 255;
+		end;
+	}
+	mes "[埃琳娜·博克巴]";
+	mes "說明...這罪犯會給你說的了。";
+	mes "看管罪犯真是太累了。";
+	npctalk "埃琳娜·博克巴：說明...這罪犯會給你說的了。照顧罪犯真是太累了。";
+	cutin "162elena_01.bmp", 2;
+	hideoffnpc instance_npcname("艾琉米那#cord1");
+	next;
+	mes "[艾琉米那]";
+	mes "哈哈！那只是小事吧？";
+	mes "好好幹吧。不要把說明也推給我好嗎？";
+	npctalk "艾琉米那：那只是小事吧？好好幹吧。不要把說明也推給我好嗎？",instance_npcname("艾琉米那#cord1");
+	cutin "ep171_elyumina04.bmp", 0;
+	next;	
+	mes "[埃琳娜·博克巴]";
+	mes "住口。快開始吧。在我把你扔回USU之前開始吧？";
+	npctalk "埃琳娜·博克巴：住口。快開始吧。在我把你扔回USU之前開始吧？";
+	cutin "162elena_01.bmp", 2;
+	next;
+	mes "[艾琉米那]";
+	mes "這，這個...怕了你！";
+	mes "哼，這是為了保護我的孩子們才做說明的！";
+	npctalk "艾琉米那：哼，這是為了照顧我的孩子們才做說明的！",instance_npcname("艾琉米那#cord1");
+	cutin "ep171_elyumina03.bmp", 0;
+	next;	
+	mes "[艾琉米那]";
+	mes "...好吧，長話短說。";
+	mes "我的孩子們在四個地方設置了陷阱。";
+	npctalk "艾琉米那：...好吧，長話短說。我的孩子們在四個地方設置了陷阱。",instance_npcname("艾琉米那#cord1");
+	cutin "ep171_elyumina01.bmp", 0;
+	next;	
+	mes "[艾琉米那]";
+	mes "我在地圖上做了標記。你這混蛋要告訴隊友們如何前進。";
+	mes "你不是一個人來的吧？我的孩子們很強大哦。";
+	npctalk "艾琉米那：轉告隊員們吧。你不是一個人來的吧？我的孩子們很強大哦。",instance_npcname("艾琉米那#cord1");
+	cutin "ep171_elyumina01.bmp", 0;
+	viewpoint 1,222,235,1,0xFFFFFF;
+	viewpoint 1,220,170,2,0xFFFFFF;
+	viewpoint 1,160,119,3,0xFFFFFF;
+	viewpoint 1,140,79,4,0xFFFFFF;	
+	next;	
+	mes "[艾琉米那]";
+	mes "如果觸碰了陷阱，我可愛的孩子們就會出現哦。";
+	mes "你已經看到了各處的陷阱了吧？";
+	npctalk "艾琉米那：如果觸碰了陷阱，我可愛的孩子們就會出現哦。你已經看到了各處的陷阱了吧？",instance_npcname("艾琉米那#cord1");
+	cutin "ep171_elyumina04.bmp", 0;
+	next;	
+	mes "[艾琉米那]";
+	mes "四個陷阱都處理完畢後EL_A17T就會出現，";
+	mes "屆時我會把你這混蛋帶到上次一樣的地方。";
+	npctalk "艾琉米那：四個陷阱都處理完畢後EL_A17T就會出現，屆時我會把你這混蛋帶到上次一樣的地方。",instance_npcname("艾琉米那#cord1");
+	cutin "ep171_elyumina03.bmp", 0;
+	next;	
+	mes "[艾琉米那]";
+	mes "說明到此為止。那麼，快去幹活吧！";
+	mes "肌肉笨蛋們！哈哈哈哈！";
+	npctalk "艾琉米那：說明到此為止。那麼，快去幹活吧！肌肉笨蛋們！哈哈哈哈！",instance_npcname("艾琉米那#cord1");
+	cutin "ep171_elyumina04.bmp", 0;
+	donpcevent instance_npcname("艾琉米那#cord1")+"::OnEmotion1";
+	next;	
+	mes "[埃琳娜·博克巴]";
+	mes "...我會以某種方式和這個罪犯談談的...";
+	mes "那就拜託了。冒險者們！";
+	npctalk "埃琳娜·博克巴：...我會以某種方式和這個罪犯談談的...那就拜託了。冒險者們！";
+	cutin "162elena_02.bmp", 2;
+	close2;
+	cutin "162elena_02.bmp", 255;
+	set 'starttalk,1;
+	hideonnpc instance_npcname("埃琳娜·博克巴#cord1");
+	hideonnpc instance_npcname("艾琉米那#cord1");
+	hideoffnpc instance_npcname("箱子#cordbox1");
+	hideoffnpc instance_npcname("艾琉米那#cordbox1");
+	hideoffnpc instance_npcname("箱子#cordbox2");
+	hideoffnpc instance_npcname("艾琉米那#cordbox2");
+	hideoffnpc instance_npcname("箱子#cordbox3");
+	hideoffnpc instance_npcname("艾琉米那#cordbox3");
+	hideoffnpc instance_npcname("箱子#cordbox4");
+	hideoffnpc instance_npcname("艾琉米那#cordbox4");
+	end;
+OnTouch_:
+	if(!'starttalk) {
+		npctalk "埃琳娜·博克巴：在這邊，全體集合後並做簡要說明。";
+	}
+	end;
+OnInstanceInit:
+	set 'starttalk,0;
+	set 'cordmob,0;
+	setcell instance_mapname("1@cor"),159,224,159,217,cell_walkable,0;
+	setcell instance_mapname("1@cor"),98,224,98,217,cell_walkable,0;
+	setcell instance_mapname("1@cor"),133,240,140,240,cell_walkable,0;
+	end;
+}
+
+1@cor,178,172,3	script	艾琉米那#cord1	10301,{
+	end;
+OnInstanceInit:
+	hideonnpc instance_npcname("艾琉米那#cord1");
+	end;
+OnEmotion1:
+	emotion 18;
+	end;
+}
+
+//===============================================================================
+// 第一陷阱
+//===============================================================================
+1@cor,140,79,0	script	箱子#cordbox1	10250,{
+	if(!'cordbox1) {
+		specialeffect 635;
+		areamonster instance_mapname("1@cor"),133,84,147,74,"--ja--",20342,6,instance_npcname("箱子#cordbox1")+"::OnMobDead";
+		areamonster instance_mapname("1@cor"),133,84,147,74,"--ja--",20343,3,instance_npcname("箱子#cordbox1")+"::OnMobDead";
+		areamonster instance_mapname("1@cor"),133,84,147,74,"高級貝雷爾槍手",20356,3,instance_npcname("箱子#cordbox1")+"::OnMobDead";
+		donpcevent instance_npcname("化學毒袋#cordxj1")+"::OnStart";
+		set 'cordbox1,1;
+	}
+	end;
+OnMobDead:
+	if(mobcount(instance_mapname("1@cor"),instance_npcname("箱子#cordbox1")+"::OnMobDead") < 1) {
+		hideonnpc instance_npcname("箱子#cordbox1");
+		donpcevent instance_npcname("化學毒袋#cordxj1")+"::OnEnd";
+		set 'cordmob,'cordmob+1;
+		set 'cordbox1,2;
+		if('cordmob == 4) {
+			mapannounce instance_mapname("1@cor"),"埃琳娜·博克巴：如果全部處理好了的話就趕緊過來軍營這邊，艾琉米那會帶路的。",bc_map|bc_yellow;
+			hideoffnpc instance_npcname("艾琉米那#cord2");
+		}
+	}
+	end;
+OnInstanceInit:
+	hideonnpc instance_npcname("箱子#cordbox1");
+	set 'cordbox1,0;
+	end;
+}
+
+1@cor,140,78,0	script	化學毒袋#cordxj1	20344,3,3,{
+	end;
+OnTouch_:
+	if(!'cordxj1) {
+		set 'cordxj1,1;
+		monster instance_mapname("1@cor"),140,78,"--ja--",20344,1,instance_npcname("化學毒袋#cordxj1")+"::OnMobDead";
+		hideonnpc instance_npcname("化學毒袋#cordxj1");
+		stopnpctimer;
+	}
+	end;
+OnMobDead:
+	end;
+OnStart:
+	if('cordbox1 != 2) {
+		stopnpctimer;
+		enablenpc instance_npcname("化學毒袋#cordxj1");
+		hideoffnpc instance_npcname("化學毒袋#cordxj1");
+		set 'cordxj1,0;
+		initnpctimer;
+	}
+	end;
+OnTimer15000:
+	set 'cordxj1,1;
+	hideonnpc instance_npcname("化學毒袋#cordxj1");
+	end;
+OnTimer20000:
+	donpcevent instance_npcname("化學毒袋#cordxj1")+"::OnStart";
+	end;
+OnEnd:
+	stopnpctimer;
+	killmonster instance_mapname("1@cor"),instance_npcname("化學毒袋#cordxj1")+"::OnMobDead";
+	hideonnpc instance_npcname("化學毒袋#cordxj1");
+	disablenpc instance_npcname("化學毒袋#cordxj1");
+	end;
+OnInstanceInit:
+	hideonnpc instance_npcname("化學毒袋#cordxj1");
+	disablenpc instance_npcname("化學毒袋#cordxj1");
+	set 'cordxj1,0;
+	end;
+}
+
+1@cor,140,82,3	script	艾琉米那#cordbox1	10301,{
+	if('cordmob == 4) {
+		npctalk "艾琉米那：知道軍營位置嗎？我給你在地圖上重新標記了。我隨後就來！";
+		viewpoint 2,222,235,1,0xFFFFFF;
+		viewpoint 2,220,170,2,0xFFFFFF;
+		viewpoint 2,160,119,3,0xFFFFFF;
+		viewpoint 2,140,79,4,0xFFFFFF;	
+		viewpoint 1,172,223,5,0xFFFFFF;
+	} else if('cordbox1 == 2) {
+		npctalk "艾琉米那：這是非常好的戰鬥數據...那麼，繼續為我跑腿吧！";
+		viewpoint 2,140,79,4,0xFFFFFF;	
+	} else {
+		npctalk "艾琉米那：這是其中一處陷阱。";
+	}
+	end;
+OnInstanceInit:
+	hideonnpc instance_npcname("艾琉米那#cordbox1");
+	end;
+}
+
+//===============================================================================
+// 第二陷阱
+//===============================================================================
+1@cor,160,119,0	script	箱子#cordbox2	10250,{
+	if(!'cordbox2) {
+		specialeffect 635;
+		areamonster instance_mapname("1@cor"),153,124,167,114,"--ja--",20341,6,instance_npcname("箱子#cordbox2")+"::OnMobDead";
+		areamonster instance_mapname("1@cor"),153,124,167,114,"--ja--",20343,3,instance_npcname("箱子#cordbox2")+"::OnMobDead";
+		areamonster instance_mapname("1@cor"),153,124,167,114,"貝雷爾槍手",20355,3,instance_npcname("箱子#cordbox2")+"::OnMobDead";
+		donpcevent instance_npcname("生物電池#cordxj2")+"::OnStart";
+		set 'cordbox2,1;
+	}
+	end;
+OnMobDead:
+	if(mobcount(instance_mapname("1@cor"),instance_npcname("箱子#cordbox2")+"::OnMobDead") < 1) {
+		hideonnpc instance_npcname("箱子#cordbox2");
+		donpcevent instance_npcname("生物電池#cordxj2")+"::OnEnd";
+		set 'cordmob,'cordmob+1;
+		set 'cordbox2,2;
+		if('cordmob == 4) {
+			mapannounce instance_mapname("1@cor"),"埃琳娜·博克巴：如果全部處理好了的話就趕緊過來軍營這邊，艾琉米那會帶路的。",bc_map|bc_yellow;
+			hideoffnpc instance_npcname("艾琉米那#cord2");
+		}
+	}
+	end;
+OnInstanceInit:
+	hideonnpc instance_npcname("箱子#cordbox2");
+	set 'cordbox2,0;
+	end;
+}
+
+1@cor,160,118,0	script	生物電池#cordxj2	20345,3,3,{
+	end;
+OnTouch_:
+	if(!'cordxj2) {
+		set 'cordxj2,1;
+		monster instance_mapname("1@cor"),160,118,"--ja--",20345,1,instance_npcname("生物電池#cordxj2")+"::OnMobDead";
+		hideonnpc instance_npcname("生物電池#cordxj2");
+		stopnpctimer;
+		sleep 15000;
+		donpcevent instance_npcname("生物電池#cordxj2")+"::OnStart";
+	}
+	end;
+OnMobDead:
+	end;
+OnStart:
+	if('cordbox2 != 2) {
+		stopnpctimer;
+		enablenpc instance_npcname("生物電池#cordxj2");
+		hideoffnpc instance_npcname("生物電池#cordxj2");
+		set 'cordxj2,0;
+		initnpctimer;
+	}
+	end;
+OnTimer15000:
+	set 'cordxj2,1;
+	hideonnpc instance_npcname("生物電池#cordxj2");
+	end;
+OnTimer20000:
+	donpcevent instance_npcname("生物電池#cordxj2")+"::OnStart";
+	end;
+OnEnd:
+	stopnpctimer;
+	killmonster instance_mapname("1@cor"),instance_npcname("生物電池#cordxj2")+"::OnMobDead";
+	hideonnpc instance_npcname("生物電池#cordxj2");
+	disablenpc instance_npcname("生物電池#cordxj2");
+	end;
+OnInstanceInit:
+	hideonnpc instance_npcname("生物電池#cordxj2");
+	disablenpc instance_npcname("生物電池#cordxj2");
+	set 'cordxj2,0;
+	end;
+}
+
+1@cor,162,117,1	script	艾琉米那#cordbox2	10301,{
+	if('cordmob == 4) {
+		npctalk "艾琉米那：知道軍營位置嗎？我給你在地圖上重新標記了。我隨後就來！";
+		viewpoint 2,222,235,1,0xFFFFFF;
+		viewpoint 2,220,170,2,0xFFFFFF;
+		viewpoint 2,160,119,3,0xFFFFFF;
+		viewpoint 2,140,79,4,0xFFFFFF;	
+		viewpoint 1,172,223,5,0xFFFFFF;
+	} else if('cordbox2 == 2) {
+		npctalk "艾琉米那：這是非常好的戰鬥數據...那麼，繼續為我跑腿吧！";
+		viewpoint 2,160,119,3,0xFFFFFF;
+	} else {
+		npctalk "艾琉米那：這是其中一處陷阱。";
+	}
+	end;
+OnInstanceInit:
+	hideonnpc instance_npcname("艾琉米那#cordbox2");
+	end;
+}
+
+//===============================================================================
+// 第三陷阱
+//===============================================================================
+1@cor,220,170,0	script	箱子#cordbox3	10250,{
+	if(!'cordbox3) {
+		specialeffect 635;
+		areamonster instance_mapname("1@cor"),213,175,227,165,"--ja--",20342,6,instance_npcname("箱子#cordbox3")+"::OnMobDead";
+		areamonster instance_mapname("1@cor"),213,175,227,165,"--ja--",20343,3,instance_npcname("箱子#cordbox3")+"::OnMobDead";
+		areamonster instance_mapname("1@cor"),213,175,227,165,"高級貝雷爾槍手",20356,3,instance_npcname("箱子#cordbox3")+"::OnMobDead";
+		donpcevent instance_npcname("化學毒袋#cordxj3")+"::OnStart";
+		set 'cordbox3,1;
+	}
+	end;
+OnMobDead:
+	if(mobcount(instance_mapname("1@cor"),instance_npcname("箱子#cordbox3")+"::OnMobDead") < 1) {
+		hideonnpc instance_npcname("箱子#cordbox3");
+		donpcevent instance_npcname("化學毒袋#cordxj3")+"::OnEnd";
+		set 'cordmob,'cordmob+1;
+		set 'cordbox3,2;
+		if('cordmob == 4) {
+			mapannounce instance_mapname("1@cor"),"埃琳娜·博克巴：如果全部處理好了的話就趕緊過來軍營這邊，艾琉米那會帶路的。",bc_map|bc_yellow;
+			hideoffnpc instance_npcname("艾琉米那#cord2");
+		}
+	}
+	end;
+OnInstanceInit:
+	hideonnpc instance_npcname("箱子#cordbox3");
+	set 'cordbox3,0;
+	end;
+}
+
+1@cor,220,169,0	script	化學毒袋#cordxj3	20344,3,3,{
+	end;
+OnTouch_:
+	if(!'cordxj3) {
+		set 'cordxj3,1;
+		monster instance_mapname("1@cor"),220,169,"--ja--",20344,1,instance_npcname("化學毒袋#cordxj3")+"::OnMobDead";
+		hideonnpc instance_npcname("化學毒袋#cordxj3");
+		stopnpctimer;
+	}
+	end;
+OnMobDead:
+	end;
+OnStart:
+	if('cordbox3 != 2) {
+		stopnpctimer;
+		enablenpc instance_npcname("化學毒袋#cordxj3");
+		hideoffnpc instance_npcname("化學毒袋#cordxj3");
+		set 'cordxj3,0;
+		initnpctimer;
+	}
+	end;
+OnTimer15000:
+	set 'cordxj3,1;
+	hideonnpc instance_npcname("化學毒袋#cordxj3");
+	end;
+OnTimer20000:
+	donpcevent instance_npcname("化學毒袋#cordxj3")+"::OnStart";
+	end;
+OnEnd:
+	stopnpctimer;
+	killmonster instance_mapname("1@cor"),instance_npcname("化學毒袋#cordxj3")+"::OnMobDead";
+	hideonnpc instance_npcname("化學毒袋#cordxj3");
+	disablenpc instance_npcname("化學毒袋#cordxj3");
+	end;
+OnInstanceInit:
+	hideonnpc instance_npcname("化學毒袋#cordxj3");
+	disablenpc instance_npcname("化學毒袋#cordxj3");
+	set 'cordxj3,0;
+	end;
+}
+
+1@cor,218,172,5	script	艾琉米那#cordbox3	10301,{
+	if('cordmob == 4) {
+		npctalk "艾琉米那：知道軍營位置嗎？我給你在地圖上重新標記了。我隨後就來！";
+		viewpoint 2,222,235,1,0xFFFFFF;
+		viewpoint 2,220,170,2,0xFFFFFF;
+		viewpoint 2,160,119,3,0xFFFFFF;
+		viewpoint 2,140,79,4,0xFFFFFF;	
+		viewpoint 1,172,223,5,0xFFFFFF;
+	} else if('cordbox3 == 2) {
+		npctalk "艾琉米那：這是非常好的戰鬥數據...那麼，繼續為我跑腿吧！";
+		viewpoint 2,220,170,2,0xFFFFFF;
+	} else {
+		npctalk "艾琉米那：這是其中一處陷阱。";
+	}
+	end;
+OnInstanceInit:
+	hideonnpc instance_npcname("艾琉米那#cordbox3");
+	end;
+}
+
+//===============================================================================
+// 第四陷阱
+//===============================================================================
+1@cor,222,235,0	script	箱子#cordbox4	10250,{
+	if(!'cordbox4) {
+		specialeffect 635;
+		areamonster instance_mapname("1@cor"),215,240,229,230,"--ja--",20341,6,instance_npcname("箱子#cordbox4")+"::OnMobDead";
+		areamonster instance_mapname("1@cor"),215,240,229,230,"--ja--",20343,3,instance_npcname("箱子#cordbox4")+"::OnMobDead";
+		areamonster instance_mapname("1@cor"),215,240,229,230,"貝雷爾槍手",20355,3,instance_npcname("箱子#cordbox4")+"::OnMobDead";
+		donpcevent instance_npcname("生物電池#cordxj4")+"::OnStart";
+		set 'cordbox4,1;
+	}
+	end;
+OnMobDead:
+	if(mobcount(instance_mapname("1@cor"),instance_npcname("箱子#cordbox4")+"::OnMobDead") < 1) {
+		hideonnpc instance_npcname("箱子#cordbox4");
+		donpcevent instance_npcname("生物電池#cordxj4")+"::OnEnd";
+		set 'cordmob,'cordmob+1;
+		set 'cordbox4,2;
+		if('cordmob == 4) {
+			mapannounce instance_mapname("1@cor"),"埃琳娜·博克巴：如果全部處理好了的話就趕緊過來軍營這邊，艾琉米那會帶路的。",bc_map|bc_yellow;
+			hideoffnpc instance_npcname("艾琉米那#cord2");
+		}
+	}
+	end;
+OnInstanceInit:
+	hideonnpc instance_npcname("箱子#cordbox4");
+	set 'cordbox4,0;
+	end;
+}
+
+1@cor,222,234,0	script	生物電池#cordxj4	20345,3,3,{
+	end;
+OnTouch_:
+	if(!'cordxj4) {
+		set 'cordxj4,1;
+		monster instance_mapname("1@cor"),222,234,"--ja--",20345,1,instance_npcname("生物電池#cordxj4")+"::OnMobDead";
+		hideonnpc instance_npcname("生物電池#cordxj4");
+		stopnpctimer;
+		sleep 15000;
+		donpcevent instance_npcname("生物電池#cordxj4")+"::OnStart";
+	}
+	end;
+OnMobDead:
+	end;
+OnStart:
+	if('cordbox4 != 2) {
+		stopnpctimer;
+		enablenpc instance_npcname("生物電池#cordxj4");
+		hideoffnpc instance_npcname("生物電池#cordxj4");
+		set 'cordxj4,0;
+		initnpctimer;
+	}
+	end;
+OnTimer15000:
+	set 'cordxj4,1;
+	hideonnpc instance_npcname("生物電池#cordxj4");
+	end;
+OnTimer20000:
+	donpcevent instance_npcname("生物電池#cordxj4")+"::OnStart";
+	end;
+OnEnd:
+	stopnpctimer;
+	killmonster instance_mapname("1@cor"),instance_npcname("生物電池#cordxj4")+"::OnMobDead";
+	hideonnpc instance_npcname("生物電池#cordxj4");
+	disablenpc instance_npcname("生物電池#cordxj4");
+	end;
+OnInstanceInit:
+	hideonnpc instance_npcname("生物電池#cordxj4");
+	disablenpc instance_npcname("生物電池#cordxj4");
+	set 'cordxj4,0;
+	end;
+}
+
+1@cor,224,238,3	script	艾琉米那#cordbox4	10301,{
+	if('cordmob == 4) {
+		npctalk "艾琉米那：知道軍營位置嗎？我給你在地圖上重新標記了。我隨後就來！";
+		viewpoint 2,222,235,1,0xFFFFFF;
+		viewpoint 2,220,170,2,0xFFFFFF;
+		viewpoint 2,160,119,3,0xFFFFFF;
+		viewpoint 2,140,79,4,0xFFFFFF;	
+		viewpoint 1,172,223,5,0xFFFFFF;
+	} else if('cordbox4 == 2) {
+		npctalk "艾琉米那：這是非常好的戰鬥數據...那麼，繼續為我跑腿吧！";
+		viewpoint 2,222,235,1,0xFFFFFF;
+	} else {
+		npctalk "艾琉米那：這是其中一處陷阱。";
+	}
+	end;
+OnInstanceInit:
+	hideonnpc instance_npcname("艾琉米那#cordbox4");
+	end;
+}
+
+1@cor,172,223,3	script	艾琉米那#cord2	10301,{
+	if (getcharid(0) != getpartyleader(getcharid(1),2)) {
+		mes "[艾琉米那]";
+		mes "你們的隊長呢。";
+		cutin "ep171_elyumina03.bmp", 2;
+		close2;
+		cutin "ep171_elyumina03.bmp", 255;
+		end;
+	}
+	mes "[艾琉米那]";
+	mes "真快呢...我的孩子們不能獲勝也是理所當然的。";
+	mes "雖然你這混蛋看起來很累的樣子~";
+	npctalk "艾琉米那：真快呢...我的孩子們不能獲勝也是理所當然的。雖然你這混蛋看起來很累的樣子？";
+	cutin "ep171_elyumina03.bmp", 0;
+	next;
+	mes "[艾琉米那]";
+	mes "...好吧。馬上去除掉EL-A17T試試？";
+	npctalk "艾琉米那：...好吧。馬上去除掉EL-A17T試試？";
+	cutin "ep171_elyumina01.bmp", 0;
+	mapannounce instance_mapname("1@cor"),"埃琳娜·博克巴：喂，該死的罪犯！立刻把門打開吧？",bc_map|bc_yellow;
+	next;
+	if(select("走吧","稍等一下")== 2) {
+		mes "[艾琉米那]";
+		mes "那你趕緊的吧。";
+		cutin "ep171_elyumina04.bmp", 0;
+		close2;
+		cutin "ep171_elyumina04.bmp", 255;
+		end;
+	}
+	mes "[艾琉米那]";
+	mes "哈哈哈！好吧。努力去吧！";
+	mes "為我獲得新的戰鬥數據吧！";
+	npctalk "艾琉米那：哈哈哈！好吧。努力去吧！為我獲得新的戰鬥數據吧！";
+	cutin "ep171_elyumina03.bmp", 0;
+	close2;
+	cutin "ep171_elyumina03.bmp", 255;
+	hideonnpc instance_npcname("艾琉米那#cord2");
+	enablenpc instance_npcname("#cordwarp1");	
+	end;
+OnInstanceInit:
+	hideonnpc instance_npcname("艾琉米那#cord2");
+	end;
+}
+
+1@cor,162,221,0	script	#cordwarp1	45,2,2,{
+	end;
+OnTouch:
+	warp instance_mapname("1@cor"),151,220;
+	if(!'cordbossstart) {		
+		donpcevent instance_npcname("#cordboss")+"::OnStart";
+		set 'cordbossstart,1;
+		sleep 2000;
+		donpcevent instance_npcname("#cordbossxj")+"::OnStart";
+	}
+	end;
+OnInstanceInit:
+	set 'cordbossstart,0;
+	disablenpc instance_npcname("#cordwarp1");	
+	end;
+}
+
+1@cor,0,0,0	script	#cordbossxj	139,{
+	end;
+OnStart:
+	setarray .@bossxj[0],1,2,3,4,5,6,7,8,9;
+	switch('cordxjzl = rand(1,2)) {
+		case 1:
+			mapannounce instance_mapname("1@cor"),"艾琉米那：有東西要噴出來了。準備好！",bc_map|bc_yellow;
+			for(set .@i,1;.@i <= 4;set .@i,.@i+1) {
+				set .@rand,rand(getarraysize(.@bossxj));
+				donpcevent instance_npcname("生物電池#cordbossb"+.@bossxj[.@rand])+"::OnStart";
+				deletearray .@bossxj[.@rand],1;
+				set 'cordbossdc,4;
+			}
+			break;
+		case 2:
+			mapannounce instance_mapname("1@cor"),"艾琉米那：有東西要噴出來了。準備好！",bc_map|bc_yellow;
+			for(set .@i,1;.@i <= 4;set .@i,.@i+1) {
+				set .@rand,rand(getarraysize(.@bossxj));
+				donpcevent instance_npcname("化學毒袋#cordbossd"+.@bossxj[.@rand])+"::OnStart";
+				deletearray .@bossxj[.@rand],1;
+			}
+			break;
+	}
+	initnpctimer;
+	end;
+OnTimer20000:
+	switch('cordxjzl) {
+		case 1:
+			for(set .@i,1;.@i <= 9;set .@i,.@i+1) {
+				hideonnpc instance_npcname("生物電池#cordbossb"+.@i);
+				disablenpc instance_npcname("生物電池#cordbossb"+.@i);
+			}
+			switch('cordbossdc) {
+				case 0:
+					break;
+				case 1:
+					mapannounce instance_mapname("1@cor"),"艾琉米那：只剩下1個生物電池。我的孩子，應該有變強吧？",bc_map|bc_yellow;
+					break;
+				case 2:
+					mapannounce instance_mapname("1@cor"),"埃琳娜·博克巴：剩下2個生物電池。那傢伙好像變強了一些。",bc_map|bc_yellow;
+					break;
+				case 3:
+					mapannounce instance_mapname("1@cor"),"埃琳娜·博克巴：剩下3個生物電池。當心，那傢伙好像變強了！",bc_map|bc_yellow;
+					break;
+				case 4:
+					mapannounce instance_mapname("1@cor"),"艾琉米那：還剩下4個生物電池。我的孩子，變得非常強大呢。",bc_map|bc_yellow;
+					break;
+			}
+			break;
+		case 2:
+			for(set .@i,1;.@i <= 9;set .@i,.@i+1) {
+				hideonnpc instance_npcname("化學毒袋#cordbossd"+.@i);
+				disablenpc instance_npcname("化學毒袋#cordbossd"+.@i);
+			}
+			break;
+	}
+	end;
+OnTimer28000:
+	stopnpctimer;
+	donpcevent instance_npcname("#cordbossxj")+"::OnStart";
+	end;
+OnEnd:
+	stopnpctimer;
+	for(set .@i,1;.@i <= 9;set .@i,.@i+1) {
+		donpcevent instance_npcname("生物電池#cordbossb"+.@i)+"::OnEnd";
+		donpcevent instance_npcname("化學毒袋#cordbossd"+.@i)+"::OnEnd";
+	}
+	end;
+OnInstanceInit:
+	set 'cordbossdc,0;
+	set 'cordxjzl,0;
+	end;
+}
+
+1@cor,0,0,0	script	#cordboss	139,{
+	end;
+OnStart:
+	monster instance_mapname("1@cor"),137,222,"--ja--",20340,1,instance_npcname("#cordboss")+"::OnBossDead";
+	'BossID = $@mobid[0];
+	end;
+OnBossDead:
+	'BossID = 0;
+	donpcevent instance_npcname("#cordbossxj")+"::OnEnd";
+	hideoffnpc instance_npcname("埃琳娜·博克巴#cord2");
+	hideoffnpc instance_npcname("艾琉米那#cord3");
+	disablenpc instance_npcname("#cordwarp1");
+//	npctalk "艾琉米那：簡直令人難以置信。那孩子可是我的傑作。",instance_npcname("艾琉米那#cord3");
+	end;
+}
+
+1@cor,115,219,0	script	生物電池#cordbossb1	20345,3,3,{
+	end;
+OnTouch_:
+	if(!getd("'corxjb"+replacestr(strnpcinfo(2),"cordbossb",""))) {
+		set getd("'corxjb"+replacestr(strnpcinfo(2),"cordbossb","")),1;
+		getmapxy (.@map$,.@x,.@y,BL_NPC);
+		monster instance_mapname("1@cor"),.@x,.@y,"--ja--",20345,1,instance_npcname(strnpcinfo(0))+"::OnMobDead";
+		hideonnpc instance_npcname(strnpcinfo(0));
+		set 'cordbossdc,'cordbossdc-1;
+	}
+	end;
+OnMobDead:
+	end;
+OnStart:
+	enablenpc instance_npcname(strnpcinfo(0));
+	hideoffnpc instance_npcname(strnpcinfo(0));
+	set getd("'corxjb"+replacestr(strnpcinfo(2),"cordbossb","")),0;
+	end;
+OnEnd:
+	killmonster instance_mapname("1@cor"),instance_npcname(strnpcinfo(0))+"::OnMobDead";
+	hideonnpc instance_npcname(strnpcinfo(0));
+	disablenpc instance_npcname(strnpcinfo(0));
+	end;
+OnInstanceInit:
+	hideonnpc instance_npcname(strnpcinfo(0));
+	disablenpc instance_npcname(strnpcinfo(0));
+	set getd("'corxjb"+replacestr(strnpcinfo(2),"cordbossb","")),0;
+	end;
+}
+
+1@cor,115,219,0	script	化學毒袋#cordbossd1	20344,3,3,{
+	end;
+OnTouch_:
+	if(!getd("'corxjb"+replacestr(strnpcinfo(2),"cordbossd",""))) {
+		getmapxy (.@map$,.@x,.@y,BL_NPC);
+		monster instance_mapname("1@cor"),.@x,.@y,"--ja--",20344,1,instance_npcname(strnpcinfo(0))+"::OnMobDead";
+		hideonnpc instance_npcname(strnpcinfo(0));
+		set getd("'corxjb"+replacestr(strnpcinfo(2),"cordbossd","")),1;
+		set getd("'corxjbok"+replacestr(strnpcinfo(2),"cordbossd","")),1;
+	}
+	end;
+OnMobDead:
+	end;
+OnStart:
+	if(!getd("'corxjbok"+replacestr(strnpcinfo(2),"cordbossd",""))) {
+		enablenpc instance_npcname(strnpcinfo(0));
+		hideoffnpc instance_npcname(strnpcinfo(0));
+		set getd("'corxjb"+replacestr(strnpcinfo(2),"cordbossd","")),0;
+	}
+	end;
+OnEnd:
+	killmonster instance_mapname("1@cor"),instance_npcname(strnpcinfo(0))+"::OnMobDead";
+	hideonnpc instance_npcname(strnpcinfo(0));
+	disablenpc instance_npcname(strnpcinfo(0));
+	end;
+OnInstanceInit:
+	hideonnpc instance_npcname(strnpcinfo(0));
+	disablenpc instance_npcname(strnpcinfo(0));
+	set getd("'corxjb"+replacestr(strnpcinfo(2),"cordbossd","")),0;
+	set getd("'corxjbok"+replacestr(strnpcinfo(2),"cordbossd","")),0;
+	end;
+}
+
+1@cor,122,221,0	duplicate(生物電池#cordbossb1)	生物電池#cordbossb2	20345,3,3
+1@cor,129,220,0	duplicate(生物電池#cordbossb1)	生物電池#cordbossb3	20345,3,3
+1@cor,136,213,0	duplicate(生物電池#cordbossb1)	生物電池#cordbossb4	20345,3,3
+1@cor,138,206,0	duplicate(生物電池#cordbossb1)	生物電池#cordbossb5	20345,3,3
+1@cor,138,228,0	duplicate(生物電池#cordbossb1)	生物電池#cordbossb6	20345,3,3
+1@cor,138,235,0	duplicate(生物電池#cordbossb1)	生物電池#cordbossb7	20345,3,3
+1@cor,145,220,0	duplicate(生物電池#cordbossb1)	生物電池#cordbossb8	20345,3,3
+1@cor,152,221,0	duplicate(生物電池#cordbossb1)	生物電池#cordbossb9	20345,3,3
+
+1@cor,122,221,0	duplicate(化學毒袋#cordbossd1)	化學毒袋#cordbossd2	20344,3,3
+1@cor,129,220,0	duplicate(化學毒袋#cordbossd1)	化學毒袋#cordbossd3	20344,3,3
+1@cor,136,213,0	duplicate(化學毒袋#cordbossd1)	化學毒袋#cordbossd4	20344,3,3
+1@cor,138,206,0	duplicate(化學毒袋#cordbossd1)	化學毒袋#cordbossd5	20344,3,3
+1@cor,138,228,0	duplicate(化學毒袋#cordbossd1)	化學毒袋#cordbossd6	20344,3,3
+1@cor,138,235,0	duplicate(化學毒袋#cordbossd1)	化學毒袋#cordbossd7	20344,3,3
+1@cor,145,220,0	duplicate(化學毒袋#cordbossd1)	化學毒袋#cordbossd8	20344,3,3
+1@cor,152,221,0	duplicate(化學毒袋#cordbossd1)	化學毒袋#cordbossd9	20344,3,3
+
+1@cor,159,224,0	script	#cordstop1	10024,{}
+1@cor,159,222,0	script	#cordstop2	10024,{}
+1@cor,159,220,0	script	#cordstop3	10024,{}
+1@cor,159,218,0	script	#cordstop4	10024,{}
+1@cor,98,224,0	script	#cordstop5	10024,{}
+1@cor,98,222,0	script	#cordstop6	10024,{}
+1@cor,98,220,0	script	#cordstop7	10024,{}
+1@cor,98,218,0	script	#cordstop8	10024,{}
+1@cor,134,240,0	script	#cordstop9	10024,{}
+1@cor,136,240,0	script	#cordstop10	10024,{}
+1@cor,138,240,0	script	#cordstop11	10024,{}
+1@cor,140,240,0	script	#cordstop12	10024,{}
+
+1@cor,138,221,3	script	埃琳娜·博克巴#cord2	10192,{
+	mes "[埃琳娜·博克巴]";
+	mes "啊啊，對了。這次也辛苦你了。";
+	mes "真是的！要和這個廢鐵耗到什麼時候才結束。";
+	cutin "162elena_01.bmp", 2;
+	next;
+	mes "[艾琉米那]";
+	mes "不是說了別叫它廢鐵嗎？你這混蛋！";
+	cutin "ep171_elyumina02.bmp", 0;
+	next;	
+	mes "[埃琳娜·博克巴]";
+	mes "是是，開始時不是廢鐵。";
+	mes "現在已經被拆成廢鐵了。";
+	mes "總之辛苦你了。回去好好休息吧。";
+	cutin "162elena_01.bmp", 2;
+	next;
+	if(select("立刻回去","暫時留在這")== 2) {
+		mes "[埃琳娜·博克巴]";
+		mes "我明白了。";
+		close2;
+		cutin "162elena_01.bmp", 255;
+		end;
+	}	
+	mes "[埃琳娜·博克巴]";
+	mes "辛苦了。明天還要繼續呢。";
+	mes "再見！";
+	cutin "162elena_02.bmp", 2;
+//	getexp 381250,0;
+//	getexp 0,100000;
+//	getexp 0,100000;
+//	getexp 0,100000;
+	getitem 25723,1;
+	getitem 25669,5;
+//	getitem 52701,1;
+//	close2;
+	cutin "162elena_02.bmp", 255;
+	warp "sp_cor",111,125;
+	end;
+OnInstanceInit:
+	hideonnpc instance_npcname("埃琳娜·博克巴#cord2");
+	end;
+}
+
+1@cor,140,221,3	script	艾琉米那#cord3	10301,{
+	end;
+OnInstanceInit:
+	hideonnpc instance_npcname("艾琉米那#cord3");
+	end;
+}

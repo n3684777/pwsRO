@@ -1,0 +1,7 @@
+Hyrule,0,0	monster	泰坦蛇姬		27077,50
+Hyrule,0,0	monster	愛情拘魂使者		27092,50
+Hyrule,0,0	monster	奪命小惡魔		27106,50
+Hyrule,0,0	monster	實驗室木偶		27094,50
+Hyrule,0,0	monster	深海豎琴公主		27096,50
+Hyrule,0,0	monster	達納托斯異能博士	27097,50
+

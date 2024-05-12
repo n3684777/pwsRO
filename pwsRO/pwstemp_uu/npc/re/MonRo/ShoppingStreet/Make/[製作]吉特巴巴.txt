@@ -1,0 +1,84 @@
+lroom00,122,38,5	script	卡卡	629,{
+	switch(select("墜飾交換:吉特巴牙齒交換")) {
+		case 1:
+			mes "[羅艾爾]";
+			mes "如果你有^0000ff和諧墜飾^000000和^0000ff混沌墜飾^000000，";
+			mes "我可以幫助你合成為";
+			mes "^ff0000漩渦墜飾[1]^000000。";
+			next;
+			if(select("合成","放棄") == 2) {
+				mes "[羅艾爾]";
+				mes "好的，有需要的話請再來。";
+				close2;
+
+				end;
+			}
+			if(!countitem(2990)||!countitem(2991)) {
+				mes "[羅艾爾]";
+				mes "合成需要^0000ff和諧墜飾^000000和^0000ff混沌墜飾^000000。";
+				mes "請確定你的包裹內有這兩種墜飾。";
+				close2;
+
+				end;
+			}
+			delitem 2990,1;
+			delitem 2991,1;
+			getitem 2992,1;
+			mes "[羅艾爾]";
+			mes "合成完畢了！";
+			mes "請收好你的^ff0000漩渦墜飾[1]^000000。";
+			close2;
+
+			end;
+		case 2:
+			mes "[羅艾爾]";
+			mes "如果你有^0000ff50顆吉特巴的牙齒^000000。";
+			mes "我可以為你^0000ff隨機兌換^000000一件副本掉落的裝備。";
+			next;
+			switch(select("隨機兌換裝備","查看兌換列表","取消")) {
+				case 1:
+					setarray .@randomitem[0], 1935,1990,18122,18123,15100,15101,2988,2989,2990,2991;
+					if(countitem(6719) < 50) {
+						mes "[羅艾爾]";
+						mes "隨機兌換需要^0000ff50顆吉特巴的牙齒^000000。";
+						mes "你的材料不足";
+						close2;
+
+						end;
+					}
+					delitem 6719,50;
+					.@i = rand(0,89);
+					if(.@i < 80) .@item = .@i/10;
+					else if(.@i < 85) .@item = 8;
+					else .@item = 9;
+					getitem .@randomitem[.@item],1;
+					mes "[羅艾爾]";
+					mes "兌換完畢，你得到了^0000ff"+getitemname(.@randomitem[.@item])+"^000000。";
+					break;						 
+				case 2:
+					mes "[羅艾爾]";
+					mes "可以兌換的裝備有：";
+					setarray .@item[0],1935,2988,1990,2989,18123,18122,15100,15101,2990,2991;
+					for(set .@i,0; .@i < getarraysize(.@item); set .@i,.@i+1) {
+						if(getiteminfo(.@item[.@i],2) == 4 || getiteminfo(.@item[.@i],2) == 5)
+							.@slot$ = "["+getiteminfo(.@item[.@i],10)+"]";
+						else
+							.@slot$ = "";
+						mes ""+getitemname(.@item[.@i])+.@slot$;
+					}
+					break;
+				case 3:
+					mes "[羅艾爾]";
+					mes "好的，有需要請再來。";
+					break;
+			}
+		close2;
+
+		end;
+	}
+	OnInit:
+	npcshopitem "quest_shop30",0,0;
+	npcshopdelitem "quest_shop30",0,0;
+	set .BuildQuest,1;
+	set .i,1;
+}

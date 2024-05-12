@@ -1,0 +1,161 @@
+lroom00,146,51,3	script	古代奧丁神殿裝備製作	478,{
+	disable_items;
+	function Add;
+	function Chk;
+	function Slot;
+	if(!.Allow) end;
+	switch(select("製作天使之夢:製作古代奧丁神殿物品"))
+	{
+			case 1:
+			switch(select("- 天使之夢(1)","- 天使之夢(5)","- 天使之夢(10)","- 天使之夢(30)","- 天使之夢(50)"))
+			{
+				case 1:	callfunc "MakeFunc_",25767,1,10000,25728,1,25730,1,0;	end;
+				case 2:	callfunc "MakeFunc_",25767,5,50000,25728,5,25730,5,0;	end;
+				case 3:	callfunc "MakeFunc_",25767,10,100000,25728,10,25730,10,0;	end;
+				case 4:	callfunc "MakeFunc_",25767,30,300000,25728,30,25730,30,0;	end;
+				case 5:	callfunc "MakeFunc_",25767,50,500000,25728,50,25730,50,0;	end;
+			}
+			break;
+		case 2:
+			dispbottom "["+strnpcinfo(1)+"] 您正在瀏覽製作商店，請一次查看一項商品，瀏覽並不會扣除金錢。",0x0ffff8;
+			callshop "qshop_lode05",1;
+			npcshopattach "qshop_lode05";
+			break;
+	}
+	end;
+
+function Add {
+	if (getitemname(getarg(1))=="null") {
+		debugmes "道具編號 #"+getarg(1)+" 出現錯誤 (略過).";
+		return;
+	}
+	for(set .@n,5; .@n<127; set .@n,.@n+2) {
+		if (!getarg(.@n,0)) break;
+		if (getitemname(getarg(.@n))=="null") {
+			debugmes "製作材料超過最大值, 編號#"+getarg(.@n)+" (略過)."; return;
+		}
+	}
+	for(set .@i,2; .@i<.@n; set .@i,.@i+1)
+		set getd(".q_"+getarg(1)+"["+(.@i-2)+"]"), getarg(.@i);
+	npcshopadditem "qshop_lode05",getarg(1),((.ShowZeny)?getarg(3):0);
+	sleep 1;
+	return;
+}
+function Chk {
+	if (getarg(0)<getarg(1)){
+		set @qe0,1;
+		return "(^999999未完成^000000)";
+	} else return "(^D2691E已完成^000000)";
+}
+function Chk2 {
+	if(!countitem2(getarg(0),1,9,0,0,0,0,0)){
+		set @qe0,1;
+		return "(^999999未完成^000000)";
+	} else return "(^D2691E已完成^000000)";
+}
+function Slot {
+	set .@s$,getitemname(getarg(0));
+	switch(.ShowSlot){
+		case 1: if (!getitemslots(getarg(0))) return .@s$;
+		case 2: if (getiteminfo(getarg(0),11)>0) return ""+.@s$+"["+getitemslots(getarg(0))+"]";
+		default: return .@s$;
+	}
+}
+
+OnBuyItem:
+	set .@q[0],@bought_nameid;
+	copyarray .@q[1],getd(".q_"+@bought_nameid+"[0]"),getarraysize(getd(".q_"+@bought_nameid+"[0]"));
+	if (!.@q[1]) {
+		message strcharinfo(0),"An error has occurred.";
+		end;
+	}
+	mes "["+strnpcinfo(1)+"]";
+	mes "製作物品: ^FF0000"+((.@q[1]>1)?.@q[1]+"x ":"")+Slot(.@q[0])+"^000000";
+	mes "請準備以下材料:";
+	if (.@q[2]) mes "^FF1493製作費用: "+F_InsertComma(.@q[2])+" Zeny "+Chk(Zeny,.@q[2])+"^000000";
+	if (.@q[3]) mes "^009900製作P點: "+.@q[3]+" "+.Points$[1]+"^000000 ["+getd(.Points$[0])+"/"+.@q[3]+"] "+Chk(getd(.Points$[0]),.@q[3]);
+	if (.@q[4]) for(set .@i,4; .@i<getarraysize(.@q); set .@i,.@i+2){
+		mes (++.@j)+". "+Slot(.@q[.@i])+" x "+.@q[.@i+1]+" [^009900"+countitem(.@q[.@i])+"^000000/^FF6600"+.@q[.@i+1]+"^000000] "+Chk(countitem(.@q[.@i]),.@q[.@i+1]);
+	}
+	set @qe1, getiteminfo(.@q[0],5);
+	set @qe2, getiteminfo(.@q[0],11);
+	addtimer 1000, strnpcinfo(1)+"::OnEnd";
+	while(1){
+		switch(select("製作 ^FF0000"+getitemname(.@q[0])+"^000000:"+((((@qe1&1) || (@qe1&256) || (@qe1&512)) && @qe2>0 && !@qe6)?"查看外觀...":""))) {
+			case 1:
+				if (@qe0) 
+				{ 
+					mesclear();
+					mes "["+strnpcinfo(1)+"]";
+					mes "材料不足，無法製作！";
+					close;
+				}
+				if (!checkweight(.@q[0],.@q[1])) {
+					mesclear();
+					mes "["+strnpcinfo(1)+"]";
+					mes "^FF0000你需要 "+(((.@q[1]*getiteminfo(.@q[0],6))+Weight-MaxWeight)/10)+" 的負重量才能玩成此次交易.^000000";
+					close;
+				}
+				if (.@q[2]) set Zeny, Zeny-.@q[2];
+				if (.@q[3]) setd .Points$[0], getd(.Points$[0])-.@q[3];
+				if (.@q[4]){
+					for(set .@i,4; .@i<getarraysize(.@q); set .@i,.@i+2){
+						delitem .@q[.@i],.@q[.@i+1];
+					}
+				}
+				getitem2 .@q[0],.@q[1],0,0,0,0,0,0,0;
+				if (.Announce) announce "["+strnpcinfo(1)+"] "+strcharinfo(0)+" 製作了 "+getitemname(.@q[0])+"!",bc_all,0x0fff8c;
+				specialeffect2 699;
+				end;
+			case 2:
+				set @qe3, getlook(3);
+				set @qe4, getlook(4);
+				set @qe5, getlook(5);
+				if (@qe1&1) atcommand "@changelook 3 "+@qe2;
+				if (@qe1&256) atcommand "@changelook 1 "+@qe2;
+				if (@qe1&512) atcommand "@changelook 2 "+@qe2;
+				set @qe6,1;
+				break;
+		}
+	}
+OnEnd:
+	if (@qe6) {
+		atcommand "@changelook 3 "+@qe3;
+		atcommand "@changelook 1 "+@qe4;
+		atcommand "@changelook 2 "+@qe5;
+	}
+	for(set .@i,0; .@i<7; set .@i,.@i+1) setd "@qe"+.@i,0;
+	end;
+OnInit:
+// --------------------- Config ---------------------
+// 自定義變數, 新增方法 : "變數","變數名稱"
+
+	setarray .Points$[0],"#CASHPOINTS","Cash Points";
+
+	set .Announce,0;	// 是否廣播製作? (1: 是 / 0: 否)
+	set .ShowSlot,0;	// 是否顯示道具洞數? (2: 一律顯示 / 1: 洞數 > 0 才顯示 / 0: 不顯示)
+	set .DisplayID,0;	// 是否顯示道具編號? (1: 是 / 0: 否)
+	set .ShowZeny,0;	// 是否在商店顯示道具製作金錢? (1: 是 / 0: 否)
+
+// Add(<shop number>,<reward ID>,<reward amount>,<Zeny cost>,<point cost>,<required item ID>,<required item amount>{,...});
+// Add(<分類>,<製作道具編號>,<製作道具數量>,<所需金錢>,<所需商城點數>,<所需材料編號>,<所需材料數量>{,...});
+
+	// 古代奧丁神殿製作 --
+	Add(1,23986,1,300000,0,25728,10,25730,10,25767,5);	// 奧丁聖物
+	Add(1,20947,1,1000000,0,25728,15,25730,15,25767,10);	// 神職斗篷
+	Add(1,22209,1,1000000,0,25728,15,25730,15,25767,10);	// 神職之靴
+	Add(1,15397,1,3000000,0,25728,30,25730,30,25767,20);	// 力量聖袍
+	Add(1,15398,1,3000000,0,25728,30,25730,30,25767,20);	// 敏捷聖袍
+	Add(1,15399,1,3000000,0,25728,30,25730,30,25767,20);	// 體力聖袍
+	Add(1,15400,1,3000000,0,25728,30,25730,30,25767,20);	// 靈巧聖袍
+	Add(1,15401,1,3000000,0,25728,30,25730,30,25767,20);	// 智慧聖袍
+	Add(1,15402,1,3000000,0,25728,30,25730,30,25767,20);	// 幸運聖袍
+
+// --------------------------------------------------
+	npcshopdelitem "qshop_lode05",909;
+	set .Allow,1;
+	end;
+}
+
+// -------- Dummy data (duplicate as needed) --------
+-	shop	qshop_lode05	-1,909:-1

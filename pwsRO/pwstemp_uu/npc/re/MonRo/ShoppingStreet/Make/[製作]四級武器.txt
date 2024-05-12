@@ -1,0 +1,88 @@
+-	shop	quest_shop1	-1,512:100	//生成商店，請無視這行
+lroom00,153,38,4	script	四級武器製作	468,{
+	set @i,0;
+	mes "^FF0000※一次請選購一種※^000000";
+	close2;
+	callshop "quest_shop1",1;
+	npcshopattach "quest_shop1";
+	end;
+
+OnBuyItem:
+        
+	if(.BuildQuest) {
+		for(set .e,0; !compare(getarg(.e+1)+"","Zeny"); set .e,.e+2) {}
+		npcshopadditem "quest_shop1",getarg(.e+2),getarg(.e)*compare(getarg(.e+1)+"","SZeny");
+		setarray .Shop[.i],getarg(.e+2);
+		set .i,.i+1;
+		if(.i%20==0){sleep(1);}
+		goto Quest_Setup;
+	}
+	if(.Shop[@i]!=@bought_nameid) for(set @i,1; 1; set @i,@i+1) if(.Shop[@i]==@bought_nameid) { set .i,@i; callsub Quest_Setup; }
+	mes "- 製作 ^FF0000"+getitemname(@bought_nameid)+"^000000";
+	mes "- 請準備好下面材料！";
+	for(set @i,0; !compare(getarg(@i+1)+"","Zeny"); set @i,@i+2) mes " ^0066CC" + getitemname(getarg(@i)) + "^000000 x " + ((countitem(getarg(@i))>=getarg(@i+1))? "":"") + "" + getarg(@i+1) + " [^009900" + countitem(getarg(@i)) + "^000000/^FF6600" + getarg(@i+1) + "^000000]"+( countitem(getarg(@i))>=getarg(@i+1)?" ( ^D2691E已完成^000000 )":" ( ^999999未完成^000000 )");
+	if(getarg(@i)) mes " ^FF1493需要製作費用^000000 " + ((Zeny>=getarg(@i))? "^FF0000":"") + "" + getarg(@i) + "^000000 "+((Zeny>=getarg(@i))? "( ^D2691E已完成^000000 )":"( ^999999金錢不足^000000 )");
+	switch(select("- 1、製作 ^FF0000"+getitemname(@bought_nameid)+"^000000:- 2、結束對話")) {
+		case 1:
+			for(set @i,0; !compare(getarg(@i+1)+"","Zeny"); set @i,@i+2) if(countitem(getarg(@i)) < getarg(@i+1)) {
+				next;
+				mes "請補齊 ^FF0000" + (getarg(@i+1)-countitem(getarg(@i))) + "^000000 個 ^FF0000" + getitemname(getarg(@i)) + "^000000 再來找我.";
+				emotion 53;
+				close;
+			}
+			if(Zeny < getarg(@i)) {
+				next;
+				mes "你身上攜帶的金錢不足.";
+				mes "請補齊 ^FF0000" + (getarg(@i)-Zeny) + "Zeny差額再來找我^000000.";
+				emotion 53;
+				close;
+			}
+			for(set @i,0; !compare(getarg(@i+1)+"","Zeny"); set @i,@i+2) delitem getarg(@i),getarg(@i+1);
+			set Zeny,Zeny-getarg(@i);
+			for(set @i,@i+2; getarg(@i+1,0); set @i,@i+2) getitem getarg(@i),getarg(@i+1);
+			specialeffect2 154;
+			emotion 21;
+			if (compare(getarg(@i,0)+"","announce")) announce strcharinfo(0) + " 獲得了 " + getitemname(@bought_nameid) + "!",bc_all;
+			close;
+		case 2:
+			emotion 12;
+			close;
+	}
+OnInit:
+	npcshopitem "quest_shop1",501,0;
+	npcshopdelitem "quest_shop1",501,0;
+	set .BuildQuest,1;
+	set .i,1;
+Quest_Setup:
+	switch(.i) {
+		default: set .BuildQuest,0; set .e,0; set .i,0; end;
+                case 1: callsub OnBuyItem,7022,1,7023,10,724,5,7002,100,714,1,100000,"SZeny",1237,1,"announce";
+                case 2: callsub OnBuyItem,7018,1,7019,1,7020,1,7021,1,714,1,100000,"SZeny",1138,1,"announce";
+                case 3: callsub OnBuyItem,7017,2,7024,10,1008,3,609,50,714,1,100000,"SZeny",1169,1,"announce";
+                case 4: callsub OnBuyItem,7295,30,969,10,999,50,714,10,100000,"SZeny",1141,1,"announce";
+                case 5: callsub OnBuyItem,7294,30,969,10,999,50,714,10,100000,"SZeny",1526,1,"announce";
+                case 6: callsub OnBuyItem,7291,30,969,10,999,50,714,10,100000,"SZeny",1527,1,"announce";
+                case 7: callsub OnBuyItem,7297,30,969,10,999,50,714,10,100000,"SZeny",1224,1,"announce";
+                case 8: callsub OnBuyItem,7292,30,969,10,999,50,714,10,100000,"SZeny",1225,1,"announce";
+                case 9: callsub OnBuyItem,7296,30,969,10,999,50,714,10,100000,"SZeny",1367,1,"announce";
+                case 10: callsub OnBuyItem,7290,30,969,10,999,50,714,10,100000,"SZeny",1134,1,"announce";
+                case 11: callsub OnBuyItem,7289,30,969,10,999,50,714,10,100000,"SZeny",1139,1,"announce";
+                case 12: callsub OnBuyItem,7293,30,969,10,999,50,714,10,100000,"SZeny",1365,1,"announce";
+                case 13: callsub OnBuyItem,7289,30,7294,30,7291,30,500000,"SZeny",1364,1,"announce";
+                case 14: callsub OnBuyItem,7289,30,7294,30,7291,30,500000,"SZeny",1369,1,"announce";
+                case 15: callsub OnBuyItem,7290,30,7296,30,7293,30,500000,"SZeny",1469,1,"announce";
+                case 16: callsub OnBuyItem,7290,30,7296,30,7293,30,500000,"SZeny",1470,1,"announce";
+                case 17: callsub OnBuyItem,7292,30,7293,30,7289,30,500000,"SZeny",1814,1,"announce";
+                case 18: callsub OnBuyItem,7292,30,7293,30,7289,30,500000,"SZeny",1720,1,"announce";
+                case 19: callsub OnBuyItem,7297,30,7291,30,7295,30,500000,"SZeny",1416,1,"announce";
+                case 20: callsub OnBuyItem,7297,30,7291,30,7295,30,500000,"SZeny",1415,1,"announce";
+                case 21: callsub OnBuyItem,7294,30,7297,30,7293,30,500000,"SZeny",1132,1,"announce";
+                case 22: callsub OnBuyItem,7294,30,7297,30,7293,30,500000,"SZeny",1137,1,"announce";
+                case 23: callsub OnBuyItem,7295,30,7297,30,7290,30,500000,"SZeny",1166,1,"announce";
+                case 24: callsub OnBuyItem,7295,30,7297,30,7290,30,500000,"SZeny",1167,1,"announce";
+                case 25: callsub OnBuyItem,7292,30,7291,30,7295,30,500000,"SZeny",1140,1,"announce";
+                case 26: callsub OnBuyItem,7292,30,7291,30,7295,30,500000,"SZeny",1228,1,"announce";
+                case 27: callsub OnBuyItem,7296,30,7294,30,7290,30,500000,"SZeny",1233,1,"announce";
+                case 28: callsub OnBuyItem,7296,30,7294,30,7290,30,500000,"SZeny",1528,1,"announce";
+	}
+}

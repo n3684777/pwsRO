@@ -1,0 +1,147 @@
+function	script	Modify_License	{
+function	RandomOPT	{
+	.@idx = rand(getarg(1,getarraysize(getarg(0))));
+	if(.@idx%2 == 0)
+		return .@idx;
+	else return .@idx-1;
+}
+	.@part = EQI_HAND_R;
+	setarray .@item_id, 21054,32026,16099,1867,2058,26162,28045,28771,28772,18190,26215,32110,32352,28140,28635,32303,13346,41013;
+	.@nameid = getequipid(.@part);
+	if (getequipisequiped(.@part) == 0) 
+	{
+		dispbottom "["+getitemname(getarg(0))+"] 您沒有裝備武器.",0xff0000;
+		end;
+	}
+	if(inarray(.@item_id, getequipid(.@part)) == -1)
+	{
+		dispbottom "["+getitemname(getarg(0))+"] "+getitemname(.@nameid)+"這項裝備並不屬於艾音貝赫礦山洞穴3F出產的武器.",0xff0000;
+		end;
+	}
+	.@refine_cnt = getequiprefinerycnt(.@part);
+	.@card0 = getequipcardid(.@part, 0);
+	.@card1 = getequipcardid(.@part, 1);
+	.@card2 = getequipcardid(.@part, 2);
+	.@card3 = getequipcardid(.@part, 3);
+	
+	switch(getarg(0))
+	{
+		// 物理改造許可證
+		case 9514:
+			setarray .@type,
+			RDMOPT_VAR_ATTPOWER, rand(1,100) <= 80 ? rand(5,30) : rand(5,45),
+			RDMOPT_VAR_ATKPERCENT, rand(1,100) <= 80 ? rand(1,5) : rand(1,10);
+			
+			setarray .@type2,
+			RDMOPT_VAR_HITSUCCESSVALUE, rand(1,100) <= 80 ? rand(5,25) : rand(5,35),
+			RDMOPT_VAR_AVOIDSUCCESSVALUE, rand(1,100) <= 80 ? rand(7,25) : rand(7,35),
+			RDMOPT_VAR_PLUSASPD, rand(1,2),
+			RDMOPT_VAR_CRITICALSUCCESSVALUE,rand(2,10),
+			RDMOPT_DAMAGE_CRI_TARGET, rand(1,100) <= 80 ? rand(5,10) : rand(5,20),
+			RDMOPT_DAMAGE_PROPERTY_NOTHING_TARGET, rand(1,100) <= 80 ? rand(3,10) : rand(3,20),
+			RDMOPT_DAMAGE_PROPERTY_WATER_TARGET, rand(1,100) <= 80 ? rand(3,10) : rand(3,20),
+			RDMOPT_DAMAGE_PROPERTY_GROUND_TARGET, rand(1,100) <= 80 ? rand(3,10) : rand(3,20),
+			RDMOPT_DAMAGE_PROPERTY_FIRE_TARGET, rand(1,100) <= 80 ? rand(3,10) : rand(3,20),
+			RDMOPT_DAMAGE_PROPERTY_WIND_TARGET, rand(1,100) <= 80 ? rand(3,10) : rand(3,20),
+			RDMOPT_DAMAGE_PROPERTY_POISON_TARGET, rand(1,100) <= 80 ? rand(3,10) : rand(3,20),
+			RDMOPT_DAMAGE_PROPERTY_SAINT_TARGET, rand(1,100) <= 80 ? rand(3,10) : rand(3,20),
+			RDMOPT_DAMAGE_PROPERTY_DARKNESS_TARGET, rand(1,100) <= 80 ? rand(3,10) : rand(3,20),
+			RDMOPT_DAMAGE_PROPERTY_TELEKINESIS_TARGET, rand(1,100) <= 80 ? rand(3,10) : rand(3,20),
+			RDMOPT_DAMAGE_PROPERTY_UNDEAD_TARGET, rand(1,100) <= 80 ? rand(3,10) : rand(3,20),
+			RDMOPT_VAR_PLUSASPDPERCENT, rand(1,100) <= 80 ? rand(5,8) : rand(5,10);
+			
+			setarray .@type3,
+			RDMOPT_RACE_DAMAGE_NOTHING, rand(1,100) <= 80 ? rand(3,10) : rand(3,20),
+			RDMOPT_RACE_DAMAGE_UNDEAD, rand(1,100) <= 80 ? rand(3,10) : rand(3,20),
+			RDMOPT_RACE_DAMAGE_ANIMAL, rand(1,100) <= 80 ? rand(3,10) : rand(3,20),
+			RDMOPT_RACE_DAMAGE_PLANT, rand(1,100) <= 80 ? rand(3,10) : rand(3,20),
+			RDMOPT_RACE_DAMAGE_INSECT, rand(1,100) <= 80 ? rand(3,10) : rand(3,20),
+			RDMOPT_RACE_DAMAGE_FISHS, rand(1,100) <= 80 ? rand(3,10) : rand(3,20),
+			RDMOPT_RACE_DAMAGE_DEVIL, rand(1,100) <= 80 ? rand(3,10) : rand(3,20),
+			RDMOPT_RACE_DAMAGE_HUMAN, rand(1,100) <= 80 ? rand(3,10) : rand(3,20),
+			RDMOPT_RACE_DAMAGE_ANGEL, rand(1,100) <= 80 ? rand(3,10) : rand(3,20),
+			RDMOPT_RACE_DAMAGE_DRAGON, rand(1,100) <= 80 ? rand(3,10) : rand(3,20),
+			RDMOPT_CLASS_DAMAGE_NORMAL_TARGET, rand(1,100) <= 80 ? rand(3,9) : rand(3,18),
+			RDMOPT_CLASS_DAMAGE_BOSS_TARGET, rand(1,100) <= 80 ? rand(3,9) : rand(3,18),
+			RDMOPT_RACE_IGNORE_DEF_PERCENT_NOTHING, rand(1,100) <= 80 ? rand(3,12) : rand(3,25),
+			RDMOPT_RACE_IGNORE_DEF_PERCENT_UNDEAD, rand(1,100) <= 80 ? rand(3,12) : rand(3,25),
+			RDMOPT_RACE_IGNORE_DEF_PERCENT_ANIMAL, rand(1,100) <= 80 ? rand(3,12) : rand(3,25),
+			RDMOPT_RACE_IGNORE_DEF_PERCENT_PLANT, rand(1,100) <= 80 ? rand(3,12) : rand(3,25),
+			RDMOPT_RACE_IGNORE_DEF_PERCENT_INSECT, rand(1,100) <= 80 ? rand(3,12) : rand(3,25),
+			RDMOPT_RACE_IGNORE_DEF_PERCENT_FISHS, rand(1,100) <= 80 ? rand(3,12) : rand(3,25),
+			RDMOPT_RACE_IGNORE_DEF_PERCENT_DEVIL, rand(1,100) <= 80 ? rand(3,12) : rand(3,25),
+			RDMOPT_RACE_IGNORE_DEF_PERCENT_HUMAN, rand(1,100) <= 80 ? rand(3,12) : rand(3,25),
+			RDMOPT_RACE_IGNORE_DEF_PERCENT_ANGEL, rand(1,100) <= 80 ? rand(3,12) : rand(3,25),
+			RDMOPT_RACE_IGNORE_DEF_PERCENT_DRAGON, rand(1,100) <= 80 ? rand(3,12) : rand(3,25),
+			RDMOPT_CLASS_IGNORE_DEF_PERCENT_NORMAL, rand(1,100) <= 80 ? rand(3,9) : rand(3,18);
+			break;
+			
+		// 魔法改造許可證
+		case 9529:
+			setarray .@type,
+			RDMOPT_VAR_ATTMPOWER, rand(1,100) <= 80 ? rand(5,30) : rand(5,45),
+			RDMOPT_VAR_MAGICATKPERCENT, rand(1,100) <= 80 ? rand(1,5) : rand(1,10);
+			
+			setarray .@type2,
+			RDMOPT_HEAL_VALUE, rand(1,100) <= 80 ? rand(3,15) : rand(3,25),
+			RDMOPT_VAR_AVOIDSUCCESSVALUE, rand(1,100) <= 80 ? rand(7,18) : rand(7,35),
+			RDMOPT_MDAMAGE_PROPERTY_NOTHING_TARGET, rand(1,100) <= 80 ? rand(3,10) : rand(3,20),
+			RDMOPT_MDAMAGE_PROPERTY_WATER_TARGET, rand(1,100) <= 80 ? rand(3,10) : rand(3,20),
+			RDMOPT_MDAMAGE_PROPERTY_GROUND_TARGET, rand(1,100) <= 80 ? rand(3,10) : rand(3,20),
+			RDMOPT_MDAMAGE_PROPERTY_FIRE_TARGET, rand(1,100) <= 80 ? rand(3,10) : rand(3,20),
+			RDMOPT_MDAMAGE_PROPERTY_WIND_TARGET, rand(1,100) <= 80 ? rand(3,10) : rand(3,20),
+			RDMOPT_MDAMAGE_PROPERTY_POISON_TARGET, rand(1,100) <= 80 ? rand(3,10) : rand(3,20),
+			RDMOPT_MDAMAGE_PROPERTY_SAINT_TARGET, rand(1,100) <= 80 ? rand(3,10) : rand(3,20),
+			RDMOPT_MDAMAGE_PROPERTY_DARKNESS_TARGET, rand(1,100) <= 80 ? rand(3,10) : rand(3,20),
+			RDMOPT_MDAMAGE_PROPERTY_TELEKINESIS_TARGET, rand(1,100) <= 80 ? rand(3,10) : rand(3,20),
+			RDMOPT_MDAMAGE_PROPERTY_UNDEAD_TARGET, rand(1,100) <= 80 ? rand(3,10) : rand(3,20),
+			RDMOPT_DEC_SPELL_CAST_TIME, rand(1,100) <= 80 ? rand(5,8) : rand(5,10);
+			
+			setarray .@type3,
+			RDMOPT_HEAL_VALUE, rand(1,100) <= 80 ? rand(7,13) : rand(7,25),
+			RDMOPT_RACE_MDAMAGE_NOTHING, rand(1,100) <= 80 ? rand(3,10) : rand(3,20),
+			RDMOPT_RACE_MDAMAGE_UNDEAD, rand(1,100) <= 80 ? rand(3,10) : rand(3,20),
+			RDMOPT_RACE_MDAMAGE_ANIMAL, rand(1,100) <= 80 ? rand(3,10) : rand(3,20),
+			RDMOPT_RACE_MDAMAGE_PLANT, rand(1,100) <= 80 ? rand(3,10) : rand(3,20),
+			RDMOPT_RACE_MDAMAGE_INSECT, rand(1,100) <= 80 ? rand(3,10) : rand(3,20),
+			RDMOPT_RACE_MDAMAGE_FISHS, rand(1,100) <= 80 ? rand(3,10) : rand(3,20),
+			RDMOPT_RACE_MDAMAGE_DEVIL, rand(1,100) <= 80 ? rand(3,10) : rand(3,20),
+			RDMOPT_RACE_MDAMAGE_HUMAN, rand(1,100) <= 80 ? rand(3,10) : rand(3,20),
+			RDMOPT_RACE_MDAMAGE_ANGEL, rand(1,100) <= 80 ? rand(3,10) : rand(3,20),
+			RDMOPT_RACE_MDAMAGE_DRAGON, rand(1,100) <= 80 ? rand(3,10) : rand(3,20),
+			RDMOPT_CLASS_MDAMAGE_NORMAL, rand(1,100) <= 80 ? rand(3,9) : rand(3,18),
+			RDMOPT_CLASS_MDAMAGE_BOSS, rand(1,100) <= 80 ? rand(3,9) : rand(3,18),
+			RDMOPT_RACE_IGNORE_MDEF_PERCENT_NOTHING, rand(1,100) <= 80 ? rand(3,12) : rand(3,25),
+			RDMOPT_RACE_IGNORE_MDEF_PERCENT_UNDEAD, rand(1,100) <= 80 ? rand(3,12) : rand(3,25),
+			RDMOPT_RACE_IGNORE_MDEF_PERCENT_ANIMAL, rand(1,100) <= 80 ? rand(3,12) : rand(3,25),
+			RDMOPT_RACE_IGNORE_MDEF_PERCENT_PLANT, rand(1,100) <= 80 ? rand(3,12) : rand(3,25),
+			RDMOPT_RACE_IGNORE_MDEF_PERCENT_INSECT, rand(1,100) <= 80 ? rand(3,12) : rand(3,25),
+			RDMOPT_RACE_IGNORE_MDEF_PERCENT_FISHS, rand(1,100) <= 80 ? rand(3,12) : rand(3,25),
+			RDMOPT_RACE_IGNORE_MDEF_PERCENT_DEVIL, rand(1,100) <= 80 ? rand(3,12) : rand(3,25),
+			RDMOPT_RACE_IGNORE_MDEF_PERCENT_HUMAN, rand(1,100) <= 80 ? rand(3,12) : rand(3,25),
+			RDMOPT_RACE_IGNORE_MDEF_PERCENT_ANGEL, rand(1,100) <= 80 ? rand(3,12) : rand(3,25),
+			RDMOPT_RACE_IGNORE_MDEF_PERCENT_DRAGON, rand(1,100) <= 80 ? rand(3,12) : rand(3,25),
+			RDMOPT_CLASS_IGNORE_MDEF_PERCENT_NORMAL, rand(1,100) <= 80 ? rand(3,9) : rand(3,18),
+			RDMOPT_DEC_SPELL_CAST_TIME, rand(1,100) <= 80 ? rand(5,8) : rand(5,10);
+			break;
+	}
+	select("確定改造"+getequipname(.@part));
+	specialeffect2 135;
+	if(rand(1,100) <= 80)
+	{
+		setarray .@RDMOPT,.@type[.@i = RandomOPT(.@type)], .@type2[.@j = RandomOPT(.@type2)];
+		setarray .@RDMVALUE,.@type[.@i+1], .@type2[.@j+1];
+		setarray .@PARAM, 0;
+	}
+	else
+	{
+		setarray .@RDMOPT,.@type[.@i = RandomOPT(.@type)], .@type2[.@j = RandomOPT(.@type2)], .@type3[.@k = RandomOPT(.@type3)];
+		setarray .@RDMVALUE,.@type[.@i+1], .@type2[.@j+1], .@type3[.@k+1];
+		setarray .@PARAM, 0;
+	}
+	delitem getarg(0), 1;
+	delequip .@part;
+	getitem3 .@nameid, 1, 1, .@refine_cnt, 0, .@card0, .@card1, .@card2, .@card3, .@RDMOPT, .@RDMVALUE, .@PARAM;
+	dispbottom "["+getitemname(getarg(0))+"] "+getitemname(.@nameid)+"改造成功.",0xffff90;
+	end;
+}

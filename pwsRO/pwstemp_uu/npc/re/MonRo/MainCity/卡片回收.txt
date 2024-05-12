@@ -1,0 +1,434 @@
+egg1,180,184,5	script	普卡換波利代幣	10126,{
+	setarray .@mvpcard[0],4679,4680,4677,4681,4674,4682,4675,4672,4678,4671,4683,4673,4676,4357,4565,4359,4564,4361,4563,4363,4562,4365,4561,4367,4560,4566,4352,4147,4142,4168,4144,4132,4128,4143,4137,
+	4123,4146,4131,4148,4121,4430,4263,27287,4318,27150,4324,27294,4236,4652,4576,4376,27346,4302,4330,4441,300014,300013,4408,4134,4625,4276,4419,27362,27363,300151,27334,4305,
+	4507,4509,4574,4662,27104,27081,27113,27126,4578,4135,300007,4372,4407,27180,4145,4520,4374,4386,4425,27162,300021,4399,4525,4403,300281,27319,4342,27119,4580,300248,4462,27105;
+	set mvppoint,1000; // mvp卡片兌換硬幣數量倍率
+	mes "[普卡換波利代幣商]";
+	mes "^0088FF"+strcharinfo(0)+"^000000您好，很高興為您服務。";
+    mes "有不要的卡片要回收嗎?";
+	next;
+	switch(select("回收卡片:離開")){
+	case 1:
+	cleararray @inventorylist_id[0],0,@inventorylist_id; 
+	getinventorylist(getcharid(0));
+	set commontag,0;
+    for (.@i = 0; .@i < getarraysize(@inventorylist_id); .@i++) {
+		if((@inventorylist_id[.@i] > 4000  && @inventorylist_id[.@i] < 4700 ||
+		   @inventorylist_id[.@i] > 27000 && @inventorylist_id[.@i] < 28000||
+		   @inventorylist_id[.@i] > 30999 && @inventorylist_id[.@i] < 31027||
+		   @inventorylist_id[.@i] > 299999 && @inventorylist_id[.@i] < 300022||
+		   @inventorylist_id[.@i] > 300162 && @inventorylist_id[.@i] < 300427) &&
+		   @inventorylist_id[.@i] != 4679 && @inventorylist_id[.@i] != 4680&&
+		    @inventorylist_id[.@i] != 4677 && @inventorylist_id[.@i] != 4681&&
+			@inventorylist_id[.@i] != 4674 && @inventorylist_id[.@i] != 4682&&
+			@inventorylist_id[.@i] != 4675 && @inventorylist_id[.@i] != 4672&&
+			@inventorylist_id[.@i] != 4678 && @inventorylist_id[.@i] != 4671&&
+			@inventorylist_id[.@i] != 4683 && @inventorylist_id[.@i] != 4673&&
+			@inventorylist_id[.@i] != 4676 && @inventorylist_id[.@i] != 4357&&
+			@inventorylist_id[.@i] != 4565 && @inventorylist_id[.@i] != 4359&&
+			@inventorylist_id[.@i] != 4564 && @inventorylist_id[.@i] != 4361&&
+			@inventorylist_id[.@i] != 4563 && @inventorylist_id[.@i] != 4363&&
+			@inventorylist_id[.@i] != 4562 && @inventorylist_id[.@i] != 4365&&
+			@inventorylist_id[.@i] != 4561 && @inventorylist_id[.@i] != 4367&&
+			@inventorylist_id[.@i] != 4560 && @inventorylist_id[.@i] != 4566&&
+			@inventorylist_id[.@i] != 4352 && @inventorylist_id[.@i] != 4147&&
+			@inventorylist_id[.@i] != 4142 && @inventorylist_id[.@i] != 4168&&
+			@inventorylist_id[.@i] != 4144 && @inventorylist_id[.@i] != 4132&&
+			@inventorylist_id[.@i] != 4128 && @inventorylist_id[.@i] != 4143&&
+			@inventorylist_id[.@i] != 4137 && @inventorylist_id[.@i] != 4123&&
+			@inventorylist_id[.@i] != 4146 && @inventorylist_id[.@i] != 4131&&
+			@inventorylist_id[.@i] != 4148 && @inventorylist_id[.@i] != 4121&&
+			@inventorylist_id[.@i] != 4430 && @inventorylist_id[.@i] != 4263&&
+			@inventorylist_id[.@i] != 27287 && @inventorylist_id[.@i] != 4318&&
+			@inventorylist_id[.@i] != 27150 && @inventorylist_id[.@i] != 4324&&
+			@inventorylist_id[.@i] != 27294 && @inventorylist_id[.@i] != 4236&&
+			@inventorylist_id[.@i] != 4652 && @inventorylist_id[.@i] != 4576&&
+			@inventorylist_id[.@i] != 4376 && @inventorylist_id[.@i] != 27346&&
+			@inventorylist_id[.@i] != 4302 && @inventorylist_id[.@i] != 4330 &&
+			@inventorylist_id[.@i] != 4441 && @inventorylist_id[.@i] != 300014&&
+			@inventorylist_id[.@i] != 300013 && @inventorylist_id[.@i] != 4408 &&
+		    @inventorylist_id[.@i] != 4134 && @inventorylist_id[.@i] != 4625 &&
+			@inventorylist_id[.@i] != 4276 && @inventorylist_id[.@i] != 4419 &&
+			@inventorylist_id[.@i] != 27362 && @inventorylist_id[.@i] != 27363 &&
+			@inventorylist_id[.@i] != 300151 && @inventorylist_id[.@i] != 27334 &&
+			@inventorylist_id[.@i] != 4305 && @inventorylist_id[.@i] != 4507 &&
+			@inventorylist_id[.@i] != 4509 && @inventorylist_id[.@i] != 4574 &&
+			@inventorylist_id[.@i] != 4662 && @inventorylist_id[.@i] != 27104 &&
+			@inventorylist_id[.@i] != 27081 && @inventorylist_id[.@i] != 27113 &&
+			@inventorylist_id[.@i] != 27126 && @inventorylist_id[.@i] != 4578 &&
+			@inventorylist_id[.@i] != 4135 && @inventorylist_id[.@i] != 300007 &&
+			@inventorylist_id[.@i] != 4372 && @inventorylist_id[.@i] != 4407 &&
+			@inventorylist_id[.@i] != 27180 && @inventorylist_id[.@i] != 4145 &&
+			@inventorylist_id[.@i] != 4520 && @inventorylist_id[.@i] != 4374 &&
+			@inventorylist_id[.@i] != 4386 && @inventorylist_id[.@i] != 4425 &&
+			@inventorylist_id[.@i] != 27162 && @inventorylist_id[.@i] != 300021 &&
+			@inventorylist_id[.@i] != 4399 && @inventorylist_id[.@i] != 4525 &&
+			@inventorylist_id[.@i] != 4403 && @inventorylist_id[.@i] != 300281 &&
+			@inventorylist_id[.@i] != 27319 && @inventorylist_id[.@i] != 4342 &&
+			@inventorylist_id[.@i] != 27119 && @inventorylist_id[.@i] != 4580 &&
+			@inventorylist_id[.@i] != 300248 && @inventorylist_id[.@i] != 4462 &&
+			@inventorylist_id[.@i] != 27105
+		   ){
+
+			.@cardlist[getarraysize(.@cardlist)] = @inventorylist_id[.@i]; 
+		   
+		   
+                 
+        }
+    }
+	for (.@i = 0; .@i < getarraysize(.@cardlist); .@i++){
+	
+        .@menu$[.@i] = "[" + .@cardlist[.@i] + "] - " + getitemname(.@cardlist[.@i]);
+    }
+    if (getarraysize(.@menu$) == 0) {
+        close2; 
+        message strcharinfo(0), "您的背包內沒有任何卡片.";
+        end;
+    }
+	mes "[普卡換波利代幣商]";
+	mes "每張卡片可兌換一枚波利錢幣";
+	mes "您想回收哪張卡片?";
+    .@choose = select(implode(.@menu$, ":"))-1;
+	next;
+	mes "[普卡換波利代幣商]";
+    mes "要回收 ^0088FF" + getitemname(.@cardlist[.@choose]) + " ^000000嗎?";
+	mes "^ff0000※請注意!※^000000";
+	mes "若選擇 - ^0000ff回收背包內所有卡片 ^000000 ";
+	mes " ^0000ff[MVP]^000000 以及 ^0000ff[BOSS]^000000 卡片將會一併回收。";
+	next;
+	switch(select("相同卡片全部回收:指定普卡換波利代幣商數量:^ff0000回收背包所有卡片^000000:離開")){
+	case 1:
+	callfunc "checkOKOK";
+	set mvptag,0;
+	set .@count,countitem(.@cardlist[.@choose]);
+	delitem .@cardlist[.@choose],.@count;
+	
+	getitem 7539,.@count;
+	close; 
+	case 2:
+	input .@card_quantity;
+	 if (! .@card_quantity) {
+        close;
+    }
+    .@card_quantity = min(.@card_quantity, countitem(.@cardlist[.@choose])); 
+	callfunc "checkOKOK";
+	next;
+	set mvptag,0;
+	delitem .@cardlist[.@choose], .@card_quantity;
+
+	getitem 7539,.@card_quantity;
+	close;
+	case 3:
+	callfunc "checkOKOK";
+	for(.@c = 0;.@c < getarraysize(.@cardlist); .@c++){
+	set .@count,countitem(.@cardlist[.@c]);
+	delitem .@cardlist[.@c],.@count;
+
+
+	getitem 7539,.@count;
+	
+	}
+	close;
+	case 4:
+	  close;
+	  }
+	  case 2:
+	  close;
+	  
+	}	
+
+
+
+}
+function	script	checkOKOK	{
+    mes"確定回收嗎?";
+	next;
+    if (select ("是", "不是") == 2) {
+        close;
+    }
+    return;
+}
+
+-	shop	Card_Shop_Storage	-1,501:-1
+egg1,175,179,5	script	卡片典藏倉庫	10126,{
+	disable_items;
+	if (checkweight(4001,1) == 0) {
+		mes "身上的道具已達最大數量. 請減少道具數量之後再來吧.";
+		close;
+	}
+	if (MaxWeight - Weight < 10000) {
+		mes "身上的負重量太高了. 請減輕負重量之後再來吧.";
+		close;
+	}
+	mes "[卡片典藏倉庫]";
+	mes "每張卡片可以額外增加10負重量";
+	mes "^FF0000相同的卡片無法重複存入^000000";
+	mes "^0000FF卡片可以隨時取出使用^000000。";
+	next;
+	switch(select("存入卡片:取出卡片"))
+	{
+		case 1:
+			announce "[卡片典藏倉庫] 無論您的卡片數量多寡，最多相同卡片只能存入一張.",bc_self|bc_blue;
+			callshop "Card_Shop_Storage",2;
+			npcshopattach "Card_Shop_Storage";
+			end;
+			
+		case 2:
+			if(getarraysize(Card_Storage) == 0)
+			{
+				mes "["+strnpcinfo(1)+"]";
+				mes "您的卡片典藏倉庫是空的。";
+				close;
+			}
+			switch(select("單張取出:批量取出(10張)"))
+			{
+				case 1:
+					mes "["+strnpcinfo(1)+"]";
+					mes "請選擇您要取出的卡片";
+					mes "^888888輸入0為取消^000000";
+					mes "您目前典藏的卡片有";
+					mes "-----------------------------------";
+					freeloop(1);
+					for(.@i=0; .@i<getarraysize(Card_Storage); .@i++)
+					{
+						if(.@i>=100 && .@i%100 == 0)
+						{
+							switch(select(getarraysize(Card_Storage)>=100?"下一頁":"",.@pages?"上一頁":"","輸入編號"))
+							{
+								case 1:
+									.@pages ++;
+									clear;
+									break;
+								case 2:
+									.@pages --;
+									if(.@pages == 0)
+										.@i = 0;
+									else
+										.@i = (100*.@pages);
+									clear;
+									break;
+								case 3:
+									.@input = 1;
+									break;
+							}
+						}
+						if(.@input) break;
+						mes "No."+(.@i+1)+" : "+getitemname(Card_Storage[.@i]);
+					}
+					freeloop(0);
+					input .@num;
+					if(.@num <= 0 || .@num > getarraysize(Card_Storage)) close;
+					.@j = .@num-1;
+					.@nameid = Card_Storage[.@j];
+					.@index = inarray(Card_Storage,.@nameid);
+					if(.@index == -1 || Card_Storage[.@j] == 0)
+					{
+						dispbottom "輸入錯誤",0xff0000;
+						end;
+					}
+					getitem Card_Storage[.@j], 1;
+					deletearray Card_Storage[.@j],1;
+					dispbottom "[卡片典藏倉庫] 已取出 "+getitemname(.@nameid),0xff9900;
+					break;
+				case 2:
+					getinventorylist;
+					if (@inventorylist_count > 90) 
+					{
+						mes "身上的道具已達最大數量. 請減少道具數量之後再來吧.";
+						close;
+					}
+					for(.@i=0; .@i<10; .@i++)
+					{
+						if(Card_Storage[.@i])
+							getitem Card_Storage[.@i],1;
+						else
+							break;
+					}
+					deletearray Card_Storage[0],.@i;
+					dispbottom "[卡片典藏倉庫] 已取出 "+.@i+" 張卡片.",0xff9900;
+					break;
+			}
+			specialeffect2 363;
+			recalculatestat;
+			end;
+	}
+	end;
+	
+OnSellItem:
+	for(.@i = 0; .@i<getarraysize(@sold_nameid); .@i++)
+	{
+		if(inarray(Card_Storage,@sold_nameid[.@i]) > -1)
+		{
+			dispbottom "[卡片典藏倉庫] "+getitemname(@sold_nameid[.@i])+" 這張卡片已在倉庫中無法重複存入.", 0xff0000;
+			continue;
+		}
+		else if(getiteminfo(@sold_nameid[.@i],2) != 6 || compare(getitemname(@sold_nameid[.@i]),"卡片") == 0)
+		{
+			dispbottom "[卡片典藏倉庫] "+getitemname(@sold_nameid[.@i])+" 不是卡片.", 0xff0000;
+			continue;
+		}
+		else
+		{
+			delitem @sold_nameid[.@i],1;
+			Card_Storage[getarraysize(Card_Storage)] = @sold_nameid[.@i];
+			dispbottom "[卡片典藏倉庫] "+getitemname(@sold_nameid[.@i])+" 已存入.",0xff9900;
+		}
+	}
+	specialeffect2 363;
+	recalculatestat;
+	end;
+
+// 每張卡片增加額外 10 負重量
+OnPCStatCalcEvent:
+	bonus bAddMaxWeight,getarraysize(Card_Storage)*100;
+	end;
+OnInit:
+
+}
+
+
+-	shop	quest_shop4	-1,512:100	//生成商店，請無視這行
+egg1,174,175,6	script	MVP卡片兌換	566,{ //自行設定位子,外觀
+	set @i,0;
+	mes "[MVP卡片兌換]";
+	mes "請按照購買物品似的選擇";
+	mes "材料足夠後將直接製作";
+	mes "材料不足將直接提示材料";
+	mes "請^FF0000一次選購一種^000000MVP卡片";
+	mes "請放心選購^FF3399 MVP卡片,不會扣除相應Zeny^000000";
+	close2;
+	callshop "quest_shop4",1;
+	npcshopattach "quest_shop4";
+	end;
+
+OnBuyItem:
+        
+	if(.BuildQuest) {
+		for(set .e,0; !compare(getarg(.e+1)+"","Zeny"); set .e,.e+2) {}
+		npcshopadditem "quest_shop4",getarg(.e+2),getarg(.e)*compare(getarg(.e+1)+"","SZeny");
+		setarray .Shop[.i],getarg(.e+2);
+		set .i,.i+1;
+		if(.i%20==0){sleep(1);}
+		goto Quest_Setup;
+	}
+	if(.Shop[@i]!=@bought_nameid) for(set @i,1; 1; set @i,@i+1) if(.Shop[@i]==@bought_nameid) { set .i,@i; callsub Quest_Setup; }
+	mes "- 製作 ^FF0000"+getitemname(@bought_nameid)+"^000000";
+	mes "- 請準備好下面材料！";
+	for(set @i,0; !compare(getarg(@i+1)+"","Zeny"); set @i,@i+2) mes " ^0066CC" + getitemname(getarg(@i)) + "^000000 x " + ((countitem(getarg(@i))>=getarg(@i+1))? "":"") + "" + getarg(@i+1) + " [^009900" + countitem(getarg(@i)) + "^000000/^FF6600" + getarg(@i+1) + "^000000]"+( countitem(getarg(@i))>=getarg(@i+1)?" ( ^D2691E已完成^000000 )":" ( ^999999未完成^000000 )");
+	if(getarg(@i)) mes " ^FF1493需要製作費用^000000 " + ((Zeny>=getarg(@i))? "^FF0000":"") + "" + getarg(@i) + "^000000 "+((Zeny>=getarg(@i))? "( ^D2691E已完成^000000 )":"( ^999999金錢不足^000000 )");
+	mes "- 在交換條件裡寫著, 我將會給你：^0000FF";
+	for(set @i,@i+2; getarg(@i+1,0); set @i,@i+2) mes getarg(@i+1) + " 個 " + getitemname(getarg(@i));
+	switch(select("- 1、製作 ^FF0000"+getitemname(@bought_nameid)+"^000000:" + (((((getiteminfo(@bought_nameid,5) & 1) || (getiteminfo(@bought_nameid,5) & 768) || (getiteminfo(@bought_nameid,5) & 8192)) && @equip==0))? "- 2、看看他長啥樣":"") + ":- 3、結束對話")) {
+		case 1:
+			for(set @i,0; !compare(getarg(@i+1)+"","Zeny"); set @i,@i+2) if(countitem(getarg(@i)) < getarg(@i+1)) {
+				next;
+				mes "[MVP卡片兌換]";
+				mes "你身上有 ^FF0000" + countitem(getarg(@i)) + "^000000 個 ^FF0000" + getitemname(getarg(@i)) + "^000000,我需要 ^009900" + getarg(@i+1) + "^000000 個";
+				mes "請補齊 ^FF0000" + (getarg(@i+1)-countitem(getarg(@i))) + "^000000 個 ^FF0000" + getitemname(getarg(@i)) + "^000000 再來找我.";
+				emotion 53;
+				close;
+			}
+			if(Zeny < getarg(@i)) {
+				next;
+				mes "[MVP卡片兌換]";
+				mes "你身上攜帶的金錢不足.";
+				mes "請補齊 ^FF0000" + (getarg(@i)-Zeny) + "Zeny差額再來找我^000000.";
+				emotion 53;
+				close;
+			}
+			for(set @i,0; !compare(getarg(@i+1)+"","Zeny"); set @i,@i+2) delitem getarg(@i),getarg(@i+1);
+			set Zeny,Zeny-getarg(@i);
+			for(set @i,@i+2; getarg(@i+1,0); set @i,@i+2) getitem getarg(@i),getarg(@i+1);
+			specialeffect2 154;
+			emotion 21;
+			if (compare(getarg(@i,0)+"","announce")) announce strcharinfo(0) + " 獲得了 " + getitemname(@bought_nameid) + "!",bc_all;
+			close;
+		case 2:
+			specialeffect2 6;
+			set @bottomview, getlook(3);
+			set @topview, getlook(4);
+			set @midview, getlook(5);
+			addtimer 1000, strnpcinfo(3)+"::On_Leave";
+			set @equip,getiteminfo(@bought_nameid, 5);
+			set @view, getiteminfo(@bought_nameid, 11);
+			if(@equip != -1 && @view > 0) {
+				if(@equip & 1) atcommand "@changelook 3 " + @view;
+				if(@equip & 768) atcommand "@changelook 1 " + @view;
+				if(@equip & 8192) atcommand "@changelook 7 " + @view;
+			}
+			next;
+			goto OnBuyItem;
+
+		case 3:
+			emotion 12;
+			close;
+	}
+On_Leave:
+	atcommand "@changelook 1 " + @topview;
+	atcommand "@changelook 7 " + @midview;
+	atcommand "@changelook 3 " + @bottomview;
+	set @equip,0;
+	set @view,0;
+	set @topview,0;
+	set @midview,0;
+	set @bottomview,0;
+	end;
+OnInit:
+	npcshopitem "quest_shop4",501,0;
+	npcshopdelitem "quest_shop4",501,0;
+	set .BuildQuest,1;
+	set .i,1;
+
+Quest_Setup:
+	switch(.i) {
+		default: set .BuildQuest,0; set .e,0; set .i,1; end;
+		case 1: callsub OnBuyItem,7539,2500,7723,10,100000,"SZeny",4121,1,"announce";
+		case 2: callsub OnBuyItem,7539,2500,7723,10,100000,"SZeny",4123,1,"announce";
+		case 3: callsub OnBuyItem,7539,2500,7723,10,100000,"SZeny",4128,1,"announce";
+		case 4: callsub OnBuyItem,7539,2500,7723,10,100000,"SZeny",4131,1,"announce";
+		case 5: callsub OnBuyItem,7539,2500,7723,10,100000,"SZeny",4132,1,"announce";
+		case 6: callsub OnBuyItem,7539,2500,7723,10,100000,"SZeny",4134,1,"announce";
+		case 7: callsub OnBuyItem,7539,2500,7723,10,100000,"SZeny",4135,1,"announce";
+		case 8: callsub OnBuyItem,7539,2500,7723,10,100000,"SZeny",4137,1,"announce";
+		case 9: callsub OnBuyItem,7539,2500,7723,10,100000,"SZeny",4142,1,"announce";
+		case 10: callsub OnBuyItem,7539,2500,7723,10,100000,"SZeny",4143,1,"announce";
+		case 11: callsub OnBuyItem,7539,2500,7723,10,100000,"SZeny",4144,1,"announce";
+		case 12: callsub OnBuyItem,7539,2500,7723,10,100000,"SZeny",4145,1,"announce";
+		case 13: callsub OnBuyItem,7539,2500,7723,10,100000,"SZeny",4146,1,"announce";
+		case 14: callsub OnBuyItem,7539,2500,7723,10,100000,"SZeny",4147,1,"announce";
+		case 15: callsub OnBuyItem,7539,2500,7723,10,100000,"SZeny",4148,1,"announce";
+		case 16: callsub OnBuyItem,7539,2500,7723,10,100000,"SZeny",4168,1,"announce";
+		case 17: callsub OnBuyItem,7539,2500,7723,10,100000,"SZeny",4169,1,"announce";
+		case 18: callsub OnBuyItem,7539,2500,7723,10,100000,"SZeny",4236,1,"announce";
+		case 19: callsub OnBuyItem,7539,2500,7723,10,100000,"SZeny",4276,1,"announce";
+		case 20: callsub OnBuyItem,7539,2500,7723,10,100000,"SZeny",4302,1,"announce";
+		case 21: callsub OnBuyItem,7539,2500,7723,10,100000,"SZeny",4305,1,"announce";
+		case 22: callsub OnBuyItem,7539,2500,7723,10,100000,"SZeny",4318,1,"announce";
+		case 23: callsub OnBuyItem,7539,2500,7723,10,100000,"SZeny",4324,1,"announce";
+		case 24: callsub OnBuyItem,7539,2500,7723,10,100000,"SZeny",4330,1,"announce";
+		case 25: callsub OnBuyItem,7539,2500,7723,10,100000,"SZeny",4342,1,"announce";
+		case 26: callsub OnBuyItem,7539,2500,7723,10,100000,"SZeny",4352,1,"announce";
+		case 27: callsub OnBuyItem,7539,2500,7723,10,100000,"SZeny",4357,1,"announce";
+		case 28: callsub OnBuyItem,7539,2500,7723,10,100000,"SZeny",4359,1,"announce";
+		case 29: callsub OnBuyItem,7539,2500,7723,10,100000,"SZeny",4361,1,"announce";
+		case 30: callsub OnBuyItem,7539,2500,7723,10,100000,"SZeny",4363,1,"announce";
+		case 31: callsub OnBuyItem,7539,2500,7723,10,100000,"SZeny",4365,1,"announce";
+		case 32: callsub OnBuyItem,7539,2500,7723,10,100000,"SZeny",4367,1,"announce";
+		case 33: callsub OnBuyItem,7539,2500,7723,10,100000,"SZeny",4372,1,"announce";
+		case 34: callsub OnBuyItem,7539,2500,7723,10,100000,"SZeny",4374,1,"announce";
+		case 35: callsub OnBuyItem,7539,2500,7723,10,100000,"SZeny",4376,1,"announce";
+		case 36: callsub OnBuyItem,7539,2500,7723,10,100000,"SZeny",4386,1,"announce";
+		case 37: callsub OnBuyItem,7539,2500,7723,10,100000,"SZeny",4399,1,"announce";
+		case 38: callsub OnBuyItem,7539,2500,7723,10,100000,"SZeny",4403,1,"announce";
+		case 39: callsub OnBuyItem,7539,2500,7723,10,100000,"SZeny",4407,1,"announce";
+		case 40: callsub OnBuyItem,7539,2500,7723,10,100000,"SZeny",4652,1,"announce";
+		case 41: callsub OnBuyItem,7539,2500,7723,10,100000,"SZeny",4408,1,"announce";
+		case 42: callsub OnBuyItem,7539,2500,7723,10,100000,"SZeny",4419,1,"announce";
+		case 43: callsub OnBuyItem,7539,2500,7723,10,100000,"SZeny",4425,1,"announce";
+		case 44: callsub OnBuyItem,7539,2500,7723,10,100000,"SZeny",4430,1,"announce";
+		case 45: callsub OnBuyItem,7539,2500,7723,10,100000,"SZeny",4441,1,"announce";
+		case 46: callsub OnBuyItem,7539,2500,100,"SZeny",7723,10,"announce";
+
+	}
+}
+

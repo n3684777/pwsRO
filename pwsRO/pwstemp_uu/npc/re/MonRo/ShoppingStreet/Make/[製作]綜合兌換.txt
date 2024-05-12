@@ -1,0 +1,179 @@
+lroom00,163,52,3	script	迪奈特兌換	10057,{
+	dispbottom "點擊後將自動把各色鐳礦石合成迪奈特。";
+	dispbottom "-";
+	changeore:
+	if( countitem(25809) >= 1 && countitem(25810) >= 1 && countitem(25811) >= 1 && countitem(25812) >= 1 && countitem(25813) >= 1 ){
+		delitem 25809,1;
+		delitem 25810,1;
+		delitem 25811,1;
+		delitem 25812,1;
+		delitem 25813,1;
+		getitem 25814,1;
+		goto changeore;
+	}
+	dispbottom "兌換完畢。";
+	end;
+}
+
+
+lroom00,159,73,3	itemshop	史波浪硬幣商店	443,6081,2917:10,2918:10,2919:10,2920:10,2921:10,2922:10,12812:5,12813:5,12814:1,12815:1
+lroom00,159,69,3	itemshop	破滅魔法石空間	436,6905,28703:20,21014:20,28105:20,16038:20,2024:20,18128:20,1938:20,1994:20,13126:20,13323:20,19033:20,15141:20,20779:20,22075:20
+lroom00,159,45,3	itemshop	穆拉硬幣商店	515,6380,2574:10,2475:10,2575:10,2476:10,2577:10,2477:10,2578:10,2478:10,2580:10,2479:10,2581:10,2480:10,1657:10,15029:10,2569:10,2471:10,16013:10,15030:10,2570:10,2472:10,2864:10,2865:10,2866:10,2007:10,15025:10,2467:10,2859:10,2008:10,15026:10,2468:10,2860:10,2009:10,15027:10,2469:10,2861:10,2010:10,15028:10,2470:10,2862:10
+lroom00,159,61,3	itemshop	黃土碎片商店	10089,6672,23676:50,23677:50,23678:50,13441:200,21009:200,1438:200,1496:200,1669:200,2023:200,18119:200,13093:200,28000:200,1836:200,16028:200,28100:200,1933:200,1988:200,2187:100,15090:100,15091:100,20721:100,22033:100,18820:100,27184:10000
+lroom00,159,57,3	itemshop	吉芬魔法硬幣商店	10090,6671,22511:20,23675:100,23679:100,2185:900,2186:900,2963:1350,2964:1350,15073:1800,15074:1800
+lroom00,159,53,3	itemshop	染血硬幣商店	10091,7642,22534:100,13442:1000,16029:2000,19686:500,19687:1000,19701:100,18848:500,18849:1000,2980:1500,18849:2000
+lroom00,159,49,3	itemshop	榮譽之證商店	10088,6919,15146:1200,15147:1200,28900:800,22899:300,28355:800,28356:300,20247:2000,20246:2000
+lroom00,159,65,3	itemshop	秀發茲榮譽商店	10087,25155,15163:1000,15164:1000,19115:2500,28425:1000,28426:1000,20456:1500
+lroom00,163,56,3	itemshop	迪奈特商店	946,25814,9514:30,9529:30,9515:50,9516:75
+lroom00,163,64,3	script	深淵湖水兌換 	10296,{ 
+	set @i,0;
+	
+			mes "^FF0000※一次請選購一種※^000000";
+			mes "上排的附魔道具使用龍之珠";
+			mes "下排的附魔道具使用龍之骨";
+			close2;
+			callshop "outing",1;
+			npcshopattach "outing";
+			end;
+			close;
+			
+			
+OnBuyItem:
+        
+	if(.BuildQuest) {
+		for(set .e,0; !compare(getarg(.e+1)+"","Zeny"); set .e,.e+2) {}
+		npcshopadditem "outing",getarg(.e+2),getarg(.e)*compare(getarg(.e+1)+"","SZeny");
+		setarray .Shop[.i],getarg(.e+2);
+		set .i,.i+1;
+		if(.i%20==0){sleep(1);}
+		goto Quest_Setup;
+	}
+	if(.Shop[@i]!=@bought_nameid) for(set @i,1; 1; set @i,@i+1) if(.Shop[@i]==@bought_nameid) { set .i,@i; callsub Quest_Setup; }
+	mes "- 製作 ^FF0000"+getitemname(@bought_nameid)+"^000000";
+	mes "- 請準備好下面材料！";
+	for(set @i,0; !compare(getarg(@i+1)+"","Zeny"); set @i,@i+2) mes " ^0066CC" + getitemname(getarg(@i)) + "^000000 x " + ((countitem(getarg(@i))>=getarg(@i+1))? "":"") + "" + getarg(@i+1) + " [^009900" + countitem(getarg(@i)) + "^000000/^FF6600" + getarg(@i+1) + "^000000]"+( countitem(getarg(@i))>=getarg(@i+1)?" ( ^D2691E已完成^000000 )":" ( ^999999未完成^000000 )");
+	if(getarg(@i)) mes " ^FF1493需要製作費用^000000 " + ((Zeny>=getarg(@i))? "^FF0000":"") + "" + getarg(@i) + "^000000 "+((Zeny>=getarg(@i))? "( ^D2691E已完成^000000 )":"( ^999999金錢不足^000000 )");
+	switch(select("-製作 ^FF0000"+getitemname(@bought_nameid)+"^000000:-結束對話")) {
+		case 1:
+			for(set @i,0; !compare(getarg(@i+1)+"","Zeny"); set @i,@i+2) if(countitem(getarg(@i)) < getarg(@i+1)) {
+				next;
+				mes "請補齊足夠的道具再來找我";
+				emotion 53;
+				close;
+			}
+			if(Zeny < getarg(@i)) {
+				next;
+				mes "你身上攜帶的金錢不足.";
+				mes "請補齊 ^FF0000" + (getarg(@i)-Zeny) + "Zeny差額再來找我^000000.";
+				emotion 53;
+				close;
+			}
+			for(set @i,0; !compare(getarg(@i+1)+"","Zeny"); set @i,@i+2) delitem getarg(@i),getarg(@i+1);
+			set Zeny,Zeny-getarg(@i);
+			for(set @i,@i+2; getarg(@i+1,0); set @i,@i+2) getitem getarg(@i),getarg(@i+1);
+			specialeffect2 154;
+			emotion 21;
+			if (compare(getarg(@i,0)+"","announce")) announce strcharinfo(0) + " 獲得了 " + getitemname(@bought_nameid) + "!",bc_all;
+			close;
+		case 2:
+			emotion 12;
+			close;
+}
+OnInit:
+	npcshopitem "outing",501,0;
+	npcshopdelitem "outing",501,0;
+	set .BuildQuest,1;
+	set .i,1;
+Quest_Setup:
+	switch(.i) {
+		default: set .BuildQuest,0; set .e,0; set .i,0; end;
+                case 1: callsub OnBuyItem,25761,50,25765,3,25766,15,1035,75,1036,100,1037,50,7123,100,7445,35,7446,35,7447,35,7448,35,2000000,"SZeny",15391,1;
+                case 2: callsub OnBuyItem,25760,50,25765,3,25766,15,1035,75,1036,100,1037,50,7123,100,7445,35,7446,35,7447,35,7448,35,2000000,"SZeny",15395,1;
+                case 3: callsub OnBuyItem,25759,50,25765,3,25766,15,1035,75,1036,100,1037,50,7123,100,7445,35,7446,35,7447,35,7448,35,2000000,"SZeny",15392,1;
+                case 4: callsub OnBuyItem,25762,50,25765,3,25766,15,1035,75,1036,100,1037,50,7123,100,7445,35,7446,35,7447,35,7448,35,2000000,"SZeny",15393,1;
+                case 5: callsub OnBuyItem,25763,50,25765,3,25766,15,1035,75,1036,100,1037,50,7123,100,7445,35,7446,35,7447,35,7448,35,2000000,"SZeny",15394,1;
+                case 6: callsub OnBuyItem,25764,50,25765,3,25766,15,1035,75,1036,100,1037,50,7123,100,7445,35,7446,35,7447,35,7448,35,2000000,"SZeny",15396,1;
+                case 7: callsub OnBuyItem,25764,12,25763,12,25762,12,25761,12,25760,12,25759,12,1500000,"SZeny",20946,1;
+				case 8: callsub OnBuyItem,25764,12,25763,12,25762,12,25761,12,25760,12,25759,12,1500000,"SZeny",22208,1;
+				case 9: callsub OnBuyItem,25764,12,25763,12,25762,12,25761,12,25760,12,25759,12,1,"SZeny",23981,1;
+				case 10: callsub OnBuyItem,25764,12,25763,12,25762,12,25761,12,25760,12,25759,12,1,"SZeny",100142,1;
+                case 11: callsub OnBuyItem,25764,8,25763,8,25762,8,25761,8,25760,8,25759,8,1,"SZeny",100144,1;
+                case 12: callsub OnBuyItem,25764,7,25763,7,25762,7,25761,7,25760,7,25759,7,1,"SZeny",100145,1;
+				case 14: callsub OnBuyItem,25765,1,25766,5,1,"SZeny",23981,1;
+				case 15: callsub OnBuyItem,25765,1,25766,5,1,"SZeny",100142,1;
+                case 16: callsub OnBuyItem,25765,1,25766,5,1,"SZeny",100144,1;
+                case 17: callsub OnBuyItem,25765,1,25766,1,1,"SZeny",100145,1;
+               
+             
+	}
+	}
+lroom00,163,60,3	script	湖水骨頭兌換	10297,{
+	set @i,0;
+			mes "^FF0000※一次請選購一種※^000000";
+			close2;
+			callshop "outing2",1;
+			npcshopattach "outing2";
+			end;
+			close;
+			
+			
+OnBuyItem:
+        
+	if(.BuildQuest) {
+		for(set .e,0; !compare(getarg(.e+1)+"","Zeny"); set .e,.e+2) {}
+		npcshopadditem "outing2",getarg(.e+2),getarg(.e)*compare(getarg(.e+1)+"","SZeny");
+		setarray .Shop[.i],getarg(.e+2);
+		set .i,.i+1;
+		if(.i%20==0){sleep(1);}
+		goto Quest_Setup;
+	}
+	if(.Shop[@i]!=@bought_nameid) for(set @i,1; 1; set @i,@i+1) if(.Shop[@i]==@bought_nameid) { set .i,@i; callsub Quest_Setup; }
+	mes "- 製作 ^FF0000"+getitemname(@bought_nameid)+"^000000";
+	mes "- 請準備好下面材料！";
+	for(set @i,0; !compare(getarg(@i+1)+"","Zeny"); set @i,@i+2) mes " ^0066CC" + getitemname(getarg(@i)) + "^000000 x " + ((countitem(getarg(@i))>=getarg(@i+1))? "":"") + "" + getarg(@i+1) + " [^009900" + countitem(getarg(@i)) + "^000000/^FF6600" + getarg(@i+1) + "^000000]"+( countitem(getarg(@i))>=getarg(@i+1)?" ( ^D2691E已完成^000000 )":" ( ^999999未完成^000000 )");
+	if(getarg(@i)) mes " ^FF1493需要製作費用^000000 " + ((Zeny>=getarg(@i))? "^FF0000":"") + "" + getarg(@i) + "^000000 "+((Zeny>=getarg(@i))? "( ^D2691E已完成^000000 )":"( ^999999金錢不足^000000 )");
+	switch(select("-製作 ^FF0000"+getitemname(@bought_nameid)+"^000000:-結束對話")) {
+		case 1:
+			for(set @i,0; !compare(getarg(@i+1)+"","Zeny"); set @i,@i+2) if(countitem(getarg(@i)) < getarg(@i+1)) {
+				next;
+				mes "請補齊足夠的道具再來找我";
+				emotion 53;
+				close;
+			}
+			if(Zeny < getarg(@i)) {
+				next;
+				mes "你身上攜帶的金錢不足.";
+				mes "請補齊 ^FF0000" + (getarg(@i)-Zeny) + "Zeny差額再來找我^000000.";
+				emotion 53;
+				close;
+			}
+			for(set @i,0; !compare(getarg(@i+1)+"","Zeny"); set @i,@i+2) delitem getarg(@i),getarg(@i+1);
+			set Zeny,Zeny-getarg(@i);
+			for(set @i,@i+2; getarg(@i+1,0); set @i,@i+2) getitem getarg(@i),getarg(@i+1);
+			specialeffect2 154;
+			emotion 21;
+			if (compare(getarg(@i,0)+"","announce")) announce strcharinfo(0) + " 獲得了 " + getitemname(@bought_nameid) + "!",bc_all;
+			close;
+		case 2:
+			emotion 12;
+			close;
+}
+OnInit:
+	npcshopitem "outing2",501,0;
+	npcshopdelitem "outing2",501,0;
+	set .BuildQuest,1;
+	set .i,1;
+Quest_Setup:
+	switch(.i) {
+		default: set .BuildQuest,0; set .e,0; set .i,0; end;
+                case 1: callsub OnBuyItem,25765,1,25766,5,1,"SZeny",23981,1;
+				case 2: callsub OnBuyItem,25765,1,25766,5,1,"SZeny",100142,1;
+                case 3: callsub OnBuyItem,25765,1,25766,5,1,"SZeny",100144,1;
+                case 4: callsub OnBuyItem,25765,1,25766,1,1,"SZeny",100145,1;
+               
+             
+	}
+	}
+-	shop	instanceequip	-1,512:100	
+-	shop	outing2	-1,512:100	
+-	shop	outing	-1,512:100	

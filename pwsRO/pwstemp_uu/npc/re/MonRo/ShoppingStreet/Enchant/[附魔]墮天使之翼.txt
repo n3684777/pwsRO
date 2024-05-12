@@ -1,0 +1,474 @@
+
+////---------------------------------------------------------------
+////				墮天使附魔			-
+////---------------------------------------------------------------
+function	script	blackangel	{
+	disable_items;
+	if (checkweight(1201,1) == 0) {
+		mes "你攜帶太多物品了，請減少後再來!";
+		close;
+	}
+	if (MaxWeight - Weight < 10000) {
+		mes "你好像背負太多東西了，感覺有些吃力，減輕些再來吧。";
+		close;
+	}
+	if (getequipid(EQI_GARMENT) == 2589) {
+		if (Zeny >= 1000000)
+			set .@menu$, "附魔墮天使之翼";
+		else
+			set .@menu$, "^999999你沒有足夠的Zeny!^000000";
+	} else
+		set .@menu$, "^999999你沒有裝備墮天使之翼!^000000";
+	mes "[墮落天使]";
+	mes "真相往往與現實相反!!眼見不一定為真!";
+	mes "當黃昏來臨之時，吾等將淨化如此濁世。";
+	mes "哈哈哈哈哈!!!";
+	next;
+	mes "[墮落天使]";
+	mes "想得到黑暗的力量嗎?";
+	mes "倘若你擁有墮天使之翼，我能幫助你在墮天使之翼上賦予我的魔力，你想要嗎?";
+	next;
+	switch(select("那是什麼?:"+.@menu$+":附魔淨化")) {
+	case 1:
+		switch(select("不要再說了!:我該怎麼做?")) {
+		case 1:
+			mes "[墮落天使]";
+			mes "你說什麼?";
+			close;
+		case 2:
+			mes "[墮落天使]";
+			mes "只要你能支付我^ff00001,000,000 Zeny，以及所需海神的憤怒^000000，我就可以幫助你在墮天使之翼上賦予我的魔力。";
+			next;
+			mes "[墮落天使]";
+			mes "第二、三槽需要^ff0000一顆^000000海神的憤怒。";
+			mes "第四槽則需要^ff0000兩顆^000000海神的憤怒。";
+			close;
+		}
+	case 2:
+		if (Zeny < 1000000) {
+			mes "[墮落天使]";
+			mes "^FF0000無法帶來足夠的Zeny，我是無法幫助你的。^000000";
+			close;
+		}
+		mes "[墮落天使]";
+		mes "首先，";
+		mes "你必須先支付^0000ff1,000,000 Zeny^000000，";
+		mes "以及所需^0000ff海神的憤怒^000000數量。";
+		mes "第二、三槽需要^ff0000一顆^000000海神的憤怒。";
+		mes "第四槽則需要^ff0000兩顆^000000海神的憤怒。";
+		next;
+		mes "[墮落天使]";
+		mes "再來是墮天使之翼的附魔分為三個階段:";
+		mes "^ff0000精煉值6以下，開啟附魔第二槽。^000000";
+		mes "^ff0000精煉值6以上，開啟附魔第三槽。^000000";
+		mes "^ff0000精煉值8以上，開啟附魔第四槽。^000000";
+		next;
+		mes "[墮落天使]";
+		mes "那麼你決定好要賦予魔力了嗎?";
+		next;
+	switch(select("讓我考慮一下...:請幫助我吧。")) {
+		case 1:
+			mes "[墮落天使]";
+			mes "好!花點時間考慮一下吧!";
+			close;
+			
+		case 2:
+			mes "[墮落天使]";
+			mes "那麼你想附魔哪一槽呢?";
+			next;
+			switch(select("第二槽:第三槽:第四槽")) {
+			
+		case 1:
+			if (countitem(6423) < 1) {
+			mes "[墮落天使]";
+			mes "^FF0000無法帶來足夠的海神的憤怒，我是無法幫助你的。^000000";
+			close;
+		}
+		specialeffect2 EF_REPAIRWEAPON;
+		progressbar "0000FF",2;
+		if (getequipisequiped(EQI_GARMENT) == 0) {
+			mes "[墮落天使]";
+			mes "你並沒有裝備墮天使之翼!";
+			close;
+		}
+		if (getequipid(EQI_GARMENT) != 2589) {
+			mes "[墮落天使]";
+			mes "你並沒有裝備墮天使之翼!";
+			close;
+		}
+		if (getequipcardid(EQI_GARMENT,1)) {
+			mes "[墮落天使]";
+			mes "這個墮天使之翼還殘存著魔力，請將它淨化或為我帶來另一個。!";
+			close;
+		}
+		set .@equip_refine, getequiprefinerycnt(EQI_GARMENT);
+		setarray .@equip_card[0], getequipcardid(EQI_GARMENT,0),getequipcardid(EQI_GARMENT,1),getequipcardid(EQI_GARMENT,2),getequipcardid(EQI_GARMENT,3);
+
+		set .@i, rand(1,256);
+			 if (.@i < 4) set .@enchant,4820; //鬥志lv5
+		else if (.@i < 8) set .@enchant,4827; //魔力lv6
+		else if (.@i < 12) set .@enchant,4834; //名弓lv3
+		else if (.@i < 16) set .@enchant,4865; //致命lv3
+		else if (.@i < 20) set .@enchant,4867; //Maxhp3%
+		else if (.@i < 24) set .@enchant,4871; //Sp+75
+		else if (.@i < 28) set .@enchant,4873; //攻擊後延遲lv3
+		else if (.@i < 32) set .@enchant,4808; //鬥志lv4
+		else if (.@i < 36) set .@enchant,4826; //魔力lv5
+		else if (.@i < 40) set .@enchant,4833; //名弓lv2
+		else if (.@i < 44) set .@enchant,4864; //致命lv2
+		else if (.@i < 48) set .@enchant,4862; //Maxhp2%
+		else if (.@i < 52) set .@enchant,4800; //Sp+50
+		else if (.@i < 56) set .@enchant,4872; //攻擊後延遲lv2
+		else if (.@i < 64) set .@enchant,4702; //STR+5
+		else if (.@i < 72) set .@enchant,4734; //AGI+5
+		else if (.@i < 80) set .@enchant,4744; //VIT+5
+		else if (.@i < 88) set .@enchant,4714; //INT+5
+		else if (.@i < 96) set .@enchant,4724; //DEX+5
+		else if (.@i < 104) set .@enchant,4754; //LUK+5
+		else if (.@i < 112) set .@enchant,4753; //LUK+4
+		else if (.@i < 120) set .@enchant,4723; //DEX+4
+		else if (.@i < 128) set .@enchant,4713; //INT+4
+		else if (.@i < 136) set .@enchant,4743; //VIT+4
+		else if (.@i < 144) set .@enchant,4733; //AGI+4
+		else if (.@i < 152) set .@enchant,4703; //STR+4
+		else if (.@i < 160) set .@enchant,4869; //攻擊後延遲lv1
+		else if (.@i < 168) set .@enchant,4870; //Sp+25
+		else if (.@i < 176) set .@enchant,4861; //Maxhp1%
+		else if (.@i < 184) set .@enchant,4863; //致命lv1
+		else if (.@i < 192) set .@enchant,4832; //名弓lv1
+		else if (.@i < 200) set .@enchant,4812; //魔力lv4
+		else if (.@i < 208) set .@enchant,4809; //鬥志lv3
+		else if (.@i < 216) set .@enchant,4752; //LUK+3
+		else if (.@i < 224) set .@enchant,4704; //STR+3
+		else if (.@i < 232) set .@enchant,4732; //AGI+3
+		else if (.@i < 240) set .@enchant,4742; //VIT+3
+		else if (.@i < 248) set .@enchant,4712; //INT+3
+		else if (.@i < 256) set .@enchant,4722; //DEX+3
+		set Zeny, Zeny - 1000000;
+		delitem 6423,1;
+		delequip EQI_GARMENT;
+		getitem2 2589,1,1,.@equip_refine,0,.@equip_card[0],.@enchant,.@equip_card[2],.@equip_card[3]; //Archangel_Wing
+		if (.@i < 32)
+		announce "玩家 '" + strcharinfo(0) + "' 通過附魔得到了迷人的墮天使之翼與驚人的屬性!",bc_all,0xFFFF00,FW_NORMAL,14;
+		mes "[墮落天使]";
+		mes "拿去吧!";
+		mes "去享受黑暗與絕對的力量吧。";
+		close;
+		
+		
+		case 2:
+			if (countitem(6423) < 1) {
+			mes "[墮落天使]";
+			mes "^FF0000無法帶來足夠的海神的憤怒，我是無法幫助你的。^000000";
+			close;
+		}
+		specialeffect2 EF_REPAIRWEAPON;
+		progressbar "0000FF",2;
+		if (getequipisequiped(EQI_GARMENT) == 0) {
+			mes "[墮落天使]";
+			mes "你並沒有裝備墮天使之翼!";
+			close;
+		}
+		
+		if (getequiprefinerycnt(EQI_GARMENT) < 7) {
+		mes "[墮落天使]";
+		mes "墮天使之翼的強度還無法承受我第二次魔力賦予，先去強化它吧。";
+		close;
+	
+		}
+		
+		if (getequipid(EQI_GARMENT) != 2589) {
+			mes "[墮落天使]";
+			mes "你並沒有裝備墮天使之翼!";
+			close;
+		}
+		if (getequipcardid(EQI_GARMENT,2)) {
+			mes "[墮落天使]";
+			mes "這個墮天使之翼還殘存著魔力，請將它淨化或為我帶來另一個。!";
+			close;
+		}
+		set .@equip_refine, getequiprefinerycnt(EQI_GARMENT);
+		setarray .@equip_card[0], getequipcardid(EQI_GARMENT,0),getequipcardid(EQI_GARMENT,1),getequipcardid(EQI_GARMENT,2),getequipcardid(EQI_GARMENT,3);
+
+		set .@i, rand(1,256);
+			 if (.@i < 4) set .@enchant,4820; //鬥志lv5
+		else if (.@i < 8) set .@enchant,4827; //魔力lv6
+		else if (.@i < 12) set .@enchant,4834; //名弓lv3
+		else if (.@i < 16) set .@enchant,4865; //致命lv3
+		else if (.@i < 20) set .@enchant,4867; //Maxhp3%
+		else if (.@i < 24) set .@enchant,4871; //Sp+75
+		else if (.@i < 28) set .@enchant,4873; //攻擊後延遲lv3
+		else if (.@i < 32) set .@enchant,4808; //鬥志lv4
+		else if (.@i < 36) set .@enchant,4826; //魔力lv5
+		else if (.@i < 40) set .@enchant,4833; //名弓lv2
+		else if (.@i < 44) set .@enchant,4864; //致命lv2
+		else if (.@i < 48) set .@enchant,4862; //Maxhp2%
+		else if (.@i < 52) set .@enchant,4800; //Sp+50
+		else if (.@i < 56) set .@enchant,4872; //攻擊後延遲lv2
+		else if (.@i < 64) set .@enchant,4702; //STR+5
+		else if (.@i < 72) set .@enchant,4734; //AGI+5
+		else if (.@i < 80) set .@enchant,4744; //VIT+5
+		else if (.@i < 88) set .@enchant,4714; //INT+5
+		else if (.@i < 96) set .@enchant,4724; //DEX+5
+		else if (.@i < 104) set .@enchant,4754; //LUK+5
+		else if (.@i < 112) set .@enchant,4753; //LUK+4
+		else if (.@i < 120) set .@enchant,4723; //DEX+4
+		else if (.@i < 128) set .@enchant,4713; //INT+4
+		else if (.@i < 136) set .@enchant,4743; //VIT+4
+		else if (.@i < 144) set .@enchant,4733; //AGI+4
+		else if (.@i < 152) set .@enchant,4703; //STR+4
+		else if (.@i < 160) set .@enchant,4869; //攻擊後延遲lv1
+		else if (.@i < 168) set .@enchant,4870; //Sp+25
+		else if (.@i < 176) set .@enchant,4861; //Maxhp1%
+		else if (.@i < 184) set .@enchant,4863; //致命lv1
+		else if (.@i < 192) set .@enchant,4832; //名弓lv1
+		else if (.@i < 200) set .@enchant,4812; //魔力lv4
+		else if (.@i < 208) set .@enchant,4809; //鬥志lv3
+		else if (.@i < 216) set .@enchant,4752; //LUK+3
+		else if (.@i < 224) set .@enchant,4704; //STR+3
+		else if (.@i < 232) set .@enchant,4732; //AGI+3
+		else if (.@i < 240) set .@enchant,4742; //VIT+3
+		else if (.@i < 248) set .@enchant,4712; //INT+3
+		else if (.@i < 256) set .@enchant,4722; //DEX+3
+		set Zeny, Zeny - 1000000;
+		delitem 6423,1;
+		delequip EQI_GARMENT;
+		getitem2 2589,1,1,.@equip_refine,0,.@equip_card[0],.@equip_card[1],.@enchant,.@equip_card[3]; //Archangel_Wing
+		if (.@i < 32)
+		announce "玩家 '" + strcharinfo(0) + "' 通過附魔得到了迷人的墮天使之翼與驚人的屬性!",bc_all,0xFFFF00,FW_NORMAL,14;
+		mes "[墮落天使]";
+		mes "拿去吧!";
+		mes "去享受黑暗與絕對的力量吧。";
+		close;
+		
+		case 3:
+			if (countitem(6423) < 2) {
+			mes "[墮落天使]";
+			mes "^FF0000無法帶來足夠的海神的憤怒，我是無法幫助你的。^000000";
+			close;
+		}
+		specialeffect2 EF_REPAIRWEAPON;
+		progressbar "0000FF",2;
+		if (getequipisequiped(EQI_GARMENT) == 0) {
+			mes "[墮落天使]";
+			mes "你並沒有裝備墮天使之翼!";
+			close;
+		}
+		if (getequiprefinerycnt(EQI_GARMENT) < 9) {
+		mes "[墮落天使]";
+		mes "墮天使之翼的強度還無法承受我第三次魔力賦予，先去強化它吧。";
+		close;
+		}
+		if (getequipid(EQI_GARMENT) != 2589) {
+			mes "[墮落天使]";
+			mes "你並沒有裝備墮天使之翼!";
+			close;
+		}
+		if (getequipcardid(EQI_GARMENT,3)) {
+			mes "[墮落天使]";
+			mes "這個墮天使之翼還殘存著魔力，請將它淨化或為我帶來另一個。!";
+			close;
+		}
+		set .@equip_refine, getequiprefinerycnt(EQI_GARMENT);
+		setarray .@equip_card[0], getequipcardid(EQI_GARMENT,0),getequipcardid(EQI_GARMENT,1),getequipcardid(EQI_GARMENT,2),getequipcardid(EQI_GARMENT,3);
+
+		set .@i, rand(1,368);
+			 if (.@i < 4)  set .@enchant,4858; //Special LUK
+		else if (.@i < 8)  set .@enchant,4857; //Special DEX
+		else if (.@i < 12)  set .@enchant,4856; //Special INT
+		else if (.@i < 16)  set .@enchant,4855; //Special VIT
+		else if (.@i < 20)  set .@enchant,4854; //Special AGI
+		else if (.@i < 24)  set .@enchant,4853; //Special STR
+		else if (.@i < 28)  set .@enchant,4807; //ASPD+1
+		else if (.@i < 32) set .@enchant,4801; //Sp+100
+		else if (.@i < 36) set .@enchant,4868; //Maxhp4%
+		else if (.@i < 40) set .@enchant,4866; //致命lv4
+		else if (.@i < 44) set .@enchant,4835; //名弓lv4
+		else if (.@i < 48) set .@enchant,4828; //魔力lv7
+		else if (.@i < 52) set .@enchant,4821; //鬥志lv6
+		else if (.@i < 60) set .@enchant,4820; //鬥志lv5
+		else if (.@i < 68) set .@enchant,4827; //魔力lv6
+		else if (.@i < 76) set .@enchant,4834; //名弓lv3
+		else if (.@i < 84) set .@enchant,4865; //致命lv3
+		else if (.@i < 92) set .@enchant,4867; //Maxhp3%
+		else if (.@i < 100) set .@enchant,4871; //Sp+75
+		else if (.@i < 108) set .@enchant,4873; //攻擊後延遲lv3
+		else if (.@i < 116) set .@enchant,4808; //鬥志lv4
+		else if (.@i < 124) set .@enchant,4826; //魔力lv5
+		else if (.@i < 132) set .@enchant,4833; //名弓lv2
+		else if (.@i < 140) set .@enchant,4864; //致命lv2
+		else if (.@i < 148) set .@enchant,4862; //Maxhp2%
+		else if (.@i < 156) set .@enchant,4800; //Sp+50
+		else if (.@i < 164) set .@enchant,4872; //攻擊後延遲lv2
+		else if (.@i < 172) set .@enchant,4702; //STR+5
+		else if (.@i < 180) set .@enchant,4734; //AGI+5
+		else if (.@i < 188) set .@enchant,4744; //VIT+5
+		else if (.@i < 196) set .@enchant,4714; //INT+5
+		else if (.@i < 204) set .@enchant,4724; //DEX+5
+		else if (.@i < 212) set .@enchant,4754; //LUK+5
+		else if (.@i < 220) set .@enchant,4753; //LUK+4
+		else if (.@i < 228) set .@enchant,4723; //DEX+4
+		else if (.@i < 236) set .@enchant,4713; //INT+4
+		else if (.@i < 248) set .@enchant,4743; //VIT+4
+		else if (.@i < 256) set .@enchant,4733; //AGI+4
+		else if (.@i < 264) set .@enchant,4703; //STR+4
+		else if (.@i < 272) set .@enchant,4869; //攻擊後延遲lv1
+		else if (.@i < 280) set .@enchant,4870; //Sp+25
+		else if (.@i < 288) set .@enchant,4861; //Maxhp1%
+		else if (.@i < 296) set .@enchant,4863; //致命lv1
+		else if (.@i < 304) set .@enchant,4832; //名弓lv1
+		else if (.@i < 312) set .@enchant,4812; //魔力lv4
+		else if (.@i < 320) set .@enchant,4809; //鬥志lv3
+		else if (.@i < 328) set .@enchant,4752; //LUK+3
+		else if (.@i < 336) set .@enchant,4704; //STR+3
+		else if (.@i < 344) set .@enchant,4732; //AGI+3
+		else if (.@i < 352) set .@enchant,4742; //VIT+3
+		else if (.@i < 360) set .@enchant,4712; //INT+3
+		else if (.@i < 368) set .@enchant,4722; //DEX+3
+		set Zeny, Zeny - 1000000;
+		delitem 6423,2;
+		delequip EQI_GARMENT;
+		getitem2 2589,1,1,.@equip_refine,0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@enchant; //Archangel_Wing
+		if (.@i < 53)
+			announce "玩家 '" + strcharinfo(0) + "' 通過附魔得到了超神的墮天使之翼與突破極限的屬性!",bc_all,0xFFFF00,FW_NORMAL,14;
+		mes "[墮落天使]";
+		mes "拿去吧!";
+		mes "去享受黑暗與絕對的力量吧。";
+		close;
+		}
+		}
+	case 3:
+		mes "[墮落天使]";
+		mes "想將墮天使之翼淨化須帶來^0000ff獼猴桃果實^000000。";
+		mes "以及須支付^0000ff1,000,000 Zeny^000000。";
+		next;
+		mes "[墮落天使]";
+		mes "淨化不會失敗，但是會刪除之前所賦予的魔力。";
+		next;
+		switch(select("讓我考慮一下...:好，請幫我淨化吧。")) {
+		case 1:
+		mes "[墮落天使]";
+			mes "好!花點時間考慮一下吧!";
+			close;
+		
+		case 2:
+		mes "[墮落天使]";
+		mes "那麼，你想淨化哪一個插槽呢?";
+		next;
+		switch(select("第二槽:第三槽:第四槽")) {
+		case 1:
+		specialeffect2 EF_REPAIRWEAPON;
+		progressbar "0000FF",2;
+		if (getequipisequiped(EQI_GARMENT) == 0) {
+			mes "[墮落天使]";
+			mes "你沒有裝備墮天使之翼。";
+			close;
+		}
+		if (getequipid(EQI_GARMENT) != 2589) {
+			mes "[墮落天使]";
+			mes "你並沒有裝備墮天使之翼!";
+			close;
+		}
+		if (countitem(6417) < 1) {
+			mes "[墮落天使]";
+			mes "你並沒有獼猴桃果實!";
+			close;
+		}
+		if (zeny < 1000000) {
+			mes "[墮落天使]";
+			mes "Zeny不，足我是無法幫助你的";
+			close;
+		}
+		if (getequipcardid(EQI_GARMENT,1) < 4700) { // Armor Enchant System
+			mes "[墮落天使]";
+			mes "這個墮天使之翼上並沒有我的魔力阿。";
+			close;
+		}
+		set .@equip_refine, getequiprefinerycnt(EQI_GARMENT);
+		setarray .@equip_card[0], getequipcardid(EQI_GARMENT,0),getequipcardid(EQI_GARMENT,1),getequipcardid(EQI_GARMENT,2),getequipcardid(EQI_GARMENT,3);
+		delitem 6417,1; //Silvervine
+		set Zeny, Zeny - 1000000;
+		delequip EQI_GARMENT;
+		getitem2 2589,1,1,.@equip_refine,0,.@equip_card[0],0,.@equip_card[2],.@equip_card[3]; //Archangel_Wing
+		mes "[墮落天使]";
+		mes "拿去吧! 魔力已經淨化完畢了。";
+		close;
+		
+		case 2:
+		specialeffect2 EF_REPAIRWEAPON;
+		progressbar "0000FF",2;
+		if (getequipisequiped(EQI_GARMENT) == 0) {
+			mes "[墮落天使]";
+			mes "你沒有裝備墮天使之翼。";
+			close;
+		}
+		if (getequipid(EQI_GARMENT) != 2589) {
+			mes "[墮落天使]";
+			mes "你並沒有裝備墮天使之翼!";
+			close;
+		}
+		if (countitem(6417) < 1) {
+			mes "[墮落天使]";
+			mes "你並沒有獼猴桃果實!";
+			close;
+		}
+		if (zeny < 1000000) {
+			mes "[墮落天使]";
+			mes "Zeny不，足我是無法幫助你的";
+			close;
+		}
+		if (getequipcardid(EQI_GARMENT,2) < 4700) { // Armor Enchant System
+			mes "[墮落天使]";
+			mes "這個墮天使之翼上並沒有我的魔力阿。";
+			close;
+		}
+		set .@equip_refine, getequiprefinerycnt(EQI_GARMENT);
+		setarray .@equip_card[0], getequipcardid(EQI_GARMENT,0),getequipcardid(EQI_GARMENT,1),getequipcardid(EQI_GARMENT,2),getequipcardid(EQI_GARMENT,3);
+		delitem 6417,1; //Silvervine
+		set Zeny, Zeny - 1000000;
+		delequip EQI_GARMENT;
+		getitem2 2589,1,1,.@equip_refine,0,.@equip_card[0],.@equip_card[1],0,.@equip_card[3]; //Archangel_Wing
+		mes "[墮落天使]";
+		mes "拿去吧! 魔力已經淨化完畢了。";
+		close;
+		
+		case 3:
+		specialeffect2 EF_REPAIRWEAPON;
+		progressbar "0000FF",2;
+		if (getequipisequiped(EQI_GARMENT) == 0) {
+			mes "[墮落天使]";
+			mes "你沒有裝備墮天使之翼。";
+			close;
+		}
+		if (getequipid(EQI_GARMENT) != 2589) {
+			mes "[墮落天使]";
+			mes "你並沒有裝備墮天使之翼!";
+			close;
+		}
+		if (countitem(6417) < 1) {
+			mes "[墮落天使]";
+			mes "你並沒有獼猴桃果實!";
+			close;
+		}
+		if (zeny < 1000000) {
+			mes "[墮落天使]";
+			mes "Zeny不，足我是無法幫助你的";
+			close;
+		}
+		if (getequipcardid(EQI_GARMENT,3) < 4700) { // Armor Enchant System
+			mes "[墮落天使]";
+			mes "這個墮天使之翼上並沒有我的魔力阿。";
+			close;
+		}
+		set .@equip_refine, getequiprefinerycnt(EQI_GARMENT);
+		setarray .@equip_card[0], getequipcardid(EQI_GARMENT,0),getequipcardid(EQI_GARMENT,1),getequipcardid(EQI_GARMENT,2),getequipcardid(EQI_GARMENT,3);
+		delitem 6417,1; //Silvervine
+		set Zeny, Zeny - 1000000;
+		delequip EQI_GARMENT;
+		getitem2 2589,1,1,.@equip_refine,0,.@equip_card[0],.@equip_card[1],.@equip_card[2],0; //Archangel_Wing
+		mes "[墮落天使]";
+		mes "拿去吧! 魔力已經淨化完畢了。";
+		close;
+	}
+}}
+}

@@ -1,0 +1,444 @@
+lroom00,42,161,5	script	自動裝備改造	4_EP17_GUARD_B_NG,{
+	//switch(select("模組改造:幻覺裝備升級:巴米爾券商店:瑪凍石兌換:瑪凍石兌換2")){
+	switch(select("模組改造")){
+		case 1:	goto Change172;
+		case 2:	break;
+		case 3:	callshop "巴米爾兌換",1;end;
+		case 4:	callshop "瑪凍石兌換",1;end;
+		case 5:	callshop "瑪凍石兌換2",1;end;
+	}
+	function str2 {
+	setarray .@a,0,40,34;
+	setarray .@b,1,2,1;
+	function GetCopyStr {
+		for(set .@i,getarg(0);.@i>0;set .@i,.@i-1)set .@h$,.@h$+" ";
+		return .@h$;
+	}
+	return GetCopyStr((.@a[getarg(1,0)]-(getstrlen(getarg(0))-(getarg(2,0)*7)))/.@b[getarg(1,0)]) + getarg(0);
+}
+	function refine_9;
+	function Add;
+	function Chk;
+	function Chk2;
+	function Slot;
+	if(!.Allow) end;
+	if(.Shops$ != "") set .@i,1;
+	else{
+		mes "["+strnpcinfo(1)+"]";
+		mes "^FF00001.^000000 請一次製作一種道具";
+		mes "^FF00002.^000000 查看道具材料並不會扣除金錢";
+		mes "^FF00003.^000000 攜帶所有材料即可製作";
+		set .@menu$,"";
+		for(set .@i,1; .@i<=getarraysize(.Shops$); set .@i,.@i+1) 
+			set .@menu$, .@menu$+(.Shops$[.@i])+":";
+		set .@i, select(.@menu$);
+		callshop "qshop_auto_1",1;
+		npcshopattach "qshop_auto_1";
+	}
+	end;
+	
+function refine_9 {
+	setarray .@refine_9,15376,15377,20933,20934,22196,22197;
+	.@index = inarray(.@refine_9,getarg(0));
+	if(.@index > -1) return .@index;
+	else return -1;
+}
+
+function Add {
+	if (getitemname(getarg(1))=="null") {
+		debugmes "道具編號 #"+getarg(1)+" 出現錯誤 (略過).";
+		return;
+	}
+	for(set .@n,5; .@n<127; set .@n,.@n+2) {
+		if (!getarg(.@n,0)) break;
+		if (getitemname(getarg(.@n))=="null") {
+			debugmes "製作材料超過最大值, 編號#"+getarg(.@n)+" (略過)."; return;
+		}
+	}
+	for(set .@i,2; .@i<.@n; set .@i,.@i+1)
+		set getd(".q_"+getarg(1)+"["+(.@i-2)+"]"), getarg(.@i);
+	npcshopadditem "qshop_auto_"+getarg(0),getarg(1),((.ShowZeny)?getarg(3):0);
+	sleep 1;
+	return;
+}
+
+function Chk {
+	if (getarg(0)<getarg(1)){
+		set @qe0,1;
+		return "(^999999未完成^000000)";
+	} else return "(^D2691E已完成^000000)";
+}
+
+function Chk2 {
+	if(countitem2(getarg(0),1,9,0,0,0,0,0) < getarg(1)){
+		set @qe0,1;
+		return "(^999999未完成^000000)";
+	} else return "(^D2691E已完成^000000)";
+}
+
+function Slot {
+	set .@s$,getitemname(getarg(0));
+	if(refine_9(getarg(0)) > -1)
+		if(getarg(1,0) == 0) .@s$ = "+9 "+.@s$;
+	switch(.ShowSlot){
+		case 1: if (!getitemslots(getarg(0))) return .@s$;
+		case 2: if (getiteminfo(getarg(0),11)>0) return ""+.@s$+"["+getitemslots(getarg(0))+"]";
+		default: return .@s$;
+	}
+}
+
+OnBuyItem:
+	set .@q[0],@bought_nameid;
+	copyarray .@q[1],getd(".q_"+@bought_nameid+"[0]"),getarraysize(getd(".q_"+@bought_nameid+"[0]"));
+	if (!.@q[1]) {
+		message strcharinfo(0),"An error has occurred.";
+		end;
+	}
+	mes "[自動模組兌換]";
+	mes "- 製作 ^FF0000"+((.@q[1]>1)?.@q[1]+"x ":"")+Slot(.@q[0])+"^000000";
+	mes "- 請準備好下面材料 :";
+	if (.@q[2]) mes "- ^FF1493製作費用 "+.@q[2]+" Zeny "+Chk(Zeny,.@q[2])+"^000000";
+	if (.@q[3]) mes "- ^009900製作P點 "+.@q[3]+" "+.Points$[1]+"^000000 ["+getd(.Points$[0])+"/"+.@q[3]+"] "+Chk(getd(.Points$[0]),.@q[3]);
+	if (.@q[4]) for(set .@i,4; .@i<getarraysize(.@q); set .@i,.@i+2){
+		if(refine_9(.@q[.@i]) > -1)
+			mes "- "+Slot(.@q[.@i])+" x "+.@q[.@i+1]+" [^009900"+countitem2(.@q[.@i],1,9,0,0,0,0,0)+"^000000/^FF6600"+.@q[.@i+1]+"^000000] "+Chk2(.@q[.@i],.@q[.@i+1]);
+		else
+			mes "- "+Slot(.@q[.@i])+" x "+.@q[.@i+1]+" [^009900"+countitem(.@q[.@i])+"^000000/^FF6600"+.@q[.@i+1]+"^000000] "+Chk(countitem(.@q[.@i]),.@q[.@i+1]);
+	}
+	set @qe1, getiteminfo(.@q[0],5);
+	set @qe2, getiteminfo(.@q[0],11);
+	addtimer 1000, strnpcinfo(1)+"::OnEnd";
+	while(1){
+		switch(select(" ~ 製作 ^FF0000"+getitemname(.@q[0])+"^000000:"+((((@qe1&1) || (@qe1&256) || (@qe1&512)) && @qe2>0 && !@qe6)?" ~ 查看外觀...":"")+": ~ ^777777結束對話^000000")) {
+			case 1:
+				clear;
+				if (@qe0) { 
+					mes "[自動模組兌換]";
+					mes "材料不足，無法製作！";
+					close;
+				}
+				if (!checkweight(.@q[0],.@q[1])) {
+					mes "[自動模組兌換]";
+					mes "^FF0000你需要 "+(((.@q[1]*getiteminfo(.@q[0],6))+Weight-MaxWeight)/10)+" 的負重量才能玩成此次交易.^000000";
+					close;
+				}
+				if (.@q[2]) set Zeny, Zeny-.@q[2];
+				if (.@q[3]) setd .Points$[0], getd(.Points$[0])-.@q[3];
+				if (.@q[4]){
+					for(set .@i,4; .@i<getarraysize(.@q); set .@i,.@i+2){
+						if(refine_9(.@q[.@i]) > -1)
+							delitem2 .@q[.@i],.@q[.@i+1],1,9,0,0,0,0,0;
+						else
+							delitem .@q[.@i],.@q[.@i+1];
+					}
+				}
+				getitem .@q[0],.@q[1];
+				specialeffect2 699;
+				mes "[自動模組兌換]";
+				mes "製作完成!";
+				close;
+			case 2:
+				set @qe3, getlook(3);
+				set @qe4, getlook(4);
+				set @qe5, getlook(5);
+				if (@qe1&1) atcommand "@changelook 3 "+@qe2;
+				if (@qe1&256) atcommand "@changelook 1 "+@qe2;
+				if (@qe1&512) atcommand "@changelook 2 "+@qe2;
+				set @qe6,1;
+				break;
+			case 3:
+				close;
+		}
+	}
+OnEnd:
+	if (@qe6) {
+		atcommand "@changelook 3 "+@qe3;
+		atcommand "@changelook 1 "+@qe4;
+		atcommand "@changelook 2 "+@qe5;
+	}
+	for(set .@i,0; .@i<7; set .@i,.@i+1) setd "@qe"+.@i,0;
+	end;
+OnInit:
+	setarray .Enchant_Setting[1],
+			1000105,310082,	// 自動修改模組(防禦)	
+			1000106,310083,	// 自動修改模組(魔法防禦)       
+			1000107,310084,	// 自動修改模組(Vit)            
+			1000108,310085,	// 自動修改模組(Luk)            
+			1000109,310086,	// 自動修改模組(Str)            
+			1000110,310087,	// 自動修改模組(Agi)            
+			1000111,310088,	// 自動修改模組(Int)            
+			1000112,310089,	// 自動修改模組(Dex)            
+			1000113,310090,	// 自動修改模組(HP恢復)         
+			1000114,310091,	// 自動修改模組(SP恢復)         
+			1000115,310092,	// 自動修改模組(魔力)           
+			1000116,310093,	// 自動修改模組(攻擊後延遲)     
+			1000117,310094,	// 自動修改模組(致命)           
+			1000118,310095,	// 自動修改模組(名弓)           
+			1000119,310096,	// 自動修改模組(生命力)         
+			1000120,310097,	// 自動修改模組(魔法力)         
+			1000121,310098,	// 自動修改模組(治癒)           
+			1000122,310099,	// 自動修改模組(物理攻擊)       
+			1000123,310100,	// 自動修改模組(魔法攻擊)       
+			1000124,310101,	// 自動修改模組(狙擊)           
+			1000125,310102,	// 自動修改模組(速度)           
+			1000126,310103,	// 自動修改模組(變動)           
+			1000127,310104,	// 自動修改模組(暴擊)           
+			1000128,310105,	// 自動修改模組(魔法之力)       
+			1000129,310106,	// 自動修改模組(物理之力)       
+			1000130,310107,	// 自動修改模組(遠距離物理之力)  
+			1000131,310108,	// 自動修改模組(暴擊之力)       
+			1000132,310109,	// 自動修改模組(恢復之力)      
+			1000133,310110,	// 自動修改模組(技能後延遲)     
+			1000140,310117,	// 自動修改模組(動力) 
+			1000141,310118,	// 自動修改模組(穩健)
+			1000134,310111,	// 自動修改模組(固定詠唱)  
+			1000136,310113,	// 自動修改模組(生命吸收)			
+			1000138,310115,	// 自動修改模組(魔法治療)
+			1000137,310114,	// 自動修改模組(魔力吸收)       
+			1000139,310116,	// 自動修改模組(魔法吸魂)
+			1000135,310112,	// 自動修改模組(全力抵抗)            
+			1000142,310119,	// 自動修改模組(強力)           
+			1000143,310120,	// 自動修改模組(全力)      
+			1000144,310121,	// 自動模組(無限生命)    
+			1000145,310122,	// 自動模組(法術剋星)           			
+			1000146,310123,	// 自動模組(射擊)               
+			1000147,310124,	// 自動模組(超功率)             
+			1000148,310125,	// 自動模組(致命閃光)           
+			1000149,310126,	// 自動模組(幸運打擊)           
+			1000152,310127,	// 自動模組(龍之氣息)           
+			1000153,310128,	// 自動模組(衝擊爆裂)           
+			1000154,310129,	// 自動模組(百矛螺旋)           
+			1000155,310130,	// 自動模組(毀滅重壓)           
+			1000156,310131,	// 自動模組(放逐加農砲)         
+			1000157,310132,	// 自動模組(創世威壓)           
+			1000158,310133,	// 自動模組(噴射加農砲)         
+			1000159,310134,	// 自動模組(液態火焰)           
+			1000160,310135,	// 自動模組(颶風重擊)           
+			1000161,310136,	// 自動模組(手推車龍捲風)       
+			1000162,310137,	// 自動模組(瘋狂曼陀羅)         
+			1000163,310138,	// 自動模組(強酸爆炸)           
+			1000164,310139,	// 自動模組(音速斬擊)           
+			1000165,310140,	// 自動模組(刀刃十字)           
+			1000166,310141,	// 自動模組(狂暴斬)             
+			1000167,310142,	// 自動模組(致命潛擊)           
+			1000168,310143,	// 自動模組(魅影念咒)           
+			1000169,310144,	// 自動模組(角度射擊)           
+			1000170,310145,	// 自動模組(碧血翻身)           
+			1000171,310146,	// 自動模組(凍僵閃電)           
+			1000172,310147,	// 自動模組(毀滅漩渦)           
+			1000173,310148,	// 自動模組(雙倍投擲)           
+			1000174,310149,	// 自動模組(加熱波)             
+			1000175,310150,	// 自動模組(鑽石墳場)           
+			1000176,310151,	// 自動模組(驅魔謳歌)           
+			1000177,310152,	// 自動模組(神聖審判)           
+			1000178,310153,	// 自動模組(二道殿堂)           
+			1000179,310154,	// 自動模組(虎砲崩墜)           
+			1000180,310155,	// 自動模組(爆氣散彈)           
+			1000181,310156,	// 自動模組(猛龍崩擊)           
+			1000182,310157,	// 自動模組(榴霰)               
+			1000183,310158,	// 自動模組(微風射擊)           
+			1000184,310159,	// 自動模組(瞄準風暴)           
+			1000185,310160,	// 自動模組(金屬共鳴)           
+			1000186,310161,	// 自動模組(殘響)               
+			1000187,310162,	// 自動模組(亂舞暴雨)           
+			1000188,310163,	// 自動模組(紅焰爆炸)           
+			1000189,310164,	// 自動模組(月腳)               
+			1000190,310165,	// 自動模組(閃光殞落)           
+			1000191,310166,	// 自動模組(艾斯核)             
+			1000192,310167,	// 自動模組(艾斯帕)             
+			1000193,310168,	// 自動模組(邪靈爆炸)           
+			1000194,310169,	// 自動模組(亡命天神暗舞)       
+			1000195,310170,	// 自動模組(火焰怒吼擺尾)       
+			1000196,310171,	// 自動模組(風暴驅逐舞蹈)       
+			1000197,310172,	// 自動模組(炎閃風)             
+			1000198,310173,	// 自動模組(橫切)               
+			1000199,310174,	// 自動模組(炎晶風)             
+			1000200,310175,	// 自動模組(海洋之力)           
+			1000201,310176,	// 自動模組(大地之力)           
+			1000202,310177,	// 自動模組(生命之力)      
+			1000207,310178,	// 自動修改模組(鏡面轉換)
+			1000208,310179;	// 自動修改模組(反射抑制)	
+// --------------------- Config ---------------------
+// 自定義變數, 新增方法 : "變數","變數名稱"
+
+	setarray .Points$[0],"#CASHPOINTS","CASH";
+
+	set .Announce,1;	// 是否廣播製作? (1: 是 / 0: 否)
+	set .ShowSlot,2;	// 是否顯示道具洞數? (2: 一律顯示 / 1: 洞數 > 0 才顯示 / 0: 不顯示)
+	set .DisplayID,0;	// 是否顯示道具編號? (1: 是 / 0: 否)
+	set .ShowZeny,1;	// 是否在商店顯示道具製作金錢? (1: 是 / 0: 否)
+	
+	setarray .Shops$[1],"幻覺裝備升級";
+
+// Add(<shop number>,<reward ID>,<reward amount>,<Zeny cost>,<point cost>,<required item ID>,<required item amount>{,...});
+// Add(<分類>,<製作道具編號>,<製作道具數量>,<所需金錢>,<所需商城點數>,<所需材料編號>,<所需材料數量>{,...});
+
+	//===[ 幻影德古拉男爵 ]===
+	Add(1,450127,1,0,0,15376,1,1000103,700);
+	Add(1,450128,1,0,0,15377,1,1000103,700);
+	Add(1,480020,1,0,0,20933,1,1000103,700);
+	Add(1,480021,1,0,0,20934,1,1000103,700);
+	Add(1,470022,1,0,0,22196,1,1000103,700);
+	Add(1,470023,1,0,0,22197,1,1000103,700); 
+	Add(1,490024,1,0,0,32207,1,1000103,1400);
+	Add(1,490025,1,0,0,32208,1,1000103,1400);
+	Add(1,490026,1,0,0,32209,1,1000103,1400);
+	Add(1,490027,1,0,0,32210,1,1000103,1400);
+	
+// --------------------------------------------------
+	for(set .@i,1; .@i<=getarraysize(.Shops$); set .@i,.@i+1) npcshopdelitem "qshop_auto_1",909;
+	set .Allow,1;
+		while( 1 ) {
+		sleep 1000;}
+	end;
+
+
+	Change172:	
+	function Enchant_Amount {
+		setarray .@array_3,1000105,1000106;
+		setarray .@array_1,1000115,1000116,1000117,1000118,1000128,1000129,1000130,1000131,1000132,1000207,1000133,1000140,1000141,1000134,1000136,1000138,1000137,1000139,1000135,1000142,1000143,1000208,1000144,1000145,1000146,1000147,1000148,1000149;
+		if(inarray(.@array_3,getarg(0)) > -1) return 3;
+		else if(inarray(.@array_1,getarg(0)) > -1) return 1;
+		else return 2;
+	}
+	setarray .@Equip_ID[1], 450127, 450128, 480020, 480021, 470022, 470023, 490025, 490027, 490024, 490026;
+	setarray .@Equip_Pos[1], EQI_ARMOR, EQI_ARMOR, EQI_GARMENT, EQI_GARMENT, EQI_SHOES, EQI_SHOES, EQI_ACC_L, EQI_ACC_L, EQI_ACC_R, EQI_ACC_R;
+	for(.@i=1; .@i<getarraysize(.@Equip_ID); .@i++)
+		.@menu$ += getitemname(.@Equip_ID[.@i])+(getequipid(.@Equip_Pos[.@i]) == .@Equip_ID[.@i] ? "[^0000FF裝備中^000000]":"")+":";
+	mes "["+strnpcinfo(1)+"]";
+	mes "您好，我可以為自動防具進行改造附魔";
+	mes "不過需要帶來附魔材料，而且附魔不會失敗";
+	mes "請問您想要附魔哪項裝備?";
+	next;
+	.@id = select(.@menu$);
+	.@nameid = .@Equip_ID[.@id];
+	.@part = .@Equip_Pos[.@id];
+	if(getequipid(.@Equip_Pos[.@id]) != .@nameid)
+	{
+		mes "["+strnpcinfo(1)+"]";
+		mes "您並沒有裝備 ^0066CC"+getitemname(.@nameid)+"^000000。";
+		close;
+	}
+	.@refine_cnt = getequiprefinerycnt(.@part);
+	setarray .@card, getequipcardid(.@part,0), getequipcardid(.@part,1), getequipcardid(.@part,2), getequipcardid(.@part,3);
+	if(.@card[1] && .@card[2] && .@card[3])
+	{
+		mes "["+strnpcinfo(1)+"]";
+		mes getitemname(.@nameid)+"已經無法再進行附魔了。";
+		close;
+	}
+	switch(.@nameid)
+	{
+		case 450127:	// 自動裝甲A型
+		case 450128:	// 自動裝甲B型
+			setarray .@item[1], 1000105,1000106,1000122,1000123,1000124,1000128,1000129,1000130,1000131,1000132,1000207,1000133,1000140,1000152,1000153,1000154,1000155,1000156,1000157,1000158,1000159,1000160,1000161,1000162,1000163,1000164,1000165,1000166,1000167,1000168,1000169,1000170,1000171,1000172,1000173,1000174,1000175,1000176,1000177,1000178,1000179,1000180,1000181,1000182,1000183,1000184,1000185,1000186,1000187,1000188,1000189,1000190,1000191,1000192,1000193,1000194,1000195,1000196,1000197,1000198,1000199,1000200,1000201,1000202,1000208;
+			for(.@i=1; .@i<getarraysize(.@item); .@i++)
+				.@Select$ += (getitemname(.@item[.@i]) + "(持有"+(countitem(.@item[.@i]) ? countitem(.@item[.@i]) : 0)+"個)") + ":";
+			break;
+			
+		case 480020:	// 自動引擎翼A型
+		case 480021:	// 自動引擎翼B型
+			setarray .@item[1], 1000105,1000106,1000125,1000126,1000127,1000135,1000142,1000208;
+			for(.@i=1; .@i<getarraysize(.@item); .@i++)
+				.@Select$ += (getitemname(.@item[.@i]) + "(持有"+(countitem(.@item[.@i]) ? countitem(.@item[.@i]) : 0)+"個)") + ":";
+			
+			break;
+		
+		case 470022:	// 自動長靴A型
+		case 470023:	// 自動長靴B型
+			setarray .@item[1], 1000105,1000106,1000119,1000120,1000121,1000141,1000134,1000144,1000145,1000146,1000147,1000148,1000149;
+			for(.@i=1; .@i<getarraysize(.@item); .@i++)
+				.@Select$ += (getitemname(.@item[.@i]) + "(持有"+(countitem(.@item[.@i]) ? countitem(.@item[.@i]) : 0)+"個)") + ":";
+			break;
+		
+		case 490025:	// 自動增幅器L
+		case 490027:	// 自動戰鬥晶片L
+			setarray .@item[1], 1000107,1000108,1000111,1000112,1000114,1000115,1000116,1000117,1000118,1000137,1000139,1000143;
+			for(.@i=1; .@i<getarraysize(.@item); .@i++)
+				.@Select$ += (getitemname(.@item[.@i]) + "(持有"+(countitem(.@item[.@i]) ? countitem(.@item[.@i]) : 0)+"個)") + ":";
+			break;
+			
+		case 490024:	// 自動增幅器R
+		case 490026:	// 自動戰鬥晶片R
+			setarray .@item[1], 1000107,1000108,1000109,1000110,1000113,1000115,1000116,1000117,1000118,1000136,1000138,1000143;
+			for(.@i=1; .@i<getarraysize(.@item); .@i++)
+				.@Select$ += (getitemname(.@item[.@i]) + "(持有"+(countitem(.@item[.@i]) ? countitem(.@item[.@i]) : 0)+"個)") + ":";
+			break;
+	}
+	mes "["+strnpcinfo(1)+"]";
+	mes "請選擇您要附魔在 ^0066FF"+getitemname(.@nameid)+"^000000的附魔石";
+	next;
+	.@itemid = .@item[select(.@Select$)];
+	if(countitem(.@itemid) < 1)
+	{
+		mes "["+strnpcinfo(1)+"]";
+		mes "您沒有附魔材料 ^FF0000"+getitemname(.@itemid)+"^000000，請攜帶之後再過來找我吧!";
+		close;
+	}
+	.@index = inarray(.Enchant_Setting, .@itemid);
+	.@Enchant_ID = .Enchant_Setting[.@index+1];
+	.@time = Enchant_Amount(.@itemid);
+	// 自動長靴附魔限制(傳說級 x 1)
+	if(.@part == EQI_SHOES && .@itemid >= 25700 && .@itemid <= 25705)
+		for(.@i=29547; .@i<=29552; .@i++)
+			if(inarray(.@card, .@i) > -1) .@limit = 1;
+	if(.@limit)
+	{
+		mes "["+strnpcinfo(1)+"]";
+		mes "自動長靴最多只能附魔一個^FF0000傳說等級(第四級)改造模組^000000。";
+		close;
+	}
+	if(countinarray(.@card, .@Enchant_ID) >= .@time)
+	{
+		mes "["+strnpcinfo(1)+"]";
+		mes getitemname(.@nameid)+"上面已經有"+.@time+"個^FF0000"+getitemname(.@itemid)+"^000000，無法再進行同一種類的附魔。";
+		close;
+	}
+	mes "["+strnpcinfo(1)+"]";
+	mes "那麼我就在你的"+getitemname(.@nameid)+"裝備上面附上^FF0000"+getitemname(.@itemid)+"^000000囉~";
+	mes "請問確定要附嗎？";
+	next;
+	if(select("^0000FF確定^000000","取消") == 2)
+	{
+		mes "["+strnpcinfo(1)+"]";
+		mes "這的確需要好好思考下。";
+		close;
+	}
+	setarray .@OptID[0],getequiprandomoption(.@part,0,ROA_ID),getequiprandomoption(.@part,1,ROA_ID),getequiprandomoption(.@part,2,ROA_ID),getequiprandomoption(.@part,3,ROA_ID),getequiprandomoption(.@part,4,ROA_ID);
+	setarray .@OptVal[0],getequiprandomoption(.@part,0,ROA_VALUE),getequiprandomoption(.@part,1,ROA_VALUE),getequiprandomoption(.@part,2,ROA_VALUE) ,getequiprandomoption(.@part,3,ROA_VALUE),getequiprandomoption(.@part,4,ROA_VALUE);
+	setarray .@OptParam[0],getequiprandomoption(.@part,0,ROA_PARAM),getequiprandomoption(.@part,1,ROA_PARAM),getequiprandomoption(.@part,2,ROA_PARAM),getequiprandomoption(.@part,3,ROA_PARAM),getequiprandomoption(.@part,4,ROA_PARAM);
+	delequip .@part;
+	delitem .@itemid, 1;
+	if(.@card[1] == 0 && .@card[2] == 0 && .@card[3] == 0)
+	{
+		if(getarraysize(.@OptID))
+			getitem3 .@nameid, 1, 1, .@refine_cnt, 0, .@card[0], .@card[1], .@card[2], .@Enchant_ID, .@OptID, .@OptVal, .@OptParam;
+		else
+			getitem2 .@nameid, 1, 1, .@refine_cnt, 0, .@card[0], .@card[1], .@card[2], .@Enchant_ID;
+	}
+	else if(.@card[2] == 0 && .@card[3] > 0)
+	{
+		if(getarraysize(.@OptID))
+			getitem3  .@nameid, 1, 1, .@refine_cnt, 0, .@card[0], .@card[1], .@Enchant_ID, .@card[3], .@OptID, .@OptVal, .@OptParam;
+		else
+			getitem2 .@nameid, 1, 1, .@refine_cnt, 0, .@card[0], .@card[1], .@Enchant_ID, .@card[3];
+	}
+	else if(.@card[1] == 0 && .@card[2] > 0 && .@card[3] > 0)
+	{
+		if(getarraysize(.@OptID))
+			getitem3 .@nameid, 1, 1, .@refine_cnt, 0, .@card[0], .@Enchant_ID, .@card[2], .@card[3], .@OptID, .@OptVal, .@OptParam;
+		else
+			getitem2 .@nameid, 1, 1, .@refine_cnt, 0, .@card[0], .@Enchant_ID, .@card[2], .@card[3];
+	}
+	
+	specialeffect2 EF_MAXPOWER;
+	mes "["+strnpcinfo(1)+"]";
+	mes getitemname(.@nameid)+"附魔完成。";
+	close;
+}
+// -------- Dummy data (duplicate as needed) --------
+//-	shop	qshop_auto_1	-1,909:-1
+//-	itemshop	巴米爾兌換	-1,1000103,1000170:300,100160:50,100161:50,100162:50,100163:50,100251:500,100252:500
+//-	itemshop	瑪凍石兌換	-1,1000104,1000152:50,1000153:50,1000154:50,1000155:50,1000156:50,1000157:50,1000158:50,1000159:50,1000160:50,1000161:50,1000162:50,1000163:50,1000164:50,1000165:50,1000166:50,1000167:50,1000168:50,1000169:50,1000170:50,1000171:50,1000172:50,1000173:50,1000174:50,1000175:50,1000176:50,1000177:50,1000178:50
+//-	itemshop	瑪凍石兌換2	-1,1000104,1000179:50,1000180:50,1000181:50,1000182:50,1000183:50,1000184:50,1000185:50,1000186:50,1000187:50,1000188:50,1000189:50,1000190:50,1000191:50,1000192:50,1000193:50,1000194:50,1000195:50,1000196:50,1000197:50,1000198:50,1000199:50,1000200:50,1000201:50,1000202:50,1000207:50,1000208:50
+

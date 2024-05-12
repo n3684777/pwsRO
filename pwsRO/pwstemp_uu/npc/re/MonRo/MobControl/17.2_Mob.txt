@@ -1,0 +1,83 @@
+ba_maison	mapflag	town
+
+ba_2whs01	mapflag	nomemo
+ba_2whs02	mapflag	nomemo
+ba_bath	mapflag	nomemo
+ba_lib	mapflag	nomemo
+ba_pw01	mapflag	nomemo
+ba_pw02	mapflag	nomemo
+ba_pw03	mapflag	nomemo
+
+
+ba_2whs01	mapflag	nobranch
+ba_2whs02	mapflag	nobranch
+ba_bath	mapflag	nobranch
+ba_lib	mapflag	nobranch
+ba_maison	mapflag	nobranch
+ba_pw01	mapflag	nobranch
+ba_pw02	mapflag	nobranch
+ba_pw03	mapflag	nobranch
+
+
+
+ba_2whs01	mapflag	noicewall
+ba_2whs02	mapflag	noicewall
+ba_bath	mapflag	noicewall
+ba_lib	mapflag	noicewall
+ba_maison	mapflag	noicewall
+ba_pw01	mapflag	noicewall
+ba_pw02	mapflag	noicewall
+ba_pw03	mapflag	noicewall
+
+
+//========================================================================================
+// EP17.2
+//========================================================================================
+//
+
+ba_maison,0,0	monster	故障的β	20630,15
+ba_maison,0,0	monster	守護者零件	20679,10
+
+ba_2whs01,0,0	monster	壞掉的守衛測試版	20639,30
+ba_2whs01,0,0	monster	壞掉的掃地機器人	20641,30
+ba_2whs01,0,0	monster	高級邪心獵人小兵	20682,30
+//
+ba_2whs02,0,0	monster	壞掉的掃地機器人	20641,30
+ba_2whs02,0,0	monster	故障的倉庫		20637,30
+ba_2whs02,0,0	monster	壞掉的守衛測試版	20639,30
+//
+ba_bath,0,0	monster	煮熟的劍魚		20643,30
+ba_bath,0,0	monster	煮熟的馬克		20644,30
+ba_bath,0,0	monster	煮熟的異變魚		20645,30
+ba_bath,0,0	monster	煮熟的食人魚		20646,30
+ba_bath,0,0	monster	壞掉的租借神社A		20633,30
+ba_bath,0,0	monster	壞掉的租借神社B		20634,30
+//
+ba_lost,0,0	monster	紅色的皮塔亞		20660,30
+ba_lost,0,0	monster	黃色的皮塔亞		20661,30
+ba_lost,0,0	monster	藍色的皮塔亞		20662,30
+ba_lost,0,0	monster	紫色的皮塔亞		20663,30
+ba_lost,0,0	monster	綠色的皮塔亞		20664,30
+//
+ba_lib,0,0	monster	邪心獵人小兵		20680,30
+ba_lib,0,0	monster	書蟲			20683,30
+ba_lib,0,0	monster	徘徊的多米		20684,30
+ba_lib,0,0	monster	掃地機器人		20640,30
+//
+ba_pw01,0,0	monster	研究助理		20637,30
+ba_pw01,0,0	monster	邪心獵人小兵		20680,30
+ba_pw01,0,0	monster	菁英貝雷爾槍手		20688,30
+ba_pw01,0,0	monster	魔力中毒的朵蘿		20689,30
+ba_pw01,0,0	monster	釋放的魔力		20690,30
+//
+ba_pw02,0,0	monster	邪心獵人小兵		20680,30
+ba_pw02,0,0	monster	下水道貝涅奴		20685,30
+ba_pw02,0,0	monster	下水道藍鼠		20686,30
+ba_pw02,0,0	monster	下水道水泥妖		20687,30
+ba_pw02,0,0	monster	菁英貝雷爾槍手		20688,30
+
+//
+ba_pw03,0,0	monster	強力的魔力		20693,30
+ba_pw03,0,0	monster	鋒利的魔力		20694,30
+ba_pw03,0,0	monster	魔力中毒的普拉嘎	20691,30
+ba_pw03,0,0	monster	魔力中毒的薩奈爾	20692,30

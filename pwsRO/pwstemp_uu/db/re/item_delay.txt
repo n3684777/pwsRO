@@ -1,0 +1,108 @@
+﻿// Item Delay Database
+//
+// Structure of Database:
+// <ItemID>,<Delay>{,<SC_GroupID>}
+//
+// <ItemID>
+//     ID of item that will has reuse delay.
+// <Delay>
+//     Re-use delay in milliseconds.
+// <SC_GroupID>
+//     SC (status change) group for the item.
+//     Example for SC_REUSE_LIMIT_MTF
+//         12658,10000,SC_REUSE_LIMIT_MTF // 變身卷軸(小惡魔)
+//         12659,10000,SC_REUSE_LIMIT_MTF // 變身卷軸(幽靈弓箭手)
+//     -> 12658 has reuse delay for 10 seconds, and also,
+//        12659 cannot be used when this delay is active.
+//     Since this is optional, default is -1 will ignores the
+//     delay group and the delay will be stored in character's
+//     data that has limit set in src/map/itemdb.hpp as MAX_ITEMDELAYS.
+
+// SC_REUSE_REFRESH
+12725,120000,SC_REUSE_REFRESH	// 那特席茲盧恩石
+
+// SC_REUSE_LIMIT_A
+14538,300000,SC_REUSE_LIMIT_A	// 幻影的酒杯
+
+// SC_REUSE_LIMIT_B
+12596,180000,SC_REUSE_LIMIT_B	// 魔力糖果
+14586,180000,SC_REUSE_LIMIT_B	// 跳跳糖
+
+// SC_REUSE_LIMIT_C
+12208,60000,SC_REUSE_LIMIT_C	// 經驗值倍增書
+
+// SC_REUSE_LIMIT_D
+12210,60000,SC_REUSE_LIMIT_D	// 掉寶率倍增糖
+
+// SC_REUSE_LIMIT_E
+11522,1000,SC_REUSE_LIMIT_E	// 紅色能量液
+11523,2000,SC_REUSE_LIMIT_E	// 黃色能量液
+11524,3000,SC_REUSE_LIMIT_E	// 白色能量液
+
+// SC_REUSE_LIMIT_F
+607,5000,SC_REUSE_LIMIT_F	// 天地樹果實
+
+// SC_REUSE_LIMIT_G
+608,3000,SC_REUSE_LIMIT_G	// 天地樹芽
+22559,3000,SC_REUSE_LIMIT_G	// 蛇莓果
+23042,3000,SC_REUSE_LIMIT_G	// 天地樹芽
+
+// SC_REUSE_LIMIT_H
+11525,5000,SC_REUSE_LIMIT_H	// 穆拉高山茶
+
+// SC_REUSE_LIMIT_MTF
+12658,10000,SC_REUSE_LIMIT_MTF	// 變身卷軸(小惡魔)
+12659,10000,SC_REUSE_LIMIT_MTF	// 變身卷軸(幽靈弓箭手)
+12660,10000,SC_REUSE_LIMIT_MTF	// 變身卷軸(森林妖精)
+12661,10000,SC_REUSE_LIMIT_MTF	// 變身卷軸(馬爾杜克)
+12662,10000,SC_REUSE_LIMIT_MTF	// 變身卷軸(惡耗女妖)
+12663,10000,SC_REUSE_LIMIT_MTF	// 變身卷軸(波利)
+12664,10000,SC_REUSE_LIMIT_MTF	// 變身卷軸(巨石怪)
+
+// SC_REUSE_LIMIT_ASPD_POTION
+12684,900000,SC_REUSE_LIMIT_ASPD_POTION	// ASPD強化藥水
+
+// SC_REUSE_MILLENNIUMSHIELD
+12727,60000,SC_REUSE_MILLENNIUMSHIELD	// 貝爾卡諾盧恩石
+
+// SC_REUSE_CRUSHSTRIKE
+12726,30000,SC_REUSE_CRUSHSTRIKE	// 萊德赫盧恩石
+
+// SC_REUSE_STORMBLAST
+12732,1000,SC_REUSE_STORMBLAST	// 培爾多羅盧恩石
+
+// SC_ALL_RIDING_REUSE_LIMIT
+12622,3000,SC_ALL_RIDING_REUSE_LIMIT	// 坐騎韁繩
+
+// SC_REUSE_LIMIT_ECL
+12812,5000,SC_REUSE_LIMIT_ECL	// 冰雪花瓣
+12813,5000,SC_REUSE_LIMIT_ECL	// 溫馨花瓣
+12814,5000,SC_REUSE_LIMIT_ECL	// 薄荷藥草
+12815,5000,SC_REUSE_LIMIT_ECL	// 世界樹灰塵
+
+// SC_REUSE_LIMIT_RECALL
+12968,300000,SC_REUSE_LIMIT_RECALL	// 緊急Lv.1 卷軸
+12969,300000,SC_REUSE_LIMIT_RECALL	// 緊急Lv.2 卷軸
+12970,300000,SC_REUSE_LIMIT_RECALL	// 緊急Lv.3 卷軸
+
+// Misc
+11621,1000	//Red_Syrup
+11622,1000	//Yellow_Syrup
+11623,1000	//White_Syrup
+11624,10000	//Blue_Syrup
+12135,3000	// 綠色麥酒
+//12202,60000	// 力量料理
+//12203,60000	// 敏捷料理
+//12204,60000	// 智力料理
+//12205,60000	// 靈巧料理
+//12206,60000	// 幸運料理
+//12207,60000	// 體力料理
+22508,1200000	// 樂園團 徽章
+
+22540,5000,SC_REUSE_LIMIT_LUXANIMA	// 力量根源盧恩石
+
+// Bed of Honor
+22687,5000,SC_REUSE_LIMIT_F	// 邪念碎片
+
+23277,180000	// 魔導戰甲應急箱
+

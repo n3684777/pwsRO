@@ -1,0 +1,122 @@
+function	script	ladynecklace	{
+	disable_items;
+	mes "[神殿裝備管理員]";
+	mes "消耗一定量的^0000ff夢境碎片^000000,";
+	mes "就能為^0000ff神職項鏈^000000附上女神的力量。";
+	next;
+	mes "[神殿裝備管理員]";
+	mes "接下來就請交給我吧。";
+	next;
+	switch(select("女神的力量？","那麼拜託了","不需要")) {
+		case 1:
+			close;
+		case 2:			
+			mes "[神殿裝備管理員]";
+			mes "請選擇你要附魔的裝備。";
+			next;
+			switch(select(((getequipid(EQI_ACC_L) != -1)?("左裝飾品^0000ff"+getitemname(getequipid(EQI_ACC_L))+"^000000"):("左裝飾品")),((getequipid(EQI_ACC_R) != -1)?("右裝飾品^0000ff"+getitemname(getequipid(EQI_ACC_R))+"^000000"):("右裝飾品")),"取消")) {
+				case 1:
+					set .@part,EQI_ACC_L;
+					break;
+				case 2:
+					set .@part,EQI_ACC_R;
+					break;
+				case 3:
+					close;
+			}
+			if(getequipid(.@part) == -1) {
+				mes "[神殿裝備管理員]";
+				mes "請先裝備上神職項鏈。";
+				close;
+			}
+			if(getequipid(.@part) != 28387) {
+				mes "[神殿裝備管理員]";
+				mes "我無法為此件裝備附上女神的力量。";
+				close;
+			}
+			if(getequipcardid(.@part,3) == 29122 || getequipcardid(.@part,3) == 29124 || getequipcardid(.@part,3) == 29126) {
+				mes "[神殿裝備管理員]";
+				mes "我已經無法再增強此裝備的女神的力量了。";
+				close;			
+			}
+			if(getequipcardid(.@part,3) == 29121 || getequipcardid(.@part,3) == 29123 || getequipcardid(.@part,3) == 29125) {
+				set .@yes,1;
+			}
+			if(.@yes) {
+				set .@num,1000;
+				mes "[神殿裝備管理員]";
+				mes "哦，這是...！";
+				mes "已經附魔過一次^0000ff"+getitemname(getequipcardid(.@part,3))+"^000000的項鏈嗎？";
+				next;
+				mes "[神殿裝備管理員]";
+				mes "如果你拿出^0000ff1000個夢境碎片^000000就能將女神的力量增強為^0000ff"+getitemname(getequipcardid(.@part,3)+1)+"^000000，";
+				mes "如何？";
+				next;
+				mes "[神殿裝備管理員]";
+				mes "要嘗試一下嗎？";
+				next;
+				if(select("好的","算了") == 2) {
+					close;
+				}
+				set .@fumo,getequipcardid(.@part,3)+1;
+			} else {
+				set .@num,100;
+				mes "[神殿裝備管理員]";
+				mes "要賦予^0000ff神職項鏈^000000哪種女神的力量？";
+				mes "請選擇吧！";
+				mes "只要準備好^0000ff100個夢境碎片^000000就好了。";
+				next;
+				switch(select("女神的正義A (近戰)","女神的慈愛A (魔法)","女神的洞察A (遠程)","取消")) {
+					case 1:
+						set .@fumo,29121;
+						break;
+					case 2:
+						set .@fumo,29123;
+						break;
+					case 3:
+						set .@fumo,29125;
+						break;
+					case 4:
+						close;
+				}
+			}
+			if(countitem(25088) < .@num) {
+				mes "[神殿裝備管理員]";
+				mes "對不起，你沒有足夠的夢境碎片。";
+				close;
+			}
+			mes "[神殿裝備管理員]";
+			mes "那麼即將為你的神職項鏈附上^0000ff"+getitemname(.@fumo)+"^000000！";
+			next;
+			mes "[神殿裝備管理員]";
+			mes "女神芙蕾雅，請讓我們見識您真正的力量吧！！！";
+			next;
+			if(rand(100) <50) {
+				mes "[神殿裝備管理員]";
+				mes "啊...完成了，再確認一下吧？";
+				mes "真是太好了。";
+				specialeffect 112;
+				delitem 25088,.@num;
+				delequip .@part;
+				getitem2 28387,1,1,0,0,0,0,0,.@fumo;
+				next;
+				mes "[神殿裝備管理員]";
+				mes "請好好珍惜使用吧。";
+				close;
+			} else {
+				mes "[神殿裝備管理員]";
+				mes "啊...完成了，再確認一下吧？";
+				mes "真可惜，神跡沒有降臨。";
+				mes "項鏈也隨之破碎了。";
+				specialeffect 183;
+				delitem 25088,.@num;
+				delequip .@part;
+				next;
+				mes "[神殿裝備管理員]";
+				mes "請下次再來祈求女神吧！";
+				close;			
+			}
+		case 3:
+			close;
+	}
+}

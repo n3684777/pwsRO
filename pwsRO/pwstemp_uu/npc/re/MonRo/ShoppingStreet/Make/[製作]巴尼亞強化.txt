@@ -1,0 +1,104 @@
+function	script	baniyaup	{
+	mes "[班尼]";
+	mes "只要你擁有馬來港魔物所掉落的裝備，我可以幫助你將他升級。但是前提是你必須支付我 20 張御守平安符。";
+	next;
+	mes "[班尼]";
+	mes "但是升級之前，這些裝備必須先經過九次的鍛造才能夠承受如此強大的力量。";
+	next;
+	mes "[班尼]";
+	mes "若是如此你還想繼續嗎?";
+	next;
+	if (select("不:是") == 1) {
+	mes "[班尼]";
+		mes "什麼?";
+		close;}
+	if (countitem(6499) < 20) {	
+		mes "[班尼]";
+		mes "你必須帶來20張御守平安護身符才可以。";
+		close;
+	}
+	mes "[班尼]";
+	mes "你想強化哪一件裝備?";
+	next;
+	switch (select("巴庫暴龍鱗片甲:魔幻紫藤盾:寶箱巨鱷披風:噩夢死神長靴")) {
+	case 1:
+		.@part    = EQI_ARMOR;
+		.@item    = 15051;
+		.@newItem = 15052;
+		break;
+	case 2:
+		.@part    = EQI_HAND_L;
+		.@item    = 2169;
+		.@newItem = 2170;
+		break;
+	case 3:
+		.@part    = EQI_GARMENT;
+		.@item    = 2590;
+		.@newItem = 2591;
+		break;
+	case 4:
+		.@part    = EQI_SHOES;
+		.@item    = 2491;
+		.@newItem = 2492;
+		break;
+	}
+	
+	if (!getequipisequiped(.@part)) {
+		mes "[班尼]";
+		mes "你是否為將他穿在身上呢?";
+		close;
+	} else if (getequipid(.@part) != .@item) {
+		mes "[班尼]";
+		mes "" + getitemname(.@item) + " ? 這是什麼東西? 你因該要穿" + getitemname(.@item) + "才對啊。";
+		close;
+	} else if (getequiprefinerycnt(.@part) < 9) {
+		mes "[班尼]";
+		mes "任何裝備要升級都必須鍛造至9以上才行阿。否則會承受不住強大能量的。";
+		close;
+	}
+
+	mes "[班尼]";
+	mes "看起來你有認真在聽，我沒有看到任何問題，但在開始之前有些話我還是必須告訴你。";
+	next;
+	mes "[班尼]";
+	mes "^0000FF一但開始強化裝備上的鍛造等級都會歸零^FF00000^0000FF 並且將被升級。^000000 若是如此，你還想繼續嗎?";
+	next;
+	if (select("不:是") == 1) {
+		mes "[班尼]";
+		mes "什麼? 這麼容易就退縮了。";
+		close;
+	}
+	mes "[班尼]";
+	mes "好，下一個問題。 一旦完成";
+	mes "^0000FF裝備上所擁有的卡片都將會被重製。^000000";
+	mes "你還想繼續嗎?";
+	next;
+	if (select("不:是") == 1) {
+		mes "[班尼]";
+		mes "什麼!? 你不清楚?  閱讀我的指示再回來吧。";
+		close;
+	}
+	mes "[班尼]";
+	mes "真棒，讓我們開始改造" + getitemname(.@item) + "吧。";
+	next;
+	specialeffect EF_SONICBLOW;
+	mes "[班尼]";
+	mes "蹦!! 哇!! 拖鞋!";
+	next;
+	specialeffect2 EF_TRIPLEATTACK;
+	mes "[班尼]";
+	mes "蹦!";
+	next;
+	delitem 6499,20; //Ancient_Grudge
+
+	// anti-hack
+	if (callfunc("F_IsEquipIDHack", .@part, .@item))
+		close;
+
+	delequip .@part;
+	getitem .@newItem, 1; 
+	mes "[班尼]";
+		mes "哈哈，完美。";
+		mes "恭喜你，你的盔甲更勝以往。";
+	close;
+} 

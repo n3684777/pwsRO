@@ -1,0 +1,213 @@
+//===== rAthena Script ======================================= 
+//= 黑夜吉芬魔法大賽物品兌換
+//===== By: ================================================== 
+//= 天波工作組(https://www.angeling-studio.com/)
+//===== Current Version: ===================================== 
+//= 1.0
+//===== Compatible With: ===================================== 
+//= rAthena Project
+//===================尊重他人智慧財產權，請保留以上資訊=========================
+lroom00,124,47,5	script	暗夜吉芬鬥技場裝備製作	4_M_KHKYEL,{
+	mes "[暗夜吉芬鬥技場裝備製作]";
+	mes "暗夜吉芬鬥技場";
+	mes "取得的材料可以在這邊兌換到物資";
+	next;
+	switch(select("兌換裝備","兌換魔法配件")){
+
+	case 1:
+		doevent "暗夜吉芬兌換機::OnShop";
+	end;
+
+	case 2:
+		setarray .@item[0],1000316,1000317;//物品設定
+		setarray .@amount1[0],15,15,25,25;//暗夜吉芬鬥技場硬幣數量設定
+		setarray .@amount2[0],1,1,1,1;//暗夜吉芬鬥技場證明數量設定
+		setarray .@zeny[0],150000,150000,100000,200000;//zeny設定
+
+		mes "[暗夜吉芬鬥技場裝備製作]";
+		mes "請問你要兌換哪一個呢？";
+		next;
+		setarray .@changeitem[0],100365,100366,100367,100368;
+		setarray .@numitem$[0],"熾熱的魔法配件","沉浸的魔法配件 ","成長的魔法配件","閃亮的魔法配件";
+		.@menu$ = implode(.@numitem$, ":");
+		.@i = select( .@menu$ ) - 1;
+		
+		if(.@i == 0 || .@i == 1){
+			mes "[暗夜吉芬鬥技場裝備製作]";
+			mes "兌換熾熱的魔法配件或沉浸的魔法配件需要";
+			mes "<ITEM>"+getitemname(.@item[0])+"<INFO>"+.@item[0]+"</INFO></ITEM>*"+.@amount1[0]+"";
+			mes "<ITEM>"+getitemname(.@item[1])+"<INFO>"+.@item[1]+"</INFO></ITEM>*"+.@amount2[0]+"";
+			mes "ZENY："+.@zeny[0]+"";
+		}
+		if(.@i == 2){
+			mes "[暗夜吉芬鬥技場裝備製作]";
+			mes "兌換成長的魔法配件需要";
+			mes "<ITEM>"+getitemname(.@item[0])+"<INFO>"+.@item[0]+"</INFO></ITEM>*"+.@amount1[2]+"";
+			mes "<ITEM>"+getitemname(.@item[1])+"<INFO>"+.@item[1]+"</INFO></ITEM>*"+.@amount2[2]+"";
+			mes "ZENY："+.@zeny[2]+"";
+		}
+		if(.@i == 3){
+			mes "[暗夜吉芬鬥技場裝備製作]";
+			mes "兌換閃亮的魔法配件需要";
+			mes "<ITEM>"+getitemname(.@item[0])+"<INFO>"+.@item[0]+"</INFO></ITEM>*"+.@amount1[3]+"";
+			mes "<ITEM>"+getitemname(.@item[1])+"<INFO>"+.@item[1]+"</INFO></ITEM>*"+.@amount2[3]+"";
+			mes "ZENY："+.@zeny[3]+"";
+		}
+		mes "請選擇你要兌換的數量";
+		next;
+		input .@input;
+		if(.@input == 0 ) {
+				mes "[暗夜吉芬鬥技場裝備製作]";
+				mes "請輸入正確的值。";
+				close;
+		}
+		mes "[暗夜吉芬鬥技場裝備製作]";
+		mes "目前選擇數量：^888888:"+.@input+"個^000000";
+		next;
+		if(select("確定:取消")==2) close;
+		set .@checkitem1,.@amount1[.@i]*.@input;
+		set .@checkitem2,.@amount2[.@i]*.@input;
+		if(countitem(.@item[0])<  .@checkitem1 || countitem(.@item[1])<  .@checkitem2 ) {
+				mes "[暗夜吉芬鬥技場裝備製作]";
+				mes "你身上的^ff0000"+getitemname(.@item[0])+"或"+getitemname(.@item[1])+"不足…^000000";
+				close;
+		}
+		if (Zeny < .@zeny[.@i]) {
+			mes "[暗夜吉芬鬥技場裝備製作]";
+			mes "對不起，你沒有足夠的金錢。";
+			close;
+		}
+		delitem .@item[0],.@checkitem1;//移除物品
+		delitem .@item[1],.@checkitem2;//移除物品
+		getitem .@changeitem[.@i],.@input;
+	end;
+	}
+}
+//-------------------------------------------
+-	shop	Ge_sn_shop	-1,512:100	//生成商店，請無視這行
+-	script	暗夜吉芬兌換機	-1,{
+OnShop:
+	set .Npcname$,strnpcinfo(1);
+	set @i,0;
+	mes "["+.Npcname$+"]";
+	mes "請按照購買物品的選擇";
+	mes "材料足夠後將直接製作";
+	mes "材料不足將直接提示材料";
+	mes "請^FF0000一次選購一種^000000";
+	mes "請放心選購^FF3399 查看時,不會扣除相應Zeny^000000";
+	callshop "Ge_sn_shop",1;
+	npcshopattach "Ge_sn_shop";
+	end;
+
+OnBuyItem:
+	if(.BuildQuest) {
+		for(set .e,0; getarg(.e+1)!=-1; set .e,.e+2);
+		if(.i==1) npcshopitem "Ge_sn_shop",getarg(.e+2),1;
+		else npcshopadditem "Ge_sn_shop",getarg(.e+2),1;
+		setarray .Shop[.i],getarg(.e+2);
+		set .i,.i+1;
+		if(.i%20==0){sleep(1);}
+		goto Quest_Setup;
+	}
+	if(.Shop[@i]!=@bought_nameid) for(set @i,1; 1; set @i,@i+1) if(.Shop[@i]==@bought_nameid) { set .i,@i; callsub Quest_Setup; }
+	for(set @i,1; !@e; set @i,@i+1) if(.Shop[@i]==@bought_nameid) { set @e,1; set .i,@i; callsub Quest_Setup; }
+	mes "- 製作 ^FF0000"+getitemname(@bought_nameid)+"^000000";
+	mes "- 請準備好下面材料！";
+	for(set @i,0; getarg(@i+1)!=-1; set @i,@i+2) mes " ^0066CC" + getitemname(getarg(@i)) + "^000000 " + "[^009900" + countitem(getarg(@i)) + "^000000/^FF6600" + getarg(@i+1) + "^000000]"+( countitem(getarg(@i))>=getarg(@i+1)?" ( ^D2691E已完成^000000 )":" ( ^999999未完成^000000 )");
+	if(getarg(@i)) mes " ^FF1493需要製作費用^000000 " + ((Zeny>=getarg(@i))? "^FF0000":"") + "" + callfunc("F_InsertComma",getarg(@i)) + "^000000 "+((Zeny>=getarg(@i))? "( ^D2691E已完成^000000 )":"( ^999999金錢不足^000000 )");
+	mes "- 在交換條件裡寫著, 我將會給你：";
+	for(set @i,@i+2; getarg(@i+1,0); set @i,@i+2) mes "  ^0000FF" + getitemname(getarg(@i)) + "^000000 x ^0000FF" + getarg(@i+1) + "^000000";
+	switch(select("- 1、製作 ^FF0000"+getitemname(@bought_nameid)+"^000000:" + (((((getiteminfo(@bought_nameid,5) & 1) || (getiteminfo(@bought_nameid,5) & 256) || (getiteminfo(@bought_nameid,5) & 512)) && @equip==0))? "- 2、看看他長啥樣":"") + ":- 3、結束對話")) {
+		case 1:
+			for(set @i,0; getarg(@i+1)!=-1; set @i,@i+2) if(countitem(getarg(@i)) < getarg(@i+1)) {
+				next;
+				mes "["+.Npcname$+"]";
+				mes "^9955FF" + getitemname(getarg(@i)) + "^000000 - ^009900" + countitem(getarg(@i)) + "^000000 / ^FF0000" + getarg(@i+1) + "^000000";
+				mes "請補齊 ^FF0000" + (getarg(@i+1)-countitem(getarg(@i))) + "^000000 個 ^9955FF" + getitemname(getarg(@i)) + "^000000 再來找我。";
+				emotion ET_CONFUSE;
+				close;
+			}
+			if(Zeny < getarg(@i)) {
+				next;
+				mes "["+.Npcname$+"]";
+				mes "你身上攜帶的金錢不足.";
+				mes "請補齊 ^FF0000" + (getarg(@i)-Zeny) + "Zeny差額再來找我^000000.";
+				emotion ET_CONFUSE;
+				close;
+			}
+			for(set @i,0; getarg(@i+1)!=-1; set @i,@i+2) delitem getarg(@i),getarg(@i+1);
+			set Zeny,Zeny-getarg(@i);
+			for(set @i,@i+2; getarg(@i+1,0)>0; set @i,@i+2) getitem getarg(@i),getarg(@i+1);
+			specialeffect2 154;
+			emotion ET_BEST;
+			close;
+		case 2:
+			specialeffect2 6;
+			set @bottomview, getlook(3);
+			set @topview, getlook(4);
+			set @midview, getlook(5);
+			addtimer 1000, strnpcinfo(3)+"::On_Leave";
+			set @equip,getiteminfo(@bought_nameid, 5);
+			set @view, getiteminfo(@bought_nameid, 11);
+			if(@equip != -1 && @view > 0) {
+				if(@equip & 1) atcommand "@changelook 3 " + @view;
+				if(@equip & 256) atcommand "@changelook 1 " + @view;
+				if(@equip & 512) atcommand "@changelook 2 " + @view;
+			}
+			next;
+			goto OnBuyItem;
+
+		case 3:
+			emotion ET_WRAP;
+			close;
+	}
+On_Leave:
+	atcommand "@changelook 1 " + @topview;
+	atcommand "@changelook 2 " + @midview;
+	atcommand "@changelook 3 " + @bottomview;
+	set @equip,0;
+	set @view,0;
+	set @topview,0;
+	set @midview,0;
+	set @bottomview,0;
+	end;
+	
+OnInit:
+	set .BuildQuest,1;
+	set .i,1;
+Quest_Setup:
+	switch(.i) {
+	default: set .BuildQuest,0; set .e,0; set .i,0; end;	
+	// case 第幾筆 : callsub onBuyItem, 材料物品1, 數量, 材料物品2, 數量, ..., 製作需求金額, -1(Zeny flag), 製作物品1, 數量, 製作物品2, 數量, ..., 廣播標籤(如需廣播請加-1);
+	case 1: callsub OnBuyItem,1000316,30,0,-1,450149,1;
+	case 2: callsub OnBuyItem,1000316,30,0,-1,450150,1;
+	
+	case 3: callsub OnBuyItem,1000316,45,0,-1,460005,1;
+	case 4: callsub OnBuyItem,1000316,45,0,-1,460006,1;
+	
+	case 5: callsub OnBuyItem,1000316,30,0,-1,480065,1;
+	case 6: callsub OnBuyItem,1000316,30,0,-1,480066,1;
+	case 7: callsub OnBuyItem,1000316,30,0,-1,480067,1;
+	case 8: callsub OnBuyItem,1000316,30,0,-1,480068,1;
+	
+	case 9: callsub OnBuyItem,1000316,60,0,-1,490077,1;
+	case 10: callsub OnBuyItem,1000316,60,0,-1,490078,1;
+	//CARD
+	
+	case 11: callsub OnBuyItem,27249,7,1000366,10,0,-1,300177,1;
+	case 12: callsub OnBuyItem,27250,7,1000366,10,0,-1,300178,1;
+	case 13: callsub OnBuyItem,27253,7,1000366,10,0,-1,300179,1;
+	case 14: callsub OnBuyItem,27251,7,1000366,10,0,-1,300180,1;
+	case 15: callsub OnBuyItem,27252,7,1000366,10,0,-1,300181,1;
+	case 16: callsub OnBuyItem,27254,7,1000366,10,0,-1,300182,1;
+	case 17: callsub OnBuyItem,27255,7,1000366,10,0,-1,300183,1;
+	case 18: callsub OnBuyItem,27256,7,1000366,10,0,-1,300184,1;
+	case 19: callsub OnBuyItem,27257,7,1000366,10,0,-1,300185,1;
+	case 20: callsub OnBuyItem,27258,7,1000366,10,0,-1,300186,1;
+	case 21: callsub OnBuyItem,27260,7,1000366,10,0,-1,300187,1;
+	case 22: callsub OnBuyItem,27259,7,1000366,10,0,-1,300188,1;
+	case 23: callsub OnBuyItem,27261,7,1000366,10,0,-1,300189,1;
+	case 24: callsub OnBuyItem,27263,7,1000366,10,0,-1,300190,1;
+	case 25: callsub OnBuyItem,27262,7,1000366,10,0,-1,300191,1;
+	}
+}

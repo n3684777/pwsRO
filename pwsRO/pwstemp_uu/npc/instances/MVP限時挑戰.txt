@@ -1,0 +1,327 @@
+
+prontera,120,125,4	script	MVP限時挑戰-管理員	10191,{
+.@md_name$ = "MVP限時挑戰";
+.@coldtime = 6; // 冷卻時間
+if((gettimetick(2)-gu18)<(.@coldtime*3600)){
+set .@time,(.@coldtime*3600)-(gettimetick(2)-gu18);
+set .@hour,.@time/3600;
+set .@min,.@time/60%60;
+set .@sec,.@time%60;
+mes "["+strnpcinfo(0)+"]";
+mes "剩餘冷卻時間 : ^FF1493"+(.@hour<10?"0"+.@hour:.@hour)+" 時 "+(.@min<10?"0"+.@min:.@min)+" 分 "+(.@sec<10?"0"+.@sec:.@sec)+" 秒";
+close;
+}
+
+	if ( !getcharid(1) ){ mes "請先組隊再來報名"; close; }
+	if (getcharid(0) != getpartyleader(getcharid(1),2) ){ 
+	mes "不能中途加入。"; 
+	switch(.@i) {
+			case 1:
+			if (instance_create(.@md_name$) < 0) {
+				mes "[MVP限時挑戰-管理員]";
+				mes "守護者似乎不想被打擾，我會再次確認，在這裡等著.";
+				close;
+			}
+			mes "[MVP限時挑戰-管理員]";
+			mes "我已經接受了你的請求，你準備好了嗎?";
+			next;
+			mes "[MVP限時挑戰-管理員]";
+			mes "如果你準備好了，我會讓你進入.";
+			close;
+		case 2:
+			switch(instance_enter(.@md_name$)) {
+				case 3:
+					mes "不明錯誤.";
+					mes "無效副本名, 副本和組隊不匹配等";
+					close;
+				case 2:
+				case 1:
+					mes "[MVP限時挑戰-管理員]";
+					mes "你沒有申請進入，請讓隊長來.";
+					close;
+				case 0:
+					close;
+			}
+			}
+	close; }
+	mes "[MVP限時挑戰]";
+	mes "您是隊伍 " + getpartyname(getcharid(1)) + " 的隊長吧";
+	for(set .@n,1; .@n<getarraysize(.md_name$); set .@n,.@n+1) {
+		set .@meun$,.@meun$+"報名 "+.md_name$[.@n]+":";
+	}
+	mes "你要參與嗎？";
+	next;
+	.@n=select("^FF0000銷毀副本^000000",.@meun$)-1;
+	if(!.@n) {
+		if ( instance_id() >0 ){
+		instance_destroy;
+		close;
+		}
+	end;
+}
+	if (instance_create(.@md_name$) < 0) {
+		mes "隊伍名稱: "+getpartyname(getcharid(1));
+		mes "隊伍隊長: "+strcharinfo(0);
+		mes "^0000ff"+.@md_name$+" ^000000- 創建失敗!";
+		close;
+	}
+	switch(.@n){
+		case 1:
+			//MVP編號
+			setarray 'mobkid[1],1147,1087,1151,1086,1115,1038,1159,1389,1046,1059,1150,1039,1157,1112,1251,1373,1272,1630,1885,1518,1252,1492,1623,1418,1312,1583; // 魔物ID
+			setarray 'mobknum[1],1; //每關幾隻(關卡回合數這邊判定)
+			setarray 'round[1],5,9; // 休息關數
+			set 'eazy,1;
+			set 'ModFItemSize[1],(getarraysize('ModFReItemAID[1])-1); // 勿動
+			break;
+		case 2:
+			//MVP編號
+			setarray 'mobkid[1],2068,2156,1708,1785,2022,2202,1734,1685,1719,1871,1768,2087,1751; // 魔物ID
+			setarray 'mobknum[1],1,1,1,1,1,1,1,1,1,1; //每關幾隻(關卡回合數這邊判定)
+			setarray 'round[1],5,9; // 休息關數
+			set 'eazy,2;
+			set 'ModFItemSize[1],(getarraysize('ModFReItemAID[1])-1); // 勿動
+			break;
+		case 3:
+			//MVP編號
+			setarray 'mobkid[1],1646,1647,1648,1649,1650,1651; // 魔物ID
+			setarray 'mobknum[1],1,1,1,1,1; //每關幾隻(關卡回合數這邊判定)
+			setarray 'round[1],5,9; // 休息關數
+			set 'eazy,3;
+			set 'ModFItemSize[1],(getarraysize('ModFReItemAID[1])-1); // 勿動
+			break;
+	}
+	if(zeny<.OpenZeny[.@n]*10000) { mes "金錢不足!"; close; }
+	zeny=zeny-.OpenZeny[.@n]*10000;
+	'map=rand(1,4);
+	instance_enter(.@md_name$);
+	warpparty instance_mapname('map+"@cd_dao"),50,50,getcharid(1);
+	announce "隊伍 "+getpartyname(getcharid(1))+" 選擇進入了 "+.md_name$[.@n]+" 請 "+getpartyname(getcharid(1))+" 的隊伍成員儘快找[MVP限時挑戰]管理員對話進入.",0;
+	close;
+OnInit:
+	setarray .md_name$[1],"開始挑戰";	//道館名字
+	setarray .OpenZeny[1],10,50,100; //開館金額(萬)
+	waitingroom "[MVP限時挑戰]",0;
+	end;
+}
+
+1@lsz,85,85,5	script	[MVP限時挑戰]裁判#RM1	758,{
+	if (getcharid(0) != getpartyleader(getcharid(1),2)) {
+		mes "[[MVP限時挑戰]裁判]";
+		mes "只有隊長有權力開起挑戰";
+		close;
+	}
+	mes "[[MVP限時挑戰]裁判]";
+	mes "請問要開始挑戰了嗎？";
+	next;
+	switch(select("選擇挑戰","不小心點到！")){
+		case 1:
+set gu18,gettimetick(2);
+menu
+"俄塞里斯",a01,"巴風特",a02,"死靈",a03,"蜂后",a04,"黃金蟲",a05,"獸人英雄",a06,"海盜之王",a07,"虎王",a08,"蟻后",a09,"月夜貓",a10,"法老王",a11,"皮里恩",a12,"獸人酋長",a13,"冰爆騎士",a14,"卡崙",a15,"黑暗之王",a16,"烏龜將軍",a17,"死靈騎士",a18,"得古拉男爵",a19,"墨蛇君",a20,"元靈武士",a21,"古埃及王",a22,"塔奧群卡",a23,"RSX-0806",a24,"白素貞",a25,"闇●劍士_賽尼亞",a26,"貝思波",a27,"嗒妮小姐",a28,"魔劍士 達納托斯的記憶",a29,"迪塔勒泰晤勒斯",a30,"齊爾-D-01",a31,"蘭特克力斯",a32,"幽暗夢魘",a33,"伊夫利特",a34,"墮落大神官 悉潘",a35,"詛咒蠅王",a36,"青冠龍",a37,"負傷夢羅克",a38,"阿特羅斯",a39,"水晶龍",a40;
+			doevent instance_npcname("#RMMob1")+"::OnMobstart";
+			disablenpc  instance_npcname(strnpcinfo(0));
+			close;
+		case 2:
+			mes "[[MVP限時挑戰]裁判]";
+			mes "那您以後別在那麼不小心哩！";
+			close;
+	}
+pxo:
+			doevent instance_npcname("#RMMob1")+"::OnMobstart";
+			disablenpc  instance_npcname(strnpcinfo(0));
+			close;
+a01:  
+set 'mobkid[5],1038;
+goto pxo;
+a02: 
+set 'mobkid[5],1039;
+goto pxo;
+a03: 
+set 'mobkid[5],1046;
+goto pxo;
+a04: 
+set 'mobkid[5],1059;
+goto pxo;
+a05: 
+set 'mobkid[5],1086;
+goto pxo;
+a06: 
+set 'mobkid[5],1087;
+goto pxo;
+a07: 
+set 'mobkid[5],1112;
+goto pxo;
+a08: 
+set 'mobkid[5],1115;
+goto pxo;
+a09: 
+set 'mobkid[5],1147;
+goto pxo;
+a10: 
+set 'mobkid[5],1150;
+goto pxo;
+a11: 
+set 'mobkid[5],1157;
+goto pxo;
+a12: 
+set 'mobkid[5],1159;
+goto pxo;
+a13: 
+set 'mobkid[5],1190;
+goto pxo;
+a14: 
+set 'mobkid[5],1251;
+goto pxo;
+a15:  
+set 'mobkid[5],1252;
+goto pxo; 
+a16: 
+set 'mobkid[5],1272;
+goto pxo;
+a17: 
+set 'mobkid[5],1312;
+goto pxo;
+a18: 
+set 'mobkid[5],1373;
+goto pxo; 
+a19: 
+set 'mobkid[5],1389;
+goto pxo;
+a20: 
+set 'mobkid[5],1418;
+goto pxo;
+a21: 
+set 'mobkid[5],1492;
+goto pxo;
+a22: 
+set 'mobkid[5],1511;
+goto pxo;
+a23: 
+set 'mobkid[5],1583;
+goto pxo;
+a24: 
+set 'mobkid[5],1623;
+goto pxo;
+a25: 
+set 'mobkid[5],1518;
+goto pxo;
+a26: 
+set 'mobkid[5],1658;
+goto pxo;
+a27: 
+set 'mobkid[5],1685;
+goto pxo;
+a28: 
+set 'mobkid[5],1688;
+goto pxo;
+a29:
+set 'mobkid[5],1708;
+goto pxo;
+a30: 
+set 'mobkid[5],1719;
+goto pxo;
+a31: 
+set 'mobkid[5],1734;
+goto pxo;
+a32: 
+set 'mobkid[5],1751;
+goto pxo;
+a33: 
+set 'mobkid[5],1768;
+goto pxo;
+a34: 
+set 'mobkid[5],1832;
+goto pxo;
+a35: 
+set 'mobkid[5],1871;
+goto pxo;
+a36: 
+set 'mobkid[5],1874;
+goto pxo;
+a37: 
+set 'mobkid[5],1885;
+goto pxo;
+a38: 
+set 'mobkid[5],1917;
+goto pxo;
+a39: 
+set 'mobkid[5],1785;
+goto pxo;
+a40: 
+set 'mobkid[5],1779;
+goto pxo;
+}
+
+
+1@lsz,0,0,0	script	#RMMob1	-1,{
+OnMobstart:
+	'Checkpoint++;
+	for(.@n=1;.@n<='mobknum['Checkpoint];.@n++) {
+		areamonster strnpcinfo(4),85,80,85,80,"--ja--",'mobkid[5],1,instance_npcname(strnpcinfo(0))+"::OnMobDead";
+	}
+	end;
+OnMobDead:
+	set .@mobcount,mobcount(strnpcinfo(4),instance_npcname(strnpcinfo(0))+"::OnMobDead");
+	if(.@mobcount > 0) {
+		announce   "[MVP限時挑戰]裁判 : 還剩下 ["+.@mobcount+"] 隻怪物",17; end;
+	}
+	if ('Checkpoint ==  getarraysize('mobknum)-1){
+		announce "恭喜隊伍 "+getpartyname(getcharid(1))+" 挑戰成功",0;
+		sleep2 2000;
+		set 'win,1;
+		enablenpc  instance_npcname("[MVP限時挑戰]工作人員#RM1");
+		end;
+	}
+	if ('Checkpoint ==  getarraysize('mobknum)-2 ){
+		announce  "[MVP限時挑戰]裁判 : 恭喜第 ["+'Checkpoint+"] 關挑戰成功，最後一關挑戰將開始，請繼續努力！",17;
+	}else{
+		announce  "[MVP限時挑戰]裁判 : 恭喜第 ["+'Checkpoint+"] 關挑戰成功！",17;
+	}
+	for(.@n=1;.@n<getarraysize('round);.@n++){
+		if ('Checkpoint ==  'round[.@n]){
+			enablenpc  instance_npcname("[MVP限時挑戰]裁判#RM"); end;
+		}
+	}
+	addtimer 5000,instance_npcname(strnpcinfo(0))+"::OnMobstart";
+	end;
+}
+
+
+1@lsz,85,85,6	script	[MVP限時挑戰]工作人員#RM1	935,{
+	if('win==0) {
+OnInstanceInit:
+		disablenpc  instance_npcname(strnpcinfo(0)); end;
+	}
+	if ( 'eazy == 1){
+		setarray .@itemid[0],501;
+		setarray .@num[0],1;
+	}
+	if ( 'eazy == 2){
+		setarray .@itemid[0],501;
+		setarray .@num[0],1;
+	}
+	if ( 'eazy == 3){
+		setarray .@itemid[0],501;
+		setarray .@num[0],1;
+	}
+	mes "[[MVP限時挑戰]工作人員]";
+	mes "您好厲害！竟然能擊倒MVP怪物，";
+	mes "並且挑戰成功，想出去了嗎?";
+	next;
+	if (select("回城","取消")==2) {
+		close;
+	}
+	warp "prontera",156,103;
+	end;
+	}
+	
+
+
+
+1@lsz	mapflag	nomemo
+1@lsz	mapflag	noteleport
+1@lsz	mapflag	nosave	SavePoint
+1@lsz	mapflag	nopenalty
+1@lsz	mapflag	nobranch
+

@@ -1,0 +1,150 @@
+lroom00,150,76,3	script	反叛軍隊員	4_F_REBELLION3,{
+	disable_items;
+	mes "["+strnpcinfo(1)+"]";
+	mes "請問您想要兌換哪一個箱子呢？";
+	next;
+	switch(select("兌換武器改造裝置箱(物理)","兌換武器改造裝置箱(魔法)","兌換防具改造模組箱"))
+	{
+		case 1:
+			.@nameid = 23773;
+			if(countitem(25723) < 5)
+			{
+				mes "["+strnpcinfo(1)+"]";
+				mes "你的材料不夠啊~";
+				mes "兌換 "+getitemname(.@nameid)+" 需要5個 "+getitemname(25723)+"。";
+				close;
+			}
+			mes "["+strnpcinfo(1)+"]";
+			mes "確定要用5個 "+getitemname(25723)+" 兌換 "+getitemname(.@nameid)+" 嗎?";
+			next;
+			if(select("確定兌換","取消") == 2)
+			{
+				mes "["+strnpcinfo(1)+"]";
+				mes "好吧~ 好好想想吧!";
+				close;
+			}
+			delitem 25723, 5;
+			getitem .@nameid, 1;
+			mes "["+strnpcinfo(1)+"]";
+			mes "兌換^0066FF"+getitemname(.@nameid)+"^000000完成。";
+			close;
+		case 2:
+			.@nameid = 23774;
+			if(countitem(25723) < 5)
+			{
+				mes "["+strnpcinfo(1)+"]";
+				mes "你的材料不夠啊~";
+				mes "兌換 "+getitemname(.@nameid)+" 需要5個 "+getitemname(25723)+"。";
+				close;
+			}
+			mes "["+strnpcinfo(1)+"]";
+			mes "確定要用5個 "+getitemname(25723)+" 兌換 "+getitemname(.@nameid)+" 嗎?";
+			next;
+			if(select("確定兌換","取消") == 2)
+			{
+				mes "["+strnpcinfo(1)+"]";
+				mes "好吧~ 好好想想吧!";
+				close;
+			}
+			delitem 25723, 5;
+			getitem .@nameid, 1;
+			mes "["+strnpcinfo(1)+"]";
+			mes "兌換^0066FF"+getitemname(.@nameid)+"^000000完成。";
+			close;
+		case 3:
+			if(countitem(25669) < 20 || countitem(25723) < 5)
+			{
+				mes "["+strnpcinfo(1)+"]";
+				mes "你的材料不夠啊~";
+				mes "兌換 "+getitemname(23775)+" 需要 20個 "+getitemname(25669)+" 與 5個"+getitemname(25723)+"。";
+				close;
+			}
+			mes "["+strnpcinfo(1)+"]";
+			mes "確定要用30個 "+getitemname(25669)+" 與 5個"+getitemname(25723)+" 兌換 "+getitemname(23775)+" 嗎?";
+			next;
+			if(select("確定兌換","取消") == 2)
+			{
+				mes "["+strnpcinfo(1)+"]";
+				mes "好吧~ 好好想想吧!";
+				close;
+			}
+			delitem 25669, 20;
+			delitem 25723, 5;
+			getitem 23775, 1;
+			mes "["+strnpcinfo(1)+"]";
+			mes "兌換^0066FF"+getitemname(23775)+"^000000完成。";
+			close;
+	}
+
+}
+
+lroom00,145,76,5	script	研究員 艾琉米娜	10201,{
+	disable_items;
+	mes "["+strnpcinfo(1)+"]";
+	mes "如果你有"+getitemname(25723)+"就把它給我吧~";
+	mes "這對我來說還有一點研究價值";
+	mes "我可以提供這些裝備與你交換";
+	mes "請問你想要交換哪一項呢？";
+	next;
+	switch(select("兌換OS武器箱","兌換幻覺鎧甲A型","兌換幻覺鎧甲B型","兌換幻覺引擎翼A型","兌換幻覺引擎翼B型",
+					"兌換幻覺長靴A型","兌換幻覺長靴B型","兌換幻覺增幅器R","兌換幻覺增幅器L",
+					"兌換幻覺戰鬥晶片R","兌換幻覺戰鬥晶片L"))
+	{
+		case 1:	
+			if(countitem(25723) < 50 || countitem(25668) < 1)
+			{
+				mes "["+strnpcinfo(1)+"]";
+				mes "你的材料不夠啊~";
+				mes "兌換 "+getitemname(23772)+" 需要 50個 "+getitemname(25723)+" 與 1個"+getitemname(25668)+"。";
+				close;
+			}
+			mes "["+strnpcinfo(1)+"]";
+			mes "確定要用50個 "+getitemname(25723)+" 與 1個"+getitemname(25668)+" 兌換 "+getitemname(23772)+" 嗎?";
+			next;
+			if(select("確定兌換","取消") == 2)
+			{
+				mes "["+strnpcinfo(1)+"]";
+				mes "好吧~ 好好想想吧!";
+				close;
+			}
+			delitem 25723, 50;
+			delitem 25668, 1;
+			getitem 23772, 1;
+			mes "["+strnpcinfo(1)+"]";
+			mes "兌換^0066FF"+getitemname(23772)+"^000000完成。";
+			close;
+		case 2:	.@nameid = 15376;	break;
+		case 3:	.@nameid = 15377;	break;
+		case 4:	.@nameid = 20933;	break;
+		case 5:	.@nameid = 20934;	break;
+		case 6:	.@nameid = 22196;	break;
+		case 7:	.@nameid = 22197;	break;
+		case 8:	.@nameid = 32207;	break;
+		case 9:	.@nameid = 32208;	break;
+		case 10:	.@nameid = 32209;	break;
+		case 11:	.@nameid = 32210;	break;
+	}
+	if(countitem(25723) < 50)
+	{
+		mes "["+strnpcinfo(1)+"]";
+		mes "你的材料不夠啊~";
+		mes "兌換 "+getitemname(.@nameid)+" 需要50個 "+getitemname(25723)+"。";
+		close;
+	}
+	mes "["+strnpcinfo(1)+"]";
+	mes "確定要用50個 "+getitemname(25723)+" 兌換 "+getitemname(.@nameid)+" 嗎?";
+	next;
+	if(select("確定兌換","取消") == 2)
+	{
+		mes "["+strnpcinfo(1)+"]";
+		mes "好吧~ 好好想想吧!";
+		close;
+	}
+	delitem 25723, 50;
+	getitem .@nameid, 1;
+	//getitem2 .@nameid, 1, 0, 0, 0, 0, 0, 0, 0;
+	mes "["+strnpcinfo(1)+"]";
+	mes "兌換^0066FF"+getitemname(.@nameid)+"^000000完成。";
+	close;
+}
+

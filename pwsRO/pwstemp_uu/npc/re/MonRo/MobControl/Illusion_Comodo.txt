@@ -1,0 +1,130 @@
+-	script	ILL_COM_DUN02_I	-1,{
+OnInit:
+	killmonsterall "com_d02_i";
+	switch($ILL_COM_MODE)
+	{
+		case 0:
+			monster "com_d02_i",0,0,"--ja--",20270,50,strnpcinfo(0)+"::OnMobDead_20270";
+			monster "com_d02_i",0,0,"--ja--",20271,50,strnpcinfo(0)+"::OnMobDead_20271";
+			monster "com_d02_i",0,0,"--ja--",20272,50,strnpcinfo(0)+"::OnMobDead_20272";
+			break;
+		case 1:
+			monster "com_d02_i",0,0,"--ja--",20274,50,strnpcinfo(0)+"::OnMobDead_20274";
+			monster "com_d02_i",0,0,"--ja--",20275,50,strnpcinfo(0)+"::OnMobDead_20275";
+			monster "com_d02_i",0,0,"--ja--",20276,50,strnpcinfo(0)+"::OnMobDead_20276";
+			break;
+	}
+	end;
+OnMobDead_20270:
+	if($ILL_MOB_COUNT[0] < 500)
+		$ILL_MOB_COUNT[0] ++;
+	sleep 1000;
+	monster "com_d02_i",0,0,"--ja--",20270,1,strnpcinfo(0)+"::OnMobDead_20270";
+	donpcevent strnpcinfo(0)+"::OnCheckMVPRecall";
+	end;
+OnMobDead_20271:
+	if($ILL_MOB_COUNT[1] < 500)
+		$ILL_MOB_COUNT[1] ++;
+	sleep 1000;
+	monster "com_d02_i",0,0,"--ja--",20271,1,strnpcinfo(0)+"::OnMobDead_20271";
+	donpcevent strnpcinfo(0)+"::OnCheckMVPRecall";
+	end;
+OnMobDead_20272:
+	if($ILL_MOB_COUNT[2] < 500)
+		$ILL_MOB_COUNT[2] ++;
+	sleep 1000;
+	monster "com_d02_i",0,0,"--ja--",20272,1,strnpcinfo(0)+"::OnMobDead_20272";
+	donpcevent strnpcinfo(0)+"::OnCheckMVPRecall";
+	end;
+OnMobDead_20274:
+	if($ILL_MOB_COUNT[3] < 500)
+		$ILL_MOB_COUNT[3] ++;
+	sleep 1000;
+	monster "com_d02_i",0,0,"--ja--",20274,1,strnpcinfo(0)+"::OnMobDead_20274";
+	donpcevent strnpcinfo(0)+"::OnCheckMVPRecall";
+	end;
+OnMobDead_20275:
+	if($ILL_MOB_COUNT[4] < 500)
+		$ILL_MOB_COUNT[4] ++;
+	sleep 1000;
+	monster "com_d02_i",0,0,"--ja--",20275,1,strnpcinfo(0)+"::OnMobDead_20275";
+	donpcevent strnpcinfo(0)+"::OnCheckMVPRecall";
+	end;
+OnMobDead_20276:
+	if($ILL_MOB_COUNT[5] < 500)
+		$ILL_MOB_COUNT[5] ++;
+	sleep 1000;
+	monster "com_d02_i",0,0,"--ja--",20276,1,strnpcinfo(0)+"::OnMobDead_20276";
+	donpcevent strnpcinfo(0)+"::OnCheckMVPRecall";
+	end;
+OnCheckMVPRecall:
+	if(gettimetick(2)-atoi($ILL_COM_INFO$[0]) < 3600)
+		end;
+	if(mobcount("com_d02_i",strnpcinfo(0)+"::OnMyMobDead") == 0)
+	{
+		switch($ILL_COM_MODE)
+		{
+			case 0:
+				if($ILL_MOB_COUNT[0] >= 500 && $ILL_MOB_COUNT[1] >= 500 && $ILL_MOB_COUNT[2] >= 500)
+				{
+					mapannounce "com_d02_i","[幻影遺跡盧安達城] 巨石族的 MvP - [ 古代塔奧群卡 ] 已經現身。",bc_map,0x00FFFF;
+					monster "com_d02_i",133,120,"--ja--",20273,1,strnpcinfo(0)+"::OnMyMobDead";
+				}
+				break;
+			case 1:
+				if($ILL_MOB_COUNT[3] >= 500 && $ILL_MOB_COUNT[4] >= 500 && $ILL_MOB_COUNT[5] >= 500)
+				{
+					mapannounce "com_d02_i","[幻影遺跡盧安達城] 伍坦族的 MvP - [ 古代伍坦長者 ] 已經現身。",bc_map,0x00FFFF;
+					monster "com_d02_i",133,120,"--ja--",20277,1,strnpcinfo(0)+"::OnMyMobDead";
+				}
+				break;
+		}
+	}
+	end;
+OnMyMobDead:
+	deletearray $ILL_MOB_COUNT;
+	setarray $ILL_COM_INFO$,
+		""+gettimetick(2),
+		$ILL_COM_MODE ? "古代伍坦長者":"古代塔奧群卡",
+		gettime(DT_HOUR)+":"+gettime(DT_MINUTE),
+		strcharinfo(0);
+	$ILL_COM_MODE = $ILL_COM_MODE ? 0 : 1;
+	mapannounce "com_d02_i","[幻影遺跡盧安達城] 該地圖目前轉為由 [ "+($ILL_COM_MODE?"伍坦族":"巨石族")+" ] 接管。",bc_map,0xffff90;
+	donpcevent strnpcinfo(0)+"::OnInit";
+	end;
+}
+
+com_d02_i,247,255,0	script	盧安達石碑	111,{
+	if(gettimetick(2)-atoi($ILL_COM_INFO$[0]) < 3600)
+	{
+		mes "[ ^ff0000" + $ILL_COM_INFO$[1] + "^000000 ]";
+		mes "在此結束了短暫的生命";
+		mes "死亡時間 : ^FF0000" + $ILL_COM_INFO$[2]+"^000000";
+		mes "賜予它安息之人是";
+		mes "[^ff0000" + $ILL_COM_INFO$[3] + "^000000]";
+		close;
+	}
+	switch($ILL_COM_MODE)
+	{
+		case 0:
+			mes "[巨石族][^0000FF召喚古代的塔奧群卡^000000]";
+			mes " ";
+			mes getmonsterinfo(20270,MOB_NAME)+" : ^FF0000"+$ILL_MOB_COUNT[0]+"^000000";
+			mes getmonsterinfo(20271,MOB_NAME)+" : ^FF0000"+$ILL_MOB_COUNT[1]+"^000000";
+			mes getmonsterinfo(20272,MOB_NAME)+" : ^FF0000"+$ILL_MOB_COUNT[2]+"^000000";
+			mes " ";
+			mes "召喚條件必須擊殺以上魔物各500隻.";
+			close;
+		case 1:
+			mes "[伍坦族][^0000FF召喚古代伍坦長者^000000]";
+			mes " ";
+			mes getmonsterinfo(20274,MOB_NAME)+" : ^FF0000"+$ILL_MOB_COUNT[3]+"^000000";
+			mes getmonsterinfo(20275,MOB_NAME)+" : ^FF0000"+$ILL_MOB_COUNT[4]+"^000000";
+			mes getmonsterinfo(20276,MOB_NAME)+" : ^FF0000"+$ILL_MOB_COUNT[5]+"^000000";
+			mes " ";
+			mes "召喚條件必須擊殺以上魔物各500隻.";
+			close;
+	}
+	end;
+
+}

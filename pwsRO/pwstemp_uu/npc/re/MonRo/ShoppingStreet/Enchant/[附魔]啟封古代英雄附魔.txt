@@ -1,0 +1,115 @@
+//================================================
+// - Item_db:
+// 100023,100023,璣动玦,11,0,,0,,,,,0xFFFFFFFF,63,2,,,,,,{ callfunc "Ancient_ENCHANT",100023; },{},{}
+// 100025,100025,璣动醇紌,11,0,,0,,,,,0xFFFFFFFF,63,2,,,,,,{ callfunc "Ancient_ENCHANT",100025; },{},{}
+// ================================================
+function	script	Ancient_ENCHANTchflo	{
+	function	RandomOPTchflo	{
+		.@idx = rand(getarg(1,getarraysize(getarg(0))));
+		if(.@idx%2 == 0)
+			return .@idx;
+		else return .@idx-1;
+	}
+	disable_items;
+	setarray .@itemid,600009,21058,610008,610009,500013,500014,700013,570009,580009,620004,590011,510020,510019,700018,700019,550012,550013,560008,560009,530006,500017,640011,640012,540011,590012,650004,550014,510022,800002,810001,840001,830002,820001,540010,550015;
+	for(.@i = 0; .@i < getarraysize(.@itemid); .@i++)
+		//.@menu$ += ((getequipid(EQI_HAND_R) == .@itemid[.@i]) ? getitemname(.@itemid[.@i]) : "^888888"+getitemname(.@itemid[.@i])+"^000000") + ":";
+	.@menu$ += ((getequipid(EQI_HAND_R) == .@itemid[.@i] || getequipid(EQI_HAND_L) == .@itemid[.@i]) ? getitemname(.@itemid[.@i]) : "^888888"+getitemname(.@itemid[.@i])+"^000000") + ":";
+	.@nameid = .@itemid[select(.@menu$)-1];
+	if ( getequipid(EQI_HAND_R) == .@nameid )
+		.@part = EQI_HAND_R;
+	else if ( getequipid(EQI_HAND_L) == .@nameid )
+		.@part = EQI_HAND_L;
+	else
+	{
+		dispbottom "﹟ゼ杆称"+getitemname(.@nameid),0xFF0000;
+		end;
+	}
+	switch(getarg(0))
+	{
+		// 璣动璣玦
+		case 62238:
+			setarray .@type,
+			RDMOPT_VAR_ATTPOWER,rand(5,40),
+			RDMOPT_VAR_PLUSASPD,rand(1,2),
+			RDMOPT_VAR_PLUSASPDPERCENT,rand(3,12),
+			RDMOPT_RANGE_ATTACK_DAMAGE_TARGET,rand(3,12),
+			RDMOPT_CLASS_DAMAGE_NORMAL_TARGET,rand(3,12),
+			RDMOPT_DAMAGE_PROPERTY_NOTHING_TARGET,rand(3,25),
+			RDMOPT_DAMAGE_PROPERTY_WATER_TARGET,rand(3,25),
+			RDMOPT_DAMAGE_PROPERTY_GROUND_TARGET,rand(3,25),
+			RDMOPT_DAMAGE_PROPERTY_FIRE_TARGET,rand(3,25),
+			RDMOPT_DAMAGE_PROPERTY_WIND_TARGET,rand(3,25),
+			RDMOPT_DAMAGE_PROPERTY_POISON_TARGET,rand(3,25),
+			RDMOPT_DAMAGE_PROPERTY_SAINT_TARGET,rand(3,25),
+			RDMOPT_DAMAGE_PROPERTY_DARKNESS_TARGET,rand(3,25),
+			RDMOPT_DAMAGE_PROPERTY_TELEKINESIS_TARGET,rand(3,25),
+			RDMOPT_DAMAGE_PROPERTY_UNDEAD_TARGET,rand(3,25);
+			
+			setarray .@type2,
+			RDMOPT_WEAPON_INDESTRUCTIBLE,1,
+			RDMOPT_VAR_ATKPERCENT,rand(1,7),
+			RDMOPT_DAMAGE_CRI_TARGET,rand(3,12),
+			RDMOPT_CLASS_DAMAGE_NORMAL_TARGET,rand(1,12),
+			RDMOPT_CLASS_DAMAGE_BOSS_TARGET,rand(1,12),
+			RDMOPT_RACE_DAMAGE_NOTHING,rand(3,25),
+			RDMOPT_RACE_DAMAGE_UNDEAD,rand(3,25),
+			RDMOPT_RACE_DAMAGE_ANIMAL,rand(3,25),
+			RDMOPT_RACE_DAMAGE_PLANT,rand(3,25),
+			RDMOPT_RACE_DAMAGE_INSECT,rand(3,25),
+			RDMOPT_RACE_DAMAGE_FISHS,rand(3,25),
+			RDMOPT_RACE_DAMAGE_DEVIL,rand(3,25),
+			RDMOPT_RACE_DAMAGE_HUMAN,rand(3,25),
+			RDMOPT_RACE_DAMAGE_ANGEL,rand(3,25),
+			RDMOPT_RACE_DAMAGE_DRAGON,rand(3,25);
+			break;
+		
+		// 璣动磃
+		case 62239:
+			setarray .@type,
+			RDMOPT_VAR_MAGICATKPERCENT,rand(5,40),
+			RDMOPT_HEAL_MODIFY_PERCENT,rand(3,20),
+			RDMOPT_DEC_SPELL_CAST_TIME,rand(3,12),
+			RDMOPT_DEC_SPELL_DELAY_TIME,rand(1,5),
+			RDMOPT_MDAMAGE_PROPERTY_NOTHING_TARGET,rand(3,25),
+			RDMOPT_MDAMAGE_PROPERTY_WATER_TARGET,rand(3,25),
+			RDMOPT_MDAMAGE_PROPERTY_GROUND_TARGET,rand(3,25),
+			RDMOPT_MDAMAGE_PROPERTY_FIRE_TARGET,rand(3,25),
+			RDMOPT_MDAMAGE_PROPERTY_WIND_TARGET,rand(3,25),
+			RDMOPT_MDAMAGE_PROPERTY_POISON_TARGET,rand(3,25),
+			RDMOPT_MDAMAGE_PROPERTY_SAINT_TARGET,rand(3,25),
+			RDMOPT_MDAMAGE_PROPERTY_DARKNESS_TARGET,rand(3,25),
+			RDMOPT_MDAMAGE_PROPERTY_TELEKINESIS_TARGET,rand(3,25),
+			RDMOPT_MDAMAGE_PROPERTY_UNDEAD_TARGET,rand(3,25);
+			
+			setarray .@type2,
+			RDMOPT_VAR_MAGICATKPERCENT,rand(1,7),
+			RDMOPT_DEC_SPELL_CAST_TIME,rand(3,12),
+			RDMOPT_CLASS_MDAMAGE_NORMAL,rand(1,10),
+			RDMOPT_CLASS_MDAMAGE_BOSS,rand(1,10),
+			RDMOPT_RACE_MDAMAGE_NOTHING,rand(3,25),
+			RDMOPT_RACE_MDAMAGE_UNDEAD,rand(3,25),
+			RDMOPT_RACE_MDAMAGE_ANIMAL,rand(3,25),
+			RDMOPT_RACE_MDAMAGE_PLANT,rand(3,25),
+			RDMOPT_RACE_MDAMAGE_INSECT,rand(3,25),
+			RDMOPT_RACE_MDAMAGE_FISHS,rand(3,25),
+			RDMOPT_RACE_MDAMAGE_DEVIL,rand(3,25),
+			RDMOPT_RACE_MDAMAGE_HUMAN,rand(3,25),
+			RDMOPT_RACE_MDAMAGE_ANGEL,rand(3,25),
+			RDMOPT_RACE_MDAMAGE_DRAGON,rand(3,25);
+			break;
+	}
+	specialeffect2 154;
+	.@refine_cnt = getequiprefinerycnt(.@part);
+	.@card0 = getequipcardid(.@part, 0);
+	.@card1 = getequipcardid(.@part, 1);
+	.@card2 = getequipcardid(.@part, 2);
+	.@card3 = getequipcardid(.@part, 3);
+	setarray .@RDMOPT[0], .@type[.@i=RandomOPTchflo(.@type)], .@type2[.@j=RandomOPTchflo(.@type2)];
+	setarray .@VALUE[0],.@type[.@i+1],.@type2[.@j+1];
+	setarray .@Param[0],0;
+	delequip .@part;
+	delitem getarg(0), 1;
+	getitem3 .@nameid, 1, 1, .@refine_cnt, 0, .@card0, .@card1, .@card2, .@card3, .@RDMOPT, .@VALUE, .@Param;
+	end;
+}

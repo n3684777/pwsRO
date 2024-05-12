@@ -1,0 +1,2432 @@
+lroom00,44,128,5	script	裝備突破員	402,{
+disable_items;
+mes"請問需要什麼服務呢？";
+menu"武器突破",aa,"防具突破",ccx,"重置突破能力",bb;
+ccx:
+if (getequipisequiped(EQI_ARMOR) <= 0) set $@shadowRetPart1$,"^AAAAAA盔甲-[無裝備]^000000"; else set $@shadowRetPart1$,getequipname(EQI_ARMOR);
+if (getequipisequiped(EQI_HEAD_TOP) <= 0) set $@shadowRetPart2$,"^AAAAAA頭飾-[無裝備]^000000"; else set $@shadowRetPart2$,getequipname(EQI_HEAD_TOP);
+if (getequipisequiped(EQI_GARMENT) <= 0) set $@shadowRetPart3$,"^AAAAAA斗篷-[無裝備]^000000"; else set $@shadowRetPart3$,getequipname(EQI_GARMENT);
+if (getequipisequiped(EQI_SHOES) <= 0) set $@shadowRetPart4$,"^AAAAAA鞋子-[無裝備]^000000"; else set $@shadowRetPart4$,getequipname(EQI_SHOES);
+set $@shadowmenu$,$@shadowRetPart1$+":"+$@shadowRetPart2$+":"+$@shadowRetPart3$+":"+$@shadowRetPart4$;
+switch(select($@shadowmenu$)){
+case 1:
+if(countitem(31680) < 1) { 
+next;
+mes"身上突破寶石(盔甲)不足！";
+close;
+}
+if (getequipisequiped(EQI_ARMOR) == 0) {
+next;
+mes "裝備呢？";
+close;
+}
+if (getequiprandomoption(EQI_ARMOR,0,ROA_ID) != 0){
+next;
+mes"必須將附魔重置才可以繼續進行！";
+close;
+}
+set .@equip_card_slot1, getequipcardid(EQI_ARMOR,0);
+set .@equip_card_slot2, getequipcardid(EQI_ARMOR,1);
+set .@equip_card_slot3, getequipcardid(EQI_ARMOR,2);
+set .@equip_card_slot4, getequipcardid(EQI_ARMOR,3);
+set .@equip_id, getequipid(EQI_ARMOR);
+set .@equip_refine, getequiprefinerycnt(EQI_ARMOR);
+set .@r,EQI_ARMOR;
+set .@k,1;
+goto hxd;
+break;
+case 2:
+if(countitem(31681) < 1) { 
+next;
+mes"身上突破寶石(頭飾)不足！";
+close;
+}
+if (getequipisequiped(EQI_HEAD_TOP) == 0) {
+next;
+mes "裝備呢？";
+close;
+}
+if (getequiprandomoption(EQI_HEAD_TOP,0,ROA_ID) != 0){
+next;
+mes"必須將附魔重置才可以繼續進行！";
+close;
+}
+set .@equip_card_slot1, getequipcardid(EQI_HEAD_TOP,0);
+set .@equip_card_slot2, getequipcardid(EQI_HEAD_TOP,1);
+set .@equip_card_slot3, getequipcardid(EQI_HEAD_TOP,2);
+set .@equip_card_slot4, getequipcardid(EQI_HEAD_TOP,3);
+set .@equip_id, getequipid(EQI_HEAD_TOP);
+set .@equip_refine, getequiprefinerycnt(EQI_HEAD_TOP);
+set .@r,EQI_HEAD_TOP;
+set .@k,2;
+goto hxd;
+break;
+case 3:
+if(countitem(31682) < 1) { 
+next;
+mes"身上突破寶石(斗篷)不足！";
+close;
+}
+if (getequipisequiped(EQI_GARMENT) == 0) {
+next;
+mes "裝備呢？";
+close;
+}
+if (getequiprandomoption(EQI_GARMENT,0,ROA_ID) != 0){
+next;
+mes"必須將附魔重置才可以繼續進行！";
+close;
+}
+set .@equip_card_slot1, getequipcardid(EQI_GARMENT,0);
+set .@equip_card_slot2, getequipcardid(EQI_GARMENT,1);
+set .@equip_card_slot3, getequipcardid(EQI_GARMENT,2);
+set .@equip_card_slot4, getequipcardid(EQI_GARMENT,3);
+set .@equip_id, getequipid(EQI_GARMENT);
+set .@equip_refine, getequiprefinerycnt(EQI_GARMENT);
+set .@r,EQI_GARMENT;
+set .@k,3;
+goto hxd;
+break;
+case 4:
+if(countitem(35330) < 1) { 
+next;
+mes"身上突破寶石(鞋子)不足！";
+close;
+}
+if (getequipisequiped(EQI_SHOES) == 0) {
+next;
+mes "裝備呢？";
+close;
+}
+if (getequiprandomoption(EQI_SHOES,0,ROA_ID) != 0){
+next;
+mes"必須將附魔重置才可以繼續進行！";
+close;
+}
+set .@equip_card_slot1, getequipcardid(EQI_SHOES,0);
+set .@equip_card_slot2, getequipcardid(EQI_SHOES,1);
+set .@equip_card_slot3, getequipcardid(EQI_SHOES,2);
+set .@equip_card_slot4, getequipcardid(EQI_SHOES,3);
+set .@equip_id, getequipid(EQI_SHOES);
+set .@equip_refine, getequiprefinerycnt(EQI_SHOES);
+set .@r,EQI_SHOES;
+set .@k,4;
+goto hxd;
+break;
+}
+end;
+hxd:
+menu"確定突破",xjx,"離開",-;
+close;
+xjx:
+if (.@k == 1){delitem 31680,1;}
+if (.@k == 2){delitem 31681,1;}
+if (.@k == 3){delitem 31682,1;}
+if (.@k == 4){delitem 35330,1;}
+set .@OptVal[0],rand(5,10);
+set .@OptVal[1],rand(5,10);
+delequip .@r;
+setarray .@OptID1[0],160,161,162,25,26,27,28,29,30,31,32,33,34,87,88,89,90,91,92,93,94,95,96;
+setarray .@OptID2[0],148,152,154,156,166,164,16,150,168;
+set .@sou1[0],.@OptID1[rand(getarraysize(.@OptID1))];
+set .@sou1[1],.@OptID2[rand(getarraysize(.@OptID2))];
+getitem3 .@equip_id,1,1,.@equip_refine,0,.@equip_card_slot1,.@equip_card_slot2,.@equip_card_slot3,.@equip_card_slot4,.@sou1,.@OptVal,.@OptParam;
+specialeffect2 EF_SANCTUARY;
+dispbottom "突破成功！";
+end;
+///////////////////////////////
+bb:
+if (getequipisequiped(8) <= 0) set $@shadowRetPart1$,"^AAAAAA左手-[無裝備]^000000"; else set $@shadowRetPart1$,getequipname(8);
+if (getequipisequiped(9) <= 0) set $@shadowRetPart2$,"^AAAAAA右手-[無裝備]^000000"; else set $@shadowRetPart2$,getequipname(9);
+if (getequipisequiped(EQI_ARMOR) <= 0) set $@shadowRetPart3$,"^AAAAAA盔甲-[無裝備]^000000"; else set $@shadowRetPart3$,getequipname(EQI_ARMOR);
+if (getequipisequiped(EQI_HEAD_TOP) <= 0) set $@shadowRetPart4$,"^AAAAAA頭飾-[無裝備]^000000"; else set $@shadowRetPart4$,getequipname(EQI_HEAD_TOP);
+if (getequipisequiped(EQI_GARMENT) <= 0) set $@shadowRetPart5$,"^AAAAAA斗篷-[無裝備]^000000"; else set $@shadowRetPart5$,getequipname(EQI_GARMENT);
+if (getequipisequiped(EQI_SHOES) <= 0) set $@shadowRetPart6$,"^AAAAAA鞋子-[無裝備]^000000"; else set $@shadowRetPart6$,getequipname(EQI_SHOES);
+set $@shadowmenu$,$@shadowRetPart1$+":"+$@shadowRetPart2$+":"+$@shadowRetPart3$+":"+$@shadowRetPart4$+":"+$@shadowRetPart5$+":"+$@shadowRetPart6$;
+switch(select($@shadowmenu$)){
+case 1:
+if (getequipisequiped(8) == 0) {
+next;
+mes "裝備呢？";
+close;
+}
+if (getequiprandomoption(EQI_HAND_L,0,ROA_ID) == 0){
+next;
+mes"這把武器並沒有突破能力！";
+close;
+}
+if(getiteminfo((getequipid(8)),2)!=5) {mes"這項裝備不是武器喔！";close;}
+set .@equip_card_slot1, getequipcardid(8,0);
+set .@equip_card_slot2, getequipcardid(8,1);
+set .@equip_card_slot3, getequipcardid(8,2);
+set .@equip_card_slot4, getequipcardid(8,3);
+set .@equip_id, getequipid(8);
+set .@equip_refine, getequiprefinerycnt(8);
+set .@r,EQI_HAND_L;
+goto hapsx;
+break;
+case 2:
+if (getequipisequiped(9) == 0) {
+next;
+mes "裝備呢？";
+close;
+}
+if (getequiprandomoption(EQI_HAND_R,0,ROA_ID) == 0){
+next;
+mes"這把武器並沒有突破能力！";
+close;
+}
+if(getiteminfo((getequipid(9)),2)!=5) {mes"這項裝備不是武器喔！";close;}
+set .@equip_card_slot1, getequipcardid(9,0);
+set .@equip_card_slot2, getequipcardid(9,1);
+set .@equip_card_slot3, getequipcardid(9,2);
+set .@equip_card_slot4, getequipcardid(9,3);
+set .@equip_id, getequipid(9);
+set .@equip_refine, getequiprefinerycnt(9);
+set .@r,EQI_HAND_R;
+goto hapsx;
+break;
+case 3:
+if (getequipisequiped(EQI_ARMOR) == 0) {
+next;
+mes "裝備呢？";
+close;
+}
+if (getequiprandomoption(EQI_ARMOR,0,ROA_ID) == 0){
+next;
+mes"這項裝備並沒有突破能力！";
+close;
+}
+set .@equip_card_slot1, getequipcardid(EQI_ARMOR,0);
+set .@equip_card_slot2, getequipcardid(EQI_ARMOR,1);
+set .@equip_card_slot3, getequipcardid(EQI_ARMOR,2);
+set .@equip_card_slot4, getequipcardid(EQI_ARMOR,3);
+set .@equip_id, getequipid(EQI_ARMOR);
+set .@equip_refine, getequiprefinerycnt(EQI_ARMOR);
+set .@r,EQI_ARMOR;
+goto hapsx;
+break;
+case 4:
+if (getequipisequiped(EQI_HEAD_TOP) == 0) {
+next;
+mes "裝備呢？";
+close;
+}
+if (getequiprandomoption(EQI_HEAD_TOP,0,ROA_ID) == 0){
+next;
+mes"這項裝備並沒有突破能力！";
+close;
+}
+set .@equip_card_slot1, getequipcardid(EQI_HEAD_TOP,0);
+set .@equip_card_slot2, getequipcardid(EQI_HEAD_TOP,1);
+set .@equip_card_slot3, getequipcardid(EQI_HEAD_TOP,2);
+set .@equip_card_slot4, getequipcardid(EQI_HEAD_TOP,3);
+set .@equip_id, getequipid(EQI_HEAD_TOP);
+set .@equip_refine, getequiprefinerycnt(EQI_HEAD_TOP);
+set .@r,EQI_HEAD_TOP;
+goto hapsx;
+break;
+case 5:
+if (getequipisequiped(EQI_GARMENT) == 0) {
+next;
+mes "裝備呢？";
+close;
+}
+if (getequiprandomoption(EQI_GARMENT,0,ROA_ID) == 0){
+next;
+mes"這項裝備並沒有突破能力！";
+close;
+}
+set .@equip_card_slot1, getequipcardid(EQI_GARMENT,0);
+set .@equip_card_slot2, getequipcardid(EQI_GARMENT,1);
+set .@equip_card_slot3, getequipcardid(EQI_GARMENT,2);
+set .@equip_card_slot4, getequipcardid(EQI_GARMENT,3);
+set .@equip_id, getequipid(EQI_GARMENT);
+set .@equip_refine, getequiprefinerycnt(EQI_GARMENT);
+set .@r,EQI_GARMENT;
+goto hapsx;
+break;
+case 6:
+if (getequipisequiped(EQI_SHOES) == 0) {
+next;
+mes "裝備呢？";
+close;
+}
+if (getequiprandomoption(EQI_SHOES,0,ROA_ID) == 0){
+next;
+mes"這項裝備並沒有突破能力！";
+close;
+}
+set .@equip_card_slot1, getequipcardid(EQI_SHOES,0);
+set .@equip_card_slot2, getequipcardid(EQI_SHOES,1);
+set .@equip_card_slot3, getequipcardid(EQI_SHOES,2);
+set .@equip_card_slot4, getequipcardid(EQI_SHOES,3);
+set .@equip_id, getequipid(EQI_SHOES);
+set .@equip_refine, getequiprefinerycnt(EQI_SHOES);
+set .@r,EQI_SHOES;
+goto hapsx;
+break;
+}
+end;
+hapsx:
+next;
+mes"確定要重置這項裝備的突破能力嗎?";
+menu"繼續重置",cc,"離開",-;
+close;
+cc:
+if(countitem(35162) < 1) { 
+next;
+mes"身上突破重置券不足！";
+close;
+}
+delitem 35162,1;
+goto okk2;
+okk2:
+delequip .@r;
+set .@sou1[0],0;
+set .@OptVal[0],0;
+set .@OptVal[1],0;
+set .@OptVal[2],0;
+set .@OptVal[3],0;
+getitem3 .@equip_id,1,1,.@equip_refine,0,.@equip_card_slot1,.@equip_card_slot2,.@equip_card_slot3,.@equip_card_slot4,.@sou1,.@OptVal,.@OptParam;
+dispbottom "重置成功！";
+end;
+aa:
+if (getequipisequiped(8) <= 0) set $@shadowRetPart1$,"^AAAAAA左手-[無裝備]^000000"; else set $@shadowRetPart1$,getequipname(8);
+if (getequipisequiped(9) <= 0) set $@shadowRetPart2$,"^AAAAAA右手-[無裝備]^000000"; else set $@shadowRetPart2$,getequipname(9);
+set $@shadowmenu$,$@shadowRetPart1$+":"+$@shadowRetPart2$;
+switch(select($@shadowmenu$)){
+case 1:
+if (getequipisequiped(8) == 0) {
+next;
+mes "裝備呢？";
+close;
+}
+if (getequiprandomoption(EQI_HAND_L,0,ROA_ID) > 0){
+next;
+mes"必須將附魔重置才可以繼續進行！";
+close;
+}
+if(getiteminfo((getequipid(8)),2)!=5) {mes"這項裝備不是武器喔！";close;}
+set .@equip_card_slot1, getequipcardid(8,0);
+set .@equip_card_slot2, getequipcardid(8,1);
+set .@equip_card_slot3, getequipcardid(8,2);
+set .@equip_card_slot4, getequipcardid(8,3);
+set .@equip_id, getequipid(8);
+set .@equip_refine, getequiprefinerycnt(8);
+set .@r,EQI_HAND_L;
+goto haps;
+break;
+case 2:
+if (getequipisequiped(9) == 0) {
+next;
+mes "裝備呢？";
+close;
+}
+if (getequiprandomoption(EQI_HAND_R,0,ROA_ID) > 0){
+next;
+mes"必須將附魔重置才可以繼續進行！";
+close;
+}
+if(getiteminfo((getequipid(9)),2)!=5) {mes"這項裝備不是武器喔！";close;}
+set .@equip_card_slot1, getequipcardid(9,0);
+set .@equip_card_slot2, getequipcardid(9,1);
+set .@equip_card_slot3, getequipcardid(9,2);
+set .@equip_card_slot4, getequipcardid(9,3);
+set .@equip_id, getequipid(9);
+set .@equip_refine, getequiprefinerycnt(9);
+set .@r,EQI_HAND_R;
+goto haps;
+break;
+}
+end;
+haps:
+next;
+mes"請問要使用哪顆突破寶石?";
+menu"突破寶石(S)",d,"突破寶石(A)",a,"突破寶石(B)",b,"突破寶石(C)",c,"離開",-;
+close;
+d:
+if(countitem(31740) < 1) { 
+next;
+mes"身上突破寶石(S)不足！";
+close;
+}
+delitem 31740,1;
+set .@n,4;
+menu"對體型N增加傷害",ac1,"對種族N增加傷害",ac2,"對N系增加的傷害",ac3,"對屬性N增加的傷害",ac4,"增加遠距離攻擊傷害",ac5,"增加爆擊傷害",ac6,"ATK%",ac7,"MATK%",ac8;
+ac1:
+setarray .@OptID4[0],157,158,159;
+goto okk;
+end;
+ac2:
+setarray .@OptID4[0],97,98,99,100,101,102,103,104,105,106;
+goto okk;
+end;
+ac3:
+setarray .@OptID4[0],147,148,149;
+goto okk;
+end;
+ac4:
+setarray .@OptID4[0],37,39,41,43,45,47,49,51,53,55;
+goto okk;
+end;
+ac5:
+setarray .@OptID4[0],166;
+goto okk;
+end;
+ac6:
+setarray .@OptID4[0],164;
+goto okk;
+end;
+ac7:
+setarray .@OptID4[0],13;
+goto okk;
+end;
+ac8:
+setarray .@OptID4[0],14;
+goto okk;
+end;
+a:
+if(countitem(31741) < 1) { 
+next;
+mes"身上突破寶石(A)不足！";
+close;
+}
+delitem 31741,1;
+set .@n,1;
+goto okk;
+b:
+if(countitem(31743) < 1) { 
+next;
+mes"身上突破寶石(B)不足！";
+close;
+}
+delitem 31743,1;
+set .@n,2;
+goto okk;
+c:
+if(countitem(31744) < 1) { 
+next;
+mes"身上突破寶石(C)不足！";
+close;
+}
+delitem 31744,1;
+set .@n,3;
+goto okk;
+okk:
+delequip .@r;
+if (.@n==3){
+set .@OptVal[0],rand(1,5);
+set .@OptVal[1],rand(1,5);
+set .@OptVal[2],rand(1,5);
+}
+if (.@n==2){
+set .@OptVal[0],rand(1,5);
+set .@OptVal[1],rand(1,50);
+set .@OptVal[2],rand(1,10);
+set .@OptVal[3],rand(1,10);
+}
+if (.@n==1){
+set .@OptVal[0],rand(1,5);
+set .@OptVal[1],rand(10,50);
+set .@OptVal[2],rand(5,10);
+set .@OptVal[3],rand(5,20);
+}
+if (.@n==4){
+set .@OptVal[0],rand(1,5);
+set .@OptVal[1],rand(10,50);
+set .@OptVal[2],rand(5,10);
+set .@OptVal[3],rand(15,20);
+}
+if (.@n==3){
+setarray .@OptID1[0],3,4,5,6,7,8;
+setarray .@OptID2[0],17,19;
+setarray .@OptID3[0],18,24,16,168,9,10;
+}
+if (.@n==1){
+setarray .@OptID1[0],3,4,5,6,7,8;
+setarray .@OptID2[0],17,19;
+setarray .@OptID3[0],18,24,16,168,9,10;
+setarray .@OptID4[0],97,98,99,100,101,102,103,104,105,106,37,39,41,43,45,47,49,51,53,55,57,59,61,63,65,67,69,71,73,75,107,108,109,110,111,112,113,114,115,116,147,148,151,152,164,166,13,14;
+}
+if (.@n==2){
+setarray .@OptID1[0],3,4,5,6,7,8;
+setarray .@OptID2[0],17,19;
+setarray .@OptID3[0],18,24,16,168,9,10;
+setarray .@OptID4[0],97,98,99,100,101,102,103,104,105,106,37,39,41,43,45,47,49,51,53,55,57,59,61,63,65,67,69,71,73,75,107,108,109,110,111,112,113,114,115,116,147,148,151,152,164,166,13,14;
+}
+if (.@n==4){
+setarray .@OptID1[0],3,4,5,6,7,8;
+setarray .@OptID2[0],17,19;
+setarray .@OptID3[0],18,24,16,168,9,10;
+}
+set .@sou1[0],.@OptID1[rand(getarraysize(.@OptID1))];
+set .@sou1[1],.@OptID2[rand(getarraysize(.@OptID2))];
+set .@sou1[2],.@OptID3[rand(getarraysize(.@OptID3))];
+set .@sou1[3],.@OptID4[rand(getarraysize(.@OptID4))];
+getitem3 .@equip_id,1,1,.@equip_refine,0,.@equip_card_slot1,.@equip_card_slot2,.@equip_card_slot3,.@equip_card_slot4,.@sou1,.@OptVal,.@OptParam;
+specialeffect2 EF_SANCTUARY;
+dispbottom "突破成功！";
+end;
+}
+
+
+function	script	拆卡6	{
+mes"[拆卡師]";
+mes"可以幫妳把已經插卡的裝備分離，";
+mes"當然，這不一定會成功～";
+//拆除卡片的初始成功機率 ( 預設：80% )
+setarray .@CardRand1,50;
+setarray .@CardRanx1,65;
+//每多一張卡片下降多少成功機率 ( 預設：5% )
+setarray .@CardRand2,0;
+//拆除卡片需要的物品
+setarray .@Item[1],31466;
+//拆除卡片需要的物品數量
+setarray .@INum[1],1;
+//拆除卡片需要的初始費用 ( 預設：100萬 Zeny )
+setarray .@CardZeny1,1000000;
+//每多一張卡片需再收多少費用 ( 預設：25萬 Zeny )
+setarray .@CardZeny2,1000000;
+set .@Size,getarraysize(.@Item);
+//setarray .@Equipx$[1],"飾品","飾品","鞋子","披肩","頭下","頭中","頭上","盔甲","左手","右手";
+setarray .@indices[1], EQI_HEAD_TOP, EQI_ARMOR, EQI_HAND_L, EQI_HAND_R, EQI_GARMENT, EQI_SHOES, EQI_ACC_L, EQI_ACC_R, EQI_HEAD_MID, EQI_HEAD_LOW;
+for(@i = 1; @i<getarraysize(.@indices); ++@i) {
+if ( getequipcardcnt(.@indices[@i]) > 0)
+set .@menu$, .@menu$ + F_getpositionname(.@indices[@i]) + "-[" + getequipname(.@indices[@i]) + "]";
+set .@menu$, .@menu$ + ":";
+}
+set .@part, .@indices[ select(.@menu$) ];
+set @CardCount,getequipcardcnt(.@part);
+if ( @CardCount == 0 )	{
+mes "這個物品並沒有插上卡片唷！";
+close2;
+cutin "",255;
+end;
+}
+next;
+mes "[拆卡師]";
+mes "拆除 ^0000FF"+getequipname(.@part)+"^000000["+getitemslots(getequipid(.@part))+"S] 上的卡片";
+mes "需要 ^FF0000金錢 "+(.@CardZeny1+(@CardCount*.@CardZeny2))+"^000000 z";
+for ( set @i,1; @i < .@Size; set @i,@i+1 ) {
+mes "和 ^FF0000"+getitemname(.@Item[@i])+" "+.@INum[@i]+"^000000 個";
+}
+mes "機率:^FF0000"+(.@CardRanx1-(@CardCount*.@CardRand2))+"%^000000";
+next;
+switch(select("離開:開始拆卡:安全拆卡")){
+case 1:
+close;
+case 2:
+if ( Zeny < (.@CardZeny1+(@CardCount*.@CardZeny2)) ) {
+next;
+mes "抱歉您身上的金錢不足！";
+close;
+}
+for ( set @i,1; @i < .@Size; set @i,@i+1 ) {
+if ( countitem(.@Item[@i]) < .@INum[@i] ) {
+next;
+mes "抱歉您身上的物品不足！";
+close;
+}
+}
+mes "鏘！鏘！鏘！";
+next;
+if ( (.@CardRand1-(@CardCount*.@CardRand2)) < 100 ) {
+mes "[拆卡師][機率：^FF0000"+(.@CardRanx1-(@CardCount*.@CardRand2))+"%^000000]";
+mes "如果拆除失敗您想保留什麼？";
+next;
+switch(select("保留裝備！","保留卡片！")) {
+case 1: set @CardFailed,1; set .@Str$,"裝備"; break;
+case 2: set @CardFailed,2; set .@Str$,"卡片"; break;
+}
+}
+set Zeny,Zeny - (.@CardZeny1+(@CardCount*.@CardZeny2));
+for ( set @i,1; @i < .@Size; set @i,@i+1 ) {
+delitem .@Item[@i],.@INum[@i];
+}
+if ( (.@CardRand1-(@CardCount*.@CardRand2)) >= rand(100) ) {
+god:
+set .@equip_id,getequipid(.@part);
+set .@equip_refine,getequiprefinerycnt(.@part);
+set .@equip_card_slot4,getequipcardid(.@part,3);
+set .@equip_card_slot3,getequipcardid(.@part,2);
+set .@equip_card_slot2,getequipcardid(.@part,1);
+set .@equip_card_slot1,getequipcardid(.@part,0);
+if ( compare(getitemname(.@equip_card_slot1),"卡片") ) {set .@equip_card_slot1,0;}
+if ( compare(getitemname(.@equip_card_slot2),"卡片") ) {set .@equip_card_slot2,0;}
+if ( compare(getitemname(.@equip_card_slot3),"卡片") ) {set .@equip_card_slot3,0;}
+if ( compare(getitemname(.@equip_card_slot4),"卡片") ) {set .@equip_card_slot4,0;}
+if ( compare(getitemname(.@equip_card_slot1),"精髓") ) {set .@equip_card_slot1,0;}
+if ( compare(getitemname(.@equip_card_slot2),"精髓") ) {set .@equip_card_slot2,0;}
+if ( compare(getitemname(.@equip_card_slot3),"精髓") ) {set .@equip_card_slot3,0;}
+if ( compare(getitemname(.@equip_card_slot4),"精髓") ) {set .@equip_card_slot4,0;}
+setarray .@sou1[0], getequiprandomoption(.@part,0,ROA_ID), getequiprandomoption(.@part,1,ROA_ID), getequiprandomoption(.@part,2,ROA_ID), getequiprandomoption(.@part,3,ROA_ID), getequiprandomoption(.@part,4,ROA_ID);
+setarray .@optVal[0], getequiprandomoption(.@part,0,ROA_VALUE), getequiprandomoption(.@part,1,ROA_VALUE), getequiprandomoption(.@part,2,ROA_VALUE), getequiprandomoption(.@part,3,ROA_VALUE), getequiprandomoption(.@part,4,ROA_VALUE);
+failedremovecards .@part,2;
+getitem3 .@equip_id,1,1,.@equip_refine,0,.@equip_card_slot1,.@equip_card_slot2,.@equip_card_slot3,.@equip_card_slot4,.@sou1,.@OptVal,.@OptParam;
+specialeffect2 EF_SANCTUARY;
+next;
+mes "恭喜您物品已拆除成功了！";
+mes "卡片跟裝備都成功拆除了！！";
+} else {
+if (@CardFailed == 1)
+{
+set .@equip_id,getequipid(.@part);
+set .@equip_refine,getequiprefinerycnt(.@part);
+set .@equip_card_slot4,getequipcardid(.@part,3);
+set .@equip_card_slot3,getequipcardid(.@part,2);
+set .@equip_card_slot2,getequipcardid(.@part,1);
+set .@equip_card_slot1,getequipcardid(.@part,0);
+if ( compare(getitemname(.@equip_card_slot1),"卡片") ) {set .@equip_card_slot1,0;}
+if ( compare(getitemname(.@equip_card_slot2),"卡片") ) {set .@equip_card_slot2,0;}
+if ( compare(getitemname(.@equip_card_slot3),"卡片") ) {set .@equip_card_slot3,0;}
+if ( compare(getitemname(.@equip_card_slot4),"卡片") ) {set .@equip_card_slot4,0;}
+if ( compare(getitemname(.@equip_card_slot1),"精髓") ) {set .@equip_card_slot1,0;}
+if ( compare(getitemname(.@equip_card_slot2),"精髓") ) {set .@equip_card_slot2,0;}
+if ( compare(getitemname(.@equip_card_slot3),"精髓") ) {set .@equip_card_slot3,0;}
+if ( compare(getitemname(.@equip_card_slot4),"精髓") ) {set .@equip_card_slot4,0;}
+setarray .@sou1[0], getequiprandomoption(.@part,0,ROA_ID), getequiprandomoption(.@part,1,ROA_ID), getequiprandomoption(.@part,2,ROA_ID), getequiprandomoption(.@part,3,ROA_ID), getequiprandomoption(.@part,4,ROA_ID);
+setarray .@optVal[0], getequiprandomoption(.@part,0,ROA_VALUE), getequiprandomoption(.@part,1,ROA_VALUE), getequiprandomoption(.@part,2,ROA_VALUE), getequiprandomoption(.@part,3,ROA_VALUE), getequiprandomoption(.@part,4,ROA_VALUE);
+delequip .@part;
+getitem3 .@equip_id,1,1,.@equip_refine,0,.@equip_card_slot1,.@equip_card_slot2,.@equip_card_slot3,.@equip_card_slot4,.@sou1,.@OptVal,.@OptParam;
+goto ppx;
+}
+failedremovecards .@part,@CardFailed;
+ppx:
+specialeffect2 EF_SUI_EXPLOSION;
+next;
+mes "抱歉您的物品拆除失敗了！";
+mes "已經盡力幫您保住"+.@Str$+"了！";
+}
+close;
+case 3:
+next;
+mes"您選擇安全拆卡，";
+mes"將消耗5顆分解寶石，";
+mes"與費用500000z來拆卡";
+mes"安全拆卡保證成功分解卡片與裝備。";
+menu"離開",-,"繼續",n;
+close;
+}
+n:
+if ( Zeny < 500000 ) {
+next;
+mes "抱歉您身上的金錢不足！";
+close;
+}
+if ( countitem(31466) < 5 ) {
+next;
+mes "抱歉您身上的物品不足！";
+close;
+}
+set Zeny,Zeny - 500000;
+delitem 31466,5;
+goto god;
+end;
+}
+//================================================//
+//==腳本作者 : 陳小修 (SkyTwo)		Eathena
+//==更新日期 : 西元 2012/02/27		　　Script
+//==腳本版號 : 繁體中文 Ver 2.3 正式版
+//==腳本名稱 : 乎克連
+//==腳本出處 : http://www.srogm.com/index.php
+//==
+//==各位大哥大姐轉載請保留以上，萬分感激。
+//================================================//
+
+
+
+function	script	ckitem	{
+return countitem(getarg(0))>=1?"^0066CC- "+getitemname(getarg(0))+"^000000":"^888888- "+getitemname(getarg(0))+"^000000";
+}
+function	script	ckitem2	{
+return (countitem(getarg(0))>=getarg(1)&&countitem(getarg(2))>=getarg(3))?"^0066CC- "+getitemname(getarg(0))+"x"+getarg(1)+" & "+getitemname(getarg(2))+"x"+getarg(3)+"^000000":"^888888- "+getitemname(getarg(0))+"x"+getarg(1)+" & "+getitemname(getarg(2))+"x"+getarg(3)+"^000000";
+}
+
+//egg1,160,190,6	script	乎克連	85,{
+//disable_items;
+//mes "^0000FF"+strcharinfo(0)+"^000000您好，";
+//mes "請問您需要什麼服務呢？";
+//switch(select("精練裝備","修理裝備","選購材料","神鋁兌換","安全精練","拆卡","打洞(EP11.1)","打洞(EP12.0)")) {
+//case 1: 
+//if (Zeny < 10000){
+//mes "請準備足夠的金錢 每次精練需要1萬！";
+//close;
+//}
+//next;
+//mes "請選擇您的精練裝備及道具！";
+//	setarray .@indices[1], EQI_HEAD_TOP, EQI_ARMOR, EQI_HAND_L, EQI_HAND_R, EQI_GARMENT, EQI_SHOES, EQI_ACC_L, EQI_ACC_R, EQI_HEAD_MID, EQI_HEAD_LOW;
+//	for(.@i = 1; .@i<getarraysize(.@indices); ++.@i) {
+//		if(getequipisequiped(.@indices[.@i])) {
+//.@menu$ = .@menu$ + F_getpositionname(.@indices[.@i]) + "-[" + getequipname(.@indices[.@i]) + "]";
+//			.@equipped = 1;
+//		}
+//		.@menu$ = .@menu$ + ":";
+//	}
+//if (.@equipped == 0) {
+//mes "[" + strnpcinfo(0) + "]";
+//mes "沒有裝備道具";
+//mes "我是要怎麼精練阿!";
+//emotion 6;
+//close;
+//}
+//.@part = .@indices[select(.@menu$)];
+//if(.@part == 8 || .@part == 9){
+//if(getequipid(8) == getequipid(9)) set .@part,9;
+//}
+//if(.@part == 8 &&getiteminfo((getequipid(8)),2)==5) {set .@part,8;set .@qq,1;}
+//
+//if(.@part == 5 || .@part == 4|| .@part == 0|| .@part == 1){
+//mes"這些裝備無法精練喔!";
+//close;
+//}
+//jxx:
+//next;
+//mes "[" + strnpcinfo(0) + "]";
+//mes "精練裝備 : "+(.@part?"^46B046"+getequipname(.@part)+"^000000":"^46B046請選擇裝備^000000");
+//mes "精練礦石 : "+(.@array[0]?"^CC66FF"+getitemname(.@array[0])+"^000000":"^FFBB77請選擇精練道具^000000");
+//mes "精練程度 : "+(.@array[4]?"^FF1493+"+getequiprefinerycnt(.@part)+" 至 +"+.@array[4]+"^000000":"^FF0099+"+getequiprefinerycnt(.@part)+" 至 +?^000000");
+//if(.@array[0]){
+//mes "失敗爆裝 : "+(.@array[2]?"^FF0000是^000000":"^0000FF否^000000");
+//mes "精練度-1 : "+(.@array[3]?"^FF0000是^000000":"^0000FF否^000000");
+//}
+//BackMenu:
+//set .@lv,getequiprefinerycnt(.@part);
+//set .@wlv,getequipweaponlv(.@part);
+//switch(select(
+//.@lv<=9?ckitem(.@part==9 &&.@wlv>2||.@part==8&&.@qq==1 &&.@wlv>2?984:.@part==9&&.@wlv==1||.@part==8&&.@qq==1&&.@wlv==1?1010:.@part==9&&.@wlv==2||.@part==8&&.@qq==1&&.@wlv==2?1011:985):"",
+//.@lv>=10&&.@lv<=20?ckitem(.@part==9?6224:6223):"",
+//.@lv>=4&&.@lv<=8?ckitem(.@part==9||.@part==8&&.@qq==1?7620:7619):"",
+//.@lv>=7&&.@lv<=9?ckitem(.@part==9||.@part==8&&.@qq==1?6240:6241):"",
+//.@lv>=0&&.@lv<=4?ckitem(.@part==9||.@part==8&&.@qq==1?6456:6457):"",
+//.@lv>=0&&.@lv<=6?ckitem(.@part==9||.@part==8&&.@qq==1?6230:6234):"",
+//.@lv>=0&&.@lv<=7?ckitem(.@part==9||.@part==8&&.@qq==1?6229:6233):"",
+//.@lv>=0&&.@lv<=5?ckitem(.@part==9||.@part==8&&.@qq==1?6231:6235):"",
+//.@lv>=0&&.@lv<=8?ckitem(.@part==9||.@part==8&&.@qq==1?6228:6232):"",
+//.@lv>=6&&.@lv<=12?ckitem(.@part==9||.@part==8&&.@qq==1?6438:6439):"",
+//.@lv>=10?ckitem(.@part==9||.@part==8&&.@qq==1?6226:6225):"",
+//.@lv==12?(.@part==9||.@part==8&&.@qq==1?ckitem2(7650,1,6226,1):ckitem2(7650,1,6225,1)):"",
+//.@lv==13?(.@part==9||.@part==8&&.@qq==1?ckitem2(7650,2,6226,1):ckitem2(7650,2,6225,1)):"",
+//.@lv>=0&&.@lv<=10?ckitem(.@part==9||.@part==8&&.@qq==1?31666:31667):"",
+//.@lv>=0&&.@lv<=15?ckitem(.@part==9||.@part==8&&.@qq==1?35182:35181):"",
+//.@lv>=0&&.@lv<=15?ckitem(.@part==9||.@part==8&&.@qq==1?35190:35190):"",
+//.@lv>=0&&.@lv<=11?ckitem(.@part==9||.@part==8&&.@qq==1?6238:6239):"",
+//.@lv>=0&&.@lv<=4?ckitem(.@part==9||.@part==8&&.@qq==1?35191:35191):""
+//)){
+//case 1:	// 神之金屬/鋁
+//setarray .@array,.@part==9&&.@wlv>2||.@part==8&&.@qq==1&&.@wlv>2?984:.@part==9&&.@wlv==1||.@part==8&&.@qq==1&&.@wlv==1?1010:.@part==9&&.@wlv==2||.@part==8&&.@qq==1&&.@wlv==2?1011:985,getequiprefinerycnt(.@part),1,0,0;
+//break;
+//case 2:	// 鈽鐳礦石/鈣礦石
+//setarray .@array,.@part==9||.@part==8&&.@qq==1?6224:6223,getequiprefinerycnt(.@part),0,3,0;
+//break;
+//case 3:	// 濃縮神之金屬/濃縮鋁
+//setarray .@array,.@part==9||.@part==8&&.@qq==1?7620:7619,getequiprefinerycnt(.@part)+20,1,0,0;
+//break;
+//case 4:	// 高濃縮神之金屬/高濃縮鋁
+//setarray .@array,.@part==9||.@part==8&&.@qq==1?6240:6241,getequiprefinerycnt(.@part),0,1,0;
+//if (.@array[0] == 6240 && .@lv < 12 || .@array[0] == 6241 && .@lv < 12){
+//menu"使用鐵匠的祝福 [ ^0066CC"+getitemname(.@array[0])+"^000000機率 ^3366FF"+.@array[1]+"%^000000 ]",xd1,"直接精練 [ ^0066CC"+getitemname(.@array[0])+"^000000機率 ^3366FF"+.@array[1]+"%^000000 ]",xd2,"不精練",xd3;
+//xd2:
+//goto cxc;
+//xd3:
+//close;
+//xd1:
+//if (getequiprefinerycnt(.@part) == 7){set .@yp,1;}
+//if (getequiprefinerycnt(.@part) == 8){set .@yp,2;}
+//if (getequiprefinerycnt(.@part) == 9){set .@yp,3;}
+//if (getequiprefinerycnt(.@part) == 10){set .@yp,4;}
+//if (getequiprefinerycnt(.@part) == 11){set .@yp,5;}
+//if(countitem(6635)<.@yp) {
+//mes "[" + strnpcinfo(0) + "]";
+//mes "- 道具不足";
+//mes "- ^0066CC"+getitemname(6635)+" x "+.@yp+"^000000";
+//close;
+//}
+//setarray .@array,.@part==9||.@part==8&&.@qq==1?6240:6241,getequiprefinerycnt(.@part),0,0,0;
+//cxc:
+//break;
+//}
+//break;
+//case 5:	// +5券
+//setarray .@array,.@part==9||.@part==8&&.@qq==1?6456:6457,100,0,0,5;
+//break;
+//case 6:	// +7券
+//setarray .@array,.@part==9||.@part==8&&.@qq==1?6230:6234,100,0,0,7;
+//break;
+//case 7:	// +8券
+//setarray .@array,.@part==9||.@part==8&&.@qq==1?6229:6233,100,0,0,8;
+//break;
+//case 8:	// +6券
+//setarray .@array,.@part==9||.@part==8&&.@qq==1?6231:6235,100,0,0,6;
+//break;
+//case 9:	// +9券
+//setarray .@array,.@part==9||.@part==8&&.@qq==1?6228:6232,100,0,0,9;
+//break;
+//case 10:	// 受祝福的武器礦石/受祝福的防具礦石
+//setarray .@array,.@part==9||.@part==8&&.@qq==1?6438:6439,getequiprefinerycnt(.@part),0,0,0;
+//break;
+//case 11:	// 高密度鈽鐳礦石/高密度鈣礦石
+//setarray .@array,.@part==9||.@part==8&&.@qq==1?6226:6225,getequiprefinerycnt(.@part),0,1,0;
+//setarray .@stone,.@part==9||.@part==8&&.@qq==1?6226:6225,1;
+//if (.@array[0] == 6240 && .@lv < 12 || .@array[0] == 6241 && .@lv < 12){
+//menu"使用鐵匠的祝福 [ ^0066CC"+getitemname(.@array[0])+"^000000機率 ^3366FF"+.@array[1]+"%^000000 ]",xd11,"直接精練 [ ^0066CC"+getitemname(.@array[0])+"^000000機率 ^3366FF"+.@array[1]+"%^000000 ]",xd22,"不精練",xd33;
+//xd22:
+//goto cxcx;
+//xd33:
+//close;
+//xd11:
+//if (getequiprefinerycnt(.@part) == 7){set .@yp,1;}
+//if (getequiprefinerycnt(.@part) == 8){set .@yp,2;}
+//if (getequiprefinerycnt(.@part) == 9){set .@yp,3;}
+//if (getequiprefinerycnt(.@part) == 10){set .@yp,4;}
+//if (getequiprefinerycnt(.@part) == 11){set .@yp,5;}
+//if(countitem(6635)<.@yp) {
+//mes "[" + strnpcinfo(0) + "]";
+//mes "- 道具不足";
+//mes "- ^0066CC"+getitemname(6635)+" x "+.@yp+"^000000";
+//close;
+//}
+//setarray .@array,.@part==9||.@part==8&&.@qq==1?6226:6225,getequiprefinerycnt(.@part),0,0,0;
+//setarray .@stone,.@part==9||.@part==8&&.@qq==1?6226:6225,1;
+//cxcx:
+//break;
+//}
+//break;
+//case 12:	// +12 ~ +13
+//setarray .@array,7650,getequiprefinerycnt(.@part),0,0,0;
+//setarray .@stone,.@part==9||.@part==8&&.@qq==1?6226:6225,1;
+//break;
+//case 13:	// +13 ~ +14
+//setarray .@array,7650,getequiprefinerycnt(.@part),0,0,0;
+//setarray .@stone,.@part==9||.@part==8&&.@qq==1?6226:6225,1;
+//break;
+//case 14:	// +10券
+//setarray .@array,.@part==9||.@part==8&&.@qq==1?31666:31667,100,0,0,10;
+//break;
+//break;
+//case 15:	// +12券
+//setarray .@array,.@part==9||.@part==8&&.@qq==1?35182:35181,100,0,0,15;
+//break;
+//case 16:
+//setarray .@array,.@part==9||.@part==8&&.@qq==1?35190:35190,100,0,1,0;
+//break;
+//case 17:
+//setarray .@array,.@part==9||.@part==8&&.@qq==1?6238:6239,100,0,0,11;
+//break;
+//case 18:
+//setarray .@array,.@part==9||.@part==8&&.@qq==1?35191:35191,100,0,1,getequiprefinerycnt(.@part);
+//break;
+//}
+//if(!countitem(.@array[0])){
+//next;
+//mes "[" + strnpcinfo(0) + "]";
+//mes "- 道具不足";
+//mes "- ^0066CC"+getitemname(.@array[0])+" x 1^000000";
+//close;
+//}
+//if(.@stone[0]){
+//next;
+//if(countitem(.@stone[0])<.@stone[1]) {
+//mes "[" + strnpcinfo(0) + "]";
+//mes "- 道具不足";
+//mes "- ^0066CC"+getitemname(.@stone[0])+" x "+.@stone[1]+"^000000";
+//close;
+//}
+//}
+//next;
+//mes "[" + strnpcinfo(0) + "]";
+//mes "精練裝備 : "+(.@part?"^46B046"+getequipname(.@part)+"^000000":"^46B046請選擇裝備^000000");
+//mes "精練礦石 : "+(.@array[0]?"^CC66FF"+getitemname(.@array[0])+"^000000":"^FFBB77請選擇精練道具^000000");
+//if (.@array[0] == 35191){
+//mes "精練程度 : "+(.@array[4]?"^FF1493+"+(getequiprefinerycnt(.@part)+1)+" 至 +"+(getequiprefinerycnt(.@part)+3)+"^000000":"^FF0099+"+(getequiprefinerycnt(.@part)+1)+" ~ +"+(getequiprefinerycnt(.@part) +3)+"^000000");
+//goto nx;
+//}
+//mes "精練程度 : "+(.@array[4]?"^FF1493+"+getequiprefinerycnt(.@part)+" 至 +"+.@array[4]+"^000000":"^FF0099+"+getequiprefinerycnt(.@part)+" 至 +"+(getequiprefinerycnt(.@part)+1)+"^000000");
+//nx:
+//if(.@array[0]){
+//mes "失敗爆裝 : "+(.@array[2]?"^FF0000是^000000":"^0000FF否^000000");
+//mes (.@array[3]==3?"精練度-3 : ":"精練度-1 : ")+(.@array[3]?"^FF0000是^000000":"^0000FF否^000000");
+//}
+//next;
+//if(select("- 確定 [ ^0066CC"+getitemname(.@array[0])+"^000000機率 ^3366FF"+.@array[1]+"%^000000 ]","- 返回重新選擇")==2) goto BackMenu;
+//if (.@array[0] == 7650 && getequiprefinerycnt(.@part)!=12)goto ba;
+//delitem .@array[0],1;
+//if (.@yp > 0){delitem 6635,.@yp;}
+//goto cc;
+//ba:
+//delitem .@array[0],2;
+//if(.@stone[0]) delitem .@stone[0],.@stone[1];
+//cc:
+//pol:
+//if (.@kk==1){goto lc;}
+//// 道具,成功機率,爆裝(0:否 1:是),精練度-1(0:否 1:是),直接+幾(0:往上+1 N:+N)
+//if(.@array[1]<=rand(100)){
+//set Zeny,Zeny-10000;
+//if(.@array[2]) failedrefitem .@part;
+//if(.@array[3]) downrefitem .@part,.@array[3];
+//mes "["+strnpcinfo(0)+"]";
+//specialeffect2 EF_SUI_EXPLOSION;
+//mes .@array[2]?"非常抱歉，失敗了裝備沒保住！":"痾...失敗了，不過好險裝備保住了！";
+//mes .@array[3]==3?"精練失敗，精練度-3":.@array[3]==1?"精練失敗，精練度-1":"";
+//} else {
+//lc:
+//if (.@array[0] == 35191){successrefitem .@part,rand(1,3);goto nxx;}
+//if(.@array[4]) successrefitem .@part,.@array[4]-.@lv;
+//else successrefitem .@part;
+//nxx:
+//mes "["+strnpcinfo(0)+"]";
+//mes "哈哈，我就知道我還是寶刀未老！";
+//next;
+//mes"要繼續精練嗎？";
+//menu"繼續精練",jx,"離開",-;
+//close;
+//jx:
+//next;
+//goto jxx;
+//}
+//close2;cutin "",255;close;
+//case 2: callfunc "RepairMain";
+//case 3: callfunc "RShopMain";
+//case 4:
+//next;
+//callfunc "orimain","乎克連";
+//case 5:
+////裝備選單
+//	setarray .@indices[1], EQI_HEAD_TOP, EQI_ARMOR, EQI_HAND_L, EQI_HAND_R, EQI_GARMENT, EQI_SHOES, EQI_ACC_L, EQI_ACC_R, EQI_HEAD_MID, EQI_HEAD_LOW;
+//	for(.@i = 1; .@i<getarraysize(.@indices); ++.@i) {
+//		if(getequipisequiped(.@indices[.@i])) {
+//.@menu$ = .@menu$ + F_getpositionname(.@indices[.@i]) + "-[" + getequipname(.@indices[.@i]) + "]";
+//			.@equipped = 1;
+//		}
+//		.@menu$ = .@menu$ + ":";
+//	}
+//.@part = .@indices[select(.@menu$)];
+////裝備位置的設定
+//if (getequipisequiped(.@part)) goto L_START_1;
+//close2;cutin "",255;end;
+////檢查是否可精鍊
+//L_START_1:
+//if (getequipisenableref(.@part)) goto L_START_2;
+//close2;cutin "",255;end;
+////檢查是否已達安定值
+//L_START_2:
+////查找並設定武器等級變數
+//switch(getequipweaponlv(.@part)) {
+//  case 0: set .@lvall,4; set .@item,985; set .@zeny,2000; break;
+//  case 1: set .@lvall,7; set .@item,1010;set .@zeny,50;  break;
+//  case 2: set .@lvall,6; set .@item,1011;set .@zeny,200;  break;
+//  case 3: set .@lvall,5; set .@item,984; set .@zeny,5000; break;
+//  case 4: set .@lvall,4; set .@item,984; set .@zeny,20000; break;
+//}
+//if (getequiprefinerycnt(.@part) < (.@lvall)) goto L_REFINE_1;
+//if (getequiprefinerycnt(.@part) == (.@lvall)) {mes"這件裝備的精練度已經超過安全值！";close;}
+//if (getequiprefinerycnt(.@part) > (.@lvall)) {mes"這件裝備的精練度已經超過安全值！";close;}
+////精鍊開始1
+//L_REFINE_1:
+////設置武器精鍊次數
+//set .@times,.@lvall-getequiprefinerycnt(.@part);
+//if (countitem(.@item) < (.@times)) {mes"材料不足！";close2;cutin "",255;end;}
+//if (Zeny<((.@times)*(.@ZENY))) {
+//mes"準備好錢再來找我";
+//close2;cutin "",255;end;
+//}
+//set zeny,zeny-((.@times)*(.@zeny));
+//delitem .@item,(.@times);
+//
+//for ( set @i,1; @i <=.@times ; set @i,@i+1 )
+//{
+// Successrefitem .@part;
+//}
+//
+//close2;cutin "",255;end;
+//case 6:
+//next;
+//callfunc "拆卡6";
+//case 7:
+//next;
+//callfunc "打洞1";
+//case 8:
+//next;
+//callfunc "打洞2";
+//}
+//end;
+//}
+//
+////================================================//
+//
+//function	script	RepairMain	{
+//
+////修理需要的物品
+////最多支援至 127 項物品
+//setarray .@Item[1],999;
+//
+////修理需要的物品數量
+//setarray .@INum[1],1;
+//
+////修理需要的費用
+//setarray .@Zeny,10000;
+//
+////================================================//
+//
+//set .@Size,getarraysize(.@Item);
+//next;
+//mes "請選擇您要修理的物品選項。";
+//next;
+//if ( getbrokenid(1) == NULL ) {
+//
+//mes "您沒有任何受損的物品唷！";
+//close;
+//}
+//set @RepItem,select(getitemname(getbrokenid(1)),getitemname(getbrokenid(2)),getitemname(getbrokenid(3)),getitemname(getbrokenid(4)),getitemname(getbrokenid(5)),getitemname(getbrokenid(6)),getitemname(getbrokenid(7)),getitemname(getbrokenid(8)),getitemname(getbrokenid(9)),getitemname(getbrokenid(10)));
+//if ( getbrokenid(@RepItem) == NULL ) {
+//callfunc "RepairMain";
+//}
+//
+//mes "修理 ^0000FF"+getitemname(getbrokenid(@RepItem))+"^000000 這項物品";
+//mes "需要 ^FF0000金錢 "+.@Zeny+"^000000 z";
+//for ( set @i,1; @i < .@Size; set @i,@i+1 ) {
+//}
+//next;
+//if (select("是的！","不了！")==1) {
+//
+//if ( Zeny < .@Zeny ) {
+//
+//mes "抱歉您身上的金錢不足！";
+//close;
+//}
+//mes "鏘！鏘！鏘！";
+//next;
+//set Zeny,Zeny - .@Zeny;
+//for ( set @i,1; @i < .@Size; set @i,@i+1 ) {
+//}
+//repair(@RepItem);
+//
+//mes "恭喜您物品已修理完成了！";
+//}
+//close;
+//}
+//
+////================================================//
+//
+//function	script	RCardMain	{
+//
+////拆除卡片的初始成功機率 ( 預設：80% )
+//setarray .@CardRand1,50;
+//setarray .@CardRanx1,80;
+//
+////每多一張卡片下降多少成功機率 ( 預設：5% )
+//setarray .@CardRand2,5;
+//
+////拆除卡片需要的物品
+////最多支援至 127 項物品
+//setarray .@Item[1],1000,1001;
+//
+////拆除卡片需要的物品數量
+//setarray .@INum[1],5,10;
+//
+////拆除卡片需要的初始費用 ( 預設：100萬 Zeny )
+//setarray .@CardZeny1,1000000;
+//
+////每多一張卡片需再收多少費用 ( 預設：25萬 Zeny )
+//setarray .@CardZeny2,250000;
+//
+////================================================//
+//
+//set .@Size,getarraysize(.@Item);
+//next;
+//mes "請選擇您要拆除的物品選項。";
+//next;
+//setarray .@Equip$[1],"頭上","衣服","左手","右手","掛批","鞋子","飾品","飾品","頭中","頭下";
+//for ( set @i,1; @i <= 10; set @i,@i+1 ) {
+//if (getequipname(@i))  {
+//setd "@EquipName"+@i+"$",.@Equip$[@i]+"–^FF0000沒有裝備物品^000000";
+//} else {
+//if ( getequipcardcnt(@i) ) {
+//setd "@EquipName"+@i+"$",.@Equip$[@i]+"–^0000FF"+getequipname(@i)+"^000000["+getitemslots(getequipid(@i))+"S]";
+//} else {
+//setd "@EquipName"+@i+"$",.@Equip$[@i]+"–^FF0000沒有插上卡片^000000";
+//}
+//}
+//}
+//set @CItem,select(@EquipName1$,@EquipName2$,@EquipName3$,@EquipName4$,@EquipName5$,@EquipName6$,@EquipName7$,@EquipName8$,@EquipName9$,@EquipName10$);
+//set @CardCount,getequipcardcnt(@CItem);
+//for ( set @i,1; @i <= 10; set @i,@i+1 ) {
+//setd "@EquipName"+@i+"$","";
+//}
+//if ( @CardCount == 0 )	{
+//
+//mes "這個物品並沒有插上卡片唷！";
+//close2;
+//cutin "",255;
+//end;
+//}
+//mes "[乎克連][機率：^FF0000"+(.@CardRanx1-(@CardCount*.@CardRand2))+"%^000000]";
+//mes "拆除 ^0000FF"+getequipname(@CItem)+"^000000["+getitemslots(getequipid(@CItem))+"S] 上的卡片";
+//mes "需要 ^FF0000金錢 "+(.@CardZeny1+(@CardCount*.@CardZeny2))+"^000000 z";
+//for ( set @i,1; @i < .@Size; set @i,@i+1 ) {
+//mes "　和 ^FF0000"+getitemname(.@Item[@i])+" "+.@INum[@i]+"^000000 個";
+//}
+//next;
+//if (select("是的！","不了！")==2) {
+//close;
+//}
+//if ( Zeny < (.@CardZeny1+(@CardCount*.@CardZeny2)) ) {
+//
+//mes "抱歉您身上的金錢不足！";
+//close;
+//}
+//for ( set @i,1; @i < .@Size; set @i,@i+1 ) {
+//if ( countitem(.@Item[@i]) < .@INum[@i] ) {
+//
+//mes "抱歉您身上的物品不足！";
+//close;
+//}
+//}
+//
+//mes "鏘！鏘！鏘！";
+//next;
+//if ( (.@CardRand1-(@CardCount*.@CardRand2)) < 100 ) {
+//mes "[乎克連][機率：^FF0000"+(.@CardRanx1-(@CardCount*.@CardRand2))+"%^000000]";
+//mes "如果拆除失敗您想保留什麼？";
+//next;
+//switch(select("保留裝備！","保留卡片！","使用無敵卡")) {
+//case 1: set @CardFailed,1; set .@Str$,"裝備"; break;
+//case 2: set @CardFailed,2; set .@Str$,"卡片"; break;
+//case 3:if (countitem(31290)<1){mes"無敵卡數量不足";close;} set .@g,1; break;
+//}
+//}
+//set Zeny,Zeny - (.@CardZeny1+(@CardCount*.@CardZeny2));
+//if (.@g == 1){delitem 31290,1;goto m;}
+//for ( set @i,1; @i < .@Size; set @i,@i+1 ) {
+//delitem .@Item[@i],.@INum[@i];
+//}
+//if ( (.@CardRand1-(@CardCount*.@CardRand2)) >= rand(100) ) {
+//m:
+//successremovecards @CItem;
+//specialeffect2 EF_SANCTUARY;
+//
+//mes "恭喜您物品已拆除成功了！";
+//} else {
+//failedremovecards @CItem,@CardFailed;
+//specialeffect2 EF_SUI_EXPLOSION;
+//
+//mes "抱歉您的物品拆除失敗了！";
+//mes "已經盡力幫您保住"+.@Str$+"了！";
+//}
+//close;
+//}
+//
+////================================================//
+//
+//function	script	RShopMain	{
+//
+//next;
+//mes "請選擇您要購買的物品選項。";
+//next;
+//switch(select("鍛治鐵砧","鍛治物品","強化金屬")) {
+//case 1:
+//switch(select("鐵砧","神之金屬鐵砧","黃金鐵砧")) {
+//case 1: set @SItem,986; set @SZeny,30000; break;
+//case 2: set @SItem,987; set @SZeny,120000; break;
+//case 3: set @SItem,988; set @SZeny,300000; break;
+//}
+//break;
+//case 2:
+//switch(select("攜帶用熔礦爐","鋼鐵錘子","黃金錘子","神之金屬錘子")) {
+//case 1: set @SItem,612; set @SZeny,150; break;
+//case 2: set @SItem,613; set @SZeny,1000; break;
+//case 3: set @SItem,614; set @SZeny,3000; break;
+//case 4: set @SItem,615; set @SZeny,5000; break;
+//}
+//break;
+//case 3:
+//switch(select("強化武器金屬-級數一","強化武器金屬-級數二")) {
+//case 1: set @SItem,1010; set @SZeny,200; break;
+//case 2: set @SItem,1011; set @SZeny,1000; break;
+//}
+//break;
+//}
+//
+//Shop_Item:
+//
+//
+//mes "購買 ^0000FF"+getitemname(@SItem)+"^000000 這項物品，";
+//mes "需要 ^FF0000金錢 "+@SZeny+"^000000 z";
+//mes "　";
+//mes "數量：Min 1 個，Max 100 個！";
+//next;
+//input @ItemNum;
+//if ( @ItemNum < 1  || @ItemNum > 100 ) {
+//
+//mes "您輸入的數量不正確唷！";
+//close;
+//}
+//mes "[乎克連][^0000FF計算機^000000]";
+//mes "購買 ^0000FF"+getitemname(@SItem)+"^000000 ^0000FF"+@ItemNum+"^000000 個，";
+//mes "需要 ^FF0000金錢 "+(@SZeny*@ItemNum)+"^000000 z";
+//mes "　";
+//mes "計算完畢！請問您還要繼續嗎？";
+//next;
+//switch(select("確認購買","放棄購買","重設數量","返回選單")) {
+//case 1: break;
+//case 2: close;
+//case 3: goto Shop_Item;
+//case 4: callfunc "RShopMain";
+//}
+//if ( Zeny < (@SZeny*@ItemNum) ) {
+//
+//mes "抱歉您身上的金錢不足！";
+//} else {
+//if ( checkweight(@SItem,@ItemNum) ) {
+//
+//mes "鏘！鏘！鏘！";
+//next;
+//set Zeny,Zeny - (@SZeny*@ItemNum);
+//getitem @SItem,@ItemNum;
+//
+//mes "恭喜您選購材料已完成了！";
+//} else {
+//
+//mes "抱歉您身上的空間不足！";
+//}
+//}
+//close;
+//}
+//
+////================================================//
+//
+//function	script	SocketMain	{
+//
+////函式：callfunc "SocketFunc",要打洞的裝備,打洞成功的裝備,最小機率,最大機率,物品項目,費用,物品編號,物品數量{,物品編號,物品數量};
+//
+////目前僅支援 0 ～ 2 的物品項目
+//
+////範例：callfunc "SocketFunc",1460,1461,38,63,1,200000,1010,10;
+////解說：要在『1460』這樣物品上打洞
+////	打洞後會獲得『1461』這樣物品
+////	打洞成功機率 (『63』-『38』) = 25%
+////	打洞材料需要『1』項
+////	打洞費用需要 200000 錢金
+////	第一項材料：『1010』這樣物品『10』個
+//
+////	第二項材料：因為『打洞材料只需要『1』項』故沒有第二項材料
+//
+////================================================//
+//
+//next;
+//mes "請選擇您要打洞的選項。";
+//next;
+//switch(select("武器系列",getitemname(5022),"防具系列" ) ) {
+//case 1:
+//switch(select("C 等級","B 等級","A 等級","S 等級")) {
+//case 1:
+//setarray .@SocketID[1],1460,1553,1554,1555,1556,1901,1950,1133,1131,1124,1615,1629,1148,1306,1557;
+//set .@Size,getarraysize(.@SocketID);
+//mes "[乎克連][共"+.@Size+"樣]";
+//mes "^FF0000No^000000　^0000FFItem Name^000000";
+//for ( set @i,1; @i < .@Size; set @i,@i+1 ) {
+//mes "^FF0000 "+@i+"^000000　^0000FF"+getitemname(.@SocketID[@i])+"^000000";
+//}
+//next;
+//input @SocketNo;
+//switch(@SocketNo) {
+//case 1: callfunc "SocketFunc",1460,1461,38,63,1,1000000,1010,10;
+//case 2: callfunc "SocketFunc",1553,1568,38,63,1,1000000,1010,10;
+//case 3: callfunc "SocketFunc",1554,1569,38,63,1,1000000,1010,10;
+//case 4: callfunc "SocketFunc",1555,1570,38,63,1,1000000,1010,10;
+//case 5: callfunc "SocketFunc",1556,1571,38,63,1,1000000,1010,10;
+//case 6: callfunc "SocketFunc",1901,1902,38,63,1,1000000,1010,10;
+//case 7: callfunc "SocketFunc",1950,1951,38,63,1,1000000,1010,10;
+//case 8: callfunc "SocketFunc",1133,13435,38,63,1,1000000,999,50;
+//case 9: callfunc "SocketFunc",1131,13436,38,63,1,1000000,999,50;
+//case 10: callfunc "SocketFunc",1124,13437,38,63,1,1000000,999,30;
+//case 11: callfunc "SocketFunc",1615,1951,38,63,1,1000000,999,30;
+//case 12: callfunc "SocketFunc",1629,1675,38,63,1,1000000,999,30;
+//case 13: callfunc "SocketFunc",1148,13446,38,63,1,1000000,999,50;
+//case 14: callfunc "SocketFunc",1306,1324,38,63,1,1000000,999,50;
+//case 15: callfunc "SocketFunc",1557,28603,38,63,1,1000000,999,50;
+//default: close;
+//}
+//break;
+//case 2:
+//setarray .@SocketID[1],1113,1123,1219,1304,1407,1519,1523,1713,1714,1801,1905,1954,1242,13039,1385,1559,1263,1260,1590,1541,13122,13195,13194,13198,28201,13320,13319,13318;
+//set .@Size,getarraysize(.@SocketID);
+//mes "[乎克連][共"+.@Size+"樣]";
+//mes "^FF0000No^000000　^0000FFItem Name^000000";
+//for ( set @i,1; @i < 10; set @i,@i+1 ) {
+//mes "^FF0000 "+@i+"^000000　^0000FF"+getitemname(.@SocketID[@i])+"^000000";
+//}
+//for ( set @i,10; @i < .@Size; set @i,@i+1 ) {
+//mes "^FF0000"+@i+"^000000　^0000FF"+getitemname(.@SocketID[@i])+"^000000";
+//}
+//next;
+//input @SocketNo;
+//switch(@SocketNo) {
+//case 1: callfunc "SocketFunc",1113,1114,40,60,1,1000000,984,1;
+//case 2: callfunc "SocketFunc",1123,1128,40,60,2,1000000,984,2,999,5;
+//case 3: callfunc "SocketFunc",1219,1220,40,60,2,1000000,984,1,999,5;
+//case 4: callfunc "SocketFunc",1304,1309,40,60,1,1000000,984,1;
+//case 5: callfunc "SocketFunc",1407,1408,40,60,1,1000000,1010,10;
+//case 6: callfunc "SocketFunc",1519,1520,40,60,1,1000000,1010,10;
+//case 7: callfunc "SocketFunc",1523,1538,40,60,1,1000000,984,1;
+//case 8: callfunc "SocketFunc",1713,1715,40,60,2,1000000,984,2,999,5;
+//case 9: callfunc "SocketFunc",1714,1716,40,60,2,1000000,984,2,999,5;
+//case 10: callfunc "SocketFunc",1801,1802,40,60,1,1000000,1010,10;
+//case 11: callfunc "SocketFunc",1905,1906,40,60,1,1000000,1011,10;
+//case 12: callfunc "SocketFunc",1954,1955,40,60,1,1000000,1011,10;
+//case 13: callfunc "SocketFunc",1242,13073,40,60,1,1000000,984,5;
+//case 14: callfunc "SocketFunc",13039,13082,40,60,1,1000000,984,5;
+//case 15: callfunc "SocketFunc",1385,1397,40,60,1,500000,984,10;
+//case 16: callfunc "SocketFunc",1559,1589,40,60,1,1000000,984,3;
+//case 17: callfunc "SocketFunc",1263,28003,40,60,1,1000000,984,3;
+//case 18: callfunc "SocketFunc",1260,28004,40,60,1,1000000,984,3;
+//case 19: callfunc "SocketFunc",1590,1598,40,60,1,1000000,984,5;
+//case 20: callfunc "SocketFunc",1541,16022,40,60,1,1000000,984,3;
+//default: close;
+//}
+//break;
+//case 3:
+//setarray .@SocketID[1],1129,1163,1167,1168,1256,1257,1258,1259,1261,1474,1477,1522,1524,1619,1718,1722,1814,1918,1970,13001,1271,1269,1648,2001,1421,1318,13034,1471,1649;
+//set .@Size,getarraysize(.@SocketID);
+//mes "[乎克連][共"+.@Size+"樣]";
+//mes "^FF0000No^000000　^0000FFItem Name^000000";
+//for ( set @i,1; @i < 10; set @i,@i+1 ) {
+//mes "^FF0000 "+@i+"^000000　^0000FF"+getitemname(.@SocketID[@i])+"^000000";
+//}
+//for ( set @i,10; @i < .@Size; set @i,@i+1 ) {
+//mes "^FF0000"+@i+"^000000　^0000FF"+getitemname(.@SocketID[@i])+"^000000";
+//}
+//next;
+//input @SocketNo;
+//switch(@SocketNo) {
+//case 1: callfunc "SocketFunc",1129,1149,40,60,2,500000,984,2,999,10;
+//case 2: callfunc "SocketFunc",1163,1172,40,60,2,700000,984,5,999,10;
+//case 3: callfunc "SocketFunc",1167,1178,40,60,1,500000,984,2;
+//case 4: callfunc "SocketFunc",1168,1171,40,60,2,800000,984,5,999,10;
+//case 5: callfunc "SocketFunc",1256,1275,40,60,1,500000,984,2;
+//case 6: callfunc "SocketFunc",1257,1276,40,60,1,500000,984,2;
+//case 7: callfunc "SocketFunc",1258,1277,40,60,1,500000,984,2;
+//case 8: callfunc "SocketFunc",1259,1278,40,60,1,500000,984,2;
+//case 9: callfunc "SocketFunc",1261,1266,40,60,2,700000,984,5,999,10;
+//case 10: callfunc "SocketFunc",1474,1480,40,60,1,500000,984,2;
+//case 11: callfunc "SocketFunc",1477,1479,40,60,1,500000,984,2;
+//case 12: callfunc "SocketFunc",1522,1532,40,60,2,700000,984,2,999,10;
+//case 13: callfunc "SocketFunc",1524,1539,40,60,1,500000,984,2;
+//case 14: callfunc "SocketFunc",1619,1620,40,60,2,500000,984,2,999,10;
+//case 15: callfunc "SocketFunc",1718,1726,40,60,2,500000,984,2,999,10;
+//case 16: callfunc "SocketFunc",1722,1727,40,60,2,500000,984,5,999,10;
+//case 17: callfunc "SocketFunc",1814,1816,40,60,2,700000,984,5,999,10;
+//case 18: callfunc "SocketFunc",1918,1922,40,60,1,500000,984,2;
+//case 19: callfunc "SocketFunc",1970,1976,40,60,1,500000,984,2;
+//case 20: callfunc "SocketFunc",13001,13030,40,60,1,500000,984,2;
+//case 21: callfunc "SocketFunc",1271,1295,40,60,1,800000,6224,10;
+//case 22: callfunc "SocketFunc",1269,1297,40,60,1,700000,6224,5;
+//case 23: callfunc "SocketFunc",1648,1663,40,60,1,700000,6224,5;
+//case 24: callfunc "SocketFunc",1626,1665,40,60,1,800000,6224,10;
+//case 25: callfunc "SocketFunc",2001,2017,40,60,1,800000,6224,10;
+//case 26: callfunc "SocketFunc",1421,1440,40,60,1,700000,6224,5;
+//case 27: callfunc "SocketFunc",1318,1321,40,60,1,800000,6224,10;
+//case 28: callfunc "SocketFunc",13034,28704,40,60,1,700000,6224,5;
+//case 29: callfunc "SocketFunc",1471,1497,40,60,1,800000,6224,5;
+//case 30: callfunc "SocketFunc",1649,1679,40,60,1,800000,6224,5;
+//default: close;
+//}
+//break;
+//case 4:
+//setarray .@SocketID[1],1135,1166,1169,1224,1225,1230,1232,1236,1239,1413,1466,1468,1528,1617,13002,1191,1636,1734,1140,13438,1527,1737,1138;
+//set .@Size,getarraysize(.@SocketID);
+//mes "[乎克連][共"+.@Size+"樣]";
+//mes "^FF0000No^000000　^0000FFItem Name^000000";
+//for ( set @i,1; @i < 10; set @i,@i+1 ) {
+//mes "^FF0000 "+@i+"^000000　^0000FF"+getitemname(.@SocketID[@i])+"^000000";
+//}
+//for ( set @i,10; @i < .@Size; set @i,@i+1 ) {
+//mes "^FF0000"+@i+"^000000　^0000FF"+getitemname(.@SocketID[@i])+"^000000";
+//}
+//next;
+//input @SocketNo;
+//switch(@SocketNo) {
+//case 1: callfunc "SocketFunc",1135,13400,45,55,2,1000000,984,5,999,10;
+//case 2: callfunc "SocketFunc",1166,1180,45,55,2,1000000,984,5,999,10;
+//case 3: callfunc "SocketFunc",1169,1179,45,55,2,1000000,984,5,999,10;
+//case 4: callfunc "SocketFunc",1224,13031,45,55,2,1000000,984,5,999,10;
+//case 5: callfunc "SocketFunc",1225,13032,45,55,2,1000000,984,5,999,10;
+//case 6: callfunc "SocketFunc",1230,13017,45,55,2,1000000,984,5,999,10;
+//case 7: callfunc "SocketFunc",1232,13033,45,55,2,1000000,984,5,999,10;
+//case 8: callfunc "SocketFunc",1236,13018,45,55,2,1000000,984,5,999,10;
+//case 9: callfunc "SocketFunc",1239,13016,45,55,2,1000000,984,5,999,10;
+//case 10: callfunc "SocketFunc",1413,1418,45,55,2,1000000,984,5,999,10;
+//case 11: callfunc "SocketFunc",1466,1476,45,55,2,1000000,984,5,999,10;
+//case 12: callfunc "SocketFunc",1468,1481,45,55,2,1000000,984,5,999,10;
+//case 13: callfunc "SocketFunc",1528,1540,45,55,2,1000000,984,5,999,10;
+//case 14: callfunc "SocketFunc",1617,1618,45,55,2,10000000,984,5,999,10;
+//case 15: callfunc "SocketFunc",13002,13019,45,55,2,1000000,984,5,999,10;
+//case 16: callfunc "SocketFunc",1191,21004,45,55,1,1000000,6224,15;
+//case 17: callfunc "SocketFunc",1636,1664,45,55,1,10000000,6224,20;
+//case 18: callfunc "SocketFunc",1734,18115,45,55,1,10000000,6224,20;
+//case 19: callfunc "SocketFunc",1140,13447,45,55,1,1000000,6224,15;
+//case 20: callfunc "SocketFunc",13438,13448,45,55,1,10000000,6224,20;
+//case 21: callfunc "SocketFunc",1527,16024,45,55,1,1000000,6224,15;
+//case 22: callfunc "SocketFunc",1737,18129,45,55,1,1000000,6224,15;
+//case 23: callfunc "SocketFunc",1138,13453,45,55,1,1000000,6224,15;
+//default: close;
+//}
+//break;
+//}
+//break;
+//case 2:
+//callfunc "SocketFunc",5022,5353,5,95,1,200000000,969,2;
+//break;
+//case 3:
+//callfunc "SocketFunc",5933,26195,40,60,2,5000000,984,10,999,10;
+//break;
+//}
+//close;
+//}
+//
+////================================================//
+//
+//function	script	SocketFunc	{
+//
+//Socket_Ing:
+//
+//mes "[乎克連][機率：^FF0000"+(getarg(3)-getarg(2))+"%^000000]";
+//mes "要在 ^0000FF"+getitemname(getarg(0))+"["+getitemslots(getarg(0))+"S]^000000 上打洞需要";
+//mes "材料 ^FF0000"+getitemname(getarg(0))+"["+getitemslots(getarg(0))+"S] 1^000000 個";
+//if ( getarg(4) == 1 ) {
+//mes "　　 ^FF0000"+getitemname(getarg(6))+" "+getarg(7)+"^000000 個";
+//} else if ( getarg(4) == 2 ) {
+//mes "　　 ^FF0000"+getitemname(getarg(6))+" "+getarg(7)+"^000000 個";
+//mes "　　 ^FF0000"+getitemname(getarg(8))+" "+getarg(9)+"^000000 個";
+//}
+//mes "費用 ^FF0000"+getarg(5)+"^000000 Zeny";
+//next;
+//switch(select("開始打洞","放棄打洞","返回選單")) {
+//case 1: break;
+//case 2: close;
+//case 3: callfunc "SocketMain";
+//}
+//
+//if ( Zeny < getarg(5) ) {
+//mes "抱歉您身上的金錢不足，";
+//close;
+//}
+//if ( getarg(4) == 1 ) {
+//if ( countitem(getarg(0)) < 1 || countitem(getarg(6)) < getarg(7) ) {
+//mes "抱歉您身上的物品數量不足！";
+//close;
+//}
+//} else if ( getarg(4) == 2 ) {
+//if ( countitem(getarg(0)) < 1 || countitem(getarg(6)) < getarg(7) || countitem(getarg(8)) < getarg(9) ) {
+//mes "抱歉您身上的物品數量不足！";
+//close;
+//}
+//}
+//mes "鏘！鏘！鏘！";
+//next;
+//set Zeny,Zeny - getarg(5);
+//delitem getarg(0),1;
+//if ( getarg(4) == 1 ) {
+//delitem getarg(6),getarg(7);
+//} else if ( getarg(4) == 2 ) {
+//delitem getarg(6),getarg(7);
+//delitem getarg(8),getarg(9);
+//}
+//set .@SocketRand,rand(1,100);
+//if ( .@SocketRand >= getarg(2) && .@SocketRand <= getarg(3) ) {
+//specialeffect2 EF_SANCTUARY;
+//getitem getarg(1),1;
+//
+//mes "恭喜您物品已打洞成功了！";
+//} else {
+//specialeffect2 EF_SUI_EXPLOSION;
+//
+//mes "抱歉您的物品打洞失敗了！";
+//}
+//next;
+//
+//mes "請問您還要繼續打洞嗎？";
+//next;
+//if (select("是的！","不了！")==1) {
+//goto Socket_Ing;
+//}
+//close;
+//
+//
+//}
+//
+//function	script	打洞2	{
+//	getinventorylist;
+//	if ( @inventorylist_count > 99 ) {
+//		mes "- 請在這裡暫停一下 !! -";
+//		mes "- 你所攜帶的物品太多了 -";
+//		mes "- 所以不能獲得物品 -";
+//		mes "- 請把身上的物品減輕之後 -";
+//		mes "- 再來挑戰吧 -";
+//		close;
+//	}
+//	mes "[雷亞布連]";
+//	mes "我是在一般武器或防具上";
+//	mes "進行打洞的技術員雷亞布連，";
+//	mes "雖然這是相當辛苦的工作...";
+//	mes "不過仍有許多樂趣和";
+//	mes "獲益良多";
+//	next;
+//	mes "[雷亞布連]";
+//	mes "雖然哥哥世亞布連傳授給我";
+//	mes "大部分的技術... 但並不容易，";
+//	mes "所以我的本事還是";
+//	mes "遠不如哥哥";
+//	next;
+//	mes "[雷亞布連]";
+//	mes "每次當哥哥教我的時候，";
+//	mes "就抱怨說會減少個人的";
+//	mes "特質，不過說歸說還是";
+//	mes "很認真的指導我";
+//	next;
+//	mes "[雷亞布連]";
+//	mes "多虧哥哥讓我學到不少東西，";
+//	mes "只是經驗尚不足是否能不負";
+//	mes "哥哥的期待，卻不太有把握，";
+//	mes "目前我能做的就是全力";
+//	mes "以赴完成目標囉";
+//	next;
+//	mes "[雷亞布連]";
+//	mes "其實有一件事情哥哥囑咐過我";
+//	mes "不可以做... 我雖想嘗試但又";
+//	mes "不敢瞞著哥哥做... 算了，";
+//	mes "就當我沒說吧!";
+//	next;
+//	mes "[雷亞布連]";
+//	mes "對了，你有想要打洞的";
+//	mes "裝備嗎? 依不同的裝備，";
+//	mes "手續費，所需材料、成功率等";
+//	mes "也都不同... 請你先決定後";
+//	mes "我再向你說明好了";
+//	next;
+//	switch(select("武器:防具:哥哥不允許的事情?:再聽聽說明:取消")) {
+//	case 1:
+//		mes "[雷亞布連]";
+//		mes "武器嘛... 武器大致依作業的";
+//		mes "難易度來區分的話，共分成";
+//		mes "4級，C級是最容易的，";
+//		mes "S級是最困難的，首先";
+//		mes "挑選難易度水準吧";
+//		set @sockettype,1;
+//		next;
+//		switch(select("C級:B級:A級:S級")) {
+//		case 1:
+//			mes "[雷亞布連]";
+//			mes "C級嗎? 這樣啊! 那麼希望";
+//			mes "我為你服務哪一種裝備呢?";
+//			next;
+//			switch(select("地靈之書:水靈之書:風靈之書:火靈之書")) {
+//			case 1: callfunc "Func_Socket",1,1554,1569,40,66,200,1010,10; break;
+//			case 2: callfunc "Func_Socket",1,1553,1568,40,66,200,1010,10; break;
+//			case 3: callfunc "Func_Socket",1,1556,1571,40,66,200,1010,10; break;
+//			case 4: callfunc "Func_Socket",1,1555,1570,40,66,200,1010,10; break;
+//			}
+//			break;
+//		case 2:
+//			mes "[雷亞布連]";
+//			mes "B級嗎? 這樣啊! 那麼希望";
+//			mes "我為你服務哪一種裝備呢?";
+//			next;
+//			switch(select("獸人斧:彎刀:闇盲之錘")) {
+//			case 1: callfunc "Func_Socket",1,1304,1309,40,61,200,984,1; break;
+//			case 2: callfunc "Func_Socket",1,1113,1114,40,61,200,984,1; break;
+//			case 3: callfunc "Func_Socket",1,1523,1538,40,61,300,984,1; break;
+//			}
+//			break;
+//		case 3:
+//			mes "[雷亞布連]";
+//			mes "A級嗎? 真棒! 那麼希望";
+//			mes "我在哪一種裝備上打洞呢?";
+//			next;
+//			switch(select("天龍短劍:刺籐拳刃:火靈拳刃:冰靈拳刃:風靈拳刃:黃金之錘:琵琶:女王的鞭子:妖怪的槍:加野矛:風靈之劍")) {
+//			case 1: callfunc "Func_Socket",1,13001,13030,40,61,500,984,2; break;
+//			case 2: callfunc "Func_Socket",1,1257,1276,40,61,500,984,2; break;
+//			case 3: callfunc "Func_Socket",1,1258,1277,40,61,500,984,2; break;
+//			case 4: callfunc "Func_Socket",1,1256,1275,40,61,500,984,2; break;
+//			case 5: callfunc "Func_Socket",1,1259,1278,40,61,500,984,2; break;
+//			case 6: callfunc "Func_Socket",1,1524,1539,40,61,500,984,2; break;
+//			case 7: callfunc "Func_Socket",1,1918,1922,40,61,500,984,2; break;
+//			case 8: callfunc "Func_Socket",1,1970,1976,40,61,500,984,2; break;
+//			case 9: callfunc "Func_Socket",1,1477,1479,40,61,500,984,2; break;
+//			case 10: callfunc "Func_Socket",1,1474,1480,40,61,500,984,2; break;
+//			case 11: callfunc "Func_Socket",1,1167,1178,40,61,500,984,2; break;
+//			}
+//			break;
+//		case 4:
+//			mes "[雷亞布連]";
+//			mes "哇! 呃! S級! 顫抖顫抖顫抖......";
+//			mes "...你要弄哪一種S級的裝備呢?";
+//			next;
+//			switch(select("風靈之矛:破甲短劍:龍牙劍:削刃短劍:妖短劍 泣神怨:聖錘十字星:死神之劍")) {
+//			case 1: callfunc "Func_Socket",2,1468,1481,40,51,1000,984,5,999,10; break;
+//			case 2: callfunc "Func_Socket",2,1225,13032,40,51,1000,984,5,999,10; break;
+//			case 3: callfunc "Func_Socket",2,1166,1180,40,51,1000,984,5,999,10; break;
+//			case 4: callfunc "Func_Socket",2,1224,13031,40,51,1000,984,5,999,10; break;
+//			case 5: callfunc "Func_Socket",2,1232,13033,40,51,1000,984,5,999,10; break;
+//			case 6: callfunc "Func_Socket",2,1528,1540,40,51,1000,984,5,999,10; break;
+//			case 7: callfunc "Func_Socket",2,1169,1179,40,51,1000,984,5,999,10; break;
+//			}
+//			break;
+//		}
+//		break;
+//	case 2:
+//		mes "[雷亞布連]";
+//		mes "防具嘛... 防具大概依作業的";
+//		mes "難易度來區分的話，共分成";
+//		mes "4級，C級是最容易的，";
+//		mes "S級是最困難的，首先";
+//		mes "挑選難易度水準吧";
+//		set @sockettype,2;
+//		next;
+//		switch(select("C級:B級:A級:S級")) {
+//		case 1:
+//			mes "[雷亞布連]";
+//			mes "C級嗎? 這樣啊! 那麼希望";
+//			mes "我為你服務哪一種裝備呢?";
+//			next;
+//			switch(select("向日葵頭飾:學士帽:紅蝶髮帶:學生帽")) {
+//			case 1: callfunc "Func_Socket",1,2253,5351,40,66,100,999,3; break;
+//			case 2: callfunc "Func_Socket",1,5012,5347,40,66,100,999,3; break;
+//			case 3: callfunc "Func_Socket",1,2244,5348,40,66,100,999,5; break;
+//			case 4: callfunc "Func_Socket",1,5016,5349,40,66,100,999,5; break;
+//			}
+//			break;
+//		case 2:
+//			mes "[雷亞布連]";
+//			mes "B級嗎? 這樣啊! 那麼希望";
+//			mes "我為你服務哪一種裝備呢?";
+//			next;
+//			switch(select("骷髏戒指:抗魔鞋")) {
+//			case 1: callfunc "Func_Socket",1,2609,2715,40,61,300,999,5; break;
+//			case 2: callfunc "Func_Socket",1,2409,2432,40,61,300,999,5; break;
+//			}
+//			break;
+//		case 3:
+//			mes "[雷亞布連]";
+//			mes "A級嗎? 真棒! 那麼希望";
+//			mes "我在哪一種裝備上打洞呢?";
+//			next;
+//			switch(select("海盜頭巾:黑色皮革長靴")) {
+//			case 1: callfunc "Func_Socket",1,2287,5350,40,61,500,985,1; break;
+//			case 2: callfunc "Func_Socket",1,2425,2434,40,61,500,985,1; break;
+//			}
+//			break;
+//		case 4:
+//			mes "[雷亞布連]";
+//			mes "哇! 呃! S級! 顫抖顫抖顫抖......";
+//			mes "...你要弄哪一種S級的裝備呢?";
+//			next;
+//			switch(select("魔法外套:天衣月舞:大天使之盾:襯衫:三角褲")) {
+//			case 1: callfunc "Func_Socket",1,2334,2372,40,51,1000,985,1; break;
+//			case 2: callfunc "Func_Socket",1,2327,2373,40,51,1000,985,1; break;
+//			case 3: callfunc "Func_Socket",1,2111,2128,40,51,1000,985,1; break;
+//			case 4: callfunc "Func_Socket",1,2522,2523,40,51,1000,985,1; break;
+//			case 5: callfunc "Func_Socket",1,2339,2371,40,51,1000,985,1; break;
+//			}
+//			break;
+//		}
+//		break;
+//	case 3:
+//		mes "[雷亞布連]";
+//		mes "啊..沒什麼啦! 只是有一件事，";
+//		mes "哥哥一直叮嚀我人類絕對";
+//		mes "不可以去碰它... 我也怕被";
+//		mes "哥哥責備，所以我也";
+//		mes "不方便告訴你";
+//		next;
+//		mes "[雷亞布連]";
+//		mes "雖然成功率極高...";
+//		mes "但是相對的材料需要很多，";
+//		mes "手續費也很貴的關係，所以";
+//		mes "即使公開了，我也懷疑";
+//		mes "應該沒有人會委託吧";
+//		next;
+//		mes "[雷亞布連]";
+//		mes "...嗯...";
+//		next;
+//		mes "[雷亞布連]";
+//		mes ".............";
+//		next;
+//		mes "[雷亞布連]";
+//		mes ".............";
+//		next;
+//		mes "[雷亞布連]";
+//		mes "我看你好像有興趣... 我";
+//		mes "勉為其難的解釋給你";
+//		mes "聽好了，但請你保密...";
+//		mes "萬一被哥哥察覺的話，";
+//		mes "我會被修理的很慘哩";
+//		next;
+//		mes "[雷亞布連]";
+//		mes "成功率為90%，加上需要";
+//		mes "黃金 2個和2億金幣，";
+//		mes "但有先前作業就是要在";
+//		mes "太陽神頭盔上打洞...";
+//		next;
+//		mes "[雷亞布連]";
+//		mes "據說從老早以前在這";
+//		mes "裝備上動手是有禁忌的...";
+//		mes "其實我並非因有禁忌";
+//		mes "才不想去動它的，";
+//		mes "只是不想被哥哥責罵";
+//		next;
+//		switch(select("委託他:取消")) {
+//		case 1:
+//			mes "[雷亞布連]";
+//			mes ".................";
+//			next;
+//			mes "[雷亞布連]";
+//			mes ".................";
+//			next;
+//			mes "[雷亞布連]";
+//			mes "..什，什麼，那眼神是";
+//			mes "我再三強調我不幹啦";
+//			mes "不干! 不干! 不干啦!";
+//			next;
+//			mes "[雷亞布連]";
+//			mes "我不要啦! 不要...";
+//			next;
+//			mes "[雷亞布連]";
+//			mes "我說不要嘛...";
+//			next;
+//			mes "[雷亞布連]";
+//			mes "不...不要...";
+//			next;
+//			mes "[雷亞布連]";
+//			mes ".................";
+//			next;
+//			mes "[雷亞布連]";
+//			mes "嗯......";
+//			next;
+//			mes "[雷亞布連]";
+//			mes "知道啦! 這次是例外好嗎?";
+//			mes "不過千萬別讓哥哥知道，";
+//			mes "對別人也要絕對保守";
+//			mes "秘密喔";
+//			next;
+//			mes "[雷亞布連]";
+//			mes "^FF0000所需材料有黃金 2個，手續費為";
+//			mes "^FF00002億金幣，還有基本裝備";
+//			mes "^FF0000太陽神頭盔... 成功率是90%，^000000";
+//			mes "懂了嗎? 那就打鐵趁熱，";
+//			mes "現在馬上動工囉";
+//			next;
+//			if ( Zeny < 200000000 || countitem(5022) < 1 || countitem(969) < 2 ) {
+//				mes "[雷亞布連]";
+//				mes "嗯...";
+//				next;
+//				mes "[雷亞布連]";
+//				mes "材料不齊啦! 真是的! 材料";
+//				mes "不足就不要委託我嘛!";
+//				mes "即使下次備齊材料再來，";
+//				mes "我也不會幫你，唭唭";
+//				close;
+//			}
+//			mes "[雷亞布連]";
+//			mes "那麼準備開工吧?";
+//			mes "你就祈禱順利成功吧";
+//			next;
+//			set .@socketrand,rand(100);
+//			if ( .@socketrand > 9 ) {
+//				specialeffect EF_LORD;
+//				delitem 5022,1;
+//				delitem 969,2;
+//				set zeny,zeny-200000000;
+//				getitem 5353,1;
+//				mes "[雷亞布連]";
+//				mes "結果很理想! 哇... 90%的成功率";
+//				mes "果然很可靠，洞打的";
+//				mes "很漂亮喔! 恭禧你";
+//				next;
+//				mes "[雷亞布連]";
+//				mes "我只幫你做這一次喔!";
+//				mes "千萬別跟人家提起";
+//				mes "這件事，知道了吧?";
+//				close;
+//			}
+//			else {
+//				specialeffect EF_SUI_EXPLOSION;
+//				delitem 5022,1;
+//				delitem 969,2;
+//				set zeny,zeny-200000000;
+//				mes "[雷亞布連]";
+//				mes "嗚... 拍謝喔，失敗了...";
+//				mes "都怪運氣不好.. 打洞難免";
+//				mes "會有失敗的時候，嗯..";
+//				mes "雖然這次失敗了，但相信";
+//				mes "下次一定可以成功滴";
+//				next;
+//				mes "[雷亞布連]";
+//				mes "那麼歡迎下次再利用囉";
+//				close;
+//			}
+//		case 2:
+//			mes "[雷亞布連]";
+//			mes "你絕對不可以";
+//			mes "告訴任何人呢?";
+//			mes "明白了吧?";
+//			close;
+//		}
+//	case 4:
+//		mes "[雷亞布連]";
+//		mes "你想再聽一下說明喔，";
+//		mes "嗯... 其實沒什麼好再";
+//		mes "解釋的了，只有一件事";
+//		mes "可提供你參考";
+//		next;
+//		mes "[雷亞布連]";
+//		mes "就是依精練度與村落的";
+//		mes "不同，打洞的成功率";
+//		mes "也會隨之不一樣，當然";
+//		mes "這種說法不是很有根據...";
+//		mes "但每個村落的確不盡相同";
+//		next;
+//		mes "[雷亞布連]";
+//		mes "譬如說在某些村落裡，";
+//		mes "高精煉度的裝備打洞的";
+//		mes "成功率會越高，而有些";
+//		mes "村落則是低精練度的裝備，";
+//		mes "打洞的成功率卻越高...";
+//		next;
+//		mes "[雷亞布連]";
+//		mes "萬一打洞失敗的話，裝備";
+//		mes "就會支離破碎難以挽救了，";
+//		mes "我當然也非常希望可以";
+//		mes "成功... 不過實在是一件";
+//		mes "費心費力的工作";
+//		next;
+//		mes "[雷亞布連]";
+//		mes "還有一件需要注意的";
+//		mes "事情... 嗯，當持若有";
+//		mes "相同裝備兩個時，誰都";
+//		mes "無法預測究竟會輪到";
+//		mes "哪一個裝備上打洞";
+//		next;
+//		mes "[雷亞布連]";
+//		mes "^FF0000所以當打洞時，盡量";
+//		mes "^FF0000不要同時持有同名的";
+//		mes "^FF0000裝備，以免在不希望的";
+//		mes "^FF0000裝備上打洞後萬一失敗的話，";
+//		mes "^FF0000那後果就不堪設想囉^000000";
+//		next;
+//		mes "[雷亞布連]";
+//		mes "請務必再三確認無誤後，";
+//		mes "再來委託我吧，";
+//		mes "麻煩你了";
+//		close;
+//	case 5:
+//		mes "[雷亞布連]";
+//		mes "那就沒辦法囉";
+//		close;
+//	}
+//}
+//function	script	打洞1	{
+//	if (checkweight(1201,1) == 0)
+//	{
+//		mes "- 負重過大!! -";
+//		mes "- 多餘物品請移置卡普拉倉庫 -";
+//		close;
+//	}
+//	mes "[世亞布連]";
+//	mes "我是在一般武器或防具上";
+//	mes "進行打洞的技術員，嗯，";
+//	mes "雖然也有人說這只是";
+//	mes "打洞的小事情而已，";
+//	mes "不過這一切都是外行人的";
+//	mes "偏頗說詞罷了";
+//	next;
+//	mes "[世亞布連]";
+//	mes "那證據就是，除了我之外";
+//	mes "無人擁有這種技術啊?";
+//	mes "那意思就是打洞的技術";
+//	mes "沒那麼簡單啦，總之，";
+//	mes "你有帶打洞的裝備嗎?";
+//	mes "會依照裝備的不同手續費或必須材料，";
+//	mes "成功機率也會有所不同，你先挑挑看";
+//	next;
+//	switch(select("武器:防具:再聽聽說明:取消")) {
+//	case 1:
+//		mes "[世亞布連]";
+//		mes "武器嘛... OK，武器○○";
+//		mes "依作業的難易度來看，嗯";
+//		mes "約分成4種，C級是最容易的，";
+//		mes "S級是最困難的，首先挑選";
+//		mes "難易度水準吧";
+//		next;
+//		switch(select("C級:B級:A級:S級")) {
+//		case 1:
+//			mes "[世亞布連]";
+//			mes "你選C級，那麼希望我為你修飾";
+//			mes "哪一種C級的武器呢?";
+//			next;
+//			switch(select("德瑞尹長戟:鞭子:小提琴")) {
+//			case 1: setarray .@sk[0],1,1460,1461,40,66,200,1010,10; break;
+//			case 2: setarray .@sk[0],1,1950,1951,40,66,200,1010,10; break;
+//			case 3: setarray .@sk[0],1,1901,1902,40,66,200,1010,10; break;
+//			}
+//			break;
+//		case 2:
+//			mes "[世亞布連]";
+//			mes "你選不難的B級喔，那我為你修飾";
+//			mes "哪一種B級的武器呢?";
+//			next;
+//			switch(select("鏈錘:長柄短劍:角弓:步兵長矛:海東劍:魯特琴:鋼鐵鞭子:虎爪拳套:亞伯雷弓")) {
+//			case 1: setarray .@sk[0],1,1519,1520,40,61,300,1010,10; break;
+//			case 2: setarray .@sk[0],2,1219,1220,40,61,300,984,1,999,5; break;
+//			case 3: setarray .@sk[0],2,1714,1716,40,61,300,984,2,999,5; break;
+//			case 4: setarray .@sk[0],1,1407,1408,40,61,300,1010,10; break;
+//			case 5: setarray .@sk[0],2,1123,1128,40,61,300,984,2,999,5; break;
+//			case 6: setarray .@sk[0],1,1905,1906,40,61,300,1011,10; break;
+//			case 7: setarray .@sk[0],1,1954,1955,40,61,300,1011,10; break;
+//			case 8: setarray .@sk[0],1,1801,1802,40,61,300,1010,10; break;
+//			case 9: setarray .@sk[0],2,1713,1715,40,61,300,984,2,999,5; break;
+//			}
+//			break;
+//		case 3:
+//			mes "[世亞布連]";
+//			mes "你偏愛高難度的喔，A級? 好吧，";
+//			mes "你希望我為你修飾哪一種武器呢?";
+//			next;
+//			switch(select("獵人之弓:生存的魔杖(INT):巨大雙手劍:水紋之劍:刺殺拳刃:貝利斯塔強弩:昏迷之錘:秘拳套 閃光:十字巨劍")) {
+//			case 1: setarray .@sk[0],2,1718,1726,40,61,500,984,2,999,10; break;
+//			case 2: setarray .@sk[0],2,1619,1620,40,61,500,984,2,999,10; break;
+//			case 3: setarray .@sk[0],2,1168,1171,40,61,800,984,5,999,10; break;
+//			case 4: setarray .@sk[0],2,1129,1149,40,61,500,984,2,999,10; break;
+//			case 5: setarray .@sk[0],2,1261,1266,40,61,700,984,5,999,10; break;
+//			case 6: setarray .@sk[0],2,1722,1727,40,61,500,984,5,999,10; break;
+//			case 7: setarray .@sk[0],2,1522,1532,40,61,700,984,2,999,10; break;
+//			case 8: setarray .@sk[0],2,1814,1816,40,61,700,984,5,999,10; break;
+//			case 9: setarray .@sk[0],2,1163,1172,40,61,700,984,5,999,10; break;
+//			}
+//			break;
+//		case 4:
+//			mes "[世亞布連]";
+//			mes "呵，哦，S級! 顫抖顫抖顫抖...";
+//			mes "...你要選哪一種S級的武器呢?!";
+//			next;
+//			switch(select("剛尼爾長矛:巨毒短劍:破甲短錐:砂塵短劍:卡卡普劍:狂擊之劍:死神之鐮:生存的魔杖(DEX)")) {
+//			case 1: setarray .@sk[0],2,1413,1418,40,51,1000,984,5,999,10; break;
+//			case 2: setarray .@sk[0],2,1239,13016,40,51,1000,984,5,999,10; break;
+//			case 3: setarray .@sk[0],2,1230,13017,40,51,1000,984,5,999,10; break;
+//			case 4: setarray .@sk[0],2,1236,13018,40,51,1000,984,5,999,10; break;
+//			case 5: setarray .@sk[0],2,13002,13019,40,51,1000,984,5,999,10; break;
+//			case 6: setarray .@sk[0],2,1135,13400,40,51,1000,984,5,999,10; break;
+//			case 7: setarray .@sk[0],2,1466,1476,40,51,1000,984,5,999,10; break;
+//			case 8: setarray .@sk[0],2,1617,1618,40,51,2000,984,5,999,10; break;
+//			}
+//			break;
+//		}
+//		break;
+//	case 2:
+//		mes "[世亞布連]";
+//		mes "防具嘛.. OK，防具大概";
+//		mes "依作業的難易度來看，嗯";
+//		mes "約分成4種，C級是最容易的，";
+//		mes "S級是最困難的，首先挑選";
+//		mes "難易度水準吧";
+//		next;
+//		switch(select("C級:B級:A級:S級" )) {
+//		case 1:
+//			mes "[世亞布連]";
+//			mes "你選C級，那麼希望我為你修飾";
+//			mes "哪一種C級的防具呢?";
+//			next;
+//			switch(select("大衣:長大衣:頭箍:聖職之帽")) {
+//			case 1: setarray .@sk[0],1,2307,2308,40,66,200,999,3; break;
+//			case 2: setarray .@sk[0],1,2309,2310,40,66,200,999,3; break;
+//			case 3: setarray .@sk[0],1,2232,2233,40,66,200,999,3; break;
+//			case 4: setarray .@sk[0],1,2216,2217,40,66,200,999,3; break;
+//			}
+//			break;
+//		case 2:
+//			mes "[世亞布連]";
+//			mes "你選不難的B級喔，那我為你修飾";
+//			mes "哪一種B級的防具呢?";
+//			next;
+//			switch(select("鏡盾:鋼鐵鎖子甲:聖職之衣:絲質外袍:戰士長靴:長靴:披肩:鐵盾:圓盾:鋼盾:妖道帽")) {
+//			case 1:  setarray .@sk[0],1,2107,2108,40,61,250,999,5; break;
+//			case 2:  setarray .@sk[0],1,2314,2315,40,61,250,999,5; break;
+//			case 3:  setarray .@sk[0],1,2325,2326,40,61,300,999,5; break;
+//			case 4:  setarray .@sk[0],1,2321,2322,40,61,300,999,5; break;
+//			case 5:  setarray .@sk[0],1,2405,2406,40,61,300,999,5; break;
+//			case 6:  setarray .@sk[0],1,2403,2404,40,61,300,999,5; break;
+//			case 7:  setarray .@sk[0],1,2503,2504,40,61,300,999,5; break;
+//			case 8:  setarray .@sk[0],1,2101,2102,40,61,300,999,5; break;
+//			case 9:  setarray .@sk[0],1,2103,2104,40,61,300,999,5; break;
+//			case 10: setarray .@sk[0],1,2105,2106,40,61,250,999,5; break;
+//			case 11: setarray .@sk[0],1,5046,5168,40,61,250,999,5; break;
+//			}
+//			break;
+//		case 3:
+//			mes "[世亞布連]";
+//			mes "你偏愛高難度的喔，A級? 好吧，";
+//			mes "你希望我為你修飾哪一種防具呢?";
+//			next;
+//			switch(select("寶石頭盔:軟呢帽:謊言紀錄本:緊身便衣:秘銀金屬鎧甲:鋼鐵鎧甲:盜賊之衣:重靴:修女的帽子:斗篷:金屬頭盔:忍服 血櫻:獸人頭盔:伯爵斗篷:神聖之帽:黃金帽:敏捷別針:殭屍帽")) {
+//			case 1:  setarray .@sk[0],1,2230,2231,40,61,400,985,1; break;
+//			case 2:  setarray .@sk[0],1,5114,5120,40,61,400,985,1; break;
+//			case 3:  setarray .@sk[0],1,2109,2121,40,61,400,985,1; break;
+//			case 4:  setarray .@sk[0],1,2330,2331,40,61,400,985,1; break;
+//			case 5:  setarray .@sk[0],1,2341,2342,40,61,400,985,1; break;
+//			case 6:  setarray .@sk[0],1,2316,2317,40,61,400,985,1; break;
+//			case 7:  setarray .@sk[0],1,2335,2336,40,61,400,985,1; break;
+//			case 8:  setarray .@sk[0],1,2411,2412,40,61,400,985,1; break;
+//			case 9:  setarray .@sk[0],1,5092,5093,40,61,400,985,1; break;
+//			case 10: setarray .@sk[0],1,2505,2506,40,61,400,985,1; break;
+//			case 11: setarray .@sk[0],1,2228,2229,40,61,400,985,1; break;
+//			case 12: setarray .@sk[0],1,2337,2359,40,61,400,985,1; break;
+//			case 13: setarray .@sk[0],1,2299,5157,40,61,400,985,1; break;
+//			case 14: setarray .@sk[0],1,2507,2525,40,61,400,985,1; break;
+//			case 15: setarray .@sk[0],1,2251,5158,40,61,400,985,1; break;
+//			case 16: setarray .@sk[0],1,2246,5159,40,61,400,985,1; break;
+//			case 17: setarray .@sk[0],1,2605,2625,40,61,400,985,1; break;
+//			case 18: setarray .@sk[0],1,2264,5167,40,61,300,985,1; break;
+//			}
+//			break;
+//		case 4:
+//			mes "[世亞布連]";
+//			mes "呵，哦，S級! 顫抖顫抖顫抖...";
+//			mes "...你要選哪一種S級的防具呢?!";
+//			next;
+//			switch(select("山羊頭盔:尖角發圈:骨制頭盔:海盜船長帽:王冠:后冠:人面獅身帽:創作者外袍:智力耳環:力量戒指:神射手套")) {
+//			case 1:  setarray .@sk[0],1,2256,5160,40,51,2000,985,2; break;
+//			case 2:  setarray .@sk[0],1,2258,5161,40,51,2000,985,2; break;
+//			case 3:  setarray .@sk[0],1,5017,5162,40,51,2000,985,2; break;
+//			case 4:  setarray .@sk[0],1,5019,5163,40,51,2000,985,2; break;
+//			case 5:  setarray .@sk[0],1,2235,5165,40,51,2000,985,2; break;
+//			case 6:  setarray .@sk[0],1,2234,5164,40,51,2000,985,2; break;
+//			case 7:  setarray .@sk[0],1,5053,5166,40,51,1000,985,2; break;
+//			case 8:  setarray .@sk[0],1,2343,2360,40,51,1000,985,2; break;
+//			case 9:  setarray .@sk[0],1,2602,2622,40,51,1000,985,2; break;
+//			case 10: setarray .@sk[0],1,2601,2621,40,51,1000,985,2; break;
+//			case 11: setarray .@sk[0],1,2619,2671,40,51,1000,985,2; break;
+//			}
+//			break;
+//		}
+//		break;
+//	case 3:
+//		mes "[世亞布連]";
+//		mes "你又想打聽什麼... 若要給你一個";
+//		mes "提示的話，由於我是流浪的";
+//		mes "打洞術師，所以曾周遊累計";
+//		mes "豐富經驗才從事此工作，總覺得";
+//		mes "這村落，在夢羅克精煉值越高的";
+//		mes "裝備，打洞成功率則越高";
+//		next;	
+//		mes "[世亞布連]";
+//		mes "雖然是微妙的差異，但總覺得";
+//		mes "愈是低精煉的裝備愈容易打開..";
+//		mes "當然一旦失敗的話其裝備";
+//		mes "也就全部泡湯了... 不過單看";
+//		mes "成功率的話是值得躍躍欲試的";
+//		next;
+//		mes "[世亞布連]";
+//		mes "當然也有村落是因高裝備";
+//		mes "而更順手導致成功率更高，";
+//		mes "那只是別處的事情先跳過...";
+//		next;
+//		mes "[世亞布連]";
+//		mes "另外，還有要注意的";
+//		mes "一點是，嗯…舉例說，";
+//		mes "當你持有+7 斗篷和一般";
+//		mes "斗篷時，向我委託要在";
+//		mes "斗篷打洞的話，你覺得";
+//		mes "兩者間我會打哪一個呢?";
+//		next;
+//		mes "[世亞布連]";
+//		mes "正案是隨我意…啦，即，";
+//		mes "有著同樣名稱的裝備時";
+//		mes "不會管對方的意見由我";
+//		mes "在想打的裝備上打洞的";
+//		mes "意思啦";
+//		next;
+//		mes "[世亞布連]";
+//		mes "^FF0000若非要在特定裝備上";
+//		mes "打洞的話，祉要帶一個";
+//		mes "同名稱的裝備就行了，";
+//		mes "同名稱但不想打洞的";
+//		mes "裝備最好式放置";
+//		mes "別處後再來^000000";
+//		next;
+//		mes "[世亞布連]";
+//		mes "如果沒有妥善處理的話，";
+//		mes "萬一在不當意的裝備上";
+//		mes "出現打洞的結果時我可";
+//		mes "不負責喔? 請確實檢查";
+//		next;
+//		mes "[世亞布連]";
+//		mes "我不用再說明了吧? 好了，";
+//		mes "百聞不如一見! 要不要先來";
+//		mes "挑戰打洞呢? 我也要";
+//		mes "餬口過日子啊";
+//		close;
+//	case 4:
+//		mes "[世亞布連]";
+//		mes "唭";
+//		close;
+//	}
+//	mes "[世亞布連]";
+//	mes "你選" +getitemname(.@sk[1])+ "喔，OK，那個的話，";
+//	if (.@sk[0] == 1) {
+//		mes "費用是 ^FF0000" +.@sk[5] / 10+ "萬金幣^000000，另外要準備的";
+//		mes "材料是 ^FF0000" +getitemname(.@sk[6])+ " " +.@sk[7]+ "個^000000.";
+//	}
+//	else if (.@sk[0] == 2) {
+//		mes "手續費 ^FF0000" +.@sk[5] / 10+ "萬金幣^000000，另外要準備的";
+//		mes "材料是^FF0000" +getitemname(.@sk[6])+ " " +.@sk[7]+ "個^000000，^FF0000" +getitemname(.@sk[8])+ " " +.@sk[9]+ "個^000000，";
+//	}
+//	mes "當然" +getitemname(.@sk[1])+ "理應也要帶過來";
+//	next;
+//	mes "[世亞布連]";
+//	mes "材料和費用都帶齊了嗎? 還有，";
+//	mes "若失敗時材料、裝備都會";
+//	mes "消失，這點要認知清楚，即使";
+//	mes "打洞成功了 精煉值或已插好的";
+//	mes "卡片也會消失不見，要銘記了";
+//	next;
+//	if (select("委託他打洞的工作:把機會留在下次再挑戰") == 2 ) {
+//		mes "[世亞布連]";
+//		mes "那麼下次有機會再來";
+//		close;
+//	}
+//	switch(.@sk[0]) {
+//	case 1:
+//		if((Zeny < .@sk[5]*1000) || (countitem(.@sk[6]) < .@sk[7]) || (!countitem(.@sk[1]))) {
+//			mes "[世亞布連]";
+//			mes "笨蛋! 材料不足嘛!";
+//			mes "請你備齊後再來吧?!";
+//			close;
+//		}
+//		break;
+//	case 2:
+//		if((Zeny < .@sk[5]*1000) || (countitem(.@sk[6]) < .@sk[7]) || (countitem(.@sk[8]) < .@sk[9]) || (!countitem(.@sk[1]))) {
+//			mes "[世亞布連]";
+//			mes "笨蛋! 材料不足嘛!";
+//			mes "請你備齊後再來吧?!";
+//			close;
+//		}
+//		break;
+//	}
+//	mes "[世亞布連]";
+//	mes "那麼開始進行吧!";
+//	mes "要祈禱能圓滿完成";
+//	next;
+//	set .@skrand,rand(1,100);
+//	if((.@skrand > .@sk[3]) && (.@skrand < .@sk[4])) {
+//		if(.@sk[4] == 51) specialeffect EF_LORD;
+//		else specialeffect EF_SANCTUARY;
+//		mes "[世亞布連]";
+//		mes "OK... 似乎做得不錯，成功了，";
+//		mes "做的很漂亮呢? 總之恭喜恭喜";
+//		delitem .@sk[1],1;
+//		delitem .@sk[6],.@sk[7];
+//		if(.@sk[0] == 2) delitem .@sk[8],.@sk[9];
+//		set Zeny,Zeny - .@sk[5]*1000;
+//		getitem .@sk[2],1;
+//		next;
+//		mes "[世亞布連]";
+//		mes "那麼歡迎下次再利用囉!";
+//		close;
+//	}
+//	else {
+//		specialeffect EF_FREEZING;
+//		mes "[世亞布連]";
+//		mes "嗚... 對不起，失敗了，";
+//		mes "不過我沒罪，這都是";
+//		mes "天意，只是運氣不佳，";
+//		mes "請你別太傷心";
+//		delitem .@sk[1],1;
+//		delitem .@sk[6],.@sk[7];
+//		if(.@sk[0] == 2) delitem .@sk[8],.@sk[9];
+//		set Zeny,Zeny - .@sk[5]*1000;
+//		next;
+//		mes "[世亞布連]";
+//		mes "那麼歡迎下次再利用囉!";
+//		close;
+//	}
+//}
+//function	script	RX	{
+//mes"請選擇使用強化石的位置";
+//if (Zeny < 1000000){next;mes"R幣數量不足。";close;}
+//menu"披肩",x1,"頭上",x2,"頭中",x3,"頭下",x4;
+//x1:
+//menu"持有詠唱石("+countitem(25067)+")",b1,"持有HP吸收石("+countitem(6963)+")",b2,"持有二刀連擊石(披肩)("+countitem(25302)+")",b3,"持有暴擊石(披肩)("+countitem(25303)+")",b4,"持有SP吸收石(披肩)("+countitem(6964)+")",b5,"持有變動詠唱石(披肩)("+countitem(25306)+")",b6,"持有ASPD石(披肩)("+countitem(6908)+")",b7,"持有次級詠唱石(披肩)("+countitem(25170)+")",b8;
+//x2:
+//menu"持有ASPD石("+countitem(25068)+")",c1,"持有改良石("+countitem(25069)+")",c2,"持有攻擊石("+countitem(6943)+")",c3,"持有魔攻石("+countitem(6944)+")",c4,"持有HP吸收石("+countitem(6999)+")",c5,"持有SP吸收石("+countitem(25000)+")",c6,"持有經驗值石("+countitem(25171)+")",c7,"持有變動詠唱石("+countitem(25172)+")",c8,"持有暴擊石("+countitem(25304)+")",c9;
+//x3:
+//menu"持有改良石("+countitem(25070)+")",d1,"持有攻擊石("+countitem(6642)+")",d2,"持有魔攻石("+countitem(6643)+")",d3,"持有防禦石("+countitem(25001)+")",d4,"持有LUK轉換石("+countitem(25002)+")",d5,"持有STR轉換石("+countitem(25003)+")",d6,"持有AGI轉換石("+countitem(25004)+")",d7,
+//"持有INT轉換石("+countitem(25005)+")",d8,"持有VIT轉換石("+countitem(25006)+")",d9,"持有DEX轉換石("+countitem(25007)+")",d10,"持有暴擊石("+countitem(25060)+")",d11,"持有廣域石("+countitem(25061)+")",d12,"持有經驗值石("+countitem(25141)+")",d13,"持有變動詠唱石("+countitem(25173)+")",d14;
+//x4:
+//menu"持有改良石("+countitem(25071)+")",e1,"持有霸邪石("+countitem(25072)+")",e2,"持有HP石("+countitem(6951)+")",e3,"持有LUK轉換石("+countitem(25011)+")",e4,"持有STR轉換石("+countitem(25012)+")",e5,"持有AGI轉換石("+countitem(25009)+")",e6,
+//"持有INT轉換石("+countitem(25013)+")",e7,"持有VIT轉換石("+countitem(25008)+")",e8,"持有DEX轉換石("+countitem(25007)+")",e9,"持有魔法防禦石("+countitem(25014)+")",e10,"持有經驗值石("+countitem(25015)+")",e11,"持有攻擊石("+countitem(25016)+")",e12,
+//"持有魔攻石("+countitem(25017)+")",e13,"持有貪婪石("+countitem(25062)+")",e14,"持有體力石("+countitem(25063)+")",e15,"持有魔力石2("+countitem(25064)+")",e16,"持有解毒石("+countitem(25065)+")",e17,"持有復元石("+countitem(25066)+")",e18,"持有縮小效果("+countitem(25138)+")",e19,"持有變動詠唱石("+countitem(25174)+")",e20,"持有暴擊石("+countitem(25305)+")",e21;
+////////////披肩
+//b1:
+//set .@r,25067;
+//goto makb;
+//b2:
+//set .@r,6963;
+//goto makb;
+//b3:
+//set .@r,25302;
+//goto makb;
+//b4:
+//set .@r,25303;
+//goto makb;
+//b5:
+//set .@r,6964;
+//goto makb;
+//b6:
+//set .@r,25306;
+//goto makb;
+//b7:
+//set .@r,6908;
+//goto makb;
+//b8:
+//set .@r,25170;
+//goto makb;
+///////////////頭上
+//c1:
+//set .@r,25068;
+//goto makc;
+//c2:
+//set .@r,25069;
+//goto makc;
+//c3:
+//set .@r,6943;
+//goto makc;
+//c4:
+//set .@r,6944;
+//goto makc;
+//c5:
+//set .@r,6999;
+//goto makc;
+//c6:
+//set .@r,25000;
+//goto makc;
+//c7:
+//set .@r,25171;
+//goto makc;
+//c8:
+//set .@r,25172;
+//goto makc;
+//c9:
+//set .@r,25304;
+//goto makc;
+///////////////頭中
+//d1:
+//set .@r,25070;
+//goto makd;
+//d2:
+//set .@r,6642;
+//goto makd;
+//d3:
+//set .@r,6643;
+//goto makd;
+//d4:
+//set .@r,25001;
+//goto makd;
+//d5:
+//set .@r,25002;
+//goto makd;
+//d6:
+//set .@r,25003;
+//goto makd;
+//d7:
+//set .@r,25004;
+//goto makd;
+//d8:
+//set .@r,25005;
+//goto makd;
+//d9:
+//set .@r,25006;
+//goto makd;
+//d10:
+//set .@r,25007;
+//goto makd;
+//d11:
+//set .@r,25060;
+//goto makd;
+//d12:
+//set .@r,25061;
+//goto makd;
+//d13:
+//set .@r,25141;
+//goto makd;
+//d14:
+//set .@r,25173;
+//goto makd;
+///////////////頭下
+//e1:
+//set .@r,25071;
+//goto make;
+//e2:
+//set .@r,25072;
+//goto make;
+//e3:
+//set .@r,6951;
+//goto make;
+//e4:
+//set .@r,25011;
+//goto make;
+//e5:
+//set .@r,25012;
+//goto make;
+//e6:
+//set .@r,25009;
+//goto make;
+//e7:
+//set .@r,25013;
+//goto make;
+//e8:
+//set .@r,25008;
+//goto make;
+//e9:
+//set .@r,25007;
+//goto make;
+//e10:
+//set .@r,25014;
+//goto make;
+//e11:
+//set .@r,25015;
+//goto make;
+//e12:
+//set .@r,25016;
+//goto make;
+//e13:
+//set .@r,25017;
+//goto make;
+//e14:
+//set .@r,25062;
+//goto make;
+//e15:
+//set .@r,25063;
+//goto make;
+//e16:
+//set .@r,25064;
+//goto make;
+//e17:
+//set .@r,25065;
+//goto make;
+//e18:
+//set .@r,25066;
+//goto make;
+//e19:
+//set .@r,25138;
+//goto make;
+//e20:
+//set .@r,25174;
+//goto make;
+//e21:
+//set .@r,25305;
+//goto make;
+//makc:
+//if(countitem(.@r) < 1){mes"強化石數量不足。";close;}
+//if (getequipisequiped(EQI_COSTUME_HEAD_TOP) == 0) {
+//mes"未發現裝備。";
+//close;
+//}
+//delitem .@r,1;
+//set Zeny,Zeny-1000000;
+//set .@equip_card_slot1, getequipcardid(EQI_COSTUME_HEAD_TOP,0);
+//set .@equip_card_slot2, getequipcardid(EQI_COSTUME_HEAD_TOP,1);
+//set .@equip_card_slot3, getequipcardid(EQI_COSTUME_HEAD_TOP,2);
+//set .@equip_card_slot4, getequipcardid(EQI_COSTUME_HEAD_TOP,3);
+//set .@equip_id, getequipid(EQI_COSTUME_HEAD_TOP);
+//set .@equip_refine, getequiprefinerycnt(EQI_COSTUME_HEAD_TOP);
+//delequip EQI_COSTUME_HEAD_TOP;
+//set .@p,rand(100);
+//if (.@p < 70){
+//getitem2 .@equip_id,1,1,.@equip_refine,0,.@equip_card_slot1,.@equip_card_slot2,.@equip_card_slot3,.@equip_card_slot4;
+//mes"附魔失敗...";
+//specialeffect2 155;
+//close;
+//}
+//specialeffect2 EF_SANCTUARY;
+//getitem2 .@equip_id,1,1,.@equip_refine,0,.@equip_card_slot1,.@equip_card_slot2,.@r,.@equip_card_slot4;
+//mes"附魔成功!";
+//close;
+//makd:
+//if(countitem(.@r) < 1){mes"強化石數量不足。";close;}
+//if (getequipisequiped(EQI_COSTUME_HEAD_MID) == 0) {
+//mes"未發現裝備。";
+//close;
+//}
+//delitem .@r,1;
+//set Zeny,Zeny-1000000;
+//set .@equip_card_slot1, getequipcardid(EQI_COSTUME_HEAD_MID,0);
+//set .@equip_card_slot2, getequipcardid(EQI_COSTUME_HEAD_MID,1);
+//set .@equip_card_slot3, getequipcardid(EQI_COSTUME_HEAD_MID,2);
+//set .@equip_card_slot4, getequipcardid(EQI_COSTUME_HEAD_MID,3);
+//set .@equip_id, getequipid(EQI_COSTUME_HEAD_MID);
+//set .@equip_refine, getequiprefinerycnt(EQI_COSTUME_HEAD_MID);
+//delequip EQI_COSTUME_HEAD_MID;
+//set .@p,rand(100);
+//if (.@p < 50){
+//getitem2 .@equip_id,1,1,.@equip_refine,0,.@equip_card_slot1,.@equip_card_slot2,.@equip_card_slot3,.@equip_card_slot4;
+//mes"附魔失敗...";
+//specialeffect2 155;
+//close;
+//}
+//specialeffect2 EF_SANCTUARY;
+//getitem2 .@equip_id,1,1,.@equip_refine,0,.@equip_card_slot1,.@equip_card_slot2,.@r,.@equip_card_slot4;
+//mes"附魔成功!";
+//close;
+//make:
+//if(countitem(.@r) < 1){mes"強化石數量不足。";close;}
+//if (getequipisequiped(EQI_COSTUME_HEAD_LOW) == 0) {
+//mes"未發現裝備。";
+//close;
+//}
+//delitem .@r,1;
+//set Zeny,Zeny-1000000;
+//set .@equip_card_slot1, getequipcardid(EQI_COSTUME_HEAD_LOW,0);
+//set .@equip_card_slot2, getequipcardid(EQI_COSTUME_HEAD_LOW,1);
+//set .@equip_card_slot3, getequipcardid(EQI_COSTUME_HEAD_LOW,2);
+//set .@equip_card_slot4, getequipcardid(EQI_COSTUME_HEAD_LOW,3);
+//set .@equip_id, getequipid(EQI_COSTUME_HEAD_LOW);
+//set .@equip_refine, getequiprefinerycnt(EQI_COSTUME_HEAD_LOW);
+//delequip EQI_COSTUME_HEAD_LOW;
+//set .@p,rand(100);
+//if (.@p < 50){
+//getitem2 .@equip_id,1,1,.@equip_refine,0,.@equip_card_slot1,.@equip_card_slot2,.@equip_card_slot3,.@equip_card_slot4;
+//mes"附魔失敗...";
+//specialeffect2 155;
+//close;
+//}
+//specialeffect2 EF_SANCTUARY;
+//getitem2 .@equip_id,1,1,.@equip_refine,0,.@equip_card_slot1,.@equip_card_slot2,.@r,.@equip_card_slot4;
+//mes"附魔成功!";
+//close;
+//makb:
+//if(countitem(.@r) < 1){mes"強化石數量不足。";close;}
+//if (getequipisequiped(EQI_COSTUME_GARMENT) == 0) {
+//mes"未發現裝備。";
+//close;
+//}
+//delitem .@r,1;
+//set Zeny,Zeny-1000000;
+//set .@equip_card_slot1, getequipcardid(EQI_COSTUME_GARMENT,0);
+//set .@equip_card_slot2, getequipcardid(EQI_COSTUME_GARMENT,1);
+//set .@equip_card_slot3, getequipcardid(EQI_COSTUME_GARMENT,2);
+//set .@equip_card_slot4, getequipcardid(EQI_COSTUME_GARMENT,3);
+//set .@equip_id, getequipid(EQI_COSTUME_GARMENT);
+//set .@equip_refine, getequiprefinerycnt(EQI_COSTUME_GARMENT);
+//delequip EQI_COSTUME_GARMENT;
+//set .@p,rand(100);
+//if (.@p < 50){
+//getitem2 .@equip_id,1,1,.@equip_refine,0,.@equip_card_slot1,.@equip_card_slot2,.@equip_card_slot3,.@equip_card_slot4;
+//mes"附魔失敗...";
+//specialeffect2 155;
+//close;
+//}
+//specialeffect2 EF_SANCTUARY;
+//getitem2 .@equip_id,1,1,.@equip_refine,0,.@equip_card_slot1,.@equip_card_slot2,.@r,.@equip_card_slot4;
+//mes"附魔成功!";
+//close;
+//}

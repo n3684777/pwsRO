@@ -1,0 +1,236 @@
+lroom00,40,152,5	script	時光工匠#1	931,{
+	function MKR;
+	function MKRARRAY;
+	disable_items;
+	if(!getequipisequiped(EQI_SHOES)) {
+		mes "[" + strnpcinfo(0) + "]";
+		mes "沒有裝備道具我沒辦法幫你附魔";
+		mes "你好，我能替你的時光戰靴強化附魔";
+
+		emotion 6;
+		close;
+	}
+	setarray .@shoes,22000,22001,22002,22003,22004,22005,22107,22108,22109,22110,22111,22112,
+						22006,22007,22008,22009,22010,22011,22113,22114,22115,22116,22117,22118;
+	.@index = inarray(.@shoes,getequipid(EQI_SHOES));
+
+	@Disirepart = EQI_SHOES;
+	if(.@index == -1){
+		mes "[" + strnpcinfo(0) + "]";
+		mes "你沒有穿著^FF000０時裝戰靴^000000，";
+
+		close;
+	}
+	// 無洞時空之靴 & 無洞適性靴
+	if(.@index < 12)
+	{
+		setarray @Disire_Range[1],100,100,100,100,100; // 機率(第一回合Lv.1-5)
+		setarray @Disire_ItemID[1],6608,6608,6608,6608,6608; // 道具ID(第5個是第二回合附魔的消耗道具ID)
+		setarray @Disire_amount[1],6,15,25,35,60; // 道具數量(對應凝結魔力↑)
+	}
+	// 一洞適性靴 & 一洞時空之靴
+	else
+	{
+		setarray @Disire_Range[1],90,70,50,30,100; // 機率(第一回合Lv.1-5)
+		setarray @Disire_ItemID[1],6755,6755,6755,6755,6755; // 道具ID(第5個是第二回合附魔的消耗道具ID)
+		setarray @Disire_amount[1],1,4,15,30,50; // 道具數量(對應受汙染的魔力↑)
+	}
+
+	if(!getequipcardid(EQI_SHOES,3))
+	{
+		mes "你好，我能替你的時光戰靴強化附魔";
+
+		next;
+		set .@type,select("- ^0000FF鬥志系列^000000","- ^0000FF魔力系列^000000","- ^FF0000體力系列^000000","- ^FF0000名弓系列^000000","- ^008000攻速系列^000000","- ^008000幸運系列^000000")-1;
+		mes "[" + strnpcinfo(0) + "]";
+		if(countitem(@Disire_ItemID[1]) < @Disire_amount[1]){
+			mes "^0000FF所需物品^000000 - ^FF0000"+getitemname(@Disire_ItemID[1])+"^000000 x [^009900"+countitem(@Disire_ItemID[1])+"^000000/^FF6600"+@Disire_amount[1]+"^000000]";
+			close;
+		}
+		if(rand(1,100) <= @Disire_Range[1])
+		{
+			setarray .@item,4808,4814,4741,4832,4869,4752;
+			delitem @Disire_ItemID[1],@Disire_amount[1];
+			setarray .@OptID[0],getequiprandomoption(@Disirepart,0,ROA_ID),getequiprandomoption(@Disirepart,1,ROA_ID),getequiprandomoption(@Disirepart,2,ROA_ID),getequiprandomoption(@Disirepart,3,ROA_ID),getequiprandomoption(@Disirepart,4,ROA_ID);
+			setarray .@OptVal[0],getequiprandomoption(@Disirepart,0,ROA_VALUE),getequiprandomoption(@Disirepart,1,ROA_VALUE),getequiprandomoption(@Disirepart,2,ROA_VALUE),getequiprandomoption(@Disirepart,3,ROA_VALUE),getequiprandomoption(@Disirepart,4,ROA_VALUE);
+			setarray .@OptParam[0],getequiprandomoption(@Disirepart,0,ROA_PARAM),getequiprandomoption(@Disirepart,1,ROA_PARAM),getequiprandomoption(@Disirepart,2,ROA_PARAM),getequiprandomoption(@Disirepart,3,ROA_PARAM),getequiprandomoption(@Disirepart,4,ROA_PARAM);
+			if(getarraysize(.@OptID))
+				getitem3 getequipid(EQI_SHOES),1,1,getequiprefinerycnt(EQI_SHOES),0,getequipcardid(EQI_SHOES,0),getequipcardid(EQI_SHOES,1),getequipcardid(EQI_SHOES,2),.@item[.@type], .@OptID, .@OptVal, .@OptParam;
+			else
+				getitem2 getequipid(EQI_SHOES),1,1,getequiprefinerycnt(EQI_SHOES),0,getequipcardid(EQI_SHOES,0),getequipcardid(EQI_SHOES,1),getequipcardid(EQI_SHOES,2),.@item[.@type];
+			delequip EQI_SHOES;
+			specialeffect2 154;
+			mes "你附魔成功囉!";
+		}
+		else if(rand(100)<=20)
+		{
+			delitem @Disire_ItemID[1],@Disire_amount[1];
+			if(countitem($@Enc_Item)){
+				delitem $@Enc_Item,1;
+				specialeffect2 111;
+				mes "附魔失敗了! 裝備差點爆掉! 幸好有 ^FF1493"+getitemname($@Enc_Item)+"^000000 才保住了裝備!";
+				close;
+			} else {
+				mes "非常不幸的…你的裝備爆了!";
+				failedrefitem EQI_SHOES;
+				end;
+			}
+		}
+		else
+		{
+			specialeffect2 111;
+			mes "附魔失敗啦! 不過你挺幸運的, 裝備居然沒爆!";
+			end;
+		}
+		close;
+	} else if(getequipcardid(EQI_SHOES,2)){
+		mes "您的時空之靴已經附魔到^0000FF頂級^000000了";
+		mes "已經無法在附魔了喔！";
+		close;
+	}
+	MKRARRAY(EQI_SHOES,4808,4820,4821,4822); // 鬥志4-7
+	MKRARRAY(EQI_SHOES,4814,4813,4812,4826); // 魔力2-5
+	MKRARRAY(EQI_SHOES,4741,4742,4861,4862); // VIT+2,VIT+3,MHP+1%,MHP+2%
+	MKRARRAY(EQI_SHOES,4832,4833,4834,4835); // 名弓1-4
+	MKRARRAY(EQI_SHOES,4869,4872,4873,4881); // 延遲1-4
+	MKRARRAY(EQI_SHOES,4752,4753,4754,4755); // 名弓1-4
+	end;
+
+OnInit:
+	setarray $@last_Item,4875,4876,4877,4878,4879,4880; // (第二回合的附魔道具)
+	set $@Enc_Item, 6417; // 防爆道具ID
+	end;
+
+function MKRARRAY {
+	deletearray @mkr;
+	for(set .@i,1; getarg(.@i,0); set .@i,.@i+1) setarray @mkr[.@i],getarg(.@i);
+	MKR getarg(0);
+	return;
+}
+function MKR {
+	function JJ {
+		setarray .@OptID[0],getequiprandomoption(@Disirepart,0,ROA_ID),getequiprandomoption(@Disirepart,1,ROA_ID),getequiprandomoption(@Disirepart,2,ROA_ID),getequiprandomoption(@Disirepart,3,ROA_ID),getequiprandomoption(@Disirepart,4,ROA_ID);
+		setarray .@OptVal[0],getequiprandomoption(@Disirepart,0,ROA_VALUE),getequiprandomoption(@Disirepart,1,ROA_VALUE),getequiprandomoption(@Disirepart,2,ROA_VALUE),getequiprandomoption(@Disirepart,3,ROA_VALUE),getequiprandomoption(@Disirepart,4,ROA_VALUE);
+		setarray .@OptParam[0],getequiprandomoption(@Disirepart,0,ROA_PARAM),getequiprandomoption(@Disirepart,1,ROA_PARAM),getequiprandomoption(@Disirepart,2,ROA_PARAM),getequiprandomoption(@Disirepart,3,ROA_PARAM),getequiprandomoption(@Disirepart,4,ROA_PARAM);
+		if(getarraysize(.@OptID))
+			getitem3 getequipid(getarg(0)),1,1,getequiprefinerycnt(getarg(0)),0,getequipcardid(getarg(0),0),getequipcardid(getarg(0),1),getequipcardid(getarg(0),2),getarg(1), .@OptID, .@OptVal, .@OptParam;
+		else
+			getitem2 getequipid(getarg(0)),1,1,getequiprefinerycnt(getarg(0)),0,getequipcardid(getarg(0),0),getequipcardid(getarg(0),1),getequipcardid(getarg(0),2),getarg(1);
+		delequip EQI_SHOES;
+		specialeffect2 154;
+		close;
+	}
+	function range {
+		if(getarg(0) == 0) {
+			if(countitem(@Disire_ItemID[.@i+1])<@Disire_amount[.@i+1]){
+				mes "^0000FF所需物品^000000 - ^FF0000"+getitemname(@Disire_ItemID[.@i+1])+"^000000 x [^009900"+countitem(@Disire_ItemID[.@i+1])+"^000000/^FF6600"+@Disire_amount[.@i+1]+"^000000]";
+				close;
+			} else {
+				set @itemid,@Disire_ItemID[.@i+1];
+				set @num,@Disire_amount[.@i+1];
+				return @Disire_Range[.@i+1];
+			}
+		}
+		for(set .@i,1; .@i<=getarraysize(@Disire_Range); set .@i,.@i+1){
+			if(getarg(0) == .@i){
+				if(countitem(@Disire_ItemID[.@i+1])<@Disire_amount[.@i+1]){
+					mes "^0000FF所需物品^000000 - ^FF0000"+getitemname(@Disire_ItemID[.@i+1])+"^000000 x [^009900"+countitem(@Disire_ItemID[.@i+1])+"^000000/^FF6600"+@Disire_amount[.@i+1]+"^000000]";
+					close;
+				} else {
+					set @itemid,@Disire_ItemID[.@i+1];
+					set @num,@Disire_amount[.@i+1];
+					return @Disire_Range[.@i+1];
+				}
+			}
+		}
+	}
+	if ( getequipcardid(getarg(0),3) > 5000 )
+	{
+		dispbottom "不屬於正常附魔, 請重置後再行附魔.";
+		end;
+	}
+	for(set .@i,1; .@i<=getarraysize(@mkr); set .@i,.@i+1)
+	{
+		if(getequipcardid(getarg(0),3) == @mkr[.@i]){
+			if(getequipcardid(getarg(0),3) != @mkr[getarraysize(@mkr)-1]){
+				set .@j,range(.@i);
+				set @Disirepart,getarg(0);
+				mes "消耗 [^0000FF"+getitemname(@Disire_ItemID[.@i+1])+"^000000] x [^889900"+@Disire_amount[.@i+1]+"^000000]";
+				mes "失敗的話將有 ^FF000020%^000000 機率裝備損壞";
+				mes "若攜帶 ^0000FF"+getitemname($@Enc_Item)+"^000000 可以避免裝備消失";
+				next;
+				if(select("進行[^0000FF"+getitemname(@mkr[.@i+1])+"^000000]次強化(^FF0000"+.@j+"%^000000)","取消") == 2) close;
+				if(countitem(@itemid) < @num){
+					mes "^0000FF所需物品^000000 - ^FF0000"+getitemname(@itemid)+"^000000 x [^009900"+countitem(@itemid)+"^000000/^FF6600"+@num+"^000000]";
+					close;
+				}
+				mes "[" + strnpcinfo(0) + "]";
+				delitem @itemid,@num;
+				if(rand(1,100) <= .@j) {
+					// 變更等級為: 目前等級+1
+					mes "非常幸運的，你升級成功啦!";
+					JJ(@Disirepart,@mkr[.@i+1]);
+				} else if(rand(100)<=20){
+					if(countitem($@Enc_Item)){
+						specialeffect2 111;
+						delitem $@Enc_Item, 1;
+						mes "附魔失敗了! 裝備差點爆掉! 幸好有 ^FF1493"+getitemname($@Enc_Item)+"^000000 才保住了裝備!";
+						close;
+					} else {
+						mes "非常不幸的…你的裝備爆了ˊ_>ˋ!";
+						failedrefitem @Disirepart;
+					}
+				}
+				else
+				{
+					specialeffect2 111;
+					mes "附魔失敗啦! 不過你挺幸運的, 裝備居然沒爆!";
+				}
+				close;
+			} else {
+				mes "你已經達到^FF1493第二回合附魔^000000的資格了";
+				mes "請問你現在要附上最終階段的附魔了嗎!?";
+				mes "這個階段附魔成功機率只有 ^FF0000"+@Disire_Range[5]+" %^000000";
+				mes "請問你還要繼續嗎?";
+				next;
+				if(select("進行[^0000FF5^000000]次強化(^FF0000第二回合附魔^000000)","取消") == 2) close;
+				if(countitem(@Disire_ItemID[5]) < @Disire_amount[5]){
+					mes "^0000FF所需物品^000000 - ^FF0000"+getitemname(@Disire_ItemID[5])+"^000000 x [^009900"+countitem(@Disire_ItemID[5])+"^000000/^FF6600"+@Disire_amount[5]+"^000000]";
+					close;
+				}
+				if(rand(1,100) <= @Disire_Range[5]) {
+					delitem @Disire_ItemID[5],@Disire_amount[5];
+					mes "已經完成^0000FF第二回合附魔^000000";
+					setarray .@OptID[0],getequiprandomoption(@Disirepart,0,ROA_ID),getequiprandomoption(@Disirepart,1,ROA_ID),getequiprandomoption(@Disirepart,2,ROA_ID),getequiprandomoption(@Disirepart,3,ROA_ID),getequiprandomoption(@Disirepart,4,ROA_ID);
+					setarray .@OptVal[0],getequiprandomoption(@Disirepart,0,ROA_VALUE),getequiprandomoption(@Disirepart,1,ROA_VALUE),getequiprandomoption(@Disirepart,2,ROA_VALUE),getequiprandomoption(@Disirepart,3,ROA_VALUE),getequiprandomoption(@Disirepart,4,ROA_VALUE);
+					setarray .@OptParam[0],getequiprandomoption(@Disirepart,0,ROA_PARAM),getequiprandomoption(@Disirepart,1,ROA_PARAM),getequiprandomoption(@Disirepart,2,ROA_PARAM),getequiprandomoption(@Disirepart,3,ROA_PARAM),getequiprandomoption(@Disirepart,4,ROA_PARAM);
+					if(getarraysize(.@OptID))
+						getitem3 getequipid(EQI_SHOES),1,1,getequiprefinerycnt(EQI_SHOES),0,getequipcardid(EQI_SHOES,0),getequipcardid(EQI_SHOES,1),$@last_Item[rand(getarraysize($@last_Item))],getequipcardid(EQI_SHOES,3), .@OptID, .@OptVal, .@OptParam;
+					else
+						getitem2 getequipid(EQI_SHOES),1,1,getequiprefinerycnt(EQI_SHOES),0,getequipcardid(EQI_SHOES,0),getequipcardid(EQI_SHOES,1),$@last_Item[rand(getarraysize($@last_Item))],getequipcardid(EQI_SHOES,3);
+					delequip EQI_SHOES;
+					specialeffect2 154;
+				} else if(rand(100)<=20){
+					delitem @Disire_ItemID[5],@Disire_amount[5];
+					if(countitem($@Enc_Item)){
+						delitem $@Enc_Item, 1;
+						specialeffect2 111;
+						mes "附魔失敗了! 裝備差點爆掉! 幸好有 ^FF1493"+getitemname($@Enc_Item)+"^000000 才保住了裝備!";
+						close;
+					} else {
+						mes "非常不幸的…你的裝備爆了ˊ_>ˋ!";
+						failedrefitem EQI_SHOES;
+						end;
+					}
+				} else {
+					specialeffect2 111;
+					mes "附魔失敗啦! 不過你挺幸運的, 裝備居然沒爆!";
+					end;
+				}
+				close;
+				}
+			}
+		}
+		return;
+	}
+}

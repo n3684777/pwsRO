@@ -1,0 +1,237 @@
+function	script	illenchant	{
+	disable_items;
+	mes "["+strnpcinfo(1)+"]";
+	mes "我是負責幻影系列的附魔人員";
+	mes "請問您要附魔或重置哪個選項呢";
+	next;
+	switch((.@type = select("幻影吸血鬼","幻影月夜貓","幻影烏龜島","幻影冰洞穴","幻影泰迪熊","幻影遺跡盧安達","幻影迷藏森林","幻影海底洞穴")))
+	{
+		// 幻影吸血鬼附魔
+		case 1:
+			setarray .@Equip,20840,28023,28508,28509;
+			setarray .@EquipPosEN,EQI_GARMENT,EQI_HAND_R,EQI_ACC_R,EQI_ACC_R;
+			break;
+		
+		// 幻影月夜貓附魔
+		case 2:
+			setarray .@Equip,15195,19209,19210,20838,22133;
+			setarray .@EquipPosEN,EQI_ARMOR,EQI_HEAD_TOP,EQI_HEAD_TOP,EQI_GARMENT,EQI_SHOES;
+			setarray .@Enchant,4700,4701,4702,4703,4730,4731,4732,4733,4740,4741,4742,4743,4750,4751,4752,4753,4861,4862,4867,4868,4994,4995,4997,4998,29000,29001,29003,29004,29006,29007,29009,29010,4992,29013,4993,29032;
+			break;
+
+		// 幻影烏龜島附魔
+		case 3:
+			setarray .@Equip,19247;
+			setarray .@EquipPosEN,EQI_HEAD_TOP;
+			setarray .Enchant,4700,4701,4702,4703,4710,4711,4712,4713,4730,4731,4732,4733,4740,4741,4742,4743,4750,4751,4752,4753,4861,4862,4867,4868,4994,4995,4997,4998,29000,29001,29003,29004,29006,29007,29009,29010,4992,29013,4993,29032;
+			break;
+			
+		// 幻影冰洞窟附魔
+		case 4:
+			setarray .@Equip,19223,20847,28922;
+			setarray .@EquipPosEN,EQI_HEAD_TOP,EQI_GARMENT,EQI_HAND_L;
+			setarray .@Enchant,4700,4701,4702,4703,4710,4711,4712,4713,4730,4731,4732,4733,4740,4741,4742,4743,4750,4751,4752,4753,4861,4862,4867,4868,4994,4995,4997,4998,29000,29001,29003,29004,29006,29007,29009,29010,4992,29013,4993,29032;
+			break;
+
+		// 幻影泰迪熊附魔
+		case 5:
+			setarray .@Equip,22190,19344;
+			setarray .@EquipPosEN,EQI_SHOES,EQI_HEAD_TOP;
+			setarray .@Enchant,4700,4701,4702,4703,4710,4711,4712,4713,4730,4731,4732,4733,4740,4741,4742,4743,4750,4751,4752,4753,4861,4862,4867,4868,4994,4995,4997,4998,29000,29001,29003,29004,29006,29007,29009,29010,4992,29013,4993,29032;
+			break;
+		// 幻影盧安達
+		case 6:
+			setarray .@Equip,19366,15348,22192,20923;
+			setarray .@EquipPosEN,EQI_HEAD_TOP,EQI_ARMOR,EQI_SHOES,EQI_GARMENT;
+			setarray .@Enchant,4700,4701,4702,4703,4710,4711,4712,4713,4730,4731,4732,4733,4740,4741,4742,4743,4750,4751,4752,4753,4861,4862,4867,4868,4994,4995,4997,4998,29000,29001,29003,29004,29006,29007,29009,29010,4992,29013,4993,29032;
+			break;
+		// 幻影迷藏森林
+		case 7:
+			setarray .@Equip,19428,20948,32238,32239;
+			setarray .@EquipPosEN,EQI_HEAD_TOP,EQI_GARMENT,EQI_ACC_R,EQI_ACC_L;
+			setarray .@Enchant,4700,4701,4702,4703,4710,4711,4712,4713,4730,4731,4732,4733,4740,4741,4742,4743,4750,4751,4752,4753,4861,4862,4867,4868,4994,4995,4997,4998,29000,29001,29003,29004,29006,29007,29009,29010,4992,29013,4993,29032;
+			break;
+		// 幻影海底洞穴
+		case 8:
+			setarray .@Equip,400053,450144,450145,450146,480054,490069,490070;
+			setarray .@EquipPosEN,EQI_HEAD_TOP,EQI_ARMOR,EQI_ARMOR,EQI_ARMOR,EQI_GARMENT,EQI_ACC_R,EQI_ACC_L;
+			setarray .@Enchant,4700,4701,4702,4703,4710,4711,4712,4713,4730,4731,4732,4733,4740,4741,4742,4743,4750,4751,4752,4753,4861,4862,4867,4868,4994,4995,4997,4998,29000,29001,29003,29004,29006,29007,29009,29010,4992,29013,4993,29032;
+			break;
+	}
+	for(.@i=0; .@i<getarraysize(.@EquipPosEN); .@i++)
+		.@MenuPos$ = .@MenuPos$+"- "+sprintf("%-8s",F_getpositionname(.@EquipPosEN[.@i]))+" "+((getequipid(.@EquipPosEN[.@i]) == .@Equip[.@i])?"^0000FF"+getitemname(.@Equip[.@i])+"^000000":"^656565未裝備"+getitemname(.@Equip[.@i])+"^000000")+":";
+	.@SelectPos = select(.@MenuPos$)-1;
+
+	.@part = .@EquipPosEN[.@SelectPos];
+	if(getequipid(.@part) != .@Equip[.@SelectPos])
+	{
+		mes "["+strnpcinfo(1)+"]";
+		mes "您沒有裝備 "+getitemname(.@Equip[.@SelectPos]);
+		close;
+	}
+	.@nameid = getequipid(.@part);
+	.@refine = getequiprefinerycnt(.@part);
+	setarray .@card[0],getequipcardid(.@part,0),getequipcardid(.@part,1),getequipcardid(.@part,2),getequipcardid(.@part,3);
+	setarray .@OptID[0],getequiprandomoption(.@part,0,ROA_ID),getequiprandomoption(.@part,1,ROA_ID),getequiprandomoption(.@part,2,ROA_ID),getequiprandomoption(.@part,3,ROA_ID),getequiprandomoption(.@part,4,ROA_ID);
+	setarray .@OptVal[0],getequiprandomoption(.@part,0,ROA_VALUE),getequiprandomoption(.@part,1,ROA_VALUE),getequiprandomoption(.@part,2,ROA_VALUE) ,getequiprandomoption(.@part,3,ROA_VALUE),getequiprandomoption(.@part,4,ROA_VALUE);
+	setarray .@OptParam[0],getequiprandomoption(.@part,0,ROA_PARAM),getequiprandomoption(.@part,1,ROA_PARAM),getequiprandomoption(.@part,2,ROA_PARAM),getequiprandomoption(.@part,3,ROA_PARAM),getequiprandomoption(.@part,4,ROA_PARAM);
+	
+	mes "["+strnpcinfo(1)+"]";
+	mes "選擇道具為 "+getitemname(.@nameid);
+	mes "請問您要附魔還是要重置呢?";
+	next;
+	switch((.@menu = select("裝備附魔","重置附魔","考慮一下")))
+	{
+		default:	end;
+			
+		case 1:
+			if(.@card[2]>0)
+			{
+				mes "["+strnpcinfo(1)+"]";
+				mes "這項裝備已經無法附魔了，請重置之後再來!";
+				close;
+			}
+			if(countitem(25271)<5)
+			{
+				mes getitemname(25271)+" 需要 5 個才可以附魔.";
+				close;
+			}
+			mes "["+strnpcinfo(1)+"]";
+			mes "附魔 "+getitemname(.@nameid)+" 所需道具 "+getitemname(25271)+" x 5";
+			mes "^FF0000附魔不會失敗^000000";
+			mes "^777777完成所有階段必須重置才能再次附魔^000000";
+			next;
+			if(select("開始附魔!","考慮一下")==2)close;
+			break;
+		case 2:
+			if(Zeny<500000)
+				mes "重置費用需要 50 萬Zeny.";
+			else if(!.@card[2])
+				mes "這項裝備還可以繼續附魔。";
+			else
+			{
+				mes "["+strnpcinfo(1)+"]";
+				mes "^FF0000你必須完成所有階段附魔才能重置^000000";
+				mes "重置需要 ^0000FF500000Zeny^000000";
+				mes "失敗機率 ^FF000040%^000000";
+				mes "使用100萬可以避免重置失敗";
+				mes "^777777重置失敗裝備會消失...^000000";
+				next;
+				.@reset_select = select("開始重置!","使用100萬重置!","考慮一下");
+				if(.@reset_select==2) 
+					if(Zeny<1000000) {
+						mes "重置費用需要 100 萬Zeny.";
+						close;
+					}
+				if(.@reset_select==3) close;
+				break;
+			}
+			end;
+	}
+	mes "["+strnpcinfo(1)+"]";
+	if(.@menu == 1){
+		if(.@type == 1)
+		{
+			mes getitemname(.@nameid)+"可以選擇附魔的種類";
+			mes "請問您要選擇哪一項呢？";
+			switch(.@EquipPosEN[.@SelectPos])
+			{
+				// 披肩
+				case EQI_GARMENT:
+					setarray .@Enchant,4700,4701,4702,4703,4730,4710,4711,4712,4713,4731,4732,4733,4740,4741,4742,4743,4750,4751,4752,4753,4861,4862,4867,4868,4992,29013,4993,29032,4994,4995,4997,4998,29000,29001,29003,29004,29006,29007,29009,29010;
+					break;
+					
+				// 裝飾品(右)
+				case EQI_ACC_R:
+					setarray .@Enchant,4700,4701,4702,4703,4710,4711,4712,4713,4720,4721,4722,4723,4730,4731,4732,4733,4740,4741,4742,4743,4750,4751,4752,4753,4795,4796,4797,4798,4799,4928,4870,4800,4871,4801;
+					break;
+				
+				default:
+					switch(select("近距離:魔法系:遠距離")){
+						//近戰系
+						case 1:
+							if(!.@card[3])
+								setarray .@Enchant,4700,4701,4702,4703,4704,4720,4721,4722,4723,4724,4750,4751,4752,4753,4754;
+							else
+								setarray .@Enchant,4811,4810,4809,4808,4820,29081,29082,29083,29084,29085,29061,29062,29063,29064,29065,4807,4842;
+							break;
+						
+						//魔法系
+						case 2:
+							if(!.@card[3])
+								setarray .@Enchant,4710,4711,4712,4713,4714,4720,4721,4722,4723,4724,4750,4751,4752,4753,4754;
+							else
+								setarray .@Enchant,4815,4814,4813,4812,4826,4885,4886,4887,4888,4889,4805,4850;
+							break;
+
+						//遠距離系
+						case 3:
+							if(!.@card[3])
+								setarray .@Enchant,4730,4731,4732,4733,4734,4720,4721,4722,4723,4724,4750,4751,4752,4753,4754;
+							else
+								setarray .@Enchant,4818,4817,4816,4843,4844,4832,4833,4834,4835,4836,29091,29092,29093,29094,29095,4807,4842;
+							break;
+					}
+					break;
+			}
+			delitem 25271,5;
+			delequip .@part;
+			mes "^00AA00附魔完成^000000";
+			specialeffect2 154;
+			if(!.@card[3])
+				if(getarraysize(.@OptID))
+					getitem3 .@nameid,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],.@Enchant[rand(getarraysize(.@Enchant))],.@OptID,.@OptVal,.@OptParam;
+				else
+					getitem2 .@nameid,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],.@Enchant[rand(getarraysize(.@Enchant))];
+			else
+				if(getarraysize(.@OptID))
+					getitem3 .@nameid,1,1,.@refine,0,.@card[0],.@card[1],.@Enchant[rand(getarraysize(.@Enchant))],.@card[3],.@OptID,.@OptVal,.@OptParam;
+				else
+					getitem2 .@nameid,1,1,.@refine,0,.@card[0],.@card[1],.@Enchant[rand(getarraysize(.@Enchant))],.@card[3];
+		}
+		else
+		{
+			delitem 25271,5;
+			delequip .@part;
+			mes "^00AA00附魔完成^000000";
+			specialeffect2 154;
+			if(!.@card[3])
+				if(getarraysize(.@OptID))
+					getitem3 .@nameid,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],.@Enchant[rand(getarraysize(.@Enchant))],.@OptID,.@OptVal,.@OptParam;
+				else
+					getitem2 .@nameid,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],.@Enchant[rand(getarraysize(.@Enchant))];
+			else
+				if(getarraysize(.@OptID))
+					getitem3 .@nameid,1,1,.@refine,0,.@card[0],.@card[1],.@Enchant[rand(getarraysize(.@Enchant))],.@card[3],.@OptID,.@OptVal,.@OptParam;
+				else
+					getitem2 .@nameid,1,1,.@refine,0,.@card[0],.@card[1],.@Enchant[rand(getarraysize(.@Enchant))],.@card[3];
+		}
+	}
+	else
+	{		
+		if(.@reset_select == 2) 
+			Zeny -= 1000000;
+		else
+			Zeny -= 500000;
+		if(rand(100)<40 && .@reset_select != 2)
+		{
+			specialeffect2 155;
+			//mes "很抱歉...重置失敗了...什麼也沒留下...";
+			mes "很抱歉...重置失敗了...";
+			close;
+		}
+		else
+		{
+			delequip .@part;
+			specialeffect2 154;
+			.@card[2] = .@card[3] = 0;
+			if(getarraysize(.@OptID))
+				getitem3 .@nameid,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],.@card[3],.@OptID,.@OptVal,.@OptParam;
+			else
+				getitem2 .@nameid,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],.@card[3];
+			mes "^0000FF重置成功^000000";
+		}
+	}
+	close;
+
+}

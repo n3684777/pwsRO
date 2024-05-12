@@ -1,0 +1,176 @@
+lhz_dun_n,233,140,3	script	死屍#lhz_dun_n	4_TOWER_01,4,4,{
+	end;
+OnTouch:
+	set .@i, rand(1,10);
+	if (.@i == 1) set .@mobs,3;
+	else if (.@i == 2) set .@mobs,4;
+	else if (.@i == 3) set .@mobs,5;
+	else if (.@i < 7) set .@mobs,6;
+	else set .@mobs,7;
+	getmapxy(.@map$,.@x,.@y,BL_NPC);
+	specialeffect EF_VENOMDUST;
+	monster .@map$,.@x,.@y,"蛆",3142,.@mobs,strnpcinfo(0)+"::OnMyMobDead";
+	disablenpc strnpcinfo(0);
+	end;
+
+OnInit:	
+OnRandomXY:
+	do{
+		.@x = rand(21,259);
+		.@y = rand(28,264);
+	}while(!checkcell("lhz_dun_n",.@x,.@y,cell_chkpass));
+	movenpc strnpcinfo(0),.@x,.@y;
+	end;
+	
+OnMyMobDead:
+	if(mobcount("lhz_dun_n",strnpcinfo(0)+"::OnMyMobDead" ) < 3) {
+		donpcevent strnpcinfo(0)+"::OnRandomXY";
+		
+		initnpctimer;
+	}
+	end;
+
+OnTimer60000:
+	stopnpctimer;
+	enablenpc strnpcinfo(0);
+	end;
+}
+
+lhz_dun_n,136,232,3	duplicate(死屍#lhz_dun_n)	死屍#lhz_dun_n2	4_TOWER_03,4,4
+lhz_dun_n,169,178,5	duplicate(死屍#lhz_dun_n)	死屍#lhz_dun_n3	4_TOWER_06,4,4
+lhz_dun_n,134,150,4	duplicate(死屍#lhz_dun_n)	死屍#lhz_dun_n4	4_TOWER_08,4,4
+lhz_dun_n,137,126,4	duplicate(死屍#lhz_dun_n)	死屍#lhz_dun_n5	4_TOWER_11,4,4
+lhz_dun_n,187,88,7	duplicate(死屍#lhz_dun_n)	死屍#lhz_dun_n6	4_TOWER_13,4,4
+lhz_dun_n,211,141,3	duplicate(死屍#lhz_dun_n)	死屍#lhz_dun_n7	4_TOWER_03,4,4
+lhz_dun_n,156,191,3	duplicate(死屍#lhz_dun_n)	死屍#lhz_dun_n8	4_TOWER_03,4,4
+lhz_dun_n,235,175,5	duplicate(死屍#lhz_dun_n)	死屍#lhz_dun_n9	4_TOWER_06,4,4
+lhz_dun_n,141,70,4	duplicate(死屍#lhz_dun_n)	死屍#lhz_dun_n10	4_TOWER_08,4,4
+lhz_dun_n,78,104,4	duplicate(死屍#lhz_dun_n)	死屍#lhz_dun_n11	4_TOWER_11,4,4
+lhz_dun_n,51,142,7	duplicate(死屍#lhz_dun_n)	死屍#lhz_dun_n12	4_TOWER_13,4,4
+lhz_dun_n,60,177,3	duplicate(死屍#lhz_dun_n)	死屍#lhz_dun_n13	4_TOWER_03,4,4
+lhz_dun_n,121,178,3	duplicate(死屍#lhz_dun_n)	死屍#lhz_dun_n14	4_TOWER_01,4,4
+
+
+function	script	funcDeathDamage	{
+	mes " - 思念的強大波動 - ";
+	mes " - 滲入體內 - ";
+	mes " - 造成致命的傷害 - ";
+	percentheal -50,-50;
+	return;
+}
+
+
+/*
+
+
+*/
+
+function	script	F_Pieces_Of_Sentiment	{	// 22687
+	if (strcharinfo(3) == "lhz_dun_n")// usage forbidden on the same map
+		return;
+	specialeffect2 EF_HIT4;
+	.@r = rand(18);
+	if (.@r == 0)
+		warp "lhz_dun_n",40,212;
+	else if (.@r == 1)
+		warp "lhz_dun_n",87,84;
+	else if (.@r == 2)
+		warp "lhz_dun_n",140,89;
+	else if (.@r == 3)
+		warp "lhz_dun_n",162,252;
+	else if (.@r == 4)
+		warp "lhz_dun_n",201,101;
+	else if (.@r == 5)
+		warp "lhz_dun_n",34,70;
+	else if (.@r == 6)
+		warp "lhz_dun_n",75,138;
+	else if (.@r == 7)
+		warp "lhz_dun_n",78,189;
+	else if (.@r == 8)
+		warp "lhz_dun_n",28,140;
+	else if (.@r == 9)
+		warp "lhz_dun_n",240,64;
+	else if (.@r == 10)
+		warp "lhz_dun_n",140,39;
+	else if (.@r == 11)
+		warp "lhz_dun_n",140,191;
+	else if (.@r == 12)
+		warp "lhz_dun_n",124,138;
+	else if (.@r == 13)
+		warp "lhz_dun_n",131,235;
+	else if (.@r == 14)
+		warp "lhz_dun_n",140,114;
+	else if (.@r == 15)
+		warp "lhz_dun_n",99,106;
+	else if (.@r == 16)
+		warp "lhz_dun_n",115,253;
+	else
+		warp "lhz_dun_n",230,138;
+	delitem 22687,1;
+	return;
+}
+
+function	script	F_Cursed_Crystal	{	// 23080
+	// custom rates
+	.@r = rand(500);
+	if (.@r < 10)		getitem 23016,100;// Cursed_Fragment
+	else if (.@r < 352)	getitem 23016,200;// Cursed_Fragment
+	else if (.@r < 469)	getitem 23016,300;// Cursed_Fragment
+	else if (.@r < 498)	getitem 23016,400;// Cursed_Fragment
+	else				getitem 23016,500;// Cursed_Fragment
+	return;
+}
+
+function	script	F_Cursed_Fragment	{	// 23016
+	// custom rates
+	.@r = rand(981);
+	if (.@r < 166) {
+		if (rand(2) == 0)
+			showscript "Please... stay with me...";
+		else
+			showscript "Stay... here with me...";
+		sleep2 200;
+		warp "Random",0,0;
+	}
+	else if (.@r < 231)	{
+		showscript "It's so cold in here...";
+		sc_start SC_FREEZE,8000,0;
+	}
+	else if (.@r < 304) {
+		showscript "I'm sorry... I will leave now... thank you...";
+		getitem 6820,1;// Energy_Fragment
+	}
+	else if (.@r < 317)
+		sc_start SC_CONFUSION,3000,0;
+	else if (.@r < 328) {
+		showscript "Somebody please help me...";
+		sc_start SC_CURSE,3000,0;
+	}
+	else if (.@r < 408) {
+		showscript "Dear Odin...";
+		sc_start SC_ASSUMPTIO,100000,5;
+		specialeffect2 EF_ASSUMPTIO;
+	}
+	else if (.@r < 496) {
+		showscript "I will never forgive you...!";
+		sc_start SC_ATKPOTION,600000,10;
+		sc_start SC_MATKPOTION,600000,10;
+	}
+	else {
+		.@rand = rand(5);
+		if (.@rand == 0)
+			showscript "Wake up!";
+		else if (.@rand == 1)
+			showscript "Stop it... It hurts...";
+		else if (.@rand == 2)
+			showscript "I'm so scared... scared...";
+		else if (.@rand == 3)
+			showscript "You shouldn't have come here...";
+		else
+			showscript "Hello... Is anyone there... ?";
+	}
+	return;
+}
+
+
+lhz_dun_n	mapflag	restricted	6
