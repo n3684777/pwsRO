@@ -1,4 +1,4 @@
-prt_in,53,56,5	script	修理師	850,{
+egg1,206,187,5	script	修理師	850,{
 mes "[蘿伊]";
 mes "哈哈哈哈!!";
 mes "這世界上沒有任何東西是我修不好的";
@@ -43,7 +43,7 @@ set @xlItem,999;
 
 lroom00,136,73,4	script	拆卡師	558,{
 //		set .@zeny,1000000;		//拆卡費用
-//		setarray .@a1[1],EQI_HEAD_TOP, EQI_HEAD_MID, EQI_HEAD_LOW, EQI_ARMOR, EQI_HAND_L, EQI_HAND_R, EQI_GARMENT, EQI_SHOES, EQI_ACC_L,  EQI_ACC_R;
+//		setarray .@a1[1],EQI_HEAD_TOP, EQI_HEAD_MID, EQI_HEAD_LOW, EQI_ARMOR, EQI_HAND_L, EQI_HAND_R, EQI_GARMENT, EQI_SHOES, EQI_ACC_L, EQI_ACC_R;
 //		setarray .@a2$[1],"[頭上]","[頭中]","[頭下]","[鎧甲]","[左手]","[右手]","[披肩]","[靴子]","[裝飾品左]","[裝飾品右]";
 //		setarray .@a3$[1],"第一洞","第二洞","第三洞","第四洞";
 //		mes "成功機率: ^0000FF100%^000000";
@@ -146,8 +146,8 @@ lroom00,136,73,4	script	拆卡師	558,{
 		close;
 	}
 
-	setarray .@equip_name$[0],"左手","右手","鎧甲","靴子","披肩","頭具頭上","頭具頭中","頭具頭下","飾品","飾品";
-	setarray .@equip_slot[0],EQI_HAND_L,EQI_HAND_R,EQI_ARMOR,EQI_SHOES,EQI_GARMENT,EQI_HEAD_TOP,EQI_HEAD_MID,EQI_HEAD_LOW,EQI_ACC_L,EQI_ACC_R;
+	setarray .@equip_name$[0],"左手","右手","鎧甲","靴子","披肩","頭具頭上","頭具頭中","頭具頭下","飾品","飾品","影子左飾品","影子右飾品","影子鎧甲","影子鞋子","影子左手","影子右手";
+	setarray .@equip_slot[0],EQI_HAND_L,EQI_HAND_R,EQI_ARMOR,EQI_SHOES,EQI_GARMENT,EQI_HEAD_TOP,EQI_HEAD_MID,EQI_HEAD_LOW,EQI_ACC_L,EQI_ACC_R,EQI_SHADOW_ACC_L,EQI_SHADOW_ACC_R,EQI_SHADOW_ARMOR,EQI_SHADOW_SHOES,EQI_SHADOW_HAND_L,EQI_SHADOW_HAND_R;
 
 	mes "[^0044BB"+strnpcinfo(1)+"^000000]";
 	mes "無論使用哪種方式進行拆除作業";
@@ -259,7 +259,7 @@ lroom00,136,73,4	script	拆卡師	558,{
 			set Zeny, Zeny - 300000;
 			break;
 		case 3:
-			set .@success,60;
+			set .@success,100;
 			if (countitem(25239) == 0) {
 				mes "[^0044BB"+strnpcinfo(1)+"^000000]";
 				mes "你身上並沒有新式高級潤滑油呢!";

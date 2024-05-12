@@ -442,7 +442,7 @@ Body:
     Name: 波利娃娃
     Type: Etc
     Buy: 1800
-    Weight: 100
+    Weight: 0
     Flags:
       BuyingStore: true
   - Id: 742
@@ -450,7 +450,7 @@ Body:
     Name: 蒼蠅娃娃
     Type: Etc
     Buy: 3000
-    Weight: 100
+    Weight: 0
     Flags:
       BuyingStore: true
   - Id: 743
@@ -458,7 +458,7 @@ Body:
     Name: 魔菇娃娃
     Type: Etc
     Buy: 5500
-    Weight: 100
+    Weight: 0
     Flags:
       BuyingStore: true
   - Id: 744
@@ -2678,8 +2678,8 @@ Body:
       BuyingStore: true
       DropEffect: CLIENT
     Script: |
-      bonus2 bSkillAtk,"AB_ADORAMUS",10;
-      bonus2 bSkillCooldown,"AB_ADORAMUS",-300;
+      bonus2 bSkillAtk,"AB_ADORAMUS",30;
+      bonus2 bSkillCooldown,"AB_ADORAMUS",-1000;
       bonus bUseSPrate,20;
   - Id: 59003
     AegisName: Dps_Card
@@ -2693,10 +2693,10 @@ Body:
       BuyingStore: true
       DropEffect: CLIENT
     Script: |
-      bonus2 bSkillAtk,"AB_ADORAMUS",15;
-      bonus2 bSkillCooldown,"AB_ADORAMUS",-400;
+      bonus2 bSkillAtk,"AB_ADORAMUS",45;
+      bonus2 bSkillCooldown,"AB_ADORAMUS",-2000;
       bonus bUseSPrate,10;
-      bonus2 bMagicAddRace,RC_All,5;
+      bonus2 bMagicAddRace,RC_All,12;
   - Id: 59004
     AegisName: Drs_Card
     Name: 音速衝擊波卡片
@@ -2709,8 +2709,8 @@ Body:
       BuyingStore: true
       DropEffect: CLIENT
     Script: |
-      bonus2 bSkillAtk,"RK_SONICWAVE",10;
-      bonus2 bSkillCooldown,"RK_SONICWAVE",-300;
+      bonus2 bSkillAtk,"RK_SONICWAVE",25;
+      bonus2 bSkillCooldown,"RK_SONICWAVE",-500;
       bonus bUseSPrate,20;
   - Id: 59005
     AegisName: Drs_Card
@@ -2724,10 +2724,10 @@ Body:
       BuyingStore: true
       DropEffect: CLIENT
     Script: |
-      bonus2 bSkillAtk,"RK_SONICWAVE",15;
-      bonus2 bSkillCooldown,"RK_SONICWAVE",-400;
+      bonus2 bSkillAtk,"RK_SONICWAVE",40;
+      bonus2 bSkillCooldown,"RK_SONICWAVE",-1000;
       bonus bUseSPrate,10;
-      bonus2 bAddRace,RC_All,5;
+      bonus2 bAddRace,RC_All,15;
   - Id: 59006
     AegisName: Drs_Card
     Name: 瞄準標靶卡片
@@ -2740,8 +2740,9 @@ Body:
       BuyingStore: true
       DropEffect: CLIENT
     Script: |
-      bonus2 bSkillAtk,"RA_AIMEDBOLT",10;
-      bonus2 bSkillCooldown,"RA_AIMEDBOLT",-300;
+      bonus3 bAutoSpell,"RA_AIMEDBOLT",5,30;
+      bonus2 bSkillAtk,"RA_AIMEDBOLT",35;
+      bonus2 bSkillCooldown,"RA_AIMEDBOLT",-500;
       bonus bUseSPrate,20;
   - Id: 59007
     AegisName: Dps_Card
@@ -2755,10 +2756,11 @@ Body:
       BuyingStore: true
       DropEffect: CLIENT
     Script: |
-      bonus2 bSkillAtk,"RA_AIMEDBOLT",15;
-      bonus2 bSkillCooldown,"RA_AIMEDBOLT",-400;
+      bonus3 bAutoSpell,"RA_AIMEDBOLT",10,50;
+      bonus2 bSkillAtk,"RA_AIMEDBOLT",50;
+      bonus2 bSkillCooldown,"RA_AIMEDBOLT",-1000;
       bonus bUseSPrate,10;
-      bonus2 bAddRace,RC_All,5;
+      bonus2 bAddRace,RC_All,12;
   - Id: 59008
     AegisName: Dps_Card
     Name: 怒雷暴風雪卡片
@@ -2771,8 +2773,8 @@ Body:
       BuyingStore: true
       DropEffect: CLIENT
     Script: |
-      bonus2 bSkillCooldown,"WZ_STORMGUST",-300;
-      bonus2 bSkillCooldown,"WZ_VERMILION",-300;
+      bonus2 bSkillCooldown,"WZ_STORMGUST",-500;
+      bonus2 bSkillCooldown,"WZ_VERMILION",-500;
       bonus bUseSPrate,20;
   - Id: 59009
     AegisName: Drs_Card
@@ -2786,8 +2788,8 @@ Body:
       BuyingStore: true
       DropEffect: CLIENT
     Script: |
-      bonus2 bSkillCooldown,"WZ_STORMGUST",-500;
-      bonus2 bSkillCooldown,"WZ_VERMILION",-500;
+      bonus2 bSkillCooldown,"WZ_STORMGUST",-1000;
+      bonus2 bSkillCooldown,"WZ_VERMILION",-1000;
       bonus bUseSPrate,10;
       bonus2 bAddRace,RC_All,5;
   - Id: 4005
@@ -2854,6 +2856,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -2876,7 +2879,7 @@ Body:
     Script: |
       bonus bMaxSP,80;
   - Id: 59010
-    AegisName: Wilow_Card
+    AegisName: KDWSSSA_pp
     Name: 毀滅彗星卡片
     Type: Card
     Buy: 20
@@ -2889,11 +2892,11 @@ Body:
       BuyingStore: true
       DropEffect: CLIENT
     Script: |
-      bonus2 bSkillAtk,"WL_COMET",10;
+      bonus2 bSkillAtk,"WL_COMET",30;
       bonus2 bSkillCooldown,"WL_COMET",-2000;
-      bonus bUseSPrate,20;
+      bonus bUseSPrate,50;
   - Id: 59011
-    AegisName: Wilow_Card
+    AegisName: KDWSA_pp
     Name: 毀滅彗星PRO卡片
     Type: Card
     Buy: 20
@@ -2906,7 +2909,7 @@ Body:
       BuyingStore: true
       DropEffect: CLIENT
     Script: |
-      bonus2 bSkillAtk,"WL_COMET",15;
+      bonus2 bSkillAtk,"WL_COMET",45;
       bonus2 bSkillCooldown,"WL_COMET",-4000;
       bonus bUseSPrate,20;
   - Id: 4011
@@ -3061,10 +3064,10 @@ Body:
       DropEffect: CLIENT
     Script: |
       bonus bMaxHP,10000;
-      bonus2 bAddRace,RC_Demon,25;
-      bonus2 bAddRace,RC_Undead,25;
-      bonus2 bAddRace,RC_Angel,25;
-      if (eaclass()&EAJL_THIRD && BaseJob == Job_Archer) {
+      bonus2 bAddRace,RC_Demon,15;
+      bonus2 bAddRace,RC_Undead,15;
+      bonus2 bAddRace,RC_Angel,15;
+      if (eaclass()&EAJL_THIRD && BaseJob == Job_Hunter) {
          bonus bLongAtkRate,8;
       }
   - Id: 4022
@@ -3306,6 +3309,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -3483,6 +3487,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -3763,6 +3768,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -4147,6 +4153,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -4191,6 +4198,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -4263,9 +4271,26 @@ Body:
       skill "CR_FULLPROTECTION",5;
     UnEquipScript: |
       sc_end SC_SIGHT;
+  - Id: 59024
+    AegisName: CR_FUION_Card
+    Name: 溫暖的風卡片
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Both_Accessory: true
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      skill "TK_SEVENWIND",7;
+    UnEquipScript: |
+      sc_end SC_SIGHT;
   - Id: 59012
     AegisName: Dps_Card
-    Name: 手推車龍捲風卡片
+    Name: 手推車龍捲風.加農砲卡片
     Type: Card
     Buy: 20
     Weight: 10
@@ -4275,12 +4300,14 @@ Body:
       BuyingStore: true
       DropEffect: CLIENT
     Script: |
-      bonus2 bSkillAtk,"GN_CART_TORNADO",15;
-      bonus2 bSkillCooldown,"AB_ADORAMUS",-300;
+      bonus2 bSkillAtk,"GN_CART_TORNADO",25;
+      bonus2 bSkillCooldown,"GN_CART_TORNADO",-500;
+      bonus2 bSkillAtk,"GN_CARTCANNON",25;
+      bonus2 bSkillCooldown,"GN_CART_TORNADO",-500;
       bonus bUseSPrate,20;
   - Id: 59013
     AegisName: Dps_Card
-    Name: 手推車龍捲風PRO卡片
+    Name: 手推車龍捲風.加農砲PRO卡片
     Type: Card
     Buy: 20
     Weight: 10
@@ -4290,9 +4317,277 @@ Body:
       BuyingStore: true
       DropEffect: CLIENT
     Script: |
-      bonus2 bSkillAtk,"GN_CART_TORNADO",30;
-      bonus2 bSkillCooldown,"AB_ADORAMUS",-400;
+      bonus2 bSkillAtk,"GN_CART_TORNADO",40;
+      bonus2 bSkillCooldown,"GN_CART_TORNADO",-1000;
+      bonus2 bSkillAtk,"GN_CARTCANNON",40;
+      bonus2 bSkillCooldown,"GN_CART_TORNADO",-1000;
       bonus bUseSPrate,10;
+      bonus2 bAddEle,Ele_All,10;
+  - Id: 59014
+    AegisName: Dps_Card
+    Name: 野蠻衝擊卡片
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus2 bSkillAtk,"SHC_SAVAGE_IMPACT",20;
+      bonus2 bSkillCooldown,"SHC_SAVAGE_IMPACT",-800;
+  - Id: 59015
+    AegisName: Dps_Card
+    Name: 野蠻衝擊PRO卡片
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus2 bSkillAtk,"SHC_SAVAGE_IMPACT",30;
+      bonus2 bSkillCooldown,"SHC_SAVAGE_IMPACT",-2000;
+      bonus2 bAddRace,RC_All,5;
+  - Id: 59016
+    AegisName: Dps_Card
+    Name: 爆破神彈卡片
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus2 bSkillAtk,"IQ_EXPOSION_BLASTER",35;
+      bonus2 bSkillCooldown,"IQ_EXPOSION_BLASTER",-1000;
+  - Id: 59017
+    AegisName: Dps_Card
+    Name: 爆破神彈PRO卡片
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus2 bSkillAtk,"IQ_EXPOSION_BLASTER",45;
+      bonus2 bSkillCooldown,"IQ_EXPOSION_BLASTER",-2000;
+      bonus2 bAddEle,Ele_All,8;
+  - Id: 59018
+    AegisName: Dps_Card
+    Name: 龍息.致命爆裂卡片
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus2 bSkillAtk,"RK_DRAGONBREATH",35;
+      bonus2 bSkillAtk,"RK_DRAGONBREATH_WATER",35;
+      bonus2 bSkillAtk,"RK_IGNITIONBREAK",35;
+      bonus2 bSkillCooldown,"RK_DRAGONBREATH",-800;
+      bonus2 bSkillCooldown,"RK_DRAGONBREATH_WATER",-800;
+      bonus2 bSkillCooldown,"RK_IGNITIONBREAK",-800;
+  - Id: 59019
+    AegisName: Dps_Card
+    Name: 龍息.致命爆裂PRO卡片
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus2 bSkillAtk,"RK_DRAGONBREATH",55;
+      bonus2 bSkillAtk,"RK_DRAGONBREATH_WATER",55;
+      bonus2 bSkillAtk,"RK_IGNITIONBREAK",55;
+      bonus2 bSkillCooldown,"RK_DRAGONBREATH",-2000;
+      bonus2 bSkillCooldown,"RK_DRAGONBREATH_WATER",-2000;
+      bonus2 bSkillCooldown,"RK_IGNITIONBREAK",-2000;
+      bonus bCritAtkRate,15;
+  - Id: 59020
+    AegisName: Dps_Card
+    Name: 烙印.聖十字雨卡片
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus2 bSkillAtk,"LG_OVERBRAND",25;
+      bonus2 bSkillAtk,"IG_CROSS_RAIN",25;
+      bonus2 bSkillCooldown,"LG_OVERBRAND",-1000;
+      bonus2 bSkillCooldown,"IG_CROSS_RAIN",-1000;
+  - Id: 59021
+    AegisName: Dps_Card
+    Name: 烙印.聖十字雨PRO卡片
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus2 bSkillAtk,"LG_OVERBRAND",40;
+      bonus2 bSkillAtk,"IG_CROSS_RAIN",40;
+      bonus2 bSkillCooldown,"LG_OVERBRAND",-1500;
+      bonus2 bSkillCooldown,"IG_CROSS_RAIN",-1500;
+      bonus bPow,5;
+      bonus bSpl,5;
+  - Id: 59022
+    AegisName: Dps_Card
+    Name: 元素技能卡片
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus2 bSkillCooldown,"SO_PSYCHIC_WAVE",-700;
+      bonus2 bSkillCooldown,"EM_DIAMOND_STORM",-700;
+      bonus2 bSkillCooldown,"EM_CONFLAGRATION",-700;
+      bonus2 bSkillAtk,"SO_PSYCHIC_WAVE",30;
+      bonus2 bSkillAtk,"EM_DIAMOND_STORM",15;
+      bonus2 bSkillAtk,"EM_CONFLAGRATION",15;
+  - Id: 59023
+    AegisName: Dps_Card
+    Name: 元素技能RPO卡片
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus2 bSkillCooldown,"SO_PSYCHIC_WAVE",-2000;
+      bonus2 bSkillCooldown,"EM_DIAMOND_STORM",-2000;
+      bonus2 bSkillCooldown,"EM_CONFLAGRATION",-2000;
+      bonus2 bSkillAtk,"SO_PSYCHIC_WAVE",50;
+      bonus2 bSkillAtk,"EM_DIAMOND_STORM",30;
+      bonus2 bSkillAtk,"EM_CONFLAGRATION",30;
+      bonus2 bMagicAtkEle,Ele_All,5;
+  - Id: 59025
+    AegisName: Dps_rd
+    Name: 魅影射擊卡片
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus2 bSkillAtk,"ABC_CHAIN_REACTION_SHOT",25;
+      bonus2 bSkillAtk,"ABC_FRENZY_SHOT",30;
+      bonus2 bSkillCooldown,"ABC_CHAIN_REACTION_SHOT",-500;
+      bonus2 bSkillCooldown,"ABC_FRENZY_SHOT",-500;
+  - Id: 59026
+    AegisName: Dps_rd
+    Name: 魅影射擊PRO卡片
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus2 bSkillAtk,"ABC_CHAIN_REACTION_SHOT",40;
+      bonus2 bSkillAtk,"ABC_FRENZY_SHOT",55;
+      bonus2 bSkillCooldown,"ABC_CHAIN_REACTION_SHOT",-1000;
+      bonus2 bSkillCooldown,"ABC_FRENZY_SHOT",-1000;
+      bonus2 bAddSize,Size_All,20;
+  - Id: 59027
+    AegisName: Dps_rd
+    Name: 大暴雨，玫瑰箭矢卡片
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus2 bSkillAtk,"WM_SEVERE_RAINSTORM",20;
+      bonus2 bSkillAtk,"TR_ROSEBLOSSOM",20;
+      bonus2 bSkillCooldown,"WM_SEVERE_RAINSTORM",-400;
+      bonus2 bSkillCooldown,"TR_ROSEBLOSSOM",-400;
+  - Id: 59028
+    AegisName: Dps_rd
+    Name: 大暴雨，玫瑰箭矢PRO卡片
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus2 bSkillAtk,"WM_SEVERE_RAINSTORM",45;
+      bonus2 bSkillAtk,"TR_ROSEBLOSSOM",45;
+      bonus2 bSkillCooldown,"WM_SEVERE_RAINSTORM",-1000;
+      bonus2 bSkillCooldown,"TR_ROSEBLOSSOM",-1000;
+      bonus bCritAtkRate,15;
+  - Id: 59029
+    AegisName: Dps_rd
+    Name: 殘響、金屬狂怒卡片
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus2 bSkillAtk,"WM_REVERBERATION",25;
+      bonus2 bSkillAtk,"TR_METALIC_FURY",25;
+      bonus2 bSkillCooldown,"WM_REVERBERATION",-400;
+      bonus2 bSkillCooldown,"TR_METALIC_FURY",-400;
+  - Id: 59030
+    AegisName: Dps_rd
+    Name: 殘響、金屬狂怒PRO卡片
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus2 bSkillAtk,"WM_REVERBERATION",45;
+      bonus2 bSkillAtk,"TR_METALIC_FURY",45;
+      bonus2 bSkillCooldown,"WM_REVERBERATION",-800;
+      bonus2 bSkillCooldown,"TR_METALIC_FURY",-800;
+      bonus bSMatkRate,18;
   - Id: 4104
     AegisName: Requiem_Card
     Name: 諾可伊卡片
@@ -4342,6 +4637,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -4542,7 +4838,22 @@ Body:
       BuyingStore: true
       DropEffect: CLIENT
     Script: |
-      bonus bHit,100;
+      bonus2 bAddSize,Size_All,15;
+      bonus bCritAtkRate,10;
+  - Id: 91012
+    AegisName: Pheoni_Card
+    Name: 皮里恩PRO卡片
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus2 bAddSize,Size_All,20;
+      bonus bCritAtkRate,17;
   - Id: 4122
     AegisName: Deviruchi_Card
     Name: 小惡魔卡片
@@ -4567,6 +4878,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -4648,6 +4960,8 @@ Body:
     Script: |
       bonus bNoMagicDamage,100;
       bonus bUseSPrate,100;
+      bonus bFleeRate,-30;
+      bonus bFlee2Rate,-30;
   - Id: 4129
     AegisName: Baphomet__Card
     Name: 小巴風特卡片
@@ -4683,6 +4997,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -4729,7 +5044,22 @@ Body:
       BuyingStore: true
       DropEffect: CLIENT
     Script: |
-      bonus bSMatk,15;
+      bonus bSMatk,10;
+      bonus2 bMagicAddEle,Ele_All,10;
+  - Id: 91003
+    AegisName: Dula_Card
+    Name: 德古拉男爵PRO卡片
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus bSMatk,20;
+      bonus2 bMagicAddEle,Ele_All,20;
   - Id: 4135
     AegisName: Orc_Load_Card
     Name: 獸人酋長卡片
@@ -4873,7 +5203,7 @@ Body:
       bonus bRestartFullRecover;
   - Id: 4145
     AegisName: Berzebub_Card
-    Name: 詛咒蠅王卡片
+    Name: 貝雷傑卡片
     Type: Card
     Buy: 20
     Weight: 10
@@ -4886,6 +5216,26 @@ Body:
       DropEffect: CLIENT
     Script: |
       bonus bMatk,150;
+      bonus bMaxHP,-4500;
+      bonus2 bMagicAtkEle,Ele_All,20;
+  - Id: 91013
+    AegisName: Berzub_Card
+    Name: 貝雷傑PRO卡片
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Both_Accessory: true
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus bMatk,250;
+      bonus bMaxHP,-4500;
+      bonus2 bMagicAtkEle,Ele_All,30;
+      bonus bSpl,2;
   - Id: 4146
     AegisName: Maya_Card
     Name: 蟻后卡片
@@ -4913,7 +5263,7 @@ Body:
     Script: |
       bonus bHit,-10;
       bonus bSplashRange,1;
-      bonus2 bMagicAddRace,RC_Boss,25;
+      bonus2 bMagicAddRace,RC_Boss,35;
   - Id: 4148
     AegisName: Pharaoh_Card
     Name: 法老王卡片
@@ -4969,6 +5319,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -5103,6 +5454,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -5165,6 +5517,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -5224,11 +5577,32 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
     Script: |
-      bonus3 bAutoSpellWhenHit,"WZ_METEOR",5,100;
+      bonus bAtkRate,10;
+      bonus bStr,40;
+      bonus bDex,40;
+  - Id: 91002
+    AegisName: Darrd_Card
+    Name: 黑暗之王PRO卡片
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Shoes: true
+      Shadow_Shoes: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus bAtkRate,20;
+      bonus bStr,50;
+      bonus bDex,50;
+      bonus bMaxHPrate,5;
+      bonus bMaxSPrate,5;
   - Id: 4169
     AegisName: Dark_Illusion_Card
     Name: 迷幻之王卡片
@@ -5497,6 +5871,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -5666,7 +6041,65 @@ Body:
       BuyingStore: true
       DropEffect: CLIENT
     Script: |
-      bonus2 bSubClass,Class_Boss,7;
+      bonus2 bSubClass,Class_Boss,4;
+  - Id: 91020
+    AegisName: Mastard
+    Name: 冰改波利之王卡
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Garment: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus2 bResEff,Eff_Freeze,10000;
+      bonus bMaxHPrate,5;
+  - Id: 91021
+    AegisName: Mastard
+    Name: 睡眠改波利之王卡
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Garment: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus2 bResEff,Eff_Sleep,10000;
+      bonus bMaxHPrate,5;
+  - Id: 91022
+    AegisName: Mastard
+    Name: 石化改波利之王卡
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Garment: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus2 bResEff,Eff_Stone,10000;
+      bonus bMaxHPrate,5;
+  - Id: 91023
+    AegisName: Mastard
+    Name: 三抗改波利之王卡
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Garment: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus2 bResEff,Eff_Sleep,10000;
+      bonus2 bResEff,Eff_Stone,10000;
+      bonus2 bResEff,Eff_Freeze,10000;
+      bonus bMaxHPrate,15;
   - Id: 4198
     AegisName: Maya_Puple_Card
     Name: 狂暴蟻后卡片
@@ -5690,6 +6123,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -5704,6 +6138,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -5768,6 +6203,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -5827,6 +6263,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -6020,6 +6457,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -6237,6 +6675,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -6251,12 +6690,48 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
     Script: |
       bonus bAllStats,20;
       bonus3 bAutoSpellWhenHit,"PR_KYRIE",10,(30+70*(readparam(bInt)>=99));
+  - Id: 91030
+    AegisName: Ama_Card
+    Name: 古埃及王PRO卡片
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Shoes: true
+      Shadow_Shoes: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus bAllStats,25;
+      bonus3 bAutoSpellWhenHit,"PR_KYRIE",10,60;
+  - Id: 91031
+    AegisName: Ama_Card
+    Name: 賽尼亞埃及王卡片
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Shoes: true
+      Shadow_Shoes: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus bMaxHPrate,33;
+      bonus bAllStats,35;
+      bonus3 bAutoSpellWhenHit,"PR_KYRIE",10,100;
+      bonus bVit,15;
+      bonus bFlee,-40;
+      bonus bFlee2,-30;
+      bonus bCritical,-15;
   - Id: 4237
     AegisName: Owl_Duke_Card
     Name: 鴞裊首領卡片
@@ -6295,6 +6770,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -6331,10 +6807,10 @@ Body:
       BuyingStore: true
       DropEffect: CLIENT
     Script: |
-      bonus bMaxHP,300;
-      if (readparam(bLuk)>=77) {
-         bonus bHPrecovRate,100;
-         bonus bSPrecovRate,100;
+      bonus bMaxHP,800;
+      if (readparam(bVit)>=80) {
+         bonus bHPrecovRate,300;
+         bonus bSPrecovRate,300;
       }
   - Id: 4242
     AegisName: Apocalips_Card
@@ -6374,6 +6850,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -6389,6 +6866,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -6446,6 +6924,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -6562,6 +7041,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -6720,6 +7200,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -6839,6 +7320,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -7066,6 +7548,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -7233,9 +7716,9 @@ Body:
       DropEffect: CLIENT
     Script: |
       bonus2 bAddEffWhenHit,Eff_Bleeding,600;
-  - Id: 4302
-    AegisName: Tao_Gunka_Card
-    Name: 塔奧群卡卡片
+  - Id: 91008
+    AegisName: Tao_Guard1C
+    Name: 聖塔奧群卡卡片
     Type: Card
     Buy: 20
     Weight: 10
@@ -7246,11 +7729,148 @@ Body:
       BuyingStore: true
       DropEffect: CLIENT
     Script: |
+      bonus bMaxHPrate,40;
+      bonus2 bAddRace,RC_All,-9;
+      bonus2 bMagicAddRace,RC_All,-9;
+      bonus bStr,-25;
+      bonus bAgi,-25;
+      bonus bInt,-25;
+      bonus bDex,-25;
+      bonus bLuk,-25;
+      bonus bDefEle,Ele_Holy;
+  - Id: 91009
+    AegisName: Tanka_Card1B
+    Name: 暗塔奧群卡卡片
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Armor: true
+      Shadow_Armor: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus bMaxHPrate,40;
+      bonus2 bAddRace,RC_All,-9;
+      bonus2 bMagicAddRace,RC_All,-9;
+      bonus bStr,-25;
+      bonus bAgi,-25;
+      bonus bInt,-25;
+      bonus bDex,-25;
+      bonus bLuk,-25;
+      bonus bDefEle,Ele_Dark;
+  - Id: 91010
+    AegisName: Tao_Guard1A
+    Name: 念塔奧群卡卡片
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Armor: true
+      Shadow_Armor: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus bMaxHPrate,40;
+      bonus2 bAddRace,RC_All,-9;
+      bonus2 bMagicAddRace,RC_All,-9;
+      bonus bStr,-25;
+      bonus bAgi,-25;
+      bonus bInt,-25;
+      bonus bDex,-25;
+      bonus bLuk,-25;
+      bonus bDefEle,Ele_Ghost;
+  - Id: 91026
+    AegisName: Tao_Guard1A
+    Name: 改聖塔奧群卡卡片
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Armor: true
+      Shadow_Armor: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus bDefEle,Ele_Holy;
+      bonus bNoWeaponDamage,3;
+      bonus bMaxHPrate,60;
+      bonus2 bAddRace,RC_All,-7;
+      bonus2 bMagicAddRace,RC_All,-7;
+      bonus bStr,-15;
+      bonus bAgi,-15;
+      bonus bInt,-15;
+      bonus bDex,-15;
+      bonus bLuk,-15;
+  - Id: 91027
+    AegisName: Tao_Gud1A
+    Name: 改暗塔奧群卡卡片
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Armor: true
+      Shadow_Armor: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus bDefEle,Ele_Dark;
+      bonus bNoWeaponDamage,3;
+      bonus bMaxHPrate,60;
+      bonus2 bAddRace,RC_All,-7;
+      bonus2 bMagicAddRace,RC_All,-7;
+      bonus bStr,-15;
+      bonus bAgi,-15;
+      bonus bInt,-15;
+      bonus bDex,-15;
+      bonus bLuk,-15;
+  - Id: 91028
+    AegisName: Tao_Gud1A
+    Name: 改念塔奧群卡卡片
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Armor: true
+      Shadow_Armor: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus bDefEle,Ele_Ghost;
+      bonus bNoWeaponDamage,3;
+      bonus bMaxHPrate,60;
+      bonus2 bAddRace,RC_All,-7;
+      bonus2 bMagicAddRace,RC_All,-7;
+      bonus bStr,-15;
+      bonus bAgi,-15;
+      bonus bInt,-15;
+      bonus bDex,-15;
+      bonus bLuk,-15;
+  - Id: 4302
+    AegisName: Tao_Gunka_Card
+    Name: 塔奧群卡卡片
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Armor: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
       bonus bMaxHPrate,35;
-      bonus bStr,-10;
-      bonus bAgi,-10;
-      bonus bInt,-10;
-      bonus bDex,-10;
+      bonus2 bAddRace,RC_All,-12;
+      bonus2 bAddRace,RC_All,-12;
+      bonus bStr,-25;
+      bonus bAgi,-25;
+      bonus bInt,-25;
+      bonus bDex,-25;
+      bonus bLuk,-25;
   - Id: 4303
     AegisName: Whisper_Boss_Card
     Name: 巨大白幽靈卡片
@@ -7297,7 +7917,20 @@ Body:
       BuyingStore: true
       DropEffect: CLIENT
     Script: |
-      bonus2 bAddClass,Class_All,35;
+      bonus2 bAddClass,Class_All,30;
+  - Id: 91004
+    AegisName: Turtle_General_Card
+    Name: 烏龜將軍PRO卡片
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus2 bAddClass,Class_All,45;
   - Id: 4306
     AegisName: Toad_Card
     Name: 蛙王卡片
@@ -7495,6 +8128,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -7993,6 +8627,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -8001,6 +8636,24 @@ Body:
       bonus bMaxSPrate,10;
       bonus2 bHPRegenRate,50,10000;
       bonus2 bSPRegenRate,10,10000;
+  - Id: 91014
+    AegisName: B_Ygnm_Card
+    Name: 闇●劍士賽尼亞PRO卡片
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Shoes: true
+      Shadow_Shoes: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus bMaxHPrate,23;
+      bonus bMaxSPrate,23;
+      bonus bFlee,-25;
+      bonus bFlee2,-10;
+      bonus bCritical,-8;
   - Id: 4353
     AegisName: Removal_Card
     Name: 消防魔卡片
@@ -8309,6 +8962,24 @@ Body:
       bonus bVit,-15;              
       bonus bLuk,-15;
       bonus bAgi,-15;
+  - Id: 91001
+    AegisName: Bacsojin_Card
+    Name: 白素貞PRO卡片
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Head_Low: true
+      Head_Mid: true
+      Head_Top: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus bAllStats,25;
+      bonus bVit,-25;              
+      bonus bLuk,-25;
+      bonus bAgi,-25;
   - Id: 4373
     AegisName: Chung_E_Card
     Name: 小青卡片
@@ -8340,6 +9011,23 @@ Body:
     Script: |
       bonus bDex,2;
       bonus2 bIgnoreMdefClassRate,Class_Boss,30;
+  - Id: 91000
+    AegisName: Apocalips_H_Card
+    Name: 貝思波PRO卡片
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Head_Low: true
+      Head_Mid: true
+      Head_Top: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus bWis,2;
+      bonus bSpl,2;
+      bonus2 bIgnoreMdefClassRate,Class_Boss,50;
   - Id: 4375
     AegisName: Orc_Baby_Card
     Name: 獸人嬰兒卡片
@@ -8363,6 +9051,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -8394,6 +9083,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -8453,6 +9143,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -8676,6 +9367,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -8721,8 +9413,25 @@ Body:
     Script: |
       bonus bDefRatioAtkClass,Class_All;
       bonus bSPDrainValue,-1;
-      bonus bDef,-30;
-      bonus bFlee,-30;
+      bonus bDef,-60;
+      bonus bFlee,-60;
+  - Id: 91006
+    AegisName: Thatos_Card
+    Name: 魔劍士PRO卡片
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus bDefRatioAtkClass,Class_All;
+      bonus bDef,-50;
+      bonus bFlee,-50;
+      bonus2 bAddSize,Size_All,8;
+      bonus bMaxHPrate,-7;
   - Id: 4400
     AegisName: Aliza_Card
     Name: 愛麗莎卡片
@@ -8786,7 +9495,24 @@ Body:
       BuyingStore: true
       DropEffect: CLIENT
     Script: |
-      bonus bDelayRate,-50;
+      bonus bFixedCast,-300;
+      bonus bDelayRate,-40;
+  - Id: 91011
+    AegisName: Kiel_Card
+    Name: 齊爾-D-01 PRO卡片
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Head_Low: true
+      Head_Mid: true
+      Head_Top: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus bFixedCast,-1000;
+      bonus bDelayRate,-40;
   - Id: 4404
     AegisName: Skogul_Card
     Name: 皮影魔卡片
@@ -8843,8 +9569,24 @@ Body:
       DropEffect: CLIENT
     Script: |
       bonus bUnbreakableWeapon;
-      bonus2 bAddClass,Class_All,10;
-      bonus3 bAutoSpell,"SA_DISPELL",1,50;
+      bonus2 bAddClass,Class_All,20;
+      bonus3 bAutoSpell,"SA_DISPELL",1,100;
+  - Id: 91019
+    AegisName: Rands_Card
+    Name: 巴基力蘭特克力斯PRO卡片
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Right_Hand: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus bUnbreakableWeapon;
+      bonus2 bAddClass,Class_All,28;
+      bonus bCritAtkRate,7;
+      bonus3 bAutoSpell,"SA_DISPELL",5,2000;
   - Id: 4408
     AegisName: Gloom_Under_Night_Card
     Name: 幽暗夢魘卡片
@@ -8858,10 +9600,57 @@ Body:
       BuyingStore: true
       DropEffect: CLIENT
     Script: |
-      bonus2 bAddEle,Ele_Holy,40;
-      bonus2 bAddEle,Ele_Dark,40;
-      bonus2 bAddRace,RC_Angel,40;
-      bonus2 bAddRace,RC_Demon,40;
+      bonus bMaxHP,-10;
+      bonus bUnbreakableArmor;
+      bonus2 bAddClass,Class_All,10;
+      bonus2 bAddEle,Ele_Holy,20;
+      bonus2 bAddEle,Ele_Dark,20;
+      bonus2 bAddRace,RC_Angel,20;
+  - Id: 91018
+    AegisName: Gler_Night_Card
+    Name: 幽暗夢魘PRO卡片
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Armor: true
+      Shadow_Armor: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus bMaxHPrate,-10;
+      bonus bUnbreakableArmor;
+      bonus2 bAddClass,Class_All,14;
+      bonus bAtkRate,10;
+      bonus2 bAddEle,Ele_Holy,30;
+      bonus2 bAddEle,Ele_Dark,30;
+      bonus2 bAddRace,RC_Angel,30;
+  - Id: 91024
+    AegisName: Gler_Night_Card
+    Name: 滅絕幽暗卡
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Armor: true
+      Shadow_Armor: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus bMaxHPrate,-10;
+      bonus bUnbreakableArmor;
+      bonus bAllTraitStats,2;
+      bonus2 bAddClass,Class_All,20;
+      bonus2 bMagicAtkEle,Ele_All,20;
+      bonus bAtkRate,15;
+      bonus bMatkRate,15;
+      bonus2 bAddSize,Size_All,30;
+      bonus2 bMagicAddSize,Size_All,30;
+      bonus bFlee,-10;
+      bonus bDef,-10;
+      bonus bMdef,-10;
   - Id: 4409
     AegisName: Agav_Card
     Name: 阿卡布卡片
@@ -8996,6 +9785,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -9201,10 +9991,32 @@ Body:
       BuyingStore: true
       DropEffect: CLIENT
     Script: |
-      bonus bCritical,12;
+      bonus bCritical,5;
       bonus bAtk,60;
-      bonus bShortAtkRate,13;
+      bonus bShortAtkRate,10;
       bonus bLongAtkRate,8;
+      bonus bMaxHP,-6000;
+  - Id: 91007
+    AegisName: Ifrit_Card
+    Name: 伊夫利特PRO卡片
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Both_Accessory: true
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus bCritical,8;
+      bonus bAtk,150;
+      bonus bShortAtkRate,13;
+      bonus bLongAtkRate,12;
+      bonus bCritAtkRate,7;
+      bonus bMaxHP,-4000;
+      bonus bPow,3;
   - Id: 4431
     AegisName: Kasa_Card
     Name: 火鳥卡片
@@ -9277,6 +10089,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -9391,15 +10204,59 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
     Script: |
-      bonus bMatkRate,15;
-      bonus bMaxSPrate,-20;
+      bonus bMatkRate,25;
+      bonus bMaxSPrate,-5;
       bonus2 bMagicAddRace,RC_Angel,20;
       bonus2 bMagicAddRace,RC_DemiHuman,20;
       bonus2 bMagicAddRace,RC_Player_Human,20;
+      bonus2 bMagicAtkEle,Ele_All,10;
+  - Id: 91005
+    AegisName: op_Card
+    Name: 墮落大神官 悉潘PRO卡片
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Shoes: true
+      Shadow_Shoes: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus bMatkRate,30;
+      bonus bMaxSPrate,5;
+      bonus2 bMagicAddRace,RC_Angel,30;
+      bonus2 bMagicAddRace,RC_DemiHuman,30;
+      bonus2 bMagicAddRace,RC_Player_Human,30;
+      bonus2 bMagicAtkEle,Ele_All,15;
+  - Id: 91029
+    AegisName: Fallop_Card
+    Name: 黑暗大神官卡片
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Shoes: true
+      Shadow_Shoes: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus bAtkRate,35;
+      bonus bMatkRate,35;
+      bonus bAllTraitStats,2;
+      bonus bStr,70;
+      bonus bDex,100;
+      bonus bCritical,10;
+      bonus bMaxHPrate,10;
+      bonus bCritAtkRate,15;
+      bonus2 bMagicAtkEle,Ele_All,25;
+      bonus bSMatkRate,25;
   - Id: 4442
     AegisName: Tatacho_Card
     Name: 塔塔丘卡片
@@ -9792,6 +10649,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -9949,6 +10807,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -10001,6 +10860,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -10098,6 +10958,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -10126,6 +10987,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -10200,6 +11062,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -10243,6 +11106,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -10344,6 +11208,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -10775,6 +11640,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -10877,6 +11743,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -11180,6 +12047,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -11448,6 +12316,22 @@ Body:
       bonus2 bMagicAtkEle,Ele_Wind,60;
       bonus2 bMagicAtkEle,Ele_Ghost,60;
       bonus2 bSubEle,Ele_All,-30;
+  - Id: 91016
+    AegisName: Gia_Card
+    Name: 喬伊亞PRO卡片
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Garment: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus2 bMagicAtkEle,Ele_Wind,100;
+      bonus2 bMagicAtkEle,Ele_Ghost,100;
+      bonus2 bSubEle,Ele_All,-15;
+      bonus bMatk,150;
   - Id: 4577
     AegisName: Elvira_Card
     Name: 埃維亞卡片
@@ -11525,6 +12409,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -12061,6 +12946,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -12246,6 +13132,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -12265,6 +13152,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -12284,6 +13172,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -12303,6 +13192,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -12351,6 +13241,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -12413,10 +13304,36 @@ Body:
       BuyingStore: true
       DropEffect: CLIENT
     Script: |
-      bonus2 bMagicAddRace,RC_Demon,50;
-      bonus2 bMagicAddRace,RC_Undead,50;
-      bonus2 bMagicAddEle,Ele_Dark,50;
-      bonus2 bMagicAddEle,Ele_Undead,50;
+      bonus bUnbreakableArmor;
+      bonus2 bMagicAddRace,RC_Undead,30;
+      bonus2 bMagicAddEle,Ele_Dark,30;
+      bonus2 bMagicAddEle,Ele_Undead,30;
+      bonus2 bMagicAtkEle,Ele_All,10;
+      bonus bMaxHPrate,-8;
+      bonus bDef,-10;
+      bonus bMdef,-10;
+  - Id: 91017
+    AegisName: Gravon_Ra_Card
+    Name: 滅絕古埃及王PRO卡片
+    Type: Card
+    Buy: 20
+    Weight: 10
+    Locations:
+      Armor: true
+      Shadow_Armor: true
+    Flags:
+      BuyingStore: true
+      DropEffect: CLIENT
+    Script: |
+      bonus bUnbreakableArmor;
+      bonus2 bMagicAddRace,RC_Undead,35;
+      bonus2 bMagicAddEle,Ele_Dark,35;
+      bonus2 bMagicAddEle,Ele_Undead,35;
+      bonus2 bMagicAtkEle,Ele_All,14;
+      bonus bMatkRate,8;
+      bonus bMaxHPrate,-8;
+      bonus bDef,-10;
+      bonus bMdef,-10;
   - Id: 4653
     AegisName: Grave_Arclouse_Card
     Name: 滅絕卷甲蟲卡片
@@ -12470,6 +13387,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -12498,6 +13416,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -12580,6 +13499,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -12632,6 +13552,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -12870,7 +13791,8 @@ Body:
       DropEffect: CLIENT
     Script: |
       if (eaclass()&EAJL_THIRD && BaseJob == Job_Crusader) {
-         bonus bDef,350;
+         bonus bDef,150;
+         bonus bMdef,150;
          bonus2 bAddRace,RC_All,10;
       }
       if (BaseLevel>174)
@@ -19321,11 +20243,13 @@ Body:
     AegisName: Unbreakable_Weap
     Name: 受祝福的武器礦石
     Type: Etc
+    Buy: 50000
     Weight: 10
   - Id: 6439
     AegisName: Unbreakable_Def
     Name: 受祝福的防具礦石
     Type: Etc
+    Buy: 50000
     Weight: 10
   - Id: 6440
     AegisName: General_Lubricant
@@ -19686,15 +20610,6 @@ Body:
     Name: 附魔推薦書
     Type: Etc
     Weight: 10
-    Trade:
-      Override: 100
-      NoDrop: true
-      NoTrade: true
-      NoSell: true
-      NoCart: true
-      NoGuildStorage: true
-      NoMail: true
-      NoAuction: true
   - Id: 6485
     AegisName: BlueCard_2
     Name: (2)字卡片
@@ -22627,13 +23542,6 @@ Body:
     Buy: 10
     Trade:
       Override: 100
-      NoDrop: true
-      NoTrade: true
-      NoCart: true
-      NoStorage: true
-      NoGuildStorage: true
-      NoMail: true
-      NoAuction: true
   - Id: 6864
     AegisName: Safe_to_19_Weapon_Certificate
     Name: 武器精煉值+19券
@@ -22764,12 +23672,6 @@ Body:
     Trade:
       Override: 100
       NoDrop: true
-      NoTrade: true
-      NoSell: true
-      NoCart: true
-      NoGuildStorage: true
-      NoMail: true
-      NoAuction: true
   - Id: 6874
     AegisName: Safe_to_17_Weapon_Certificate
     Name: 武器精煉值+17券
@@ -22778,12 +23680,6 @@ Body:
     Trade:
       Override: 100
       NoDrop: true
-      NoTrade: true
-      NoSell: true
-      NoCart: true
-      NoGuildStorage: true
-      NoMail: true
-      NoAuction: true
   - Id: 6875
     AegisName: Safe_to_18_Weapon_Certificate
     Name: 武器精煉值+18券
@@ -22792,12 +23688,6 @@ Body:
     Trade:
       Override: 100
       NoDrop: true
-      NoTrade: true
-      NoSell: true
-      NoCart: true
-      NoGuildStorage: true
-      NoMail: true
-      NoAuction: true
   - Id: 6876
     AegisName: Safe_to_13_Armor_Certificate
     Name: 防具精煉值+13券
@@ -22806,12 +23696,6 @@ Body:
     Trade:
       Override: 100
       NoDrop: true
-      NoTrade: true
-      NoSell: true
-      NoCart: true
-      NoGuildStorage: true
-      NoMail: true
-      NoAuction: true
   - Id: 6877
     AegisName: Safe_to_14_Armor_Certificate
     Name: 防具精煉值+14券
@@ -22820,12 +23704,6 @@ Body:
     Trade:
       Override: 100
       NoDrop: true
-      NoTrade: true
-      NoSell: true
-      NoCart: true
-      NoGuildStorage: true
-      NoMail: true
-      NoAuction: true
   - Id: 6878
     AegisName: Safe_to_15_Armor_Certificate
     Name: 防具精煉值+15券
@@ -22834,12 +23712,6 @@ Body:
     Trade:
       Override: 100
       NoDrop: true
-      NoTrade: true
-      NoSell: true
-      NoCart: true
-      NoGuildStorage: true
-      NoMail: true
-      NoAuction: true
   - Id: 6879
     AegisName: Safe_to_16_Armor_Certificate
     Name: 防具精煉值+16券
@@ -22848,12 +23720,6 @@ Body:
     Trade:
       Override: 100
       NoDrop: true
-      NoTrade: true
-      NoSell: true
-      NoCart: true
-      NoGuildStorage: true
-      NoMail: true
-      NoAuction: true
   - Id: 6880
     AegisName: Safe_to_17_Armor_Certificate
     Name: 防具精煉值+17券
@@ -22862,12 +23728,6 @@ Body:
     Trade:
       Override: 100
       NoDrop: true
-      NoTrade: true
-      NoSell: true
-      NoCart: true
-      NoGuildStorage: true
-      NoMail: true
-      NoAuction: true
   - Id: 6881
     AegisName: Safe_to_18_Armor_Certificate
     Name: 防具精煉值+18券
@@ -22876,12 +23736,6 @@ Body:
     Trade:
       Override: 100
       NoDrop: true
-      NoTrade: true
-      NoSell: true
-      NoCart: true
-      NoGuildStorage: true
-      NoMail: true
-      NoAuction: true
   - Id: 6882
     AegisName: Advanced_Bait
     Name: 高級魚餌
@@ -37851,6 +38705,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -37878,6 +38733,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -37941,6 +38797,8 @@ Body:
     Weight: 10
     Locations:
       Both_Accessory: true
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -37953,6 +38811,8 @@ Body:
     Weight: 10
     Locations:
       Both_Accessory: true
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -37978,6 +38838,8 @@ Body:
     Weight: 10
     Locations:
       Both_Accessory: true
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -37998,6 +38860,8 @@ Body:
     Weight: 10
     Locations:
       Both_Accessory: true
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -38011,6 +38875,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -38064,6 +38929,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -38076,6 +38942,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -38093,6 +38960,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -38106,6 +38974,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -38179,6 +39048,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -38206,6 +39076,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -38244,6 +39115,7 @@ Body:
     Weight: 10
     Locations:
       Armor: true
+      Shadow_Armor: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -38287,7 +39159,7 @@ Body:
     Flags:
       DropEffect: CLIENT
     Script: |
-      bonus2 bSubDefEle,Ele_Neutral,10;
+      bonus2 bSubDefEle,Ele_Neutral,5;
       bonus bMaxHP,500;
   - Id: 27110
     AegisName: Furious Gazeti Card
@@ -38309,6 +39181,8 @@ Body:
     Weight: 10
     Locations:
       Both_Accessory: true
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -38384,6 +39258,8 @@ Body:
     Weight: 10
     Locations:
       Both_Accessory: true
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -38415,6 +39291,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -38452,6 +39329,8 @@ Body:
     Weight: 10
     Locations:
       Both_Accessory: true
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -38464,6 +39343,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -38567,6 +39447,8 @@ Body:
     Weight: 10
     Locations:
       Both_Accessory: true
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -38579,6 +39461,8 @@ Body:
     Weight: 10
     Locations:
       Both_Accessory: true
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -38607,6 +39491,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -38637,6 +39522,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -38646,7 +39532,15 @@ Body:
          bonus bStr,40;
          bonus bVit,10;
       }
-      if (eaclass()&EAJL_THIRD && BaseJob == Job_Archer) {
+      if (eaclass()&EAJL_THIRD && BaseJob == Job_Knight) {
+         bonus bStr,40;
+         bonus bVit,10;
+      }
+      if (eaclass()&EAJL_THIRD && BaseJob == Job_Crusader) {
+         bonus bStr,40;
+         bonus bVit,10;
+      }
+      if (eaclass()&EAJL_THIRD && BaseJob == Job_Hunter) {
          bonus bLongAtkRate,10;
          bonus bDex,30;
       }
@@ -38700,6 +39594,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -38712,6 +39607,8 @@ Body:
     Weight: 10
     Locations:
       Both_Accessory: true
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -38740,6 +39637,8 @@ Body:
     Weight: 10
     Locations:
       Both_Accessory: true
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -38754,6 +39653,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -38769,6 +39669,8 @@ Body:
     Weight: 10
     Locations:
       Both_Accessory: true
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -38783,6 +39685,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -38995,6 +39898,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -39452,6 +40356,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -39468,6 +40373,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -39482,6 +40388,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -39495,6 +40402,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -39508,6 +40416,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -39522,6 +40431,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -39535,6 +40445,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -39549,6 +40460,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -39562,6 +40474,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -39578,6 +40491,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -39591,6 +40505,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -39605,6 +40520,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -39633,6 +40549,8 @@ Body:
     Weight: 10
     Locations:
       Both_Accessory: true
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -39646,6 +40564,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -39705,6 +40624,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -39908,6 +40828,8 @@ Body:
     Weight: 10
     Locations:
       Both_Accessory: true
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -39920,6 +40842,8 @@ Body:
     Weight: 10
     Locations:
       Both_Accessory: true
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -40048,6 +40972,8 @@ Body:
     Weight: 10
     Locations:
       Both_Accessory: true
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -40119,6 +41045,8 @@ Body:
     Weight: 10
     Locations:
       Both_Accessory: true
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -40131,6 +41059,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -40176,6 +41105,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -40194,6 +41124,8 @@ Body:
     Weight: 10
     Locations:
       Both_Accessory: true
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -40206,6 +41138,8 @@ Body:
     Weight: 10
     Locations:
       Both_Accessory: true
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -40354,6 +41288,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -40393,6 +41328,8 @@ Body:
     Weight: 10
     Locations:
       Both_Accessory: true
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -40419,6 +41356,8 @@ Body:
     Weight: 10
     Locations:
       Both_Accessory: true
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -40550,6 +41489,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -40713,6 +41653,20 @@ Body:
       bonus2 bMagicAtkEle,Ele_Neutral,60;
       bonus2 bMagicAtkEle,Ele_Holy,60;
       bonus2 bSubEle,Ele_All,-30;
+  - Id: 91015
+    AegisName: C_mel_Card
+    Name: 希梅爾茲的幻影PRO卡片
+    Type: Card
+    Weight: 10
+    Locations:
+      Garment: true
+    Flags:
+      DropEffect: CLIENT
+    Script: |
+      bonus2 bMagicAtkEle,Ele_Neutral,100;
+      bonus2 bMagicAtkEle,Ele_Holy,100;
+      bonus2 bSubEle,Ele_All,-15;
+      bonus bMatk,150;
   - Id: 27382
     AegisName: C_CorruptionRoot_Card
     Name: 墮落根莖的幻影卡片
@@ -40732,6 +41686,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -40794,6 +41749,8 @@ Body:
     Weight: 10
     Locations:
       Both_Accessory: true
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -41923,6 +42880,7 @@ Body:
     Buy: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Script: |
       bonus bStr,1;
   - Id: 29149
@@ -41932,6 +42890,7 @@ Body:
     Buy: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Script: |
       bonus bInt,1;
   - Id: 29150
@@ -41941,6 +42900,7 @@ Body:
     Buy: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Script: |
       bonus bAgi,1;
   - Id: 29151
@@ -41950,6 +42910,7 @@ Body:
     Buy: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Script: |
       bonus bVit,1;
   - Id: 29152
@@ -41959,6 +42920,7 @@ Body:
     Buy: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Script: |
       bonus bDex,1;
   - Id: 29153
@@ -41968,6 +42930,7 @@ Body:
     Buy: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Script: |
       bonus bLuk,1;
   - Id: 29154
@@ -42193,6 +43156,7 @@ Body:
     Buy: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -43899,6 +44863,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -43915,6 +44880,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -43931,6 +44897,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -43947,6 +44914,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -44041,6 +45009,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -44069,6 +45038,8 @@ Body:
     Weight: 10
     Locations:
       Both_Accessory: true
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -44082,6 +45053,8 @@ Body:
     Weight: 10
     Locations:
       Both_Accessory: true
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -44108,6 +45081,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       DropEffect: CLIENT
     Script: |
@@ -44162,6 +45136,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -44212,6 +45187,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -44236,6 +45212,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -44351,6 +45328,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -44494,6 +45472,8 @@ Body:
     Weight: 10
     Locations:
       Both_Accessory: true
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -44509,6 +45489,8 @@ Body:
     Weight: 10
     Locations:
       Both_Accessory: true
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -44568,6 +45550,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -44598,6 +45581,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -44627,6 +45611,7 @@ Body:
     Weight: 10
     Locations:
       Shoes: true
+      Shadow_Shoes: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -44885,6 +45870,8 @@ Body:
     Weight: 10
     Locations:
       Both_Accessory: true
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -44900,6 +45887,8 @@ Body:
     Weight: 10
     Locations:
       Both_Accessory: true
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -44935,6 +45924,8 @@ Body:
     Weight: 10
     Locations:
       Both_Accessory: true
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT
@@ -44951,6 +45942,8 @@ Body:
     Weight: 10
     Locations:
       Both_Accessory: true
+      Shadow_Right_Accessory: true
+      Shadow_Left_Accessory: true
     Flags:
       BuyingStore: true
       DropEffect: CLIENT

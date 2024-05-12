@@ -23,10 +23,8 @@ case 2:
 		end;
 
 case 3:	
-		switch(select("^ff0000(1). ^0AA770¶Q»«¯ÅVIP^000000","^ff0000(2). ^0AA770´Lºa¯ÅVIP^000000","^ff0000(3). ^0AA770¦Ü´L¯ÅVIP^000000")){
-		case 1:		callfunc("membervip1");
-		case 2:		callfunc("membervip2");
-		case 3:		callfunc("membervip3");
+		switch(select("^0AA770¦Ü´L¯ÅVIP^000000")){
+		case 1:		callfunc("membervip3");
 		}
 
 case 4:	

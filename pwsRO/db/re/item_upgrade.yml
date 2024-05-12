@@ -1171,6 +1171,26 @@ Body:
   - Item: Shadow_9_Refine_Hammer
     NotSocketEnchantItem: false
     TargetItem:
+      - Item: S_UU_ShoesLV1
+      - Item: S_UU_ShoesLV2
+      - Item: S_UU_ShoesLV3
+      - Item: S_UU_ShoesLV4
+      - Item: S_UU_ShoesLV5
+      - Item: S_Power_PenLV1
+      - Item: S_Power_PenLV2
+      - Item: S_Power_PenLV3
+      - Item: S_Power_PenLV4
+      - Item: S_Power_PenLV5
+      - Item: S_PowerLV1
+      - Item: S_PowerLV2
+      - Item: S_PowerLV3
+      - Item: S_PowerLV4
+      - Item: S_PowerLV5
+      - Item: S_Crusader_ArmorLV1
+      - Item: S_Crusader_ArmorLV2
+      - Item: S_Crusader_ArmorLV3
+      - Item: S_Crusader_ArmorLV4
+      - Item: S_Crusader_ArmorLV5
       - Item: T1_Shadow_Armor
       - Item: T1_Shadow_Weapon
       - Item: T1_Shadow_Shield
@@ -1821,6 +1841,26 @@ Body:
   - Item: Shadow_10_Refine_Hammer
     NotSocketEnchantItem: false
     TargetItem:
+      - Item: S_UU_ShoesLV1
+      - Item: S_UU_ShoesLV2
+      - Item: S_UU_ShoesLV3
+      - Item: S_UU_ShoesLV4
+      - Item: S_UU_ShoesLV5
+      - Item: S_Power_PenLV1
+      - Item: S_Power_PenLV2
+      - Item: S_Power_PenLV3
+      - Item: S_Power_PenLV4
+      - Item: S_Power_PenLV5
+      - Item: S_PowerLV1
+      - Item: S_PowerLV2
+      - Item: S_PowerLV3
+      - Item: S_PowerLV4
+      - Item: S_PowerLV5
+      - Item: S_Crusader_ArmorLV1
+      - Item: S_Crusader_ArmorLV2
+      - Item: S_Crusader_ArmorLV3
+      - Item: S_Crusader_ArmorLV4
+      - Item: S_Crusader_ArmorLV5
       - Item: T1_Shadow_Armor
       - Item: T1_Shadow_Weapon
       - Item: T1_Shadow_Shield
@@ -2471,6 +2511,26 @@ Body:
   - Item: Shadow_11_Refine_Hammer
     NotSocketEnchantItem: false
     TargetItem:
+      - Item: S_UU_ShoesLV1
+      - Item: S_UU_ShoesLV2
+      - Item: S_UU_ShoesLV3
+      - Item: S_UU_ShoesLV4
+      - Item: S_UU_ShoesLV5
+      - Item: S_Power_PenLV1
+      - Item: S_Power_PenLV2
+      - Item: S_Power_PenLV3
+      - Item: S_Power_PenLV4
+      - Item: S_Power_PenLV5
+      - Item: S_PowerLV1
+      - Item: S_PowerLV2
+      - Item: S_PowerLV3
+      - Item: S_PowerLV4
+      - Item: S_PowerLV5
+      - Item: S_Crusader_ArmorLV1
+      - Item: S_Crusader_ArmorLV2
+      - Item: S_Crusader_ArmorLV3
+      - Item: S_Crusader_ArmorLV4
+      - Item: S_Crusader_ArmorLV5
       - Item: T1_Shadow_Armor
       - Item: T1_Shadow_Weapon
       - Item: T1_Shadow_Shield
@@ -3121,6 +3181,26 @@ Body:
   - Item: Shadow_12_Refine_Hammer
     NotSocketEnchantItem: false
     TargetItem:
+      - Item: S_UU_ShoesLV1
+      - Item: S_UU_ShoesLV2
+      - Item: S_UU_ShoesLV3
+      - Item: S_UU_ShoesLV4
+      - Item: S_UU_ShoesLV5
+      - Item: S_Power_PenLV1
+      - Item: S_Power_PenLV2
+      - Item: S_Power_PenLV3
+      - Item: S_Power_PenLV4
+      - Item: S_Power_PenLV5
+      - Item: S_PowerLV1
+      - Item: S_PowerLV2
+      - Item: S_PowerLV3
+      - Item: S_PowerLV4
+      - Item: S_PowerLV5
+      - Item: S_Crusader_ArmorLV1
+      - Item: S_Crusader_ArmorLV2
+      - Item: S_Crusader_ArmorLV3
+      - Item: S_Crusader_ArmorLV4
+      - Item: S_Crusader_ArmorLV5
       - Item: T1_Shadow_Armor
       - Item: T1_Shadow_Weapon
       - Item: T1_Shadow_Shield
@@ -3771,6 +3851,26 @@ Body:
   - Item: Shadow_13_Refine_Hammer
     NotSocketEnchantItem: false
     TargetItem:
+      - Item: S_UU_ShoesLV1
+      - Item: S_UU_ShoesLV2
+      - Item: S_UU_ShoesLV3
+      - Item: S_UU_ShoesLV4
+      - Item: S_UU_ShoesLV5
+      - Item: S_Power_PenLV1
+      - Item: S_Power_PenLV2
+      - Item: S_Power_PenLV3
+      - Item: S_Power_PenLV4
+      - Item: S_Power_PenLV5
+      - Item: S_PowerLV1
+      - Item: S_PowerLV2
+      - Item: S_PowerLV3
+      - Item: S_PowerLV4
+      - Item: S_PowerLV5
+      - Item: S_Crusader_ArmorLV1
+      - Item: S_Crusader_ArmorLV2
+      - Item: S_Crusader_ArmorLV3
+      - Item: S_Crusader_ArmorLV4
+      - Item: S_Crusader_ArmorLV5
       - Item: T1_Shadow_Armor
       - Item: T1_Shadow_Weapon
       - Item: T1_Shadow_Shield
@@ -4421,6 +4521,26 @@ Body:
   - Item: Shadow_14_Refine_Hammer
     NotSocketEnchantItem: false
     TargetItem:
+      - Item: S_UU_ShoesLV1
+      - Item: S_UU_ShoesLV2
+      - Item: S_UU_ShoesLV3
+      - Item: S_UU_ShoesLV4
+      - Item: S_UU_ShoesLV5
+      - Item: S_Power_PenLV1
+      - Item: S_Power_PenLV2
+      - Item: S_Power_PenLV3
+      - Item: S_Power_PenLV4
+      - Item: S_Power_PenLV5
+      - Item: S_PowerLV1
+      - Item: S_PowerLV2
+      - Item: S_PowerLV3
+      - Item: S_PowerLV4
+      - Item: S_PowerLV5
+      - Item: S_Crusader_ArmorLV1
+      - Item: S_Crusader_ArmorLV2
+      - Item: S_Crusader_ArmorLV3
+      - Item: S_Crusader_ArmorLV4
+      - Item: S_Crusader_ArmorLV5
       - Item: T1_Shadow_Armor
       - Item: T1_Shadow_Weapon
       - Item: T1_Shadow_Shield
@@ -5071,6 +5191,21 @@ Body:
   - Item: Shadow_15_Refine_Hammer
     NotSocketEnchantItem: false
     TargetItem:
+      - Item: S_UU_ShoesLV1
+      - Item: S_UU_ShoesLV2
+      - Item: S_UU_ShoesLV3
+      - Item: S_UU_ShoesLV4
+      - Item: S_UU_ShoesLV5
+      - Item: S_PowerLV1
+      - Item: S_PowerLV2
+      - Item: S_PowerLV3
+      - Item: S_PowerLV4
+      - Item: S_PowerLV5
+      - Item: S_Crusader_ArmorLV1
+      - Item: S_Crusader_ArmorLV2
+      - Item: S_Crusader_ArmorLV3
+      - Item: S_Crusader_ArmorLV4
+      - Item: S_Crusader_ArmorLV5
       - Item: T1_Shadow_Armor
       - Item: T1_Shadow_Weapon
       - Item: T1_Shadow_Shield
@@ -5721,6 +5856,26 @@ Body:
   - Item: Shadow_16_Refine_Hammer
     NotSocketEnchantItem: false
     TargetItem:
+      - Item: S_UU_ShoesLV1
+      - Item: S_UU_ShoesLV2
+      - Item: S_UU_ShoesLV3
+      - Item: S_UU_ShoesLV4
+      - Item: S_UU_ShoesLV5
+      - Item: S_Power_PenLV1
+      - Item: S_Power_PenLV2
+      - Item: S_Power_PenLV3
+      - Item: S_Power_PenLV4
+      - Item: S_Power_PenLV5
+      - Item: S_PowerLV1
+      - Item: S_PowerLV2
+      - Item: S_PowerLV3
+      - Item: S_PowerLV4
+      - Item: S_PowerLV5
+      - Item: S_Crusader_ArmorLV1
+      - Item: S_Crusader_ArmorLV2
+      - Item: S_Crusader_ArmorLV3
+      - Item: S_Crusader_ArmorLV4
+      - Item: S_Crusader_ArmorLV5
       - Item: T1_Shadow_Armor
       - Item: T1_Shadow_Weapon
       - Item: T1_Shadow_Shield
@@ -6371,6 +6526,26 @@ Body:
   - Item: Shadow_17_Refine_Hammer
     NotSocketEnchantItem: false
     TargetItem:
+      - Item: S_UU_ShoesLV1
+      - Item: S_UU_ShoesLV2
+      - Item: S_UU_ShoesLV3
+      - Item: S_UU_ShoesLV4
+      - Item: S_UU_ShoesLV5
+      - Item: S_Power_PenLV1
+      - Item: S_Power_PenLV2
+      - Item: S_Power_PenLV3
+      - Item: S_Power_PenLV4
+      - Item: S_Power_PenLV5
+      - Item: S_PowerLV1
+      - Item: S_PowerLV2
+      - Item: S_PowerLV3
+      - Item: S_PowerLV4
+      - Item: S_PowerLV5
+      - Item: S_Crusader_ArmorLV1
+      - Item: S_Crusader_ArmorLV2
+      - Item: S_Crusader_ArmorLV3
+      - Item: S_Crusader_ArmorLV4
+      - Item: S_Crusader_ArmorLV5
       - Item: T1_Shadow_Armor
       - Item: T1_Shadow_Weapon
       - Item: T1_Shadow_Shield
@@ -7021,6 +7196,26 @@ Body:
   - Item: Shadow_18_Refine_Hammer
     NotSocketEnchantItem: false
     TargetItem:
+      - Item: S_UU_ShoesLV1
+      - Item: S_UU_ShoesLV2
+      - Item: S_UU_ShoesLV3
+      - Item: S_UU_ShoesLV4
+      - Item: S_UU_ShoesLV5
+      - Item: S_Power_PenLV1
+      - Item: S_Power_PenLV2
+      - Item: S_Power_PenLV3
+      - Item: S_Power_PenLV4
+      - Item: S_Power_PenLV5
+      - Item: S_PowerLV1
+      - Item: S_PowerLV2
+      - Item: S_PowerLV3
+      - Item: S_PowerLV4
+      - Item: S_PowerLV5
+      - Item: S_Crusader_ArmorLV1
+      - Item: S_Crusader_ArmorLV2
+      - Item: S_Crusader_ArmorLV3
+      - Item: S_Crusader_ArmorLV4
+      - Item: S_Crusader_ArmorLV5
       - Item: T1_Shadow_Armor
       - Item: T1_Shadow_Weapon
       - Item: T1_Shadow_Shield
@@ -7671,6 +7866,26 @@ Body:
   - Item: Shadow_19_Refine_Hammer
     NotSocketEnchantItem: false
     TargetItem:
+      - Item: S_UU_ShoesLV1
+      - Item: S_UU_ShoesLV2
+      - Item: S_UU_ShoesLV3
+      - Item: S_UU_ShoesLV4
+      - Item: S_UU_ShoesLV5
+      - Item: S_Power_PenLV1
+      - Item: S_Power_PenLV2
+      - Item: S_Power_PenLV3
+      - Item: S_Power_PenLV4
+      - Item: S_Power_PenLV5
+      - Item: S_PowerLV1
+      - Item: S_PowerLV2
+      - Item: S_PowerLV3
+      - Item: S_PowerLV4
+      - Item: S_PowerLV5
+      - Item: S_Crusader_ArmorLV1
+      - Item: S_Crusader_ArmorLV2
+      - Item: S_Crusader_ArmorLV3
+      - Item: S_Crusader_ArmorLV4
+      - Item: S_Crusader_ArmorLV5
       - Item: T1_Shadow_Armor
       - Item: T1_Shadow_Weapon
       - Item: T1_Shadow_Shield
@@ -8321,6 +8536,26 @@ Body:
   - Item: Shadow_20_Refine_Hammer
     NotSocketEnchantItem: false
     TargetItem:
+      - Item: S_UU_ShoesLV1
+      - Item: S_UU_ShoesLV2
+      - Item: S_UU_ShoesLV3
+      - Item: S_UU_ShoesLV4
+      - Item: S_UU_ShoesLV5
+      - Item: S_Power_PenLV1
+      - Item: S_Power_PenLV2
+      - Item: S_Power_PenLV3
+      - Item: S_Power_PenLV4
+      - Item: S_Power_PenLV5
+      - Item: S_PowerLV1
+      - Item: S_PowerLV2
+      - Item: S_PowerLV3
+      - Item: S_PowerLV4
+      - Item: S_PowerLV5
+      - Item: S_Crusader_ArmorLV1
+      - Item: S_Crusader_ArmorLV2
+      - Item: S_Crusader_ArmorLV3
+      - Item: S_Crusader_ArmorLV4
+      - Item: S_Crusader_ArmorLV5
       - Item: T1_Shadow_Armor
       - Item: T1_Shadow_Weapon
       - Item: T1_Shadow_Shield

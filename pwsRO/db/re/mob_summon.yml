@@ -129,6 +129,8 @@ Body:
         Rate: 500000
       - Mob: QUEEN_SCARABA
         Rate: 500000
+      - Mob: TIRFING
+        Rate: 200000
   - Group: BRANCH_OF_DEAD_TREE
     Default: SCORPION
     Summon:

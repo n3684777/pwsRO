@@ -47,6 +47,6 @@ MOBG_Bloody_Dead_Branch,1832,伊夫利特,500000
 MOBG_Bloody_Dead_Branch,1871,墮落大神官 悉潘,500000
 MOBG_Bloody_Dead_Branch,1873,貝雷傑,500000
 MOBG_Bloody_Dead_Branch,1885,青冠龍,500000
-MOBG_Bloody_Dead_Branch,2022,尼德霍格的影子,500000
+MOBG_Bloody_Dead_Branch,1204,獸牙怪,500000
 MOBG_Bloody_Dead_Branch,2068,波伊塔塔,500000
 MOBG_Bloody_Dead_Branch,2087,女王甲蟲,500000

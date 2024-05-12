@@ -53,11 +53,11 @@ ba_bath,0,0	monster	煮熟的食人魚		20646,30
 ba_bath,0,0	monster	壞掉的租借神社A		20633,30
 ba_bath,0,0	monster	壞掉的租借神社B		20634,30
 //
-ba_lost,0,0	monster	紅色的皮塔亞		20649,30
-ba_lost,0,0	monster	黃色的皮塔亞		20650,30
-ba_lost,0,0	monster	藍色的皮塔亞		20651,30
-ba_lost,0,0	monster	紫色的皮塔亞		20652,30
-ba_lost,0,0	monster	綠色的皮塔亞		20653,30
+ba_lost,0,0	monster	紅色的皮塔亞		20660,30
+ba_lost,0,0	monster	黃色的皮塔亞		20661,30
+ba_lost,0,0	monster	藍色的皮塔亞		20662,30
+ba_lost,0,0	monster	紫色的皮塔亞		20663,30
+ba_lost,0,0	monster	綠色的皮塔亞		20664,30
 //
 ba_lib,0,0	monster	邪心獵人小兵		20680,30
 ba_lib,0,0	monster	書蟲			20683,30

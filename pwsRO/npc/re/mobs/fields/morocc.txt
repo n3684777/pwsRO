@@ -26,7 +26,22 @@ moc_fild01,0,0	monster	Peco Peco	1019,93,5000
 moc_fild01,0,0	monster	Muka	1055,202,5000
 moc_fild01,0,0	monster	Peco Peco Egg	1047,31,5000
 moc_fild01,0,0	monster	Pet Child	3621,20,1000
-moc_fild01,194,51,10,10	monster	Yellow Plant	1081,10,900000,450000
+moc_fild01,0,0	monster	邪心獵人小兵	20680,20,1000
+moc_fild01,0,0	monster	Pet Child	20574,20,1000
+moc_fild01,0,0	monster	獸牙怪	1204,3,3600000
+moc_fild01,0,0	monster	V_B_TRENTINI	3246,1,3000
+moc_fild01,0,0	monster	V_B_ALPHOCCIO	3245,1,3000
+moc_fild01,0,0	monster	V_B_GERTIE	3244,1,3000
+moc_fild01,0,0	monster	Sura Chen	3243,1,3000
+moc_fild01,0,0	monster	V_B_CELIA	3242,1,3000
+moc_fild01,0,0	monster	V_B_FLAMEL	3241,1,3000
+moc_fild01,0,0	monster	V_B_RANDEL	3240,1,3000
+moc_fild01,0,0	monster	V_B_EREMES	3220,1,3000
+moc_fild01,0,0	monster	V_B_MAGALETA	3221,1,3000
+moc_fild01,0,0	monster	V_B_SHECIL	3222,1,3000
+moc_fild01,0,0	monster	V_B_HARWORD	3223,1,3000
+moc_fild01,0,0	monster	V_B_KATRINN	3224,1,3000
+moc_fild01,0,0	monster	V_B_SEYREN	3225,1,3000
 
 //==================================================
 // moc_fild02 - Sograt Desert 

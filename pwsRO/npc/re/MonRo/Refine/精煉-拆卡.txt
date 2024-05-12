@@ -13,8 +13,8 @@ lroom00,136,73,5	script	理查德::CardSeparation_mal	559,{
 		close;
 	}
 
-	setarray .@equip_name$[0],"左手","右手","鎧甲","靴子","披肩","頭具頭上","頭具頭中","頭具頭下","飾品","飾品";
-	setarray .@equip_slot[0],EQI_HAND_L,EQI_HAND_R,EQI_ARMOR,EQI_SHOES,EQI_GARMENT,EQI_HEAD_TOP,EQI_HEAD_MID,EQI_HEAD_LOW,EQI_ACC_L,EQI_ACC_R;
+	setarray .@equip_name$[0],"左手","右手","鎧甲","靴子","披肩","頭具頭上","頭具頭中","頭具頭下","飾品","飾品","影子左飾品","影子右飾品";
+	setarray .@equip_slot[0],EQI_HAND_L,EQI_HAND_R,EQI_ARMOR,EQI_SHOES,EQI_GARMENT,EQI_HEAD_TOP,EQI_HEAD_MID,EQI_HEAD_LOW,EQI_ACC_L,EQI_ACC_R,EQI_SHADOW_ACC_L,EQI_SHADOW_ACC_R;
 
 	mes "[^0044BB"+strnpcinfo(1)+"^000000]";
 	mes "無論使用哪種方式進行拆除作業";
@@ -126,7 +126,7 @@ lroom00,136,73,5	script	理查德::CardSeparation_mal	559,{
 			set Zeny, Zeny - 300000;
 			break;
 		case 3:
-			set .@success,60;
+			set .@success,100;
 			if (countitem(25239) == 0) {
 				mes "[^0044BB"+strnpcinfo(1)+"^000000]";
 				mes "你身上並沒有新式高級潤滑油呢!";

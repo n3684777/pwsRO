@@ -46,7 +46,7 @@ Start:
 			"^008000◆　　城市傳送　　◆^000000^7100DC [26]個城市^000000",city,
 			"^008000◆　　迷宮密穴　　◆^000000^7100DC [50]個迷宮密穴^000000",maze,
 			"^008000◆   官方打王區　 ◆^000000^7100DC [35]個官方BOSS^000000",MvpBoss,
-			"^008000◆　公會地下密穴　◆^000000^7100DC [10]個公會地下密穴^000000",gud,
+			"^008000◆　公會地下密穴　◆^000000^7100DC [8]個公會地下密穴^000000",gud,
 			"^008000◆  EP13以上地圖  ◆^000000^7100DC [14]個EP13以上新地圖^000000",ep13atm,
 			"^008000◆    幻影模式    ◆^000000^7100DC [ 8]個幻影系列新地圖^000000",Illusion,
 			"^008000◆    活動地圖    ◆^000000^7100DC 舉辦活動地圖^000000",Eventmap;
@@ -579,10 +579,10 @@ FunMap4:
 	goto AddorWarp;
 	
 FunMap5:
-	set .@WarpMap$,"prt_fild08";
+	set .@WarpMap$,"morocc";
 	set .@tempMFMap$,"測傷區";
-	set .@WarpMapX,170;
-	set .@WarpMapY,360;	
+	set .@WarpMapX,160;
+	set .@WarpMapY,93;	
 	goto AddorWarp;
 	
 FunMap6:
@@ -4013,7 +4013,7 @@ GU10:	set .@WarpMap$,"gld_dun04_2";
 	set .@WarpMapX,0;
 	set .@WarpMapY,0;
 	goto AddorWarp;
-
+	
 GU11:	set .@WarpMap$,"tege_dun01";
 	set .@tempMFMap$,"地下公會密穴-葛洛麗雅 teg_dun01";
 	set .@WarpMapX,0;
@@ -4026,9 +4026,9 @@ GU12:	set .@WarpMap$,"tege_dun02";
 	set .@WarpMapX,0;
 	set .@WarpMapY,0;
 	goto AddorWarp;	
-	
-	
-	
+
+
+
 //------------ EP13以上地圖選單 ------------//
 ep13atm:
 	mes "^33CC33【世界傳送員】^000000";

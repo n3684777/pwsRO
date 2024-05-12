@@ -136,3 +136,68 @@ dbz_tour	mapflag	restricted	7
 dbz_tour	mapflag	monster_noteleport
 
 //==========================================
+
+egg1	mapflag	nightenabled
+egg1	mapflag	nobranch
+egg1	mapflag	noicewall
+egg1	mapflag	nopenalty
+egg1	mapflag	pvp	off
+egg1	mapflag	reset
+egg1	mapflag	restricted	6
+egg1	mapflag	town
+egg1	mapflag	privateairship_source
+egg1	mapflag	privateairship_destination
+
+
+
+-	script	City_Speed_Script	-1,{
+	end;
+	
+OnPCLoginEvent:
+.@map$ = strcharinfo(3);
+//上線自動撿取卡片
+atcommand "@autoloottype +"+6;
+atcommand "@alootid +7606";
+atcommand "@alootid +7582";
+end;
+OnPCEnterMapExpress:
+
+	if (strcharinfo(3) == "egg1") 
+	{
+		percentheal 100,100;
+		sc_start SC_BLESSING,600000,10;
+		sc_start SC_INCREASEAGI,600000,10;
+		atcommand "@speed 50";
+	}
+	//剛登入並且在主城
+	if (@frommap_id == 0 && @tomap_name$ == "egg1")
+	{
+		percentheal 100,100;
+		sc_start SC_BLESSING,600000,10;
+		sc_start SC_INCREASEAGI,600000,10;
+		atcommand "@speed 50";
+		end;
+	}
+
+	//回到主城&&副本區
+	if (@tomap_name$ == "egg1")
+	{
+		percentheal 100,100;
+		sc_start SC_BLESSING,600000,10;
+		sc_start SC_INCREASEAGI,600000,10;
+		atcommand "@autoloot 1";
+		atcommand "@speed 50";
+		end;
+	}
+	
+	//如果不是預設加速地圖 - 強制刪除狀態
+//	if (@tomap_name$ != "egg1")
+//	{
+//		sc_end SC_CITY_SPEED;
+//		sc_end SC_BLESSING;
+//		sc_end SC_INCREASEAGI;
+//		end;
+//	}
+	
+end;
+}

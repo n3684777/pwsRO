@@ -3401,7 +3401,7 @@ Body:
       - Level: 9
         Time: 7040
       - Level: 10
-        Time: 4500
+        Time: 0
     AfterCastActDelay: 1000
     Duration1: 1000
     Duration2: 20000
@@ -5145,9 +5145,9 @@ Body:
     TargetType: Ground
     DamageFlags:
       NoDamage: true
-    Range: 2
+    Range: 5
     Hit: Single
-    HitCount: 1
+    HitCount: 3
     Element: Poison
     Duration1:
       - Level: 1
@@ -5505,8 +5505,8 @@ Body:
       IsQuest: true
     Range: 9
     Hit: Single
-    HitCount: 7
-    Element: Holy
+    HitCount: 8
+    Element: Weapon
     CopyFlags:
       Skill:
         Plagiarism: true
@@ -5701,7 +5701,7 @@ Body:
       IsNpc: true
     Range: -9
     Hit: Single
-    HitCount: 1
+    HitCount: 5
     Element: Weapon
   - Id: 171
     Name: NPC_COMBOATTACK
@@ -6195,7 +6195,7 @@ Body:
   - Id: 205
     Name: NPC_DEFENDER
     Description: 光之盾
-    MaxLevel: 1
+    MaxLevel: 10
     Type: Weapon
     TargetType: Self
     DamageFlags:
@@ -7207,13 +7207,13 @@ Body:
       Skill:
         Plagiarism: true
         Reproduce: true
-    CastDefenseReduction: 33
-    CastTime: 1000
-    AfterCastActDelay: 500
-    AfterCastWalkDelay: 1000
+    CastDefenseReduction: 10
+    CastTime: 10
+    AfterCastActDelay: 50
+    AfterCastWalkDelay: 10
     Duration1: 950
     Duration2: 20000
-    Cooldown: 00
+    Cooldown: 0
     FixedCastTime: 0
     Requires:
       SpCost:
@@ -10382,9 +10382,9 @@ Body:
     TargetType: Attack
     DamageFlags:
       Critical: true
-    Range: 4
+    Range: 7
     Hit: Single
-    HitCount: 1
+    HitCount: 3
     Element: Weapon
     CastCancel: true
     CastTime: 250
@@ -15922,7 +15922,7 @@ Body:
       TargetTrap: true
       ShowScale: true
     Hit: Single
-    HitCount: 1
+    HitCount: 3
     SplashArea: 7
     Knockback: 7
   - Id: 662
@@ -16124,7 +16124,7 @@ Body:
       ShowScale: true
     Range: 7
     Hit: Single
-    HitCount: 1
+    HitCount: 3
     Element: Dark
     Duration1:
       - Level: 1
@@ -17827,7 +17827,7 @@ Body:
       Splash: true
       Critical: true
     Hit: Single
-    HitCount: 1
+    HitCount: 5
     Element: Weapon
     SplashArea: 4
     CopyFlags:
@@ -17866,11 +17866,12 @@ Body:
     DamageFlags:
       Splash: true
       IgnoreFlee: true
+      Critical: true
     Flags:
       TargetTrap: true
     Range: 9
     Hit: Single
-    HitCount: 3
+    HitCount: 5
     Element: Fire
     SplashArea:
       - Level: 1
@@ -17908,7 +17909,7 @@ Body:
         Time: 2000
       - Level: 10
         Time: 2000
-    AfterCastActDelay: 2000
+    AfterCastActDelay: 1000
     Duration1: 10000
     FixedCastTime: 200
     Requires:
@@ -18568,7 +18569,7 @@ Body:
       AlterRangeRadius: true
     Range: 11
     Hit: Single
-    HitCount: 1
+    HitCount: 5
     CopyFlags:
       Skill:
         Reproduce: true
@@ -18704,7 +18705,7 @@ Body:
     AfterCastActDelay: 1500
     Duration1: 100
     Duration2: 42000
-    Cooldown: 5000
+    Cooldown: 12000
     FixedCastTime: 2000
     Requires:
       SpCost:
@@ -18777,7 +18778,7 @@ Body:
     TargetType: Attack
     Range: 11
     Hit: Single
-    HitCount: 1
+    HitCount: 5
     Element: Wind
     CopyFlags:
       Skill:
@@ -19821,7 +19822,7 @@ Body:
       - Level: 9
         Area: 5
       - Level: 10
-        Area: 5
+        Area: 7
     CopyFlags:
       Skill:
         Reproduce: true
@@ -20648,11 +20649,13 @@ Body:
     MaxLevel: 10
     Type: Weapon
     TargetType: Attack
+    DamageFlags:
+      Critical: true
     Flags:
       AlterRangeVulture: true
     Range: 10
     Hit: Multi_Hit
-    HitCount: 8
+    HitCount: 6
     Element: Weapon
     CopyFlags:
       Skill:
@@ -20661,14 +20664,14 @@ Body:
     CastTime: 2000
     AfterCastActDelay: 300
     Cooldown: 1000
-    FixedCastTime: 1000
+    FixedCastTime: 0
     Requires:
       SpCost: 40
       Weapon:
         Bow: true
       Ammo:
         Arrow: true
-      AmmoAmount: 3
+      AmmoAmount: 1
   - Id: 2237
     Name: RA_DETONATOR
     Description: 雷管
@@ -23353,11 +23356,12 @@ Body:
     TargetType: Self
     DamageFlags:
       Splash: true
+      Critical: true
     Range: 2
     Hit: Multi_Hit
-    HitCount: 3
+    HitCount: 6
     Element: Weapon
-    SplashArea: 3
+    SplashArea: 4
     CastCancel: true
     AfterCastActDelay: 2000
     Requires:
@@ -25148,6 +25152,7 @@ Body:
     TargetType: Ground
     DamageFlags:
       NoDamage: true
+      Critical: true
     Range: 9
     Hit: Single
     HitCount: 1
@@ -25198,7 +25203,7 @@ Body:
         Whip: true
       Ammo:
         Arrow: true
-      AmmoAmount: 10
+      AmmoAmount: 5
     Unit:
       Id: Severe_Rainstorm
       Range: 5
@@ -26050,7 +26055,7 @@ Body:
       Splash: true
     Range: 11
     Hit: Single
-    HitCount: 1
+    HitCount: 2
     Element: Weapon
     SplashArea: 5
     CopyFlags:
@@ -26573,8 +26578,8 @@ Body:
     CastCancel: true
     CastTime: 1000
     AfterCastActDelay: 1000
-    Duration1: 90000
-    Cooldown: 2000
+    Duration1: 360000
+    Cooldown: 1000
     Requires:
       SpCost:
         - Level: 1
@@ -27002,13 +27007,6 @@ Body:
           Amount: 150
         - Level: 3
           Amount: 200
-      ItemCost:
-        - Item: Boody_Red
-          Amount: 3
-        - Item: Boody_Red
-          Amount: 6
-        - Item: Flame_Heart
-          Amount: 1
   - Id: 2458
     Name: SO_SUMMON_AQUA
     Description: 召喚水精靈阿奎亞
@@ -27044,13 +27042,6 @@ Body:
           Amount: 150
         - Level: 3
           Amount: 200
-      ItemCost:
-        - Item: Crystal_Blue
-          Amount: 3
-        - Item: Crystal_Blue
-          Amount: 6
-        - Item: Mistic_Frozen
-          Amount: 1
   - Id: 2459
     Name: SO_SUMMON_VENTUS
     Description: 召喚風精靈梵圖斯
@@ -27086,13 +27077,6 @@ Body:
           Amount: 150
         - Level: 3
           Amount: 200
-      ItemCost:
-        - Item: Wind_Of_Verdure
-          Amount: 3
-        - Item: Wind_Of_Verdure
-          Amount: 6
-        - Item: Rough_Wind
-          Amount: 1
   - Id: 2460
     Name: SO_SUMMON_TERA
     Description: 召喚地精靈泰拉
@@ -27128,13 +27112,6 @@ Body:
           Amount: 150
         - Level: 3
           Amount: 200
-      ItemCost:
-        - Item: Yellow_Live
-          Amount: 3
-        - Item: Yellow_Live
-          Amount: 6
-        - Item: Great_Nature
-          Amount: 1
   - Id: 2461
     Name: SO_EL_ACTION
     Description: 精靈激發
@@ -27365,11 +27342,12 @@ Body:
     TargetType: Self
     DamageFlags:
       Splash: true
+      Critical: true
     Range: 1
     Hit: Single
-    HitCount: 5
+    HitCount: 3
     Element: Weapon
-    SplashArea: 2
+    SplashArea: 3
     Knockback: 2
     AfterCastActDelay: 1000
     Duration1: 5000
@@ -27386,6 +27364,7 @@ Body:
     DamageFlags:
       Splash: true
       IgnoreFlee: true
+      Critical: true
     Range:
       - Level: 1
         Size: 7
@@ -27398,7 +27377,7 @@ Body:
       - Level: 5
         Size: 11
     Hit: Multi_Hit
-    HitCount: 1
+    HitCount: 3
     Element: Weapon
     SplashArea:
       - Level: 1
@@ -27410,7 +27389,7 @@ Body:
       - Level: 4
         Area: 2
       - Level: 5
-        Area: 3
+        Area: 5
     CastCancel: true
     CastTime:
       - Level: 1
@@ -31508,7 +31487,7 @@ Body:
     HitCount: 1
     AfterCastActDelay: 500
     Duration1: 300000
-    Cooldown: 150000
+    Cooldown: 15000
     FixedCastTime: 0
     Requires:
       SpCost:
@@ -31596,11 +31575,12 @@ Body:
     DamageFlags:
       Splash: true
       IgnoreFlee: true
+      Critical: true
     Flags:
       TargetTrap: true
     Range: 9
     Hit: Single
-    HitCount: 1
+    HitCount: 3
     Element: Water
     SplashArea:
       - Level: 1

@@ -21,7 +21,7 @@ function	script	QP	{
 	mes "^888888尚未接取任務^000000";
 	close;
 }
-egg1,180,202,5	script	任務接待員#2	856,{
+//egg1,180,202,5	script	任務接待員#2	856,{
 	function quest;
 	if(Q){
 		mes "你已接下^0066CC"+$@QuestName$[GetQ]+"^000000任務";

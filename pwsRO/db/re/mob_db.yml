@@ -472,14 +472,6 @@ Body:
         Rate: 1500
       - Item: Sweet_Potato
         Rate: 700
-      - Item: Tree_Of_Archer_3
-        Rate: 3500
-      - Item: Tree_Of_Archer_2
-        Rate: 2000
-      - Item: Tree_Of_Archer_1
-        Rate: 1000
-      - Item: Wilow_Card
-        Rate: 1
         StealProtected: true
   - Id: 1011
     AegisName: CHONCHON
@@ -1172,20 +1164,6 @@ Body:
     DamageMotion: 576
     Ai: 01
     Drops:
-      - Item: Scale_Of_Snakes
-        Rate: 9000
-      - Item: Katana_
-        Rate: 15
-      - Item: Red_Herb
-        Rate: 900
-      - Item: Emveretarcon
-        Rate: 35
-      - Item: Posionous_Canine
-        Rate: 800
-      - Item: Shining_Scales
-        Rate: 1
-      - Item: Strawberry
-        Rate: 600
       - Item: Snake_Card
         Rate: 1
         StealProtected: true
@@ -1222,18 +1200,10 @@ Body:
     Drops:
       - Item: Danggie
         Rate: 9000
-      - Item: Munak_Turban
-        Rate: 2
-      - Item: Shoes_
-        Rate: 15
-      - Item: Amulet
-        Rate: 20
-      - Item: Ninja_Suit
-        Rate: 1
-      - Item: Adventure_Suit
-        Rate: 100
-      - Item: Girl's_Diary
-        Rate: 5
+      - Item: Elunium
+        Rate: 9000
+      - Item: Oridecon
+        Rate: 9000
       - Item: Munak_Card
         Rate: 1
         StealProtected: true
@@ -1726,8 +1696,8 @@ Body:
     AegisName: OSIRIS
     Name: Osiris
     JapaneseName: 俄塞里斯
-    Level: 230
-    Hp: 1175840
+    Level: 200
+    Hp: 1575840
     BaseExp: 122760
     JobExp: 100440
     MvpExp: 122760
@@ -1770,8 +1740,8 @@ Body:
     AegisName: BAPHOMET
     Name: Baphomet
     JapaneseName: 巴風特
-    Level: 230
-    Hp: 668000
+    Level: 200
+    Hp: 968000
     BaseExp: 218089
     JobExp: 167053
     MvpExp: 198262
@@ -2082,7 +2052,7 @@ Body:
     AegisName: DOPPELGANGER
     Name: Doppelganger
     JapaneseName: 死靈
-    Level: 230
+    Level: 200
     Hp: 800000
     BaseExp: 172260
     JobExp: 125280
@@ -2154,16 +2124,6 @@ Body:
         Rate: 250
       - Item: Shell
         Rate: 1500
-      - Item: Guard_
-        Rate: 2
-      - Item: Red_Herb
-        Rate: 400
-      - Item: Red_Herb
-        Rate: 400
-      - Item: Empty_Bottle
-        Rate: 1800
-      - Item: White_Platter
-        Rate: 10
       - Item: Pecopeco_Egg_Card
         Rate: 1
         StealProtected: true
@@ -2486,20 +2446,6 @@ Body:
     Modes:
       Detector: true
     Drops:
-      - Item: Emveretarcon
-        Rate: 40
-      - Item: Insect_Feeler
-        Rate: 5500
-      - Item: Worm_Peelings
-        Rate: 1500
-      - Item: Slayer_
-        Rate: 10
-      - Item: Yellow_Herb
-        Rate: 90
-      - Item: Bluish_Green_Jewel
-        Rate: 5
-      - Item: Katana
-        Rate: 50
       - Item: Thief_Bug_Male_Card
         Rate: 1
         StealProtected: true
@@ -2697,7 +2643,7 @@ Body:
     AegisName: MISTRESS
     Name: Mistress
     JapaneseName: 蜂后
-    Level: 230
+    Level: 200
     Hp: 578000
     BaseExp: 184140
     JobExp: 150660
@@ -3156,20 +3102,6 @@ Body:
     DamageMotion: 384
     Ai: 04
     Drops:
-      - Item: Mistic_Frozen
-        Rate: 10
-      - Item: Sharp_Scale
-        Rate: 9000
-      - Item: Oridecon_Stone
-        Rate: 33
-      - Item: Snowy_Horn
-        Rate: 2
-      - Item: Elunium_Stone
-        Rate: 50
-      - Item: Katana_
-        Rate: 25
-      - Item: Gill
-        Rate: 600
       - Item: Sword_Fish_Card
         Rate: 1
         StealProtected: true
@@ -3879,7 +3811,7 @@ Body:
     AegisName: GOLDEN_BUG
     Name: Golden Thief Bug
     JapaneseName: 黃金蟲
-    Level: 230
+    Level: 200
     Hp: 522750
     BaseExp: 652060
     JobExp: 77760
@@ -3923,7 +3855,7 @@ Body:
     AegisName: ORK_HERO
     Name: Orc Hero
     JapaneseName: 獸人英雄
-    Level: 230
+    Level: 200
     Hp: 762000
     BaseExp: 53460
     JobExp: 48600
@@ -4068,7 +4000,7 @@ Body:
     AegisName: MASTERING
     Name: Mastering
     JapaneseName: 波利之王
-    Level: 42
+    Level: 80
     Hp: 1260
     BaseExp: 157
     JobExp: 177
@@ -4090,8 +4022,8 @@ Body:
     Element: Water
     ElementLevel: 1
     WalkSpeed: 300
-    AttackDelay: 1072
-    AttackMotion: 672
+    AttackDelay: 2272
+    AttackMotion: 972
     DamageMotion: 480
     Ai: 21
     Class: Boss
@@ -4351,7 +4283,7 @@ Body:
     AegisName: ANGELING
     Name: Angeling
     JapaneseName: 天使波利
-    Level: 210
+    Level: 200
     Hp: 39800
     BaseExp: 1683
     JobExp: 3346
@@ -4373,8 +4305,8 @@ Body:
     Element: Holy
     ElementLevel: 4
     WalkSpeed: 200
-    AttackDelay: 1072
-    AttackMotion: 672
+    AttackDelay: 2072
+    AttackMotion: 1672
     DamageMotion: 672
     Ai: 21
     Class: Boss
@@ -5046,14 +4978,6 @@ Body:
     Drops:
       - Item: Dokkaebi_Horn
         Rate: 9000
-      - Item: Elunium_Stone
-        Rate: 150
-      - Item: Sword_Mace_
-        Rate: 2
-      - Item: Mighty_Staff
-        Rate: 1
-      - Item: Gold
-        Rate: 1
       - Item: Club
         Rate: 300
       - Item: Hammer_Of_Blacksmith
@@ -5115,7 +5039,7 @@ Body:
     AegisName: DRAKE
     Name: Drake
     JapaneseName: 海盜之王
-    Level: 220
+    Level: 200
     Hp: 804500
     BaseExp: 690000
     JobExp: 208980
@@ -5239,7 +5163,7 @@ Body:
     AegisName: EDDGA
     Name: Eddga
     JapaneseName: 虎王
-    Level: 220
+    Level: 200
     Hp: 1307500
     BaseExp: 103950
     JobExp: 74250
@@ -5476,12 +5400,12 @@ Body:
     AegisName: GHOSTRING
     Name: Ghostring
     JapaneseName: 幽靈波利
-    Level: 220
+    Level: 200
     Hp: 326700
     BaseExp: 2368
     JobExp: 2233
-    Attack: 385
-    Attack2: 162
+    Attack: 1385
+    Attack2: 1162
     Defense: 88
     MagicDefense: 72
     Str: 166
@@ -5505,7 +5429,7 @@ Body:
     Class: Boss
     Drops:
       - Item: Coin
-        Rate: 5000
+        Rate: 4000
       - Item: Ghostring_Card
         Rate: 1
         StealProtected: true
@@ -6752,7 +6676,7 @@ Body:
     AegisName: MAYA
     Name: Maya
     JapaneseName: 蟻後
-    Level: 220
+    Level: 200
     Hp: 770000
     BaseExp: 89280
     JobExp: 66960
@@ -6894,8 +6818,8 @@ Body:
     AegisName: MOONLIGHT
     Name: Moonlight Flower
     JapaneseName: 月夜貓
-    Level: 220
-    Hp: 684000
+    Level: 200
+    Hp: 784000
     BaseExp: 183744
     JobExp: 135720
     MvpExp: 167040
@@ -7016,17 +6940,7 @@ Body:
     Ai: 04
     Drops:
       - Item: Orcish_Cuspid
-        Rate: 5500
-      - Item: Skel_Bone
-        Rate: 3500
-      - Item: Elunium_Stone
-        Rate: 80
-      - Item: Viking_Helm
-        Rate: 2
-      - Item: Buster_
-        Rate: 10
-      - Item: Green_Herb
-        Rate: 50
+        Rate: 9000
       - Item: Orc_Skeleton_Card
         Rate: 1
         StealProtected: true
@@ -7221,7 +7135,7 @@ Body:
     AegisName: PHARAOH
     Name: Pharaoh
     JapaneseName: 法老王
-    Level: 220
+    Level: 200
     Hp: 1300000
     BaseExp: 229680
     JobExp: 167040
@@ -7293,17 +7207,7 @@ Body:
     Ai: 17
     Drops:
       - Item: Fish_Tail
-        Rate: 5500
-      - Item: Sharp_Scale
-        Rate: 2000
-      - Item: Skyblue_Jewel
-        Rate: 5
-      - Item: Meat
-        Rate: 1000
-      - Item: Fin
-        Rate: 500
-      - Item: Oridecon_Stone
-        Rate: 25
+        Rate: 9000
       - Item: Phen_Card
         Rate: 1
         StealProtected: true
@@ -7311,7 +7215,7 @@ Body:
     AegisName: PHREEONI
     Name: Phreeoni
     JapaneseName: 皮里恩
-    Level: 220
+    Level: 200
     Hp: 700000
     BaseExp: 63800
     JobExp: 90000
@@ -8186,17 +8090,7 @@ Body:
     Ai: 02
     Drops:
       - Item: Tooth_Of_
-        Rate: 5500
-      - Item: Oridecon_Stone
-        Rate: 70
-      - Item: Sticky_Mucus
-        Rate: 2500
-      - Item: Old_Magic_Book
-        Rate: 5
-      - Item: Yellow_Herb
-        Rate: 100
-      - Item: Shining_Stone
-        Rate: 20
+        Rate: 9000
       - Item: Zenorc_Card
         Rate: 1
         StealProtected: true
@@ -8633,7 +8527,7 @@ Body:
     AegisName: ORC_LORD
     Name: Orc Lord
     JapaneseName: 獸人酋長
-    Level: 240
+    Level: 200
     Hp: 852000
     BaseExp: 78120
     JobExp: 61380
@@ -9295,21 +9189,21 @@ Body:
     AegisName: TIRFING
     Name: Ogretooth
     JapaneseName: 獸牙怪
-    Level: 114
-    Hp: 59000
+    Level: 120
+    Hp: 1698758834
     BaseExp: 3474
     JobExp: 2754
-    Attack: 948
-    Attack2: 411
-    Defense: 87
-    MagicDefense: 69
-    Str: 105
-    Agi: 105
-    Vit: 75
-    Int: 73
-    Dex: 151
-    Luk: 65
-    AttackRange: 1
+    Attack: 58948
+    Attack2: 63411
+    Defense: 22
+    MagicDefense: 269
+    Str: 805
+    Agi: 820
+    Vit: 575
+    Int: 573
+    Dex: 951
+    Luk: 685
+    AttackRange: 4
     SkillRange: 10
     ChaseRange: 12
     Size: Medium
@@ -9318,29 +9212,16 @@ Body:
       Clocktower: true
     Element: Dark
     ElementLevel: 3
-    WalkSpeed: 100
-    AttackDelay: 816
-    AttackMotion: 500
-    DamageMotion: 240
+    WalkSpeed: 50
+    AttackDelay: 80
+    AttackMotion: 80
+    DamageMotion: 80
+    DamageTaken: 70
     Ai: 21
     Class: Boss
+    Modes:
+      Mvp: true
     Drops:
-      - Item: Old_Hilt
-        Rate: 1
-      - Item: Silver_Knife_Of_Chaste
-        Rate: 50
-      - Item: Muscovite
-        Rate: 1500
-      - Item: Steel
-        Rate: 120
-      - Item: Oridecon
-        Rate: 189
-      - Item: Scarlet_Dagger
-        Rate: 50
-        RandomOptionGroup: Group_5
-      - Item: Scarlet_Saber
-        Rate: 50
-        RandomOptionGroup: Group_5
       - Item: Tirfing_Card
         Rate: 1
         StealProtected: true
@@ -11391,7 +11272,7 @@ Body:
     AegisName: KNIGHT_OF_WINDSTORM
     Name: Stormy Knight
     JapaneseName: 冰暴騎士
-    Level: 210
+    Level: 200
     Hp: 630500
     BaseExp: 248280
     JobExp: 151100
@@ -11435,7 +11316,7 @@ Body:
     AegisName: GARM
     Name: Hatii
     JapaneseName: 卡崙
-    Level: 220
+    Level: 200
     Hp: 1275500
     BaseExp: 455328
     JobExp: 306900
@@ -12391,8 +12272,8 @@ Body:
     AegisName: DARK_LORD
     Name: Dark Lord
     JapaneseName: 黑暗之王
-    Level: 230
-    Hp: 1190900
+    Level: 200
+    Hp: 1790900
     BaseExp: 428544
     JobExp: 279000
     MvpExp: 357120
@@ -13183,8 +13064,6 @@ Body:
         Rate: 250
       - Item: Oridecon_Stone
         Rate: 300
-      - Item: Gold
-        Rate: 100
       - Item: Oridecon
         Rate: 150
       - Item: Queen's_Hair_Ornament
@@ -13274,20 +13153,6 @@ Body:
     DamageMotion: 240
     Ai: 21
     Drops:
-      - Item: Transparent_Cloth
-        Rate: 4413
-      - Item: Wedding_Veil
-        Rate: 10
-      - Item: Manteau_
-        Rate: 8
-      - Item: Red_Gemstone
-        Rate: 700
-      - Item: Crystal_Jewel__
-        Rate: 5
-      - Item: Old_Blue_Box
-        Rate: 100
-      - Item: Lemon
-        Rate: 300
       - Item: Wraith_Dead_Card
         Rate: 1
         StealProtected: true
@@ -13773,10 +13638,6 @@ Body:
     Drops:
       - Item: Dokkaebi_Horn
         Rate: 4550
-      - Item: Elunium_Stone
-        Rate: 250
-      - Item: Gold
-        Rate: 5
       - Item: Spirit_Chain
         Rate: 1
       - Item: Old_Card_Album
@@ -14016,8 +13877,6 @@ Body:
         Rate: 500
       - Item: Pocket_Watch_
         Rate: 5
-      - Item: Gold
-        Rate: 5
       - Item: Cyfar
         Rate: 800
       - Item: Leib_Olmai_Card
@@ -14059,14 +13918,6 @@ Body:
         Rate: 1
       - Item: Silver_Knife_Of_Chaste
         Rate: 150
-      - Item: Punisher
-        Rate: 5
-      - Item: Elunium
-        Rate: 600
-      - Item: Oridecon
-        Rate: 800
-      - Item: Gold
-        Rate: 6
       - Item: Old_Violet_Box
         Rate: 1
       - Item: Cat_O_Nine_Tail_Card
@@ -14269,13 +14120,13 @@ Body:
     AegisName: TURTLE_GENERAL
     Name: Turtle General
     JapaneseName: 烏龜將軍
-    Level: 220
+    Level: 200
     Hp: 1442000
     BaseExp: 559872
     JobExp: 411642
     MvpExp: 466560
-    Attack: 11169
-    Attack2: 7066
+    Attack: 18169
+    Attack2: 9066
     Defense: 394
     MagicDefense: 123
     Str: 348
@@ -16339,10 +16190,6 @@ Body:
         Rate: 4850
       - Item: Fruit_Of_Mastela
         Rate: 300
-      - Item: Wind_Of_Verdure
-        Rate: 1000
-      - Item: Gold
-        Rate: 1
       - Item: Orange
         Rate: 500
       - Item: Grand_Peco_Card
@@ -16494,7 +16341,7 @@ Body:
     AegisName: LORD_OF_DEATH
     Name: Lord of the Dead
     JapaneseName: 死靈騎士
-    Level: 220
+    Level: 200
     Hp: 12480000
     BaseExp: 262272
     JobExp: 172626
@@ -17214,7 +17061,7 @@ Body:
     AegisName: DRACULA
     Name: Dracula
     JapaneseName: 德古拉男爵
-    Level: 230
+    Level: 200
     Hp: 550000
     BaseExp: 171864
     JobExp: 122760
@@ -18393,7 +18240,7 @@ Body:
     AegisName: DARK_SNAKE_LORD
     Name: Evil Snake Lord
     JapaneseName: 墨蛇君
-    Level: 225
+    Level: 200
     Hp: 2501000
     BaseExp: 432000
     JobExp: 346500
@@ -20344,17 +20191,17 @@ Body:
     Name: Ogretooth
     JapaneseName: 獸牙怪
     Level: 114
-    Hp: 59000
-    Attack: 948
-    Attack2: 411
-    Defense: 87
-    MagicDefense: 69
-    Str: 105
-    Agi: 105
-    Vit: 75
-    Int: 73
-    Dex: 151
-    Luk: 65
+    Hp: 1257484281
+    Attack: 60888
+    Attack2: 60252
+    Defense: 10
+    MagicDefense: 850
+    Str: 1050
+    Agi: 1021
+    Vit: 666
+    Int: 877
+    Dex: 925
+    Luk: 1022
     AttackRange: 1
     SkillRange: 10
     ChaseRange: 12
@@ -20362,11 +20209,12 @@ Body:
     Race: Formless
     Element: Dark
     ElementLevel: 3
-    WalkSpeed: 100
-    AttackDelay: 816
+    WalkSpeed: 40
+    AttackDelay: 10
     AttackMotion: 500
     DamageMotion: 240
-    Ai: 04
+    DamageTaken: 50
+    Ai: 21
     Class: Boss
   - Id: 1487
     AegisName: G_EXECUTIONER
@@ -20518,19 +20366,19 @@ Body:
     Name: Samurai Specter
     JapaneseName: 元靈武士
     Level: 100
-    Hp: 901000
+    Hp: 3001000
     BaseExp: 451008
     JobExp: 327294
     MvpExp: 375840
-    Attack: 2855
-    Attack2: 936
+    Attack: 18855
+    Attack2: 15936
     Defense: 296
     MagicDefense: 140
-    Str: 145
-    Agi: 161
-    Vit: 88
+    Str: 445
+    Agi: 361
+    Vit: 188
     Int: 66
-    Dex: 186
+    Dex: 586
     Luk: 60
     AttackRange: 3
     SkillRange: 10
@@ -21260,20 +21108,6 @@ Body:
     DamageMotion: 480
     Ai: 04
     Drops:
-      - Item: Pumpkin_Bucket
-        Rate: 3200
-      - Item: Ectoplasm
-        Rate: 5723
-      - Item: Transparent_Cloth
-        Rate: 1000
-      - Item: Spirit_Chain
-        Rate: 10
-      - Item: Elunium_Stone
-        Rate: 10
-      - Item: Holy_Scroll_1_3
-        Rate: 100
-      - Item: Yellow_Powder
-        Rate: 300
       - Item: Lude_Card
         Rate: 1
         StealProtected: true
@@ -21331,7 +21165,7 @@ Body:
     AegisName: AMON_RA
     Name: Amon Ra
     JapaneseName: 古埃及王
-    Level: 225
+    Level: 200
     Hp: 1009000
     BaseExp: 120060
     JobExp: 93960
@@ -21586,8 +21420,6 @@ Body:
         Rate: 2300
       - Item: Great_Nature
         Rate: 10
-      - Item: Gold
-        Rate: 2
       - Item: Increase_Soil_Card
         Rate: 1
         StealProtected: true
@@ -21640,7 +21472,7 @@ Body:
     AegisName: BACSOJIN
     Name: White Lady
     JapaneseName: 白素貞
-    Level: 230
+    Level: 200
     Hp: 720500
     BaseExp: 400896
     JobExp: 271440
@@ -23491,12 +23323,12 @@ Body:
     AegisName: DEVILING
     Name: Deviling
     JapaneseName: 惡魔波利
-    Level: 210
+    Level: 200
     Hp: 46890
     BaseExp: 1197
     JobExp: 1189
-    Attack: 5313
-    Attack2: 3183
+    Attack: 2313
+    Attack2: 1183
     Defense: 67
     MagicDefense: 70
     Str: 448
@@ -23528,21 +23360,21 @@ Body:
     AegisName: TAO_GUNKA
     Name: Tao Gunka
     JapaneseName: 塔奧群卡
-    Level: 210
-    Hp: 1252000
+    Level: 200
+    Hp: 1852000
     BaseExp: 540000
     JobExp: 396000
     MvpExp: 450000
-    Attack: 3757
-    Attack2: 1260
+    Attack: 21757
+    Attack2: 20260
     Defense: 404
     MagicDefense: 143
-    Str: 135
-    Agi: 175
-    Vit: 98
-    Int: 110
+    Str: 335
+    Agi: 375
+    Vit: 298
+    Int: 210
     Dex: 239
-    Luk: 66
+    Luk: 466
     AttackRange: 2
     SkillRange: 10
     ChaseRange: 12
@@ -24629,8 +24461,6 @@ Body:
         Rate: 800
       - Item: Yellow_Gemstone
         Rate: 100
-      - Item: Gold
-        Rate: 2
       - Item: Mineral_Card
         Rate: 1
         StealProtected: true
@@ -24892,20 +24722,6 @@ Body:
     DamageMotion: 672
     Ai: 04
     Drops:
-      - Item: Poisonous_Gas
-        Rate: 1000
-      - Item: Mould_Powder
-        Rate: 3000
-      - Item: Anodyne
-        Rate: 50
-      - Item: Air_Pollutant
-        Rate: 3000
-      - Item: Explosive_Powder
-        Rate: 600
-      - Item: Tear_Gas
-        Rate: 300
-      - Item: Old_Blue_Box
-        Rate: 1
       - Item: Noxious_Card
         Rate: 1
         StealProtected: true
@@ -25011,16 +24827,16 @@ Body:
     AegisName: RSX_0806
     Name: RSX-0806
     JapaneseName: RSX-0806
-    Level: 230
-    Hp: 1001000
+    Level: 210
+    Hp: 2201000
     BaseExp: 432000
     JobExp: 316800
     MvpExp: 360000
-    Attack: 3010
-    Attack2: 976
+    Attack: 23010
+    Attack2: 21976
     Defense: 317
     MagicDefense: 96
-    Str: 153
+    Str: 353
     Agi: 143
     Vit: 110
     Int: 128
@@ -26011,13 +25827,13 @@ Body:
     AegisName: B_SEYREN
     Name: Lord Knight Seyren
     JapaneseName: 闇●騎士領主 賽依連
-    Level: 230
-    Hp: 9680000
+    Level: 200
+    Hp: 19680000
     BaseExp: 3017664
     JobExp: 1915056
     MvpExp: 2321280
-    Attack: 9435
-    Attack2: 7342
+    Attack: 39435
+    Attack2: 27342
     Defense: 120
     MagicDefense: 155
     Str: 482
@@ -26061,8 +25877,8 @@ Body:
     BaseExp: 2720250
     JobExp: 1730916
     MvpExp: 2092500
-    Attack: 12083
-    Attack2: 5378
+    Attack: 35283
+    Attack2: 15378
     Defense: 245
     MagicDefense: 98
     Str: 411
@@ -26102,12 +25918,12 @@ Body:
     Name: Whitesmith Howard
     JapaneseName: 闇●神工匠 哈沃德
     Level: 230
-    Hp: 12750000
+    Hp: 14750000
     BaseExp: 2310750
     JobExp: 1465200
     MvpExp: 1777500
-    Attack: 12250
-    Attack2: 7465
+    Attack: 32250
+    Attack2: 27465
     Defense: 301
     MagicDefense: 106
     Str: 475
@@ -26147,12 +25963,12 @@ Body:
     Name: High Priest Margaretha
     JapaneseName: 闇●神官 瑪嘉雷特
     Level: 230
-    Hp: 10400000
+    Hp: 13400000
     BaseExp: 2252250
     JobExp: 1386000
     MvpExp: 1732500
-    Attack: 7499
-    Attack2: 4396
+    Attack: 37499
+    Attack2: 14396
     Defense: 131
     MagicDefense: 294
     Str: 272
@@ -26192,19 +26008,19 @@ Body:
     Name: Sniper Cecil
     JapaneseName: 闇●神射手 迪文
     Level: 230
-    Hp: 8440000
+    Hp: 12440000
     BaseExp: 2669472
     JobExp: 1694088
     MvpExp: 2053440
-    Attack: 14155
-    Attack2: 9550
+    Attack: 34155
+    Attack2: 29550
     Defense: 178
     MagicDefense: 135
     Str: 176
-    Agi: 358
+    Agi: 458
     Vit: 255
     Int: 132
-    Dex: 564
+    Dex: 764
     Luk: 295
     AttackRange: 14
     SkillRange: 10
@@ -26237,18 +26053,18 @@ Body:
     Name: High Wizard Kathryne
     JapaneseName: 闇●超魔導師 凱特莉娜
     Level: 230
-    Hp: 9500000
+    Hp: 12500000
     BaseExp: 2106000
     JobExp: 1336500
     MvpExp: 1620000
-    Attack: 7097
-    Attack2: 12254
+    Attack: 37097
+    Attack2: 22254
     Defense: 215
     MagicDefense: 555
     Str: 135
-    Agi: 110
+    Agi: 310
     Vit: 192
-    Int: 536
+    Int: 836
     Dex: 427
     Luk: 184
     AttackRange: 1
@@ -26630,16 +26446,16 @@ Body:
     AegisName: B_YGNIZEM
     Name: Egnigem Cenia
     JapaneseName: 闇●劍士 賽尼亞
-    Level: 240
+    Level: 200
     Hp: 2910088
     BaseExp: 685360
     JobExp: 1023000
     MvpExp: 527200
-    Attack: 5986
-    Attack2: 2351
+    Attack: 29986
+    Attack2: 18351
     Defense: 373
     MagicDefense: 175
-    Str: 188
+    Str: 288
     Agi: 177
     Vit: 165
     Int: 142
@@ -27711,8 +27527,8 @@ Body:
     BaseExp: 1755000
     JobExp: 1237500
     MvpExp: 100000
-    Attack: 3668
-    Attack2: 4656
+    Attack: 33668
+    Attack2: 24656
     Defense: 402
     MagicDefense: 109
     Str: 177
@@ -27846,7 +27662,7 @@ Body:
     Name: Lady Tanee
     JapaneseName: 嗒妮小姐
     Level: 80
-    Hp: 360000
+    Hp: 680000
     BaseExp: 183744
     JobExp: 130500
     MvpExp: 167040
@@ -27854,12 +27670,12 @@ Body:
     Attack2: 925
     Defense: 241
     MagicDefense: 104
-    Str: 86
+    Str: 286
     Agi: 108
-    Vit: 88
+    Vit: 188
     Int: 121
     Dex: 240
-    Luk: 71
+    Luk: 271
     AttackRange: 14
     SkillRange: 10
     ChaseRange: 12
@@ -27882,8 +27698,6 @@ Body:
     Drops:
       - Item: Gem_Of_Ruin
         Rate: 550
-      - Item: Kakkung_
-        Rate: 6000
       - Item: Lady_Tanee_Card
         Rate: 1
         StealProtected: true
@@ -28070,8 +27884,6 @@ Body:
         Rate: 2
       - Item: Yellow_Gemstone
         Rate: 100
-      - Item: Gold
-        Rate: 1
       - Item: Light_Granule
         Rate: 300
       - Item: Plasma_Card
@@ -28744,15 +28556,15 @@ Body:
   - Id: 1708
     AegisName: THANATOS
     Name: Thanatos Phantom
-    JapaneseName: 魔劍士 達納托斯的記憶
+    JapaneseName: 魔劍士達納托斯的記憶
     Level: 225
-    Hp: 1445660
+    Hp: 1645660
     BaseExp: 779640
     JobExp: 965277
     MvpExp: 649700
-    Attack: 4956
-    Attack2: 1671
-    Defense: 364
+    Attack: 9956
+    Attack2: 5671
+    Defense: 264
     MagicDefense: 35
     Str: 100
     Agi: 129
@@ -29616,7 +29428,7 @@ Body:
     AegisName: G_DOPPELGANGER
     Name: Doppelganger
     JapaneseName: 死靈
-    Level: 225
+    Level: 200
     Hp: 630000
     Attack: 5503
     Attack2: 4976
@@ -29702,8 +29514,8 @@ Body:
     BaseExp: 1170000
     JobExp: 792000
     MvpExp: 900000
-    Attack: 18112
-    Attack2: 12580
+    Attack: 28112
+    Attack2: 22580
     Defense: 314
     MagicDefense: 232
     Str: 367
@@ -29820,21 +29632,6 @@ Body:
     Modes:
       Detector: true
     Drops:
-      - Item: Burnt_Parts
-        Rate: 2000
-      - Item: Sturdy_Iron_Piece
-        Rate: 3000
-      - Item: Falcon_Robe
-        Rate: 10
-      - Item: Smoke_Powder
-        Rate: 200
-      - Item: Elunium
-        Rate: 10
-      - Item: Curved_Sword
-        Rate: 15
-      - Item: Scarlet_Knuckle
-        Rate: 50
-        RandomOptionGroup: Group_5
       - Item: Aliot_Card
         Rate: 1
         StealProtected: true
@@ -29869,20 +29666,6 @@ Body:
     DamageMotion: 600
     Ai: 17
     Drops:
-      - Item: Brigan
-        Rate: 4000
-      - Item: Morpheus's_Shawl
-        Rate: 10
-      - Item: Rosary_
-        Rate: 10
-      - Item: Alice's_Apron
-        Rate: 5
-      - Item: Imperial_Cooking_Kits
-        Rate: 50
-      - Item: Sway_Apron
-        Rate: 1
-      - Item: Orleans_Server
-        Rate: 5
       - Item: Aliza_Card
         Rate: 1
         StealProtected: true
@@ -29992,7 +29775,7 @@ Body:
       Detector: true
     Drops:
       - Item: Sturdy_Iron_Piece
-        Rate: 500
+        Rate: 5000
   - Id: 1741
     AegisName: G_COOKIE_XMAS
     Name: Christmas Cookie
@@ -30287,13 +30070,13 @@ Body:
     AegisName: RANDGRIS
     Name: Valkyrie Randgris
     JapaneseName: 蘭特克力斯
-    Level: 141
-    Hp: 3205000
+    Level: 230
+    Hp: 9205000
     BaseExp: 1300000
     JobExp: 1210000
     MvpExp: 1000000
-    Attack: 7343
-    Attack2: 4412
+    Attack: 37343
+    Attack2: 24412
     Defense: 588
     MagicDefense: 506
     Str: 196
@@ -30815,8 +30598,8 @@ Body:
     AegisName: G_RANDGRIS
     Name: Valkyrie
     JapaneseName: 巴基力 蘭特克力斯
-    Level: 220
-    Hp: 1005000
+    Level: 200
+    Hp: 1065000
     BaseExp: 6500
     JobExp: 5500
     Attack: 9343
@@ -30927,8 +30710,8 @@ Body:
     AegisName: GLOOMUNDERNIGHT
     Name: Gloom Under Night
     JapaneseName: 幽暗夢魘
-    Level: 230
-    Hp: 3005000
+    Level: 200
+    Hp: 3055000
     BaseExp: 1404000
     JobExp: 990000
     MvpExp: 1080000
@@ -30948,7 +30731,7 @@ Body:
     Size: Large
     Race: Formless
     Element: Ghost
-    ElementLevel: 3
+    ElementLevel: 4
     WalkSpeed: 200
     AttackDelay: 1344
     AttackMotion: 2880
@@ -31445,21 +31228,21 @@ Body:
     AegisName: KTULLANUX
     Name: Ktullanux
     JapaneseName: 水晶龍
-    Level: 98
-    Hp: 2626000
+    Level: 200
+    Hp: 5626000
     BaseExp: 621345
     JobExp: 474971
     MvpExp: 517788
-    Attack: 3754
-    Attack2: 2680
+    Attack: 22005
+    Attack2: 15680
     Defense: 129
     MagicDefense: 78
-    Str: 85
+    Str: 285
     Agi: 126
     Vit: 30
     Int: 125
-    Dex: 212
-    Luk: 112
+    Dex: 312
+    Luk: 242
     AttackRange: 3
     SkillRange: 10
     ChaseRange: 12
@@ -33664,8 +33447,6 @@ Body:
         Rate: 100
       - Item: Old_Card_Album
         Rate: 5
-      - Item: Gold
-        Rate: 500
       - Item: Emperium
         Rate: 100
       - Item: Golden_Gear_
@@ -34864,13 +34645,13 @@ Body:
     AegisName: FALLINGBISHOP
     Name: Falling Bishop
     JapaneseName: 墮落大神官 悉潘
-    Level: 225
+    Level: 200
     Hp: 8655000
     BaseExp: 1755000
     JobExp: 1039500
     MvpExp: 1350000
-    Attack: 9064
-    Attack2: 5536
+    Attack: 29064
+    Attack2: 25536
     Defense: 274
     MagicDefense: 382
     Str: 208
@@ -34908,7 +34689,7 @@ Body:
     AegisName: BEELZEBUB_FLY
     Name: Hell Fly
     JapaneseName: 魔鬼蒼蠅
-    Level: 127
+    Level: 225
     Hp: 1002000
     Attack: 900
     Attack2: 152
@@ -34937,8 +34718,8 @@ Body:
     AegisName: BEELZEBUB
     Name: Beelzebub
     JapaneseName: 貝雷傑
-    Level: 147
-    Hp: 20005000
+    Level: 230
+    Hp: 10005000
     Attack: 5250
     Attack2: 2100
     Defense: 288
@@ -34966,7 +34747,7 @@ Body:
     AegisName: BEELZEBUB_
     Name: Beelzebub
     JapaneseName: 詛咒蠅王
-    Level: 147
+    Level: 230
     Hp: 18005000
     BaseExp: 4582500
     JobExp: 3877500
@@ -35418,7 +35199,7 @@ Body:
     AegisName: GOPINICH
     Name: Gopinich
     JapaneseName: 青冠龍
-    Level: 97
+    Level: 230
     Hp: 4120500
     BaseExp: 428544
     JobExp: 290160
@@ -36302,28 +36083,29 @@ Body:
     Name: Satan Morocc
     JapaneseName: 魔王夢羅克
     Level: 151
-    Hp: 7000000
-    Attack: 5340
-    Attack2: 2640
-    Defense: 400
-    MagicDefense: 65
-    Str: 165
-    Agi: 182
-    Vit: 180
-    Int: 225
-    Dex: 270
-    Luk: 89
-    AttackRange: 2
-    SkillRange: 10
-    ChaseRange: 12
+    Hp: 1745789642
+    Attack: 63340
+    Attack2: 62640
+    Defense: 100
+    MagicDefense: 555
+    Str: 1165
+    Agi: 582
+    Vit: 380
+    Int: 1325
+    Dex: 570
+    Luk: 489
+    AttackRange: 8
+    SkillRange: 15
+    ChaseRange: 15
     Size: Large
     Race: Demon
     Element: Dark
-    ElementLevel: 4
-    WalkSpeed: 100
-    AttackDelay: 312
-    AttackMotion: 624
-    DamageMotion: 432
+    ElementLevel: 1
+    WalkSpeed: 40
+    AttackDelay: 25
+    AttackMotion: 25
+    DamageMotion: 25
+    DamageTaken: 1
     Ai: 21
     Class: Boss
     Drops:
@@ -36343,33 +36125,33 @@ Body:
     AegisName: MOROCC_
     Name: Wounded Morocc
     JapaneseName: 負傷夢羅克
-    Level: 151
-    Hp: 50000000
+    Level: 200
+    Hp: 1740000000
     BaseExp: 2632500
     JobExp: 1673100
     MvpExp: 2025000
-    Attack: 4530
-    Attack2: 2880
-    Defense: 425
-    MagicDefense: 65
-    Str: 165
-    Agi: 185
-    Vit: 200
-    Int: 245
-    Dex: 270
-    Luk: 89
-    AttackRange: 2
+    Attack: 57530
+    Attack2: 52880
+    Defense: 10
+    MagicDefense: 365
+    Str: 1465
+    Agi: 785
+    Vit: 435
+    Int: 445
+    Dex: 970
+    Luk: 489
+    AttackRange: 10
     SkillRange: 10
     ChaseRange: 12
     Size: Large
     Race: Demon
     Element: Dark
-    ElementLevel: 4
-    WalkSpeed: 100
-    AttackDelay: 312
-    AttackMotion: 624
-    DamageMotion: 432
-    DamageTaken: 10
+    ElementLevel: 1
+    WalkSpeed: 25
+    AttackDelay: 40
+    AttackMotion: 40
+    DamageMotion: 65
+    DamageTaken: 2
     Ai: 21
     Class: Boss
     Modes:
@@ -36399,30 +36181,31 @@ Body:
     Name: Incarnation of Morocc
     JapaneseName: 夢羅克門徒之邪靈
     Level: 132
-    Hp: 63900
+    Hp: 245000000
     BaseExp: 2855
     JobExp: 1811
-    Attack: 1901
-    Attack2: 145
+    Attack: 41901
+    Attack2: 24145
     Defense: 199
     MagicDefense: 35
-    Str: 126
-    Agi: 91
-    Vit: 63
-    Int: 61
-    Dex: 114
-    Luk: 37
-    AttackRange: 1
+    Str: 526
+    Agi: 391
+    Vit: 363
+    Int: 861
+    Dex: 614
+    Luk: 337
+    AttackRange: 5
     SkillRange: 10
     ChaseRange: 12
     Size: Large
     Race: Angel
     Element: Dark
     ElementLevel: 1
-    WalkSpeed: 110
-    AttackDelay: 576
-    AttackMotion: 480
-    DamageMotion: 432
+    WalkSpeed: 40
+    AttackDelay: 25
+    AttackMotion: 25
+    DamageMotion: 25
+    DamageTaken: 30
     Ai: 21
     Class: Boss
     Drops:
@@ -36445,30 +36228,31 @@ Body:
     Name: Incarnation of Morocc
     JapaneseName: 夢羅克門徒之泥怪
     Level: 132
-    Hp: 64922
+    Hp: 254442145
     BaseExp: 3311
-    JobExp: 2101
-    Attack: 1625
-    Attack2: 159
+    JobExp: 41101
+    Attack: 38625
+    Attack2: 25159
     Defense: 92
     MagicDefense: 5
-    Str: 121
-    Agi: 86
-    Vit: 71
-    Int: 65
-    Dex: 113
-    Luk: 44
-    AttackRange: 1
+    Str: 1121
+    Agi: 486
+    Vit: 271
+    Int: 865
+    Dex: 513
+    Luk: 444
+    AttackRange: 5
     SkillRange: 10
     ChaseRange: 12
     Size: Medium
     Race: Demon
     Element: Dark
     ElementLevel: 3
-    WalkSpeed: 150
-    AttackDelay: 576
-    AttackMotion: 648
-    DamageMotion: 300
+    WalkSpeed: 40
+    AttackDelay: 30
+    AttackMotion: 30
+    DamageMotion: 30
+    DamageTaken: 30
     Ai: 21
     Class: Boss
     Drops:
@@ -36489,11 +36273,11 @@ Body:
     Name: Incarnation of Morocc
     JapaneseName: 夢羅克門徒之活尸
     Level: 133
-    Hp: 94800
+    Hp: 312547854
     BaseExp: 3393
-    JobExp: 2079
-    Attack: 1218
-    Attack2: 363
+    JobExp: 48079
+    Attack: 41218
+    Attack2: 40363
     Defense: 111
     MagicDefense: 37
     Str: 102
@@ -36502,17 +36286,18 @@ Body:
     Int: 82
     Dex: 147
     Luk: 54
-    AttackRange: 2
+    AttackRange: 4
     SkillRange: 10
     ChaseRange: 12
     Size: Medium
     Race: Demon
     Element: Undead
     ElementLevel: 3
-    WalkSpeed: 150
-    AttackDelay: 212
-    AttackMotion: 432
-    DamageMotion: 360
+    WalkSpeed: 40
+    AttackDelay: 55
+    AttackMotion: 55
+    DamageMotion: 55
+    DamageTaken: 30
     Ai: 21
     Class: Boss
     Drops:
@@ -36535,30 +36320,31 @@ Body:
     Name: Incarnation of Morocc
     JapaneseName: 夢羅克門徒之喜樂
     Level: 134
-    Hp: 77389
+    Hp: 256789412
     BaseExp: 2995
     JobExp: 2230
-    Attack: 1235
-    Attack2: 599
+    Attack: 46235
+    Attack2: 52599
     Defense: 109
-    MagicDefense: 54
-    Str: 114
-    Agi: 88
-    Vit: 62
-    Int: 97
-    Dex: 164
-    Luk: 43
-    AttackRange: 1
+    MagicDefense: 354
+    Str: 814
+    Agi: 488
+    Vit: 562
+    Int: 1497
+    Dex: 564
+    Luk: 343
+    AttackRange: 5
     SkillRange: 10
     ChaseRange: 12
     Size: Medium
     Race: Demon
     Element: Ghost
     ElementLevel: 3
-    WalkSpeed: 150
-    AttackDelay: 1536
-    AttackMotion: 648
-    DamageMotion: 300
+    WalkSpeed: 40
+    AttackDelay: 35
+    AttackMotion: 35
+    DamageMotion: 35
+    DamageTaken: 30
     Ai: 21
     Class: Boss
     Drops:
@@ -38420,8 +38206,6 @@ Body:
         Rate: 800
       - Item: Yellow_Gemstone
         Rate: 100
-      - Item: Gold
-        Rate: 2
       - Item: Cobalt_Mineral_Card
         Rate: 1
         StealProtected: true
@@ -40584,7 +40368,7 @@ Body:
 #      NoRandomWalk: true
 #    Drops:
 #      - Item: Coin
-#        Rate: 5000
+#        Rate: 4000
 #  - Id: 2029
 #    AegisName: E_MINOROUS_
 #    Name: Minorous
@@ -41838,21 +41622,21 @@ Body:
     AegisName: BOITATA
     Name: Boitata
     JapaneseName: 波伊塔塔
-    Level: 93
-    Hp: 1283990
+    Level: 230
+    Hp: 4283990
     BaseExp: 44573
     JobExp: 38975
     MvpExp: 37144
-    Attack: 1378
-    Attack2: 962
+    Attack: 15378
+    Attack2: 12962
     Defense: 32
     MagicDefense: 66
-    Str: 140
-    Agi: 99
-    Vit: 30
-    Int: 109
-    Dex: 120
-    Luk: 90
+    Str: 352
+    Agi: 299
+    Vit: 230
+    Int: 309
+    Dex: 520
+    Luk: 290
     AttackRange: 2
     SkillRange: 10
     ChaseRange: 12
@@ -42624,21 +42408,21 @@ Body:
     AegisName: QUEEN_SCARABA
     Name: Scaraba Queen
     JapaneseName: 女王甲蟲
-    Level: 140
-    Hp: 2441600
+    Level: 230
+    Hp: 5441600
     BaseExp: 266643
     JobExp: 116710
     MvpExp: 205110
-    Attack: 2834
-    Attack2: 1240
+    Attack: 32834
+    Attack2: 18240
     Defense: 350
     MagicDefense: 220
-    Str: 100
-    Agi: 88
+    Str: 257
+    Agi: 288
     Vit: 82
     Int: 149
-    Dex: 317
-    Luk: 144
+    Dex: 517
+    Luk: 344
     AttackRange: 3
     SkillRange: 10
     ChaseRange: 12
@@ -44675,8 +44459,6 @@ Body:
         Rate: 5000
       - Item: Light_Granule
         Rate: 100
-      - Item: Gold
-        Rate: 1
       - Item: Telekinetic_Orb
         Rate: 3
       - Item: Miming_Card
@@ -45256,8 +45038,6 @@ Body:
         Rate: 3500
       - Item: Honey
         Rate: 2500
-      - Item: Gold
-        Rate: 2000
       - Item: Leak_Card
         Rate: 1
         StealProtected: true
@@ -47149,21 +46929,21 @@ Body:
     AegisName: KRAKEN
     Name: Kraken
     JapaneseName: 魔鬼大烏賊
-    Level: 124
-    Hp: 9602800
+    Level: 230
+    Hp: 25602800
     BaseExp: 983332
     JobExp: 1057222
     MvpExp: 491666
-    Attack: 6823
-    Attack2: 2830
+    Attack: 26823
+    Attack2: 22830
     Defense: 55
     MagicDefense: 229
     Str: 296
-    Agi: 199
-    Vit: 165
+    Agi: 458
+    Vit: 465
     Int: 217
-    Dex: 262
-    Luk: 199
+    Dex: 462
+    Luk: 399
     AttackRange: 3
     SkillRange: 10
     ChaseRange: 12
@@ -47242,8 +47022,6 @@ Body:
         Rate: 500
       - Item: Ice_Crystal
         Rate: 100
-      - Item: Gold
-        Rate: 2
       - Item: Old_Violet_Box
         Rate: 1
       - Item: Pot_Dofle_Card
@@ -48402,13 +48180,13 @@ Body:
     AegisName: B_RANDEL
     Name: Paladin Randel
     JapaneseName: 闇●聖殿十字軍 蘭達羅倫斯
-    Level: 160
-    Hp: 2470000
+    Level: 240
+    Hp: 28470000
     BaseExp: 3674489
     JobExp: 2149566
     MvpExp: 2310750
-    Attack: 17537
-    Attack2: 9017
+    Attack: 37537
+    Attack2: 36017
     Defense: 367
     MagicDefense: 151
     Str: 791
@@ -48464,13 +48242,13 @@ Body:
     AegisName: B_FLAMEL
     Name: Creator Flamel
     JapaneseName: 闇●創造者 普拉梅姆
-    Level: 160
+    Level: 240
     Hp: 21230000
     BaseExp: 2611785
     JobExp: 1446694
     MvpExp: 2611785
-    Attack: 11355
-    Attack2: 10514
+    Attack: 41355
+    Attack2: 30514
     Defense: 253
     MagicDefense: 113
     Str: 359
@@ -48525,20 +48303,20 @@ Body:
     AegisName: B_CELIA
     Name: Professor Celia
     JapaneseName: 闇●智者 西里亞阿迪
-    Level: 160
-    Hp: 18847804
+    Level: 240
+    Hp: 24847804
     BaseExp: 2513654
     JobExp: 1380385
     MvpExp: 2513654
-    Attack: 10481
-    Attack2: 14114
+    Attack: 40481
+    Attack2: 34114
     Defense: 201
     MagicDefense: 543
     Str: 265
     Agi: 548
     Vit: 271
-    Int: 655
-    Dex: 467
+    Int: 855
+    Dex: 667
     Luk: 285
     AttackRange: 1
     SkillRange: 10
@@ -48586,18 +48364,18 @@ Body:
     AegisName: B_CHEN
     Name: Champion Chen
     JapaneseName: 闇●武術宗師 陳理歐
-    Level: 160
-    Hp: 21249350
+    Level: 240
+    Hp: 29249350
     Sp: 1553
     BaseExp: 2556784
     JobExp: 1614235
     MvpExp: 2556784
-    Attack: 9617
-    Attack2: 4947
+    Attack: 45617
+    Attack2: 34947
     Defense: 216
     MagicDefense: 134
-    Str: 580
-    Agi: 365
+    Str: 980
+    Agi: 465
     Vit: 265
     Int: 348
     Dex: 498
@@ -48648,13 +48426,13 @@ Body:
     AegisName: B_GERTIE
     Name: Stalker Gertie
     JapaneseName: 闇●神行太保 科迪
-    Level: 160
-    Hp: 20057279
+    Level: 240
+    Hp: 25057279
     BaseExp: 2210349
     JobExp: 1480200
     MvpExp: 2210349
-    Attack: 14162
-    Attack2: 3274
+    Attack: 34162
+    Attack2: 23274
     Defense: 251
     MagicDefense: 107
     Str: 517
@@ -48709,13 +48487,13 @@ Body:
     AegisName: B_ALPHOCCIO
     Name: Clown Alphoccio
     JapaneseName: 闇●搞笑藝人 雅歐帕奇爾
-    Level: 160
-    Hp: 1894278
+    Level: 240
+    Hp: 2294278
     BaseExp: 2113018
     JobExp: 1357934
     MvpExp: 2113018
-    Attack: 12641
-    Attack2: 13749
+    Attack: 32641
+    Attack2: 28749
     Defense: 201
     MagicDefense: 109
     Str: 419
@@ -48770,21 +48548,21 @@ Body:
     AegisName: B_TRENTINI
     Name: Gypsy Trentini
     JapaneseName: 闇●冷豔舞姬 特蘭提尼
-    Level: 160
-    Hp: 18894278
+    Level: 240
+    Hp: 24894278
     BaseExp: 2231879
     JobExp: 1409702
     MvpExp: 2231879
-    Attack: 12016
-    Attack2: 10036
+    Attack: 32016
+    Attack2: 30036
     Defense: 181
     MagicDefense: 112
     Str: 367
-    Agi: 447
+    Agi: 647
     Vit: 265
     Int: 117
-    Dex: 433
-    Luk: 261
+    Dex: 533
+    Luk: 561
     AttackRange: 2
     SkillRange: 10
     ChaseRange: 12
@@ -49031,8 +48809,6 @@ Body:
         Rate: 2000
       - Item: BlueCard_1
         Rate: 2000
-      - Item: Gold
-        Rate: 10
         StealProtected: true
   - Id: 2249
     AegisName: PYURIEL
@@ -49144,21 +48920,21 @@ Body:
     Name: Gioia
     JapaneseName: 喬伊亞
     Level: 225
-    Hp: 250000000
+    Hp: 150000000
     BaseExp: 1503451
     JobExp: 1433901
     MvpExp: 751725
-    Attack: 51105
-    Attack2: 42601
+    Attack: 58105
+    Attack2: 55601
     Defense: 436
     MagicDefense: 218
-    Str: 780
+    Str: 1780
     Agi: 401
     Vit: 656
     Int: 590
-    Dex: 599
-    Luk: 377
-    AttackRange: 1
+    Dex: 1599
+    Luk: 877
+    AttackRange: 3
     SkillRange: 10
     ChaseRange: 12
     Size: Large
@@ -51785,8 +51561,6 @@ Body:
         Rate: 1000
       - Item: Kalasak
         Rate: 100
-      - Item: Gold
-        Rate: 2000
       - Item: Ancient_Grudge
         Rate: 10000
       - Item: Bakonawa_Card
@@ -52700,8 +52474,8 @@ Body:
     AegisName: N_AMON_RA
     Name: Amon Ra (Nightmare)
     JapaneseName: 古埃及王-夢魘
-    Level: 145
-    Hp: 2515784
+    Level: 180
+    Hp: 18515000
     BaseExp: 1626487
     JobExp: 1432295
     MvpExp: 813243
@@ -52709,13 +52483,13 @@ Body:
     Attack2: 3201
     Defense: 367
     MagicDefense: 301
-    Str: 86
-    Agi: 89
-    Vit: 120
-    Int: 131
-    Dex: 101
-    Luk: 92
-    AttackRange: 3
+    Str: 386
+    Agi: 389
+    Vit: 20
+    Int: 231
+    Dex: 401
+    Luk: 292
+    AttackRange: 4
     SkillRange: 14
     ChaseRange: 12
     Size: Large
@@ -52732,28 +52506,11 @@ Body:
     Modes:
       Mvp: true
     MvpDrops:
-      - Item: Yggdrasilberry
-        Rate: 5500
-      - Item: Seed_Of_Yggdrasil
-        Rate: 3500
-      - Item: Crystal_Jewel__
-        Rate: 5500
+      - Item: Gem_Of_Ruin
+        Rate: 550
     Drops:
-      - Item: Spinx_Helm
-        Rate: 150
-      - Item: Safety_Ring
-        Rate: 50
-      - Item: Rojerta_Piece
-        Rate: 7000
-      - Item: Elunium
-        Rate: 3800
-      - Item: Old_Card_Album
-        Rate: 400
-      - Item: Yggdrasilberry
-        Rate: 3000
-      - Item: Scarlet_Bible
-        Rate: 50
-        RandomOptionGroup: Group_5
+      - Item: Gem_Of_Ruin
+        Rate: 550
       - Item: Grave_Amon_Ra_Card
         Rate: 1
         StealProtected: true
@@ -53814,7 +53571,7 @@ Body:
     Name: Dummy 150
     JapaneseName: 訓練用龍蛋Lv150
     Level: 150
-    Hp: 99999999
+    Hp: 999999999
     Defense: 120
     MagicDefense: 120
     Size: Medium
@@ -58818,14 +58575,6 @@ Body:
         Rate: 1500
       - Item: Sweet_Potato
         Rate: 700
-      - Item: Tree_Of_Archer_3
-        Rate: 3500
-      - Item: Tree_Of_Archer_2
-        Rate: 2000
-      - Item: Tree_Of_Archer_1
-        Rate: 1000
-      - Item: Wilow_Card
-        Rate: 1
         StealProtected: true
   - Id: 2616
     AegisName: C4_WILD_ROSE
@@ -60614,20 +60363,6 @@ Body:
     DamageMotion: 576
     Ai: 01
     Drops:
-      - Item: Scale_Of_Snakes
-        Rate: 9000
-      - Item: Katana_
-        Rate: 15
-      - Item: Red_Herb
-        Rate: 900
-      - Item: Emveretarcon
-        Rate: 35
-      - Item: Posionous_Canine
-        Rate: 800
-      - Item: Wing_Of_Fly
-        Rate: 1
-      - Item: Strawberry
-        Rate: 600
       - Item: Snake_Card
         Rate: 1
         StealProtected: true
@@ -63121,8 +62856,6 @@ Body:
         Rate: 2
       - Item: Yellow_Gemstone
         Rate: 100
-      - Item: Gold
-        Rate: 1
       - Item: Light_Granule
         Rate: 300
       - Item: Plasma_Card
@@ -65150,8 +64883,6 @@ Body:
         Rate: 800
       - Item: Yellow_Gemstone
         Rate: 100
-      - Item: Gold
-        Rate: 2
       - Item: Mineral_Card
         Rate: 1
         StealProtected: true
@@ -65190,8 +64921,6 @@ Body:
         Rate: 5000
       - Item: Light_Granule
         Rate: 100
-      - Item: Gold
-        Rate: 1
       - Item: Telekinetic_Orb
         Rate: 1
       - Item: Miming_Card
@@ -66566,8 +66295,6 @@ Body:
         Rate: 500
       - Item: Pocket_Watch_
         Rate: 5
-      - Item: Gold
-        Rate: 5
       - Item: Cyfar
         Rate: 800
       - Item: Leib_Olmai_Card
@@ -67186,8 +66913,6 @@ Body:
         Rate: 2300
       - Item: Great_Nature
         Rate: 10
-      - Item: Gold
-        Rate: 2
       - Item: Increase_Soil_Card
         Rate: 1
         StealProtected: true
@@ -67986,8 +67711,6 @@ Body:
         Rate: 300
       - Item: Wind_Of_Verdure
         Rate: 1000
-      - Item: Gold
-        Rate: 1
       - Item: Orange
         Rate: 500
       - Item: Grand_Peco_Card
@@ -68030,8 +67753,6 @@ Body:
         Rate: 300
       - Item: Wind_Of_Verdure
         Rate: 1000
-      - Item: Gold
-        Rate: 1
       - Item: Orange
         Rate: 500
       - Item: Grand_Peco_Card
@@ -69918,8 +69639,6 @@ Body:
         Rate: 2
       - Item: Mighty_Staff
         Rate: 1
-      - Item: Gold
-        Rate: 1
       - Item: Club
         Rate: 300
       - Item: Hammer_Of_Blacksmith
@@ -70561,7 +70280,7 @@ Body:
     Level: 35
     Hp: 3330
     BaseExp: 1325
-    JobExp: 3240
+    JobExp: 3245
     Attack: 70
     Attack2: 25
     Defense: 56
@@ -74781,8 +74500,6 @@ Body:
         Rate: 2862
       - Item: Transparent_Cloth
         Rate: 500
-      - Item: Gold
-        Rate: 1000
       - Item: White_Gold_Bullion
         Rate: 1000
       - Item: Bloody_Coin
@@ -76716,21 +76433,21 @@ Body:
     AegisName: TIMEHOLDER
     Name: Time Holder
     JapaneseName: 時間支配者
-    Level: 170
-    Hp: 25000000
+    Level: 230
+    Hp: 40000000
     BaseExp: 4582500
     JobExp: 3877500
     MvpExp: 2291250
-    Attack: 9250
-    Attack2: 4100
+    Attack: 59250
+    Attack2: 34100
     Defense: 288
     MagicDefense: 265
-    Str: 424
-    Agi: 352
+    Str: 524
+    Agi: 452
     Vit: 151
     Int: 457
-    Dex: 502
-    Luk: 177
+    Dex: 802
+    Luk: 277
     AttackRange: 1
     SkillRange: 10
     ChaseRange: 12
@@ -78789,8 +78506,8 @@ Body:
     JapaneseName: 勘查機器人
     Level: 168
     Hp: 293640
-    BaseExp: 18172
-    JobExp: 35065
+    BaseExp: 88172
+    JobExp: 55065
     Attack: 2513
     Attack2: 802
     Defense: 105
@@ -80457,7 +80174,7 @@ Body:
     Int: 340
     Dex: 400
     Luk: 560
-    AttackRange: 1
+    AttackRange: 8
     SkillRange: 10
     ChaseRange: 12
     Size: Medium
@@ -80466,7 +80183,7 @@ Body:
       Bio5_Mvp: true
     Element: Poison
     ElementLevel: 4
-    WalkSpeed: 100
+    WalkSpeed: 50
     AttackDelay: 76
     AttackMotion: 384
     DamageMotion: 288
@@ -80475,20 +80192,6 @@ Body:
     Modes:
       Mvp: true
     Drops:
-      - Item: Pieces_Of_Grudge
-        Rate: 3000
-      - Item: Manteau_Of_Fallen
-        Rate: 150
-      - Item: Manteau_Of_Fallen
-        Rate: 500
-      - Item: Pieces_Of_Sentiment
-        Rate: 5000
-      - Item: Thief_Soul
-        Rate: 10000
-      - Item: Thief_Soul
-        Rate: 10000
-      - Item: Thief_Soul
-        Rate: 10000
       - Item: GuillotineCross_Card
         Rate: 1
         StealProtected: true
@@ -80510,7 +80213,7 @@ Body:
     Int: 920
     Dex: 600
     Luk: 240
-    AttackRange: 1
+    AttackRange: 8
     SkillRange: 10
     ChaseRange: 12
     Size: Medium
@@ -80519,7 +80222,7 @@ Body:
       Bio5_Mvp: true
     Element: Holy
     ElementLevel: 4
-    WalkSpeed: 100
+    WalkSpeed: 50
     AttackDelay: 576
     AttackMotion: 384
     DamageMotion: 288
@@ -80528,20 +80231,6 @@ Body:
     Modes:
       Mvp: true
     Drops:
-      - Item: Pieces_Of_Grudge
-        Rate: 3000
-      - Item: Manteau_Of_Fallen
-        Rate: 150
-      - Item: Manteau_Of_Fallen
-        Rate: 500
-      - Item: Pieces_Of_Sentiment
-        Rate: 5000
-      - Item: Acolyte_Soul
-        Rate: 10000
-      - Item: Acolyte_Soul
-        Rate: 10000
-      - Item: Acolyte_Soul
-        Rate: 10000
       - Item: Archbishop_Card
         Rate: 1
         StealProtected: true
@@ -80553,8 +80242,8 @@ Body:
     Hp: 72600000
     BaseExp: 3000000
     JobExp: 3000000
-    Attack: 21000
-    Attack2: 18000
+    Attack: 32000
+    Attack2: 28000
     Defense: 200
     MagicDefense: 200
     Str: 460
@@ -80572,7 +80261,7 @@ Body:
       Bio5_Mvp: true
     Element: Wind
     ElementLevel: 4
-    WalkSpeed: 100
+    WalkSpeed: 50
     AttackDelay: 76
     AttackMotion: 384
     DamageMotion: 288
@@ -80581,20 +80270,6 @@ Body:
     Modes:
       Mvp: true
     Drops:
-      - Item: Pieces_Of_Grudge
-        Rate: 3000
-      - Item: Manteau_Of_Fallen
-        Rate: 150
-      - Item: Manteau_Of_Fallen
-        Rate: 500
-      - Item: Pieces_Of_Sentiment
-        Rate: 5000
-      - Item: Archer_Soul
-        Rate: 10000
-      - Item: Archer_Soul
-        Rate: 10000
-      - Item: Archer_Soul
-        Rate: 10000
       - Item: Ranger_Card
         Rate: 1
         StealProtected: true
@@ -80616,7 +80291,7 @@ Body:
     Int: 320
     Dex: 560
     Luk: 370
-    AttackRange: 1
+    AttackRange: 8
     SkillRange: 10
     ChaseRange: 12
     Size: Medium
@@ -80625,29 +80300,15 @@ Body:
       Bio5_Mvp: true
     Element: Water
     ElementLevel: 4
-    WalkSpeed: 100
+    WalkSpeed: 50
     AttackDelay: 76
-    AttackMotion: 384
+    AttackMotion: 177
     DamageMotion: 288
     Ai: 21
     Class: Boss
     Modes:
       Mvp: true
     Drops:
-      - Item: Cursed_Crystal
-        Rate: 3000
-      - Item: Manteau_Of_Fallen
-        Rate: 150
-      - Item: Manteau_Of_Fallen
-        Rate: 500
-      - Item: Pieces_Of_Sentiment
-        Rate: 5000
-      - Item: Merchant_Soul
-        Rate: 10000
-      - Item: Merchant_Soul
-        Rate: 10000
-      - Item: Merchant_Soul
-        Rate: 10000
       - Item: Mechanic_Card
         Rate: 1
         StealProtected: true
@@ -80659,9 +80320,9 @@ Body:
     Hp: 50800000
     BaseExp: 3000000
     JobExp: 3000000
-    Attack: 14000
-    Attack2: 30000
-    Defense: 220
+    Attack: 30000
+    Attack2: 25000
+    Defense: 10
     MagicDefense: 800
     Str: 420
     Agi: 560
@@ -80669,7 +80330,7 @@ Body:
     Int: 900
     Dex: 620
     Luk: 370
-    AttackRange: 1
+    AttackRange: 8
     SkillRange: 10
     ChaseRange: 12
     Size: Medium
@@ -80678,29 +80339,15 @@ Body:
       Bio5_Mvp: true
     Element: Ghost
     ElementLevel: 4
-    WalkSpeed: 100
-    AttackDelay: 576
-    AttackMotion: 384
-    DamageMotion: 288
+    WalkSpeed: 50
+    AttackDelay: 150
+    AttackMotion: 150
+    DamageMotion: 150
     Ai: 21
     Class: Boss
     Modes:
       Mvp: true
     Drops:
-      - Item: Pieces_Of_Grudge
-        Rate: 3000
-      - Item: Manteau_Of_Fallen
-        Rate: 150
-      - Item: Manteau_Of_Fallen
-        Rate: 500
-      - Item: Pieces_Of_Sentiment
-        Rate: 5000
-      - Item: Mage_Soul
-        Rate: 10000
-      - Item: Mage_Soul
-        Rate: 10000
-      - Item: Mage_Soul
-        Rate: 10000
       - Item: Warlock_Card
         Rate: 1
         StealProtected: true
@@ -80712,8 +80359,8 @@ Body:
     Hp: 104400000
     BaseExp: 3000000
     JobExp: 3000000
-    Attack: 30000
-    Attack2: 14000
+    Attack: 35000
+    Attack2: 24000
     Defense: 800
     MagicDefense: 400
     Str: 940
@@ -80722,7 +80369,7 @@ Body:
     Int: 400
     Dex: 500
     Luk: 320
-    AttackRange: 1
+    AttackRange: 8
     SkillRange: 10
     ChaseRange: 12
     Size: Medium
@@ -80731,29 +80378,15 @@ Body:
       Bio5_Mvp: true
     Element: Fire
     ElementLevel: 4
-    WalkSpeed: 100
+    WalkSpeed: 50
     AttackDelay: 76
-    AttackMotion: 384
-    DamageMotion: 288
+    AttackMotion: 76
+    DamageMotion: 76
     Ai: 21
     Class: Boss
     Modes:
       Mvp: true
     Drops:
-      - Item: Cursed_Crystal
-        Rate: 3000
-      - Item: Manteau_Of_Fallen
-        Rate: 150
-      - Item: Manteau_Of_Fallen
-        Rate: 500
-      - Item: Pieces_Of_Sentiment
-        Rate: 5000
-      - Item: Swordman_Soul
-        Rate: 10000
-      - Item: Swordman_Soul
-        Rate: 10000
-      - Item: Swordman_Soul
-        Rate: 10000
       - Item: RuneKnight_Card
         Rate: 1
         StealProtected: true
@@ -81335,21 +80968,21 @@ Body:
     AegisName: V_B_RANDEL
     Name: Royal Guard Randel
     JapaneseName: 闇●皇家禁衛隊 蘭達
-    Level: 188
-    Hp: 170000000
+    Level: 200
+    Hp: 1504000000
     BaseExp: 3000000
     JobExp: 3000000
-    Attack: 30000
-    Attack2: 19000
-    Defense: 600
+    Attack: 44000
+    Attack2: 40000
+    Defense: 28
     MagicDefense: 400
     Str: 701
     Agi: 360
     Vit: 900
     Int: 300
-    Dex: 580
+    Dex: 780
     Luk: 340
-    AttackRange: 1
+    AttackRange: 8
     SkillRange: 10
     ChaseRange: 12
     Size: Medium
@@ -81358,10 +80991,11 @@ Body:
       Bio5_Mvp: true
     Element: Holy
     ElementLevel: 4
-    WalkSpeed: 100
-    AttackDelay: 76
-    AttackMotion: 384
-    DamageMotion: 288
+    WalkSpeed: 40
+    AttackDelay: 80
+    AttackMotion: 80
+    DamageMotion: 100
+    DamageTaken: 15
     Ai: 21
     Class: Boss
     Modes:
@@ -81389,10 +81023,10 @@ Body:
     Name: Genetic Flamel
     JapaneseName: 闇●基因學者 普拉梅姆
     Level: 186
-    Hp: 194000000
+    Hp: 1154000000
     BaseExp: 3000000
     JobExp: 3000000
-    Attack: 21000
+    Attack: 28000
     Attack2: 26000
     Defense: 260
     MagicDefense: 200
@@ -81400,9 +81034,9 @@ Body:
     Agi: 260
     Vit: 640
     Int: 750
-    Dex: 600
+    Dex: 1200
     Luk: 430
-    AttackRange: 1
+    AttackRange: 10
     SkillRange: 10
     ChaseRange: 12
     Size: Medium
@@ -81411,10 +81045,11 @@ Body:
       Bio5_Mvp: true
     Element: Fire
     ElementLevel: 4
-    WalkSpeed: 100
-    AttackDelay: 76
-    AttackMotion: 384
-    DamageMotion: 288
+    WalkSpeed: 40
+    AttackDelay: 120
+    AttackMotion: 122
+    DamageMotion: 150
+    DamageTaken: 25
     Ai: 21
     Class: Boss
     Modes:
@@ -81442,10 +81077,10 @@ Body:
     Name: Sorcerer Celia
     JapaneseName: 闇●妖術師 西里亞
     Level: 188
-    Hp: 162000000
+    Hp: 844000000
     BaseExp: 3000000
     JobExp: 3000000
-    Attack: 30000
+    Attack: 38000
     Attack2: 30000
     Defense: 220
     MagicDefense: 800
@@ -81453,9 +81088,9 @@ Body:
     Agi: 400
     Vit: 320
     Int: 700
-    Dex: 540
+    Dex: 740
     Luk: 400
-    AttackRange: 1
+    AttackRange: 10
     SkillRange: 10
     ChaseRange: 12
     Size: Medium
@@ -81464,10 +81099,11 @@ Body:
       Bio5_Mvp: true
     Element: Ghost
     ElementLevel: 4
-    WalkSpeed: 100
-    AttackDelay: 576
-    AttackMotion: 384
-    DamageMotion: 288
+    WalkSpeed: 40
+    AttackDelay: 40
+    AttackMotion: 178
+    DamageMotion: 50
+    DamageTaken: 25
     Ai: 21
     Class: Boss
     Modes:
@@ -81495,32 +81131,33 @@ Body:
     Name: Sura Chen
     JapaneseName: 闇●修羅 陳理歐
     Level: 188
-    Hp: 176000000
+    Hp: 1454000000
     BaseExp: 3000000
     JobExp: 3000000
-    Attack: 28000
-    Attack2: 24000
+    Attack: 45000
+    Attack2: 37000
     Defense: 360
     MagicDefense: 200
     Str: 800
     Agi: 460
     Vit: 480
     Int: 360
-    Dex: 600
+    Dex: 900
     Luk: 320
-    AttackRange: 1
+    AttackRange: 8
     SkillRange: 10
     ChaseRange: 12
     Size: Medium
     Race: Demihuman
     RaceGroups:
       Bio5_Mvp: true
-    Element: Water
+    Element: Ghost
     ElementLevel: 4
-    WalkSpeed: 100
-    AttackDelay: 76
-    AttackMotion: 384
-    DamageMotion: 288
+    WalkSpeed: 40
+    AttackDelay: 165
+    AttackMotion: 165
+    DamageMotion: 177
+    DamageTaken: 40
     Ai: 21
     Class: Boss
     Modes:
@@ -81547,8 +81184,8 @@ Body:
     AegisName: V_B_GERTIE
     Name: Shadow Chaser Gertie
     JapaneseName: 闇●魅影追蹤者 科迪
-    Level: 188
-    Hp: 194000000
+    Level: 200
+    Hp: 504000000
     BaseExp: 3000000
     JobExp: 3000000
     Attack: 31000
@@ -81559,9 +81196,9 @@ Body:
     Agi: 460
     Vit: 320
     Int: 300
-    Dex: 620
+    Dex: 720
     Luk: 400
-    AttackRange: 1
+    AttackRange: 8
     SkillRange: 10
     ChaseRange: 12
     Size: Medium
@@ -81570,10 +81207,11 @@ Body:
       Bio5_Mvp: true
     Element: Poison
     ElementLevel: 4
-    WalkSpeed: 100
-    AttackDelay: 76
-    AttackMotion: 384
-    DamageMotion: 288
+    WalkSpeed: 40
+    AttackDelay: 135
+    AttackMotion: 135
+    DamageMotion: 95
+    DamageTaken: 50
     Ai: 21
     Class: Boss
     Modes:
@@ -81600,21 +81238,21 @@ Body:
     AegisName: V_B_ALPHOCCIO
     Name: Minstrel Alphoccio
     JapaneseName: 闇●宮廷樂師 雅歐帕奇爾
-    Level: 186
-    Hp: 138000000
+    Level: 200
+    Hp: 358000000
     BaseExp: 3000000
     JobExp: 3000000
-    Attack: 27000
-    Attack2: 26000
-    Defense: 240
+    Attack: 25000
+    Attack2: 21000
+    Defense: 40
     MagicDefense: 200
     Str: 340
     Agi: 600
     Vit: 440
     Int: 900
-    Dex: 600
-    Luk: 380
-    AttackRange: 7
+    Dex: 850
+    Luk: 1080
+    AttackRange: 9
     SkillRange: 10
     ChaseRange: 12
     Size: Medium
@@ -81623,10 +81261,11 @@ Body:
       Bio5_Mvp: true
     Element: Wind
     ElementLevel: 4
-    WalkSpeed: 100
-    AttackDelay: 76
-    AttackMotion: 384
-    DamageMotion: 288
+    WalkSpeed: 40
+    AttackDelay: 205
+    AttackMotion: 205
+    DamageMotion: 200
+    DamageTaken: 40
     Ai: 21
     Class: Boss
     Modes:
@@ -81654,20 +81293,20 @@ Body:
     Name: Wanderer Trentini
     JapaneseName: 闇●浪姬舞者 特蘭提尼
     Level: 186
-    Hp: 16500000
+    Hp: 224000000
     BaseExp: 3000000
     JobExp: 3000000
-    Attack: 27000
-    Attack2: 31000
-    Defense: 200
+    Attack: 30000
+    Attack2: 27000
+    Defense: 15
     MagicDefense: 200
     Str: 420
     Agi: 300
     Vit: 540
     Int: 600
-    Dex: 400
+    Dex: 941
     Luk: 360
-    AttackRange: 7
+    AttackRange: 9
     SkillRange: 10
     ChaseRange: 12
     Size: Medium
@@ -81676,10 +81315,11 @@ Body:
       Bio5_Mvp: true
     Element: Wind
     ElementLevel: 4
-    WalkSpeed: 100
-    AttackDelay: 76
-    AttackMotion: 384
-    DamageMotion: 288
+    WalkSpeed: 40
+    AttackDelay: 100
+    AttackMotion: 100
+    DamageMotion: 100
+    DamageTaken: 40
     Ai: 21
     Class: Boss
     Modes:
@@ -81727,7 +81367,7 @@ Body:
     Race: Formless
     Element: Wind
     ElementLevel: 1
-    WalkSpeed: 300
+    WalkSpeed: 40
     AttackDelay: 1500
     AttackMotion: 720
     DamageMotion: 360
@@ -82655,14 +82295,6 @@ Body:
         Rate: 1500
       - Item: Sweet_Potato
         Rate: 700
-      - Item: Tree_Of_Archer_3
-        Rate: 3500
-      - Item: Tree_Of_Archer_2
-        Rate: 2000
-      - Item: Tree_Of_Archer_1
-        Rate: 1000
-      - Item: Wilow_Card
-        Rate: 1
         StealProtected: true
   - Id: 3390
     AegisName: MIN_SPORE
@@ -82846,8 +82478,6 @@ Body:
         Rate: 2
       - Item: Mighty_Staff
         Rate: 1
-      - Item: Gold
-        Rate: 1
       - Item: Club
         Rate: 300
       - Item: Hammer_Of_Blacksmith
@@ -83027,20 +82657,6 @@ Body:
     DamageMotion: 576
     Ai: 01
     Drops:
-      - Item: Scale_Of_Snakes
-        Rate: 9000
-      - Item: Katana_
-        Rate: 15
-      - Item: Red_Herb
-        Rate: 900
-      - Item: Emveretarcon
-        Rate: 35
-      - Item: Posionous_Canine
-        Rate: 800
-      - Item: Shining_Scales
-        Rate: 1
-      - Item: Strawberry
-        Rate: 600
       - Item: Snake_Card
         Rate: 1
         StealProtected: true
@@ -86972,22 +86588,22 @@ Body:
     AegisName: EP16_2_MM_CUTIE
     Name: Pet Child
     JapaneseName: 小可愛
-    Level: 120
+    Level: 220
     Hp: 3500000
     BaseExp: 1200000
     JobExp: 600000
     MvpExp: 5000
-    Attack: 3400
-    Attack2: 1900
+    Attack: 5400
+    Attack2: 4900
     Defense: 220
     MagicDefense: 150
-    Str: 160
-    Agi: 70
+    Str: 450
+    Agi: 170
     Vit: 100
     Int: 40
-    Dex: 240
-    Luk: 50
-    AttackRange: 2
+    Dex: 540
+    Luk: 320
+    AttackRange: 4
     SkillRange: 10
     ChaseRange: 12
     Size: Large
@@ -90084,8 +89700,8 @@ Body:
     JapaneseName: 不詳岩石龜
     Level: 161
     Hp: 592310
-    BaseExp: 59190
-    JobExp: 49128
+    BaseExp: 130000
+    JobExp: 69128
     Attack: 2819
     Attack2: 4071
     Defense: 571
@@ -90093,7 +89709,7 @@ Body:
     Str: 155
     Agi: 100
     Vit: 170
-    Int: 42
+    Int: 82
     Dex: 133
     Luk: 50
     AttackRange: 1
@@ -90964,8 +90580,6 @@ Body:
       - Item: Ora_Ora
         Rate: 1000
     Drops:
-      - Item: Gold
-        Rate: 1000
       - Item: Golden_Mace
         Rate: 150
       - Item: Golden_Gear
@@ -92721,8 +92335,6 @@ Body:
         Rate: 1200
       - Item: Oridecon
         Rate: 1200
-      - Item: Gold
-        Rate: 500
     Drops:
       - Item: Survival_Rod
         Rate: 5
@@ -95634,12 +95246,12 @@ Body:
     Name: BRINARANEA_H
     JapaneseName: 汙染蜘蛛女王
     Level: 195
-    Hp: 174530159
+    Hp: 1074530159
     BaseExp: 101466150
     JobExp: 71026290
     MvpExp: 50733060
-    Attack: 26904
-    Attack2: 25206
+    Attack: 60904
+    Attack2: 55206
     Defense: 285
     MagicDefense: 112
     Str: 585
@@ -95673,20 +95285,20 @@ Body:
     Name: Dark Lord
     JapaneseName: 汙染黑暗之王
     Level: 194
-    Hp: 174289189
+    Hp: 1154289189
     BaseExp: 107136000
     JobExp: 83700000
     MvpExp: 53568000
-    Attack: 12117
-    Attack2: 19330
-    Defense: 503
+    Attack: 62117
+    Attack2: 62330
+    Defense: 105
     MagicDefense: 134
-    Str: 368
-    Agi: 356
-    Vit: 394
-    Int: 392
-    Dex: 381
-    Luk: 266
+    Str: 868
+    Agi: 456
+    Vit: 194
+    Int: 592
+    Dex: 881
+    Luk: 866
     AttackRange: 2
     SkillRange: 10
     ChaseRange: 12
@@ -96784,7 +96396,7 @@ Body:
     Name: MD_C_HEMEL
     JapaneseName: 希梅爾茲的幻影
     Level: 225
-    Hp: 250000000
+    Hp: 150000000
     BaseExp: 2291324
     JobExp: 2416730
     MvpExp: 472831
@@ -96792,13 +96404,13 @@ Body:
     Attack2: 53131
     Defense: 514
     MagicDefense: 92
-    Str: 875
+    Str: 1875
     Agi: 552
-    Vit: 341
+    Vit: 741
     Int: 678
-    Dex: 666
-    Luk: 420
-    AttackRange: 3
+    Dex: 1666
+    Luk: 820
+    AttackRange: 5
     SkillRange: 10
     ChaseRange: 12
     Size: Medium
@@ -96880,12 +96492,12 @@ Body:
     Attack2: 7976
     Defense: 204
     MagicDefense: 55
-    Str: 121
-    Agi: 55
+    Str: 321
+    Agi: 555
     Vit: 99
-    Int: 70
-    Dex: 126
-    Luk: 37
+    Int: 370
+    Dex: 326
+    Luk: 137
     AttackRange: 1
     SkillRange: 10
     ChaseRange: 12
@@ -96897,18 +96509,8 @@ Body:
     AttackDelay: 500
     Ai: 21
     Drops:
-      - Item: Reins
-        Rate: 10000
-      - Item: Glast_Horrendous_Mouth
-        Rate: 2000
-      - Item: White_Jewel
-        Rate: 100
-      - Item: Elunium
-        Rate: 10
-      - Item: Glast_Decayed_Nail
-        Rate: 200
-      - Item: Fragment_Of_Time
-        Rate: 10
+      - Item: C_White_Knight_Card
+        Rate: 1
   - Id: 20575
     AegisName: MD_C_CORRUPTION_ROOT
     Name: MD_C_CORRUPTION_ROOT
@@ -97611,16 +97213,16 @@ Body:
     Name: Jeweled Ungoliant
     JapaneseName: 寶石溫古力安特
     Level: 197
-    Hp: 135984080
+    Hp: 385984080
     BaseExp: 295365630
     JobExp: 163263660
     MvpExp: 70270020
-    Attack: 9756
-    Attack2: 14768
+    Attack: 49756
+    Attack2: 38768
     Defense: 345
     MagicDefense: 90
-    Str: 311
-    Agi: 478
+    Str: 611
+    Agi: 578
     Vit: 325
     Int: 314
     Dex: 611
@@ -98013,12 +97615,12 @@ Body:
     Name: Reginleif
     JapaneseName: 蕾格萊芙
     Level: 207
-    Hp: 175393148
+    Hp: 875393148
     BaseExp: 283635630
     JobExp: 163626360
     MvpExp: 66369960
-    Attack: 28343
-    Attack2: 23549
+    Attack: 58343
+    Attack2: 53549
     Defense: 374
     MagicDefense: 92
     Str: 696
@@ -98064,7 +97666,7 @@ Body:
     Name: Ingrid
     JapaneseName: 英格麗
     Level: 207
-    Hp: 199249813
+    Hp: 389249813
     BaseExp: 262635630
     JobExp: 163636560
     MvpExp: 66369960
@@ -98210,7 +97812,7 @@ Body:
     JapaneseName: 黑俄希托斯
     Level: 205
     Hp: 3455504
-    BaseExp: 19449630
+    BaseExp: 29449630
     JobExp: 2802690
     Attack: 4124
     Attack2: 5248
@@ -98409,11 +98011,11 @@ Body:
     Name: Bone Detale
     JapaneseName: 骨骸迪塔勒泰晤勒斯
     Level: 209
-    Hp: 188466828
+    Hp: 488466828
     BaseExp: 2796000
     JobExp: 4326000
     MvpExp: 3048000
-    Attack: 19108
+    Attack: 39108
     Attack2: 24770
     Defense: 451
     MagicDefense: 81
@@ -100200,19 +99802,19 @@ Body:
     Name: Bone Acidus
     JapaneseName: 高級帕皮拉
     Level: 186
-    Hp: 2409593
+    Hp: 63778
     BaseExp: 390000
     JobExp: 390000
-    Attack: 7306
-    Attack2: 8000
-    Defense: 425
-    MagicDefense: 90
-    Str: 120
-    Agi: 130
+    Attack: 62306
+    Attack2: 60000
+    Defense: 1
+    MagicDefense: 6700
+    Str: 820
+    Agi: 1200
     Vit: 40
-    Int: 55
-    Dex: 130
-    Luk: 60
+    Int: 555
+    Dex: 830
+    Luk: 860
     AttackRange: 3
     SkillRange: 10
     ChaseRange: 12
@@ -100225,16 +99827,8 @@ Body:
     AttackMotion: 768
     Ai: 04
     Drops:
-      - Item: Flower
-        Rate: 1000
-      - Item: Powder_Of_Butterfly
-        Rate: 1000
-      - Item: Fancy_Fairy_Wing
-        Rate: 1000
-      - Item: Sharp_Feeler
-        Rate: 1000
-      - Item: Great_Wing
-        Rate: 1000
+      - Item: MD_Papila_H_Card
+        Rate: 1
   - Id: 20671
     AegisName: MD_PAPILA_RUBA
     Name: Bone Acidus
@@ -102922,30 +102516,31 @@ Body:
     Name: N_GEFFEN_MAGE_1
     JapaneseName: 大賽雅樂西
     Level: 210
-    Hp: 4800000
+    Hp: 1746985452
     BaseExp: 88888
     JobExp: 88888
-    Attack: 5500
-    Attack2: 1800
-    Defense: 64
-    MagicDefense: 38
-    Str: 50
-    Agi: 50
-    Vit: 50
-    Int: 50
-    Dex: 130
-    Luk: 50
-    AttackRange: 1
-    SkillRange: 10
-    ChaseRange: 12
+    Attack: 62500
+    Attack2: 61800
+    Defense: 32
+    MagicDefense: 338
+    Str: 1050
+    Agi: 650
+    Vit: 450
+    Int: 1350
+    Dex: 930
+    Luk: 450
+    AttackRange: 8
+    SkillRange: 15
+    ChaseRange: 15
     Size: Medium
     Race: Demihuman
     Element: Neutral
     ElementLevel: 1
-    WalkSpeed: 150
-    AttackDelay: 576
-    AttackMotion: 432
-    DamageMotion: 288
+    WalkSpeed: 60
+    AttackDelay: 30
+    AttackMotion: 30
+    DamageMotion: 30
+    DamageTaken: 2
     Ai: 21
     Modes:
       NoRandomWalk: true
@@ -102958,30 +102553,31 @@ Body:
     Name: N_GEFFEN_MAGE_2
     JapaneseName: 大賽狄歐艾瑞默司
     Level: 210
-    Hp: 12400000
+    Hp: 17400000
     BaseExp: 88888
     JobExp: 88888
-    Attack: 6500
-    Attack2: 1800
-    Defense: 129
-    MagicDefense: 18
-    Str: 40
-    Agi: 40
-    Vit: 50
-    Int: 80
-    Dex: 130
-    Luk: 60
-    AttackRange: 3
+    Attack: 63500
+    Attack2: 61800
+    Defense: 12
+    MagicDefense: 818
+    Str: 1344
+    Agi: 768
+    Vit: 297
+    Int: 895
+    Dex: 830
+    Luk: 460
+    AttackRange: 8
     SkillRange: 10
-    ChaseRange: 12
+    ChaseRange: 15
     Size: Medium
     Race: Demihuman
     Element: Neutral
     ElementLevel: 1
-    WalkSpeed: 150
-    AttackDelay: 576
-    AttackMotion: 432
-    DamageMotion: 288
+    WalkSpeed: 35
+    AttackDelay: 30
+    AttackMotion: 30
+    DamageMotion: 30
+    DamageTaken: 3
     Ai: 21
     Modes:
       NoRandomWalk: true
@@ -102994,30 +102590,31 @@ Body:
     Name: N_GEFFEN_MAGE_3_1
     JapaneseName: 大賽吉分小偷
     Level: 210
-    Hp: 34700000
+    Hp: 1757554889
     BaseExp: 88888
     JobExp: 88888
-    Attack: 7500
-    Attack2: 1800
-    Defense: 93
-    MagicDefense: 36
-    Str: 70
-    Agi: 70
-    Vit: 40
-    Int: 40
-    Dex: 140
-    Luk: 60
-    AttackRange: 1
-    SkillRange: 10
-    ChaseRange: 12
+    Attack: 63500
+    Attack2: 61800
+    Defense: 155
+    MagicDefense: 636
+    Str: 1770
+    Agi: 1473
+    Vit: 640
+    Int: 640
+    Dex: 940
+    Luk: 1245
+    AttackRange: 9
+    SkillRange: 15
+    ChaseRange: 15
     Size: Medium
     Race: Demihuman
     Element: Neutral
     ElementLevel: 1
-    WalkSpeed: 150
-    AttackDelay: 576
-    AttackMotion: 432
-    DamageMotion: 288
+    WalkSpeed: 25
+    AttackDelay: 25
+    AttackMotion: 25
+    DamageMotion: 25
+    DamageTaken: 4
     Ai: 21
     Modes:
       NoRandomWalk: true
@@ -103030,30 +102627,31 @@ Body:
     Name: N_GEFFEN_MAGE_3_2
     JapaneseName: 大賽吉分鐵匠
     Level: 210
-    Hp: 34700000
+    Hp: 1674485421
     BaseExp: 88888
     JobExp: 88888
-    Attack: 7500
-    Attack2: 1800
-    Defense: 93
-    MagicDefense: 36
-    Str: 70
-    Agi: 50
-    Vit: 70
-    Int: 40
-    Dex: 140
-    Luk: 40
-    AttackRange: 1
+    Attack: 63500
+    Attack2: 61800
+    Defense: 393
+    MagicDefense: 336
+    Str: 1270
+    Agi: 450
+    Vit: 270
+    Int: 540
+    Dex: 940
+    Luk: 666
+    AttackRange: 8
     SkillRange: 10
     ChaseRange: 12
     Size: Medium
     Race: Demihuman
     Element: Neutral
     ElementLevel: 1
-    WalkSpeed: 150
-    AttackDelay: 576
-    AttackMotion: 432
-    DamageMotion: 288
+    WalkSpeed: 40
+    AttackDelay: 35
+    AttackMotion: 35
+    DamageMotion: 35
+    DamageTaken: 5
     Ai: 21
     Modes:
       NoRandomWalk: true
@@ -103174,30 +102772,31 @@ Body:
     Name: N_GEFFEN_MAGE_6
     JapaneseName: 大賽布魯德哈載
     Level: 210
-    Hp: 362400000
+    Hp: 1762400486
     BaseExp: 88888
     JobExp: 88888
-    Attack: 9000
-    Attack2: 3200
-    Defense: 66
-    MagicDefense: 47
-    Str: 120
-    Agi: 120
+    Attack: 63000
+    Attack2: 57200
+    Defense: 25
+    MagicDefense: 99
+    Str: 1385
+    Agi: 420
     Vit: 120
-    Int: 50
-    Dex: 150
-    Luk: 60
-    AttackRange: 1
-    SkillRange: 10
-    ChaseRange: 12
+    Int: 250
+    Dex: 950
+    Luk: 860
+    AttackRange: 6
+    SkillRange: 15
+    ChaseRange: 15
     Size: Medium
     Race: Demihuman
     Element: Neutral
     ElementLevel: 1
-    WalkSpeed: 150
-    AttackDelay: 576
-    AttackMotion: 432
-    DamageMotion: 288
+    WalkSpeed: 50
+    AttackDelay: 35
+    AttackMotion: 35
+    DamageMotion: 35
+    DamageTaken: 2
     Ai: 21
     Modes:
       NoRandomWalk: true
@@ -103462,29 +103061,31 @@ Body:
     Name: ALPHONSE_N
     JapaneseName: 大賽艾爾馮斯
     Level: 210
-    Hp: 1337300000
+    Hp: 1678884867
     BaseExp: 88888
     JobExp: 88888
-    Attack: 13500
-    Attack2: 4500
-    Defense: 100
-    MagicDefense: 20
-    Str: 50
-    Agi: 50
+    Attack: 63500
+    Attack2: 60500
+    Defense: 500
+    MagicDefense: 700
+    Str: 1350
+    Agi: 450
     Vit: 170
-    Int: 100
-    Dex: 15
-    AttackRange: 1
+    Int: 1300
+    Dex: 877
+    Luk: 967
+    AttackRange: 8
     SkillRange: 10
-    ChaseRange: 12
+    ChaseRange: 15
     Size: Medium
     Race: Demihuman
     Element: Earth
     ElementLevel: 2
-    WalkSpeed: 300
-    AttackDelay: 1608
-    AttackMotion: 816
-    DamageMotion: 396
+    WalkSpeed: 20
+    AttackDelay: 25
+    AttackMotion: 25
+    DamageMotion: 25
+    DamageTaken: 3
     Ai: 21
     Modes:
       {}
@@ -103493,30 +103094,31 @@ Body:
     Name: Fenrir_N
     JapaneseName: 大賽潘利爾
     Level: 210
-    Hp: 1416300000
+    Hp: 1796300000
     BaseExp: 3000000
     JobExp: 3000000
-    Attack: 17000
-    Attack2: 7000
+    Attack: 63000
+    Attack2: 57000
     Defense: 200
     MagicDefense: 70
-    Str: 200
-    Agi: 100
-    Vit: 200
-    Int: 200
-    Dex: 220
-    Luk: 100
-    AttackRange: 1
-    SkillRange: 10
-    ChaseRange: 12
+    Str: 1500
+    Agi: 400
+    Vit: 50
+    Int: 1200
+    Dex: 2220
+    Luk: 366
+    AttackRange: 8
+    SkillRange: 15
+    ChaseRange: 15
     Size: Medium
     Race: Demihuman
     Element: Ghost
-    ElementLevel: 2
-    WalkSpeed: 200
-    AttackDelay: 900
-    AttackMotion: 864
-    DamageMotion: 480
+    ElementLevel: 4
+    WalkSpeed: 20
+    AttackDelay: 35
+    AttackMotion: 35
+    DamageMotion: 35
+    DamageTaken: 2
     Ai: 21
     Modes:
       NoRandomWalk: true
@@ -103664,61 +103266,63 @@ Body:
     AegisName: G_ILL_MERMAN
     Name: Merman
     JapaneseName: 深海的人魚士兵
-    Level: 148
-    Hp: 467534
+    Level: 250
+    Hp: 1774484125
     BaseExp: 61600
     JobExp: 69200
-    Attack: 4248
-    Attack2: 4305
+    Attack: 63248
+    Attack2: 60305
     Defense: 268
     MagicDefense: 75
-    Str: 100
-    Agi: 90
-    Vit: 30
-    Int: 70
-    Dex: 90
-    Luk: 60
-    AttackRange: 1
-    SkillRange: 10
-    ChaseRange: 12
+    Str: 1355
+    Agi: 367
+    Vit: 80
+    Int: 1111
+    Dex: 975
+    Luk: 950
+    AttackRange: 8
+    SkillRange: 15
+    ChaseRange: 15
     Size: Medium
     Race: Demihuman
     Element: Water
-    ElementLevel: 3
-    WalkSpeed: 220
-    AttackDelay: 916
-    AttackMotion: 816
-    DamageMotion: 336
+    ElementLevel: 4
+    WalkSpeed: 50
+    AttackDelay: 40
+    AttackMotion: 40
+    DamageMotion: 40
+    DamageTaken: 1
     Ai: 21
   - Id: 20882
     AegisName: G_ILL_SEDORA
     Name: Sedora
     JapaneseName: 深海的賽杜拉
-    Level: 199
-    Hp: 3075143
+    Level: 250
+    Hp: 1745377474
     BaseExp: 98530
     JobExp: 98530
-    Attack: 8379
-    Attack2: 8758
+    Attack: 58379
+    Attack2: 53758
     Defense: 274
     MagicDefense: 100
-    Str: 180
-    Agi: 140
+    Str: 1380
+    Agi: 1040
     Vit: 50
-    Int: 110
-    Dex: 130
-    Luk: 60
-    AttackRange: 1
-    SkillRange: 10
-    ChaseRange: 12
+    Int: 1410
+    Dex: 830
+    Luk: 360
+    AttackRange: 8
+    SkillRange: 15
+    ChaseRange: 15
     Size: Medium
     Race: Fish
     Element: Water
     ElementLevel: 3
-    WalkSpeed: 120
-    AttackDelay: 504
-    AttackMotion: 960
-    DamageMotion: 576
+    WalkSpeed: 50
+    AttackDelay: 35
+    AttackMotion: 35
+    DamageMotion: 35
+    DamageTaken: 2
     Ai: 21
     Modes:
       Detector: true
@@ -105263,13 +104867,13 @@ Body:
     AegisName: Knight_Angel
     Name: 斬殺天使的叛靈
     Level: 220
-    Hp: 360000000
+    Hp: 1660000000
     Sp: 10000
     BaseExp: 1
     JobExp: 1
     Attack: 50000
-    Attack2: 1
-    Defense: 350
+    Attack2: 39000
+    Defense: 150
     MagicDefense: 85
     Str: 1020
     Agi: 680
@@ -105277,38 +104881,39 @@ Body:
     Int: 380
     Dex: 900
     Luk: 520
-    AttackRange: 1
+    AttackRange: 5
     SkillRange: 10
     ChaseRange: 12
     Size: Medium
     Race: Undead
     Element: Undead
-    ElementLevel: 2
+    ElementLevel: 4
     WalkSpeed: 100
-    AttackDelay: 76
-    AttackMotion: 672
-    DamageMotion: 480
+    AttackDelay: 70
+    AttackMotion: 70
+    DamageMotion: 70
+    DamageTaken: 15
     Ai: 21
     Class: Boss
   - Id: 27102
     AegisName: Forgotten_Witch
     Name: 遺忘神界的巫靈
     Level: 220
-    Hp: 390000000
+    Hp: 1590000000
     Sp: 10000
     BaseExp: 1
     JobExp: 1
     Attack: 35000
-    Attack2: 1
+    Attack2: 28000
     Defense: 160
     MagicDefense: 85
     Str: 700
     Agi: 480
     Vit: 500
     Int: 580
-    Dex: 500
+    Dex: 800
     Luk: 420
-    AttackRange: 1
+    AttackRange: 6
     SkillRange: 10
     ChaseRange: 12
     Size: Medium
@@ -105316,20 +104921,21 @@ Body:
     Element: Undead
     ElementLevel: 2
     WalkSpeed: 100
-    AttackDelay: 76
-    AttackMotion: 672
-    DamageMotion: 480
+    AttackDelay: 60
+    AttackMotion: 60
+    DamageMotion: 60
+    DamageTaken: 30
     Ai: 21
     Class: Boss
   - Id: 27103
     AegisName: Timing_Pioner
     Name: 回朔時間的先知
     Level: 220
-    Hp: 460000000
+    Hp: 1220000000
     Sp: 10000
     BaseExp: 1
     JobExp: 1
-    Attack: 40000
+    Attack: 60000
     Attack2: 1
     Defense: 160
     MagicDefense: 85
@@ -105339,30 +104945,31 @@ Body:
     Int: 280
     Dex: 600
     Luk: 320
-    AttackRange: 1
+    AttackRange: 5
     SkillRange: 10
     ChaseRange: 12
     Size: Medium
     Race: Undead
     Element: Undead
-    ElementLevel: 2
+    ElementLevel: 3
     WalkSpeed: 100
-    AttackDelay: 76
-    AttackMotion: 672
-    DamageMotion: 480
+    AttackDelay: 80
+    AttackMotion: 80
+    DamageMotion: 80
+    DamageTaken: 30
     Ai: 21
     Class: Boss
   - Id: 27104
     AegisName: Amazing_Punch
     Name: 稱霸靈界的王者
     Level: 220
-    Hp: 480000000
+    Hp: 980000000
     Sp: 10000
     BaseExp: 1
     JobExp: 1
     Attack: 55000
     Attack2: 1
-    Defense: 160
+    Defense: 60
     MagicDefense: 85
     Str: 420
     Agi: 480
@@ -105370,7 +104977,7 @@ Body:
     Int: 680
     Dex: 600
     Luk: 320
-    AttackRange: 1
+    AttackRange: 5
     SkillRange: 10
     ChaseRange: 12
     Size: Medium
@@ -105378,71 +104985,74 @@ Body:
     Element: Undead
     ElementLevel: 2
     WalkSpeed: 100
-    AttackDelay: 76
-    AttackMotion: 672
-    DamageMotion: 480
+    AttackDelay: 75
+    AttackMotion: 75
+    DamageMotion: 75
+    DamageTaken: 30
     Ai: 21
     Class: Boss
   - Id: 27105
     AegisName: Ending_Boss
     Name: 終界之王
     Level: 300
-    Hp: 2000000000
+    Hp: 1755555487
     BaseExp: 1080
     JobExp: 810
     MvpExp: 300000
-    Attack: 58000
-    Attack2: 55000
-    Defense: 1500
-    MagicDefense: 400
+    Attack: 64000
+    Attack2: 63000
+    Defense: 1
+    MagicDefense: 900
     Str: 1300
-    Agi: 750
+    Agi: 650
     Vit: 601
-    Int: 988
+    Int: 1988
     Dex: 900
-    Luk: 605
-    AttackRange: 5
-    SkillRange: 10
-    ChaseRange: 12
+    Luk: 905
+    AttackRange: 10
+    SkillRange: 15
+    ChaseRange: 15
     Size: Large
     Race: Dragon
-    Element: Dark
+    Element: Ghost
     ElementLevel: 4
-    WalkSpeed: 100
-    AttackDelay: 76
-    AttackMotion: 672
-    DamageMotion: 480
+    WalkSpeed: 25
+    AttackDelay: 25
+    AttackMotion: 25
+    DamageMotion: 25
+    DamageTaken: 1
     Ai: 21
     Class: Boss
   - Id: 27077
     AegisName: echidna
     Name: 泰坦蛇姬
-    Level: 142
-    Hp: 894962
+    Level: 250
+    Hp: 1758869731
     BaseExp: 10386
     JobExp: 7790
-    Attack: 3505
-    Attack2: 1317
-    Defense: 166
-    MagicDefense: 12
-    Str: 142
-    Agi: 69
-    Vit: 86
-    Int: 49
-    Dex: 132
-    Luk: 55
-    AttackRange: 1
-    SkillRange: 10
-    ChaseRange: 12
+    Attack: 53505
+    Attack2: 35317
+    Defense: 1
+    MagicDefense: 873
+    Str: 488
+    Agi: 1597
+    Vit: 986
+    Int: 2249
+    Dex: 732
+    Luk: 2100
+    AttackRange: 9
+    SkillRange: 15
+    ChaseRange: 15
     Size: Medium
     Race: Demon
-    Element: Fire
-    ElementLevel: 3
-    WalkSpeed: 170
-    AttackDelay: 76
-    AttackMotion: 384
-    DamageMotion: 288
-    Ai: 09
+    Element: Ghost
+    ElementLevel: 4
+    WalkSpeed: 40
+    AttackDelay: 25
+    AttackMotion: 25
+    DamageMotion: 25
+    DamageTaken: 1
+    Ai: 21
     Modes:
       Detector: true
   - Id: 27092
@@ -105479,32 +105089,33 @@ Body:
   - Id: 27106
     AegisName: Blazing_Imp
     Name: 奪命小惡魔
-    Level: 142
-    Hp: 748100
+    Level: 250
+    Hp: 1766666674
     BaseExp: 10854
     JobExp: 7241
-    Attack: 2762
-    Attack2: 1282
-    Defense: 131
-    MagicDefense: 10
-    Str: 138
-    Agi: 79
-    Vit: 62
-    Int: 53
-    Dex: 82
-    Luk: 48
-    AttackRange: 1
-    SkillRange: 10
-    ChaseRange: 12
+    Attack: 63762
+    Attack2: 58282
+    Defense: 102
+    MagicDefense: 600
+    Str: 1038
+    Agi: 1414
+    Vit: 362
+    Int: 1353
+    Dex: 982
+    Luk: 432
+    AttackRange: 8
+    SkillRange: 15
+    ChaseRange: 15
     Size: Medium
-    Race: Demihuman
+    Race: Brute
     Element: Water
     ElementLevel: 4
-    WalkSpeed: 180
-    AttackDelay: 76
-    AttackMotion: 384
-    DamageMotion: 288
-    Ai: 09
+    WalkSpeed: 35
+    AttackDelay: 25
+    AttackMotion: 25
+    DamageMotion: 25
+    DamageTaken: 1
+    Ai: 21
   - Id: 27094
     AegisName: Neohyuroido
     Name: 實驗室木偶
@@ -105537,32 +105148,33 @@ Body:
   - Id: 27096
     AegisName: siren
     Name: 深海豎琴公主
-    Level: 141
-    Hp: 890255
+    Level: 200
+    Hp: 1658469214
     BaseExp: 10103
     JobExp: 7577
-    Attack: 3737
-    Attack2: 1248
-    Defense: 76
-    MagicDefense: 15
-    Str: 121
-    Agi: 126
-    Vit: 67
-    Int: 80
-    Dex: 165
-    Luk: 42
+    Attack: 63737
+    Attack2: 61248
+    Defense: 476
+    MagicDefense: 458
+    Str: 1214
+    Agi: 1260
+    Vit: 672
+    Int: 1145
+    Dex: 1650
+    Luk: 423
     AttackRange: 14
     SkillRange: 10
     ChaseRange: 12
     Size: Medium
     Race: Demihuman
     Element: Wind
-    ElementLevel: 3
-    WalkSpeed: 180
-    AttackDelay: 76
-    AttackMotion: 384
-    DamageMotion: 288
-    Ai: 09
+    ElementLevel: 4
+    WalkSpeed: 30
+    AttackDelay: 25
+    AttackMotion: 25
+    DamageMotion: 25
+    DamageTaken: 1
+    Ai: 21
   - Id: 27097
     AegisName: thanat
     Name: 達納托斯異能博士
@@ -105596,27 +105208,27 @@ Body:
     AegisName: KK_KING_DLPORING
     Name: 搗亂的國王波利
     Level: 1
-    Hp: 60
+    Hp: 300
     BaseExp: 27
     JobExp: 20
-    Attack: 8
-    Attack2: 9
-    Defense: 2
+    Attack: 58000
+    Attack2: 63114
+    Defense: 5
     MagicDefense: 5
-    Str: 6
-    Dex: 6
-    Luk: 5
-    AttackRange: 1
+    Str: 999
+    Dex: 999
+    Luk: 999
+    AttackRange: 8
     SkillRange: 10
     ChaseRange: 12
     Size: Small
     Race: Plant
     Element: Water
     ElementLevel: 1
-    WalkSpeed: 50
-    AttackDelay: 1872
-    AttackMotion: 672
-    DamageMotion: 480
+    WalkSpeed: 20
+    AttackDelay: 20
+    AttackMotion: 20
+    DamageMotion: 20
     Ai: 25
     Class: Boss
     Modes:
@@ -105661,31 +105273,32 @@ Body:
     Name: mobb18
     JapaneseName: 世界王-戰神麒麟
     Level: 300
-    Hp: 2000000000
+    Hp: 1796000000
     BaseExp: 1080
     JobExp: 810
     MvpExp: 300000
-    Attack: 28000
-    Attack2: 45000
-    Defense: 1500
+    Attack: 64000
+    Attack2: 58000
+    Defense: 1
     MagicDefense: 400
-    Str: 300
-    Agi: 150
-    Vit: 101
-    Int: 388
-    Dex: 400
-    Luk: 105
-    AttackRange: 5
-    SkillRange: 10
-    ChaseRange: 12
+    Str: 1200
+    Agi: 950
+    Vit: 801
+    Int: 1488
+    Dex: 1200
+    Luk: 795
+    AttackRange: 9
+    SkillRange: 15
+    ChaseRange: 15
     Size: Large
     Race: Dragon
-    Element: Dark
-    ElementLevel: 2
-    WalkSpeed: 200
-    AttackDelay: 164
-    AttackMotion: 864
-    DamageMotion: 576
+    Element: Ghost
+    ElementLevel: 4
+    WalkSpeed: 20
+    AttackDelay: 20
+    AttackMotion: 20
+    DamageMotion: 20
+    DamageTaken: 1
     Ai: 21
     Class: Boss
     Modes:

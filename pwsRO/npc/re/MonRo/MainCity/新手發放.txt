@@ -11,7 +11,7 @@ LGET:
         if (g==2) goto OREADY;
         set g,2;
         getitem    601,1;	//蒼蠅翅膀
-        getitem    607,80;	//天地樹果實
+        getitem    607,10;	//天地樹果實
     
 	rentitem 62008,259200;	//覺醒伊甸園圓帽Ⅱ(新手)
 	rentitem 62009,259200;	//覺醒伊甸園制服Ⅴ(新手)

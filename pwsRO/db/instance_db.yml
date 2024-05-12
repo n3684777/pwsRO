@@ -394,13 +394,13 @@ Body:
       Map: 4@rank
       X: 50
       Y: 50
-  - Id: 78
-    Name: ¹DÀ]¬D¾Ô[²×·¥¹ÚÆL]
+  - Id: 54
+    Name: ¹DÀ]¬D¾Ô[²×·¥]
     Enter:
       Map: 5@rank
       X: 50
       Y: 50  
-  - Id: 54
+  - Id: 78
     Name: ¦aº»º²Äl
     Enter:
       Map: 1@hfire

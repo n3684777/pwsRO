@@ -1490,6 +1490,7 @@ Body:
     TargetType: Self
     DamageFlags:
       Splash: true
+      Critical: true
     Range: 9
     Hit: Single
     HitCount: 1
@@ -1504,11 +1505,11 @@ Body:
       - Level: 4
         Area: 3
       - Level: 5
-        Area: 4
+        Area: 6
     GiveAp: 5
     CastCancel: true
     AfterCastActDelay: 500
-    Cooldown: 5000
+    Cooldown: 4000
     Requires:
       SpCost:
         - Level: 1
@@ -2323,7 +2324,7 @@ Body:
       - Level: 4
         Time: 210000
       - Level: 5
-        Time: 240000
+        Time: 600000
     Cooldown: 1000
     FixedCastTime: 1000
     Requires:
@@ -2476,7 +2477,7 @@ Body:
       - Level: 4
         Time: 210000
       - Level: 5
-        Time: 240000
+        Time: 600000
     Cooldown: 1000
     FixedCastTime: 1000
     Requires:
@@ -2657,7 +2658,7 @@ Body:
       - Level: 4
         Time: 210000
       - Level: 5
-        Time: 240000
+        Time: 600000
     FixedCastTime: 1000
     Requires:
       SpCost:
@@ -2695,7 +2696,7 @@ Body:
       - Level: 4
         Time: 210000
       - Level: 5
-        Time: 240000
+        Time: 600000
     FixedCastTime: 1000
     Requires:
       SpCost:
@@ -2898,7 +2899,7 @@ Body:
     Element: Weapon
     SplashArea: 1
     CastCancel: true
-    AfterCastActDelay: 500
+    AfterCastActDelay: 300
     Cooldown: 3000
     Requires:
       SpCost:
@@ -2924,7 +2925,6 @@ Body:
           Amount: 55
       Weapon:
         Katar: true
-      State: Hidden
   - Id: 5288
     Name: SHC_SHADOW_SENSE
     Description: Shadow Sense
@@ -3683,9 +3683,10 @@ Body:
     TargetType: Attack
     DamageFlags:
       Splash: true
+      Critical: true
     Range: 9
     Hit: Single
-    HitCount: 1
+    HitCount: 3
     Element: Weapon
     SplashArea:
       - Level: 1
@@ -3697,7 +3698,7 @@ Body:
       - Level: 4
         Area: 2
       - Level: 5
-        Area: 3
+        Area: 4
     CastCancel: true
     CastTime: 1000
     AfterCastActDelay: 500
@@ -3719,7 +3720,7 @@ Body:
         Bow: true
       Ammo:
         Arrow: true
-      AmmoAmount: 7
+      AmmoAmount: 2
   - Id: 5317
     Name: ABC_FROM_THE_ABYSS
     Description: From The Abyss
@@ -3945,7 +3946,7 @@ Body:
         Bow: true
       Ammo:
         Arrow: true
-      AmmoAmount: 10
+      AmmoAmount: 2
   - Id: 5323
     Name: WH_ADVANCED_TRAP
     Description: Advanced Trap
@@ -4992,6 +4993,8 @@ Body:
     MaxLevel: 5
     Type: Weapon
     TargetType: Attack
+    DamageFlags:
+      Critical: true
     Range: 9
     Hit: Multi_Hit
     HitCount: -2
@@ -5102,7 +5105,7 @@ Body:
       Splash: true
     Range: 9
     Hit: Multi_Hit
-    HitCount: 1
+    HitCount: 3
     Element: Weapon
     SplashArea:
       - Level: 1
@@ -5127,7 +5130,7 @@ Body:
       - Level: 5
         Amount: 5
     CastCancel: true
-    Cooldown: 1000
+    Cooldown: 2000
     Requires:
       SpCost:
         - Level: 1
@@ -5551,7 +5554,7 @@ Body:
       - Level: 4
         Time: 200000
       - Level: 5
-        Time: 240000
+        Time: 600000
     Requires:
       SpCost:
         - Level: 1

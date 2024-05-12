@@ -1,8 +1,8 @@
 function	script	C_effect	{
 	disable_items;
 	setarray .@equipid$[0],getequipname(10),getequipname(11),getequipname(12),getequipname(13);
-	setarray .@top[0],25058,1000365;
-	setarray .@topeff[0],29041,310322;
+	setarray .@top[0],25058,1000365,910139,910140,910141,910142,910143,910144,910145,910146,910147,910148,910149,910150,910151;
+	setarray .@topeff[0],29041,310322,910139,910140,910141,910142,910143,910144,910145,910146,910147,910148,910149,910150,910151;
 	setarray .@min[0],25059,25136,25138,25176,25177,25178,25224,25225,1000319,1000345;
 	setarray .@mineff[0],29040,29042,29044,29160,29162,29161,29224,29226,300157,300152;
 	setarray .@low[0],25137,25205,25226;
@@ -28,7 +28,7 @@ function	script	C_effect	{
 	next;
 	for(.@i =0;.@i <3; .@i++)set .@equipname$,.@equipname$ +.@equipid$[.@i]+":";
 	switch(select(""+.@equipname$+"")){
-		case 1:	set .@deleffect,10; set .@c,2;break;
+		case 1:	set .@deleffect,10; set .@c,15;break;
 		case 2:	set .@deleffect,11; set .@c,9;break;
 		case 3:	set .@deleffect,12; set .@c,3;break;
 		}
@@ -47,6 +47,19 @@ function	script	C_effect	{
 	switch(select(""+.@effect$+"")){
 	case 1:	set .@x,0;	break;
 	case 2:	set .@x,1;	break;
+	case 3:	set .@x,2;	break;
+	case 4:	set .@x,3;	break;
+	case 5:	set .@x,4;	break;
+	case 6:	set .@x,5;	break;
+	case 7:	set .@x,6;	break;
+	case 8:	set .@x,7;	break;
+	case 9:	set .@x,8;	break;
+	case 10:	set .@x,9;	break;
+	case 11:	set .@x,10;	break;
+	case 12:	set .@x,11;	break;
+	case 13:	set .@x,12;	break;
+	case 14:	set .@x,13;	break;
+	case 15:	set .@x,14;	break;
 		}
 	}
 	if(.@deleffect == 11){
@@ -134,7 +147,7 @@ function	script	C_effect	{
 
 
 
-function	script	C_ench1	{
+//function	script	C_ench1	{
 	disable_items;
 	setarray .@equipid$[0],getequipname(10),getequipname(11),getequipname(12),getequipname(13);
 	setarray .@top[0],6636,6637,6638,6639,6640,6641,6740,6741,6790,6791,6792,6943,6944,6999,25000,25068,25069,25171,25172,25304,25409,25413,25417,25445,25450,25453,25490,25494,25498,25706,25710,25714,25800,25804,25808,25843,25846,25850,25855,25859,1000008,1000012,1000016,1000214,1000218,1000222;

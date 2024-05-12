@@ -11,12 +11,12 @@ gld_dun03,0,0	monster	"--ja--"	1311,10,0,0,0
 
 
 
-prt_fild08,165,356	monster	"--ja--"	2411,1,0,0,0
-prt_fild08,175,356	monster	"--ja--"	2411,1,0,0,0
-prt_fild08,165,361	monster	"--ja--"	2411,1,0,0,0
-prt_fild08,175,361	monster	"--ja--"	2411,1,0,0,0
-prt_fild08,165,366	monster	"--ja--"	2411,1,0,0,0
-prt_fild08,175,366	monster	"--ja--"	2411,1,0,0,0
+morocc,157,91	monster	"--ja--"	2411,1,0,0,0
+morocc,163,91	monster	"--ja--"	2411,1,0,0,0
+morocc,163,86	monster	"--ja--"	2411,1,0,0,0
+morocc,157,86	monster	"--ja--"	2411,1,0,0,0
+morocc,157,81	monster	"--ja--"	2411,1,0,0,0
+morocc,163,81	monster	"--ja--"	2411,1,0,0,0
 
 
 

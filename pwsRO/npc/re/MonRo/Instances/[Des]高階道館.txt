@@ -1,6 +1,6 @@
 egg1,165,157,6	script	道館挑戰[高階]	468,{
 	set .@md_name$,"道館挑戰[高階]";
-	set .@Zeny, 15000000; //挑戰金額
+	set .@Zeny, 55000000; //挑戰金額
 	mes "=========道館挑戰========";
 	mes "- ^984AAC歡迎你參加普通道館挑戰^000000";
 	mes "- ^984AAC入場需求金額 : "+.@Zeny+" z^000000";
@@ -116,9 +116,9 @@ OnInstanceInit:
 	if (select("我確定要領取！","讓我好好考慮一下！")==2) {close;}
 	if (checkquest(55152,PLAYTIME)== 2){erasequest 55152;}
 	if (checkquest(55152,PLAYTIME)== -1){
-			getitem 61003,20;
+			getitem 61003,10;
                         getitem 6316,10;
-                        getitem 7582,60;
+                        getitem 7539,200;
 			set #CASHPOINTS,#CASHPOINTS+100;
 			setquest 55152;
 			dispbottom "此為今日首次通關，獲得兩倍獎勵。";
@@ -126,8 +126,9 @@ OnInstanceInit:
 			warp "egg1",214,167;
 			end;	
 		}
-	getitem 61003,10;
-        getitem 7582,30;
+	getitem 61003,5;
+        getitem 6316,5;
+        getitem 7539,100;
 	set #CASHPOINTS,#CASHPOINTS+50;
 	dispbottom "獲得點數 [50]，目前累積點數為 ["+#CASHPOINTS+"]。";
 	set #DOKANPOINTS,#DOKANPOINTS+3;

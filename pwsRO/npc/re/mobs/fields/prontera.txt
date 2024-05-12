@@ -90,6 +90,19 @@ prt_fild07,225,110,5,5	monster	Black Mushroom	1084,3,360000,180000
 //==================================================
 // prt_fild08 - Prontera Field
 //==================================================
+prt_fild08,0,0	monster	V_B_TRENTINI	3246,1,3000
+prt_fild08,0,0	monster	V_B_ALPHOCCIO	3245,1,3000
+prt_fild08,0,0	monster	V_B_GERTIE	3244,1,3000
+prt_fild08,0,0	monster	Sura Chen	3243,1,3000
+prt_fild08,0,0	monster	V_B_CELIA	3242,1,3000
+prt_fild08,0,0	monster	V_B_FLAMEL	3241,1,3000
+prt_fild08,0,0	monster	V_B_RANDEL	3240,1,3000
+prt_fild08,0,0	monster	V_B_EREMES	3220,1,3000
+prt_fild08,0,0	monster	V_B_MAGALETA	3221,1,3000
+prt_fild08,0,0	monster	V_B_SHECIL	3222,1,3000
+prt_fild08,0,0	monster	V_B_HARWORD	3223,1,3000
+prt_fild08,0,0	monster	V_B_KATRINN	3224,1,3000
+prt_fild08,0,0	monster	V_B_SEYREN	3225,1,3000
 prt_fild08,0,0	monster	Maya	1147,3,3000
 prt_fild08,0,0	monster	DARK_SNAKE_LORD	1418,3,3000
 prt_fild08,0,0	monster	Phreeoni	1159,3,3000
@@ -108,33 +121,37 @@ prt_fild08,0,0	monster	Mistress	1059,3,3000
 prt_fild08,0,0	monster	GOLDEN_BUG	1086,3,3000
 prt_fild08,0,0	monster	Orc Hero	1087,3,3000
 prt_fild08,0,0	monster	Stormy Knight	1251,3,3000
-prt_fild08,0,0	monster	Hatii	1252,1,5000
+prt_fild08,0,0	monster	Hatii	1252,3,3000
 prt_fild08,0,0	monster	Dark Lord	1272,2,3000
 prt_fild08,0,0	monster	Turtle General	1312,3,3000
 prt_fild08,0,0	monster	Lord of the Dead	1373,3,3000
 prt_fild08,0,0	monster	Dracula	1389,3,3000
-prt_fild08,0,0	monster	Tao Gunka	1583,1,3000
+prt_fild08,0,0	monster	Tao Gunka	1583,5,3000
 prt_fild08,0,0	monster	Gloom Under Night	1768,3,3000
 prt_fild08,0,0	monster	Angeling	1096,3,3000
 prt_fild08,0,0	monster	Deviling	1582,3,3000
+prt_fild08,0,0	monster	KTULLANUX	1779,3,3000
 prt_fild08,0,0	monster	Ghostring	1120,3,3000
 prt_fild08,0,0	monster	White Lady	1518,3,3000
 prt_fild08,0,0	monster	Amon Ra	1511,3,5000
 prt_fild08,0,0	monster	RSX-0806	1623,3,3000
 prt_fild08,0,0	monster	Egnigem Cenia	1658,3,3000
-prt_fild08,0,0	monster	Lord Knight Seyren	1646,1,3000
-prt_fild08,0,0	monster	Assassin Cross Eremes	1647,1,3000
-prt_fild08,0,0	monster	Whitesmith Howard	1648,1,3000
-prt_fild08,0,0	monster	High Priest Margaretha	1649,1,3000
-prt_fild08,0,0	monster	Sniper Cecil	1650,3,3000
-prt_fild08,0,0	monster	High Wizard Kathryne	1651,3,3000
+prt_fild08,0,0	monster	Lord Knight Seyren	1646,2,3000
+prt_fild08,0,0	monster	Assassin Cross Eremes	1647,2,3000
+prt_fild08,0,0	monster	Whitesmith Howard	1648,2,3000
+prt_fild08,0,0	monster	High Priest Margaretha	1649,2,3000
+prt_fild08,0,0	monster	Sniper Cecil	1650,2,3000
+prt_fild08,0,0	monster	High Wizard Kathryne	1651,2,3000
 prt_fild08,0,0	monster	Vesper	1685,3,3000
+prt_fild08,0,0	monster	LADY_TANEE	1688,3,3000
 prt_fild08,0,0	monster	Thanatos Phantom	1708,3,3000
 prt_fild08,0,0	monster	IFRIT	1832,3,3000
 prt_fild08,0,0	monster	KIEL	1734,3,3000
 prt_fild08,0,0	monster	DETALE	1719,3,3000
+prt_fild08,0,0	monster	N_AMON_RA	2362,3,3000
 prt_fild08,0,0	monster	MD_C_HEMEL	20572,2,3000
 prt_fild08,0,0	monster	Gioia	2251,2,3000
+prt_fild08,0,0	monster	Beelzebub	1874,3,3000
 //==================================================
 // prt_fild08 - Duplicates
 //==================================================

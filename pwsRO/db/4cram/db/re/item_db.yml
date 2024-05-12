@@ -620,3 +620,163 @@ Body:
     Type: Etc
     Buy: 20
     Weight: 10
+  - Id: 910139
+    AegisName: RK_J_Stone
+    Name: 盧恩騎士JRO幻化石(頭上)
+    Type: Card
+    Buy: 20
+    Weight: 100
+    Script: |
+      changebase 4060;
+      setlook LOOK_BODY2,1;
+    UnEquipScript: |
+      setlook LOOK_BODY2,0;
+      changebase Class;
+  - Id: 910140
+    AegisName: WL_J_Stone
+    Name: 咒術士JRO幻化石(頭上)
+    Type: Card
+    Buy: 20
+    Weight: 100
+    Script: |
+      changebase 4061;
+      setlook LOOK_BODY2,1;
+    UnEquipScript: |
+      setlook LOOK_BODY2,0;
+      changebase Class;
+  - Id: 910141
+    AegisName: TArc2_J_Stone
+    Name: 遊俠JRO幻化石(頭上)
+    Type: Card
+    Buy: 20
+    Weight: 100
+    Script: |
+      changebase 4062;
+      setlook LOOK_BODY2,1;
+    UnEquipScript: |
+      setlook LOOK_BODY2,0;
+      changebase Class;
+  - Id: 910142
+    AegisName: AB_J_Stone
+    Name: 大主教JRO幻化石(頭上)
+    Type: Card
+    Buy: 20
+    Weight: 100
+    Script: |
+      changebase 4063;
+      setlook LOOK_BODY2,1;
+    UnEquipScript: |
+      setlook LOOK_BODY2,0;
+      changebase Class;
+  - Id: 910143
+    AegisName: TMer_J_Stone
+    Name: 機械工匠JRO幻化石(頭上)
+    Type: Card
+    Buy: 20
+    Weight: 100
+    Script: |
+      changebase 4064;
+      setlook LOOK_BODY2,1;
+    UnEquipScript: |
+      setlook LOOK_BODY2,0;
+      changebase Class;
+  - Id: 910144
+    AegisName: CA_J_Stone
+    Name: 十字斬首者JRO幻化石(頭上)
+    Type: Card
+    Buy: 20
+    Weight: 100
+    Script: |
+      changebase 4065;
+      setlook LOOK_BODY2,1;
+    UnEquipScript: |
+      setlook LOOK_BODY2,0;
+      changebase Class;
+  - Id: 910145
+    AegisName: TS2_J_Stone
+    Name: 皇家禁衛軍JRO幻化石(頭上)
+    Type: Card
+    Buy: 20
+    Weight: 100
+    Script: |
+      changebase 4073;
+      setlook LOOK_BODY2,1;
+    UnEquipScript: |
+      setlook LOOK_BODY2,0;
+      changebase Class;
+  - Id: 910146
+    AegisName: TM2_J_Stone
+    Name: 妖術師JRO幻化石(頭上)
+    Type: Card
+    Buy: 20
+    Weight: 100
+    Script: |
+      changebase 4074;
+      setlook LOOK_BODY2,1;
+    UnEquipScript: |
+      setlook LOOK_BODY2,0;
+      changebase Class;
+  - Id: 910147
+    AegisName: TBar_J_Stone
+    Name: 宮廷樂師JRO幻化石(頭上)
+    Type: Card
+    Buy: 20
+    Weight: 100
+    Script: |
+      if (Sex == SEX_MALE){
+      changebase 4075;
+      setlook LOOK_BODY2,1;
+      }
+    UnEquipScript: |
+      setlook LOOK_BODY2,0;
+      changebase Class;
+  - Id: 910148
+    AegisName: TDan_J_Stone
+    Name: 浪跡舞者JRO幻化石(頭上)
+    Type: Card
+    Buy: 20
+    Weight: 100
+    Script: |
+      if (Sex == SEX_FEMALE){
+      changebase 4076;
+      setlook LOOK_BODY2,1;
+      }
+    UnEquipScript: |
+      setlook LOOK_BODY2,0;
+      changebase Class;
+  - Id: 910149
+    AegisName: TMon_J_Stone
+    Name: 修羅JRO幻化石(頭上)
+    Type: Card
+    Buy: 20
+    Weight: 100
+    Script: |
+      changebase 4077;
+      setlook LOOK_BODY2,1;
+    UnEquipScript: |
+      setlook LOOK_BODY2,0;
+      changebase Class;
+  - Id: 910150
+    AegisName: Mer222_J_Stone
+    Name: 基因學者JRO幻化石(頭上)
+    Type: Card
+    Buy: 20
+    Weight: 100
+    Script: |
+      changebase 4078;
+      setlook LOOK_BODY2,1;
+    UnEquipScript: |
+      setlook LOOK_BODY2,0;
+      changebase Class;
+  - Id: 910151
+    AegisName: TThi2_J_Stone
+    Name: 魅影追蹤者JRO幻化石(頭上)
+    Type: Card
+    Buy: 20
+    Weight: 100
+    Script: |
+      changebase 4079;
+      setlook LOOK_BODY2,1;
+    UnEquipScript: |
+      setlook LOOK_BODY2,0;
+      changebase Class;

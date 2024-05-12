@@ -36,9 +36,9 @@ pay_dun01,0,0	monster	Red Plant	1078,10,180000,90000
 //==================================================
 // pay_dun02 - Payon Cave
 //==================================================
-pay_dun02,0,0	monster	Soldier Skeleton	1028,45,5000
-pay_dun02,0,0	monster	Munak	1026,40,5000
-pay_dun02,0,0	monster	Bongun	1188,30,5000
+pay_dun02,0,0	monster	Soldier Skeleton	1028,20,5000
+pay_dun02,0,0	monster	Munak	1026,150,3000
+pay_dun02,0,0	monster	Bongun	1188,10,5000
 pay_dun02,0,0	monster	Archer Skeleton	1016,20,5000
 pay_dun02,0,0	monster	Poporing	1031,10,5000
 pay_dun02,0,0	monster	Nine Tail	1180,1,5000
