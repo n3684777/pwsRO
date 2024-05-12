@@ -285,6 +285,50 @@ lroom00,139,69,3	script	破幣換破寶	554,{
 		next;
 	}
 }
+lroom00,136,71,3	script	破寶換B卡	554,{
+	if (checkweight(1201,1) == 0) {
+		mes "你身上有太多的物品了，減少了一些再來找我吧!!";
+		close;
+	}
+	if (MaxWeight - Weight < 1000) {
+		mes "你身上的重量太重了，試著減輕重量再來吧!?";
+		close;
+	}
+	mes "[破寶換B卡]";
+	mes "感謝您的交易。";
+	mes "每^ff00001500個 破滅寶石^000000 可幫您換成^3333ff雪花節B卡片1個^000000，那麼..要開始交易了?";
+	next;
+	setarray .@coin_amount[0],1500,3000,4500,6000;
+	while(1) {
+		.@menu$ = "";
+		for(.@i = 0; .@i<getarraysize(.@coin_amount); .@i++) {
+			if (countitem(7582) >= .@coin_amount[.@i])
+				.@menu$ = .@menu$ + "用"+(.@coin_amount[.@i])+"個破寶換"+(.@coin_amount[.@i]/1500)+"張雪花節B卡片:";
+			else
+				.@menu$ = .@menu$ + "^aaaaaa兌換"+(.@coin_amount[.@i])+"雪花節B卡片(不足"+(.@coin_amount[.@i])+"個破寶)^000000:";
+		}
+		.@i = select(.@menu$+"離開")-1;
+		if (.@i == getarraysize(.@coin_amount)) {
+			mes "[破寶換B卡]";
+			mes "讓我們再其他的時間交換吧.";
+			close;
+		}
+		if (countitem(7582) < .@coin_amount[.@i]) {
+			mes "[破寶換B卡]";
+			mes "你需要^ff0000"+.@coin_amount[.@i]+"^000000破滅的硬幣來執行交換。但你似乎沒有足夠的代幣。";
+			close;
+		}
+		delitem 7582,.@coin_amount[.@i]; //Cgrade_Coin
+		getitem 6011,.@coin_amount[.@i]/1500; //Mora_Coin
+		mes "[破寶換B卡]";
+		mes "破滅的硬幣 ^003399"+.@coin_amount[.@i]+"^000000 深受歡迎。"; //FIXME: Dialogue.
+		mes "交換到 ^003399"+(.@coin_amount[.@i]/1500)+"^000000雪花節B卡片。";
+		next;
+		mes "[破寶換B卡]";
+		mes "你想要繼續嗎？";
+		next;
+	}
+}
 lroom00,156,42,3	script	黑暗的換錢機TX100	564,{
 //glemior,236,309,5	script	黑暗的換錢機TX100	564,{
 	if (checkweight(1201,1) == 0) {
