@@ -1,0 +1,67 @@
+-- Decompiled using luadec 2.1 UNICODE by sztupy (http://winmo.sztupy.hu) and viruscamp 
+-- Command line was: tipbox.lub 
+
+tbl = {
+[1] = {Title = "第一頁標題", Search = 1, Image = "嶸盪檣攪む檜蝶\\tipbox\\tip00046", 
+Imgcoord = {Position = 5, Size = 100}, 
+Page = {"介紹文字\\n<TIPBOX>第二頁<INFO>2</INFO></TIPBOX>\\n<TIPBOX>第三頁<INFO>3</INFO></TIPBOX>\\n<TIPBOX>第四頁<INFO>4</INFO></TIPBOX>\\n<TIPBOX>第五頁<INFO>5</INFO></TIPBOX>\\n<TIPBOX>第六頁<INFO>6</INFO></TIPBOX>"},
+PageEX = {
+{EffectNum = 5, Twinkle = 1, StartX = 160, StartY = 105, DistX = 0, DistY = 0, MoveTime = 0},
+{EffectNum = 5, Twinkle = 0, StartX = 0, StartY = 120, DistX = 220, DistY = 120, MoveTime = 3}}}, 
+[2] = {Title = "第二頁標題", Search = 0, Image = "嶸盪檣攪む檜蝶\\tipbox\\tip00002", 
+Imgcoord = {Position = 5, Size = 100}, 
+Page = {"第二頁內容\\n<TIPBOX>第一頁<INFO>1</INFO></TIPBOX>\\n<TIPBOX>第三頁<INFO>3</INFO></TIPBOX>\\n<TIPBOX>第四頁<INFO>4</INFO></TIPBOX>\\n<TIPBOX>第五頁<INFO>5</INFO></TIPBOX>\\n<TIPBOX>第六頁<INFO>6</INFO></TIPBOX>"},
+PageEX = {
+{EffectNum = 5, Twinkle = 1, StartX = 160, StartY = 105, DistX = 0, DistY = 0, MoveTime = 0}}}, 
+[3] = {Title = "第三頁標題", Search = 0, Image = "嶸盪檣攪む檜蝶\\tipbox\\tip00003", 
+Imgcoord = {Position = 5, Size = 100}, 
+Page = {"效果動畫\\n<TIPBOX>第一頁<INFO>1</INFO></TIPBOX>\\n<TIPBOX>第二頁<INFO>2</INFO></TIPBOX>\\n<TIPBOX>第四頁<INFO>4</INFO></TIPBOX>\\n<TIPBOX>第五頁<INFO>5</INFO></TIPBOX>\\n<TIPBOX>第六頁<INFO>6</INFO></TIPBOX>"}, 
+PageEX = {
+{EffectNum = 3, Twinkle = 0, StartX = 100, StartY = 60, DistX = 120, DistY = 265, MoveTime = 10}}}, 
+[4] = {Title = "第四頁標題", Search = 0, Image = "嶸盪檣攪む檜蝶\\tipbox\\tip00003", 
+Imgcoord = {Position = 5, Size = 100}, 
+Page = {"物品連結\\n<ITEM>紅色藥水<INFO>501</INFO></ITEM>\\n<TIPBOX>第一頁<INFO>1</INFO></TIPBOX>\\n<TIPBOX>第二頁<INFO>2</INFO></TIPBOX>\\n<TIPBOX>第三頁<INFO>3</INFO></TIPBOX>\\n<TIPBOX>第五頁<INFO>5</INFO></TIPBOX>\\n<TIPBOX>第六頁<INFO>6</INFO></TIPBOX>"}}, 
+[5] = {Title = "第五頁標題", Search = 0, Image = "嶸盪檣攪む檜蝶\\tipbox\\tip00005", 
+Imgcoord = {Position = 5, Size = 100}, 
+Page = {"導航連結\\n<NAVI>[Alberta City]<INFO>alberta,98,154,0,000,0</INFO></NAVI>\\n<TIPBOX>第一頁<INFO>1</INFO></TIPBOX>\\n<TIPBOX>第二頁<INFO>2</INFO></TIPBOX>\\n<TIPBOX>第三頁<INFO>3</INFO></TIPBOX>\\n<TIPBOX>第四頁<INFO>4</INFO></TIPBOX>\\n<TIPBOX>第六頁<INFO>6</INFO></TIPBOX>"}, 
+PageEX = {
+{EffectNum = 3, Twinkle = 1, StartX = 10, StartY = 265, DistX = 0, DistY = 0, MoveTime = 0}}}, 
+[6] = {Title = "第六頁標題", Search = 0, Image = "嶸盪檣攪む檜蝶\\tipbox\\tip00006", 
+Imgcoord = {Position = 5, Size = 100}, 
+Page = {"網頁連結\\n<URL>Google<INFO>http://www.google.com/</INFO></URL>\\n<TIPBOX>第一頁<INFO>1</INFO></TIPBOX>\\n<TIPBOX>第二頁<INFO>2</INFO></TIPBOX>\\n<TIPBOX>第三頁<INFO>3</INFO></TIPBOX>\\n<TIPBOX>第四頁<INFO>4</INFO></TIPBOX>\\n<TIPBOX>第五頁<INFO>5</INFO></TIPBOX>"}, 
+PageEX = {
+{EffectNum = 5, Twinkle = 1, StartX = 12, StartY = 210, DistX = 0, DistY = 0, MoveTime = 0}}}}
+main = function()
+  for DocumentNum,INFO in pairs(tbl) do
+    result, msg = AddTip(DocumentNum, INFO.Title, INFO.Search, INFO.Image), DocumentNum
+    if not result then
+      return false, msg
+    end
+    result, msg = AddImgcoord(DocumentNum, INFO.Imgcoord.Position, INFO.Imgcoord.Size), DocumentNum
+    if not result then
+      return false, msg
+    end
+    if not INFO.PageEX then
+      result, msg = AddPageEx(DocumentNum, -1, 0, 0, 0, 0, 0, 0, 0), DocumentNum
+      if not result then
+        return false, msg
+      end
+    else
+      for k,v in pairs(INFO.PageEX) do
+        result, msg = AddPageEx(DocumentNum, v.EffectNum, v.Twinkle, v.StartX, v.StartY, v.DistX, v.DistY, v.MoveTime), DocumentNum
+        if not result then
+          return false, msg
+        end
+      end
+    end
+    for k,v in pairs(INFO.Page) do
+      result, msg = AddPage(DocumentNum, v), DocumentNum
+      if not result then
+        return false, msg
+      end
+    end
+  end
+  return true, "good"
+end
+
+
