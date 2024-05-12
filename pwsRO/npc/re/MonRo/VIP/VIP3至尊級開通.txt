@@ -19,6 +19,7 @@ function	script	idcardV3	{
 			next;
 			switch(select(" ^5599FF確定開通至尊VIP")) {
 				case 1:
+					getitem 60747,1;
 					mes "^0AA770========== ^FF99FF至 尊 V I P ^0AA770==========^000000";
 						set #exptick3,(#exptick3?0:gettimetick(2))+2592000+#exptick3;
 						announce "您的帳號 至 尊 V I P 期限增加了 1 個月的使用時間。",3;

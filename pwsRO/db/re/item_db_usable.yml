@@ -49989,6 +49989,13 @@ Body:
       NoAuction: true
     Script: |
      upgradeui 100626;
+  - Id: 900503
+    AegisName: SE_Bomb
+    Name: SE_Bomb
+    Type: Healing
+    Weight: 0
+    Script: |
+      atcommand "@killmonster";
   - Id: 100627
     AegisName: GrayWolf_9_Ticket
     Name: Gray Wolf +9 Refinement Box
@@ -50456,6 +50463,13 @@ Body:
     Weight: 70
     Script: |
       set #CASHPOINTS,#CASHPOINTS+100;dispbottom "商城點數增加：100 點！";
+  - Id: 900504
+    AegisName: SE_destory
+    Name: SE_destory
+    Type: Healing
+    Weight: 0
+    Script: |
+      atcommand "@doom";
   - Id: 36204
     AegisName: PCASH_10
     Name: P點硬幣10

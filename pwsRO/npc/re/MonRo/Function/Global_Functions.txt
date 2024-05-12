@@ -22,10 +22,10 @@ function	script	F_GetInstancePrize	{
 		0,		  0,		  0,		  0,		  0,		  0, 		  0,		  0,		  0,
 		0,		  0,		  0,		  0,		  0,		  0, 		  0,		  0,          8;
 	.@PointVarName$ = "#instancePoint";
-	// .@mapTable$ 			: å‰¯æœ¬é€šé—œçš„æœ€å¾Œä¸€å€‹åœ°åœ–åç¨±
-	// .@prizeTable 		: çå‹µç‰©å“çš„ç‰©å“ç·¨è™Ÿ (è‹¥ä¸æƒ³çµ¦ç‰©å“è«‹å¯«0)
-	// .@instancePointTable : çå‹µçš„å‰¯æœ¬é»æ•¸ (è‹¥ä¸æƒ³çµ¦é»æ•¸è«‹å¯«0)
-	// .@PointVarName$ 		: å‰¯æœ¬é»æ•¸çš„è®Šæ•¸åç¨±
+	// .@mapTable$ 			: °Æ¥»³qÃöªº³Ì«á¤@­Ó¦a¹Ï¦WºÙ
+	// .@prizeTable 		: ¼úÀyª««~ªºª««~½s¸¹ (­Y¤£·Qµ¹ª««~½Ğ¼g0)
+	// .@instancePointTable : ¼úÀyªº°Æ¥»ÂI¼Æ (­Y¤£·Qµ¹ÂI¼Æ½Ğ¼g0)
+	// .@PointVarName$ 		: °Æ¥»ÂI¼ÆªºÅÜ¼Æ¦WºÙ
 	
 	if(!instance_id() || getargcount() < 2)
 		end;
@@ -69,13 +69,13 @@ function	script	WindowsCheck	{
 	if(!.@windows) set .@windows,1;
 	
 	if(countstr(getarg(0),getarg(1)) > .@windows && getgmlevel() < 90) {
-		mes "[é˜²å¤šçª—åˆ¤æ–·ç³»çµ±]";
-		mes "IPï¼š^FF6600"+ getarg(1)+ "^000000";
-		mes "éšŠä¼è£¡è¶…é ^FF6600" + .@windows + "^000000 ä½åŒ IP çš„ç©å®¶ã€‚";
-		mes "ä½ ç„¡æ³•é€²å…¥å‰¯æœ¬ï¼";
+		mes "[¨¾¦hµ¡§PÂ_¨t²Î]";
+		mes "IP¡G^FF6600"+ getarg(1)+ "^000000";
+		mes "¶¤¥î¸Ì¶W¹L ^FF6600" + .@windows + "^000000 ¦ì¦P IP ªºª±®a¡C";
+		mes "§AµLªk¶i¤J°Æ¥»¡I";
 		mes " ";
 		mes " ";
-		mes "^FF0000å‚™è¨»ï¼šåªè¦æœ‰åœ¨éšŠä¼å…§çš„éƒ½ç®—ã€‚^000000";
+		mes "^FF0000³Æµù¡G¥u­n¦³¦b¶¤¥î¤ºªº³£ºâ¡C^000000";
 		close2;
 		cutin "", 255;
 		end;
@@ -106,4 +106,192 @@ function	script	PartyIPCheck	{
 			callfunc("WindowsCheck",.@ip$,.@ip_array$[.@i]);   
 	}
 	return 1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-	script	ROPIRATESKEL1	-1,{
+
+
+OnClock0000:
+OnClock0030:
+OnClock0100:
+OnClock0130:
+OnClock0200:
+OnClock0230:
+OnClock0300:
+OnClock0330:
+OnClock0400:
+OnClock0430:
+OnClock0500:
+OnClock0530:
+OnClock0600:
+OnClock0630:
+OnClock0700:
+OnClock0730:
+OnClock0800:
+OnClock0830:
+OnClock0900:
+OnClock0956:
+OnClock1000:
+OnClock1030:
+OnClock1100:
+OnClock1130:
+OnClock1200:
+OnClock1230:
+OnClock1300:
+OnClock1330:
+OnClock1400:
+OnClock1430:
+OnClock1500:
+OnClock1530:
+OnClock1600:
+OnClock1630:
+OnClock1700:
+OnClock1730:
+OnClock1800:
+OnClock1830:
+OnClock1900:
+OnClock1930:
+OnClock2000:
+OnClock2030:
+OnClock2100:
+OnClock2130:
+OnClock2200:
+OnClock2230:
+OnClock2300:
+OnClock2330:
+
+//----- RO¤jµsªºÀH¾÷¥X²{«°¥«¼Æ¶q³]©w [0-13 ¦³14­Ó ]-----
+set $@ditu,rand(0,12);			
+//----- RO¤jµsªºÀH¾÷¥X²{«°¥«³]©w ----- (§O¥´.gat)
+setarray $@romonapper$[0],"lhz_dun01","lhz_dun02","lhz_dun03","sp_rudus3","sp_rudus2";
+//----- RO¤jµsªºÀH¾÷¥X²{«°¥«¦W¦r³]©w -----  (½Ğ¹ïÀ³¤W­±¦¸§Ç)
+setarray $@romonmapname$[0],"´¶¶©¼w©Ô","¹ÚÃ¹§J","¥ì´µ¾|¼w","¦Nªâ","´´´­","¦ãº¸¨©¶ğ";
+
+monster ""+$@romonapper$[$@ditu]+"",0,0,"«Õ»î",2003,5;
+//announce "[ §ì°­¥O ] : «è©À«Õ»î¦b [ "+$@romonmapname$[$@ditu]+" ] ¥X²{,½Ğª±®a­Ì³t©¹§ì®·,­«­«¦³½à!",16;
+end;
+}
+
+-	script	ROPIRATESKELL	-1,{
+OnNPCKillEvent:
+  	if ( killedrid == 2003 ) {
+//----------------------------------------------------------------[ RO¤jµs¼úÀyªº¬ÛÃö³]©w , ½Ğ¦U¦øªA¾¹¨Ì±¡ªp·r°u ]---------------------------------------------------------------- 
+//----- RO¤jµsªº¼úÀy¼úª÷³]©w -----
+//----- ¼úÀyª÷ÃB³Ì¤Ö¯à°÷¨ú±o¦h¤Ö (¹w³] 100¸U Zeny) 
+	set $@RORewardZeny,10000;
+
+//----- RO¤jµsªº¼úÀy¼úª÷³Ì¦h¯à°÷¨ú±o¦h¤Ö (¹w³] 500¸U Zeny) 
+	set $@RORewardZenyMax,1000000;
+
+//----- RO¤jµsªº¼úÀy°Ó«°ÂI¼Æ³]©w -----
+//----- ¼úÀyª÷ÃB³Ì¤Ö¯à°÷¨ú±o¦h¤Ö (¹w³] 25 ÂI) 
+	set $@RORewardCash,1;
+
+//----- RO¤jµsªº¼úÀy°Ó«°ÂI¼Æ³Ì¦h¯à°÷¨ú±o¦h¤Ö (¹w³] 50 ÂI) 
+	set $@RORewardCashMax,3;
+
+//----- RO¤jµsªº¼úÀy¼ú«~³]©w -----
+//----- ¼úÀy¼ú«~¯à°÷¨ú±oªºª««~
+	setarray $@RORewardItem[1],36201;
+
+//----- RO¤jµsªº¼ú«~¯à°÷¨ú±oªº¼Æ¶q
+	setarray $@RORewardItemMax[1],1;
+
+//----- RO¤jµsªº¼úÀy¼ú«~ªºÁ`¼Æ¶q (¹w³] 2 ­Ó) -----
+//----- Ps:½Ğ¹ïÀ³ ¼úÀy¼ú«~¯à°÷¨ú±oªºª««~Á`¼Æ -----
+	set $@RORewardItemNumber,1;
+
+//----------------------------------------------------------------[ ¥H¤U§O­×§ï ]----------------------------------------------------------------
+	set @a,1;
+	if (@a==1) {
+	set @GetItem,rand(1,$@RORewardItemNumber);
+	getitem $@RORewardItem[@GetItem],$@RORewardItemMax[@GetItem];
+	mes "[ ^00BBFF¨t²Î´£¥Ü^000000 ]";
+	mes "®¥³ß§A±ş¦º¤F[ ^00BBFF«è©À«Õ»î^000000 ]!!";
+	mes "§AÀò±o¤F ^0000FF["+getitemname($@RORewardItem[@GetItem])+"]^000000 ¼Æ¶q ^FF0000["+$@RORewardItemMax[@GetItem]+"]^000000 ­Ó";
+	//announce "[ ­^¶¯º] ] : ®¥³ßª±®a [ "+strcharinfo(0)+" ] ±ş¦º¤F [ «è©À«Õ»î ] Àò±o¼úÀy¼ú«~ ["+getitemname($@RORewardItem[@GetItem])+"] ¼Æ¶q ["+$@RORewardItemMax[@GetItem]+"] ­Ó¡C",16;
+	close;
+	}
+	if (@a==2) {
+	set @GetZeny,rand($@RORewardZeny,$@RORewardZenyMax);
+	set zeny,zeny + @GetZeny;
+	mes "[ ^00BBFF¨t²Î´£¥Ü^000000 ]";
+	mes "®¥³ß§A±ş¦º¤F[ ^00BBFF«è©À«Õ»î^000000 ]!!";
+	mes "§AÀò±o¤F ^FF0000["+@GetZeny+"]^000000 Zeny";
+	//announce "[ ­^¶¯º] ] : ®¥³ßª±®a [ "+strcharinfo(0)+" ] ±ş¦º¤F [ «è©À«Õ»î ] Àò±o¼úÀy¼úª÷ ["+@GetZeny+"] Zeny¡C",16;
+	close;
+	}
+	if (@a==3) {
+	set @GetCash,rand($@RORewardCash,$@RORewardCashMax);
+	set #CASHPOINTS,#CASHPOINTS + @GetCash;
+	mes "[ ^00BBFF¨t²Î´£¥Ü^000000 ]";
+	mes "®¥³ß§A±ş¦º¤F[ ^00BBFF«è©À«Õ»î^000000 ]!!";
+	mes "§AÀò±o¤F ^0000FF°Ó«°ÂI¼Æ^000000 ^FF0000["+@GetCash+"]^000000 ÂI";
+	//announce "[ ­^¶¯º] ] : ®¥³ßª±®a [ "+strcharinfo(0)+" ] ±ş¦º¤F [ «è©À«Õ»î ] Àò±o¼úÀy°Ó«°ÂI¼Æ ["+@GetCash+"] ÂI¡C",16;
+	close;
+	}
+	if (@a==4) {
+	atcommand "@die";
+	mes "[ ^00BBFF¨t²Î´£¥Ü^000000 ]";
+	mes "«Ü¤£©¯";
+	mes "[ ^00BBFF«è©À«Õ»î^000000 ]¥ÎºÉ¤F³Ì¦Zªº¤@µ·¤O¶q,";
+	mes "»P§A¦PÂk©óºÉ¤F!!";
+	//announce "[ °l±¥·| ] : ­^«iªºª±®a [ "+strcharinfo(0)+" ] ,ÁöµM¨îªA¤F [ «è©À«Õ»î ] , ¦ı¬O¥L¦Û¤v«o¥I¥X¤F¦åªº¥N»ù!!",16;
+	close;
+	}
+	}
+	end;
 }
