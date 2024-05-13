@@ -515,7 +515,7 @@ Body:
     TargetItem:
       - Item: Bloody_Knight_Shield__
     Result: |
-      callfunc("F_Lapine_Gold_Statue", .@opts[0], .@vals[0], .@opts[1], .@vals[1], .@opts[2], .@vals[2]);
+      callfunc("F_Lapine_Gold_Statue", .@opts[0], .@vals[0], .@opts[1], .@vals[1], .@opts[2], .@vals[2], .@opts[3], .@vals[3], .@opts[4], .@vals[4]);
       .@params[0] = 0;
       getitem3(@last_lapine_id,1,1,@last_lapine_refine,0,@last_lapine_card1,@last_lapine_card2,@last_lapine_card3,@last_lapine_card4,.@opts,.@vals,.@params);
   - Item: Shadow_Refine_Hammer
@@ -10393,3 +10393,47 @@ Body:
   #    callfunc("F_Lapine_Abyss_Ddbox4", .@opts[0], .@vals[0]);
   #    .@params[0] = 0;
   #    getitem3(@last_lapine_id,1,1,@last_lapine_refine,0,@last_lapine_card1,@last_lapine_card2,@last_lapine_card3,@last_lapine_card4,.@opts,.@vals,.@params);
+  - Item: item_950012 # 正面插入的鑰匙
+    NotSocketEnchantItem: true
+    TargetItem:
+      - Item: Headset_OSTLV1 # 55001
+      - Item: Headset_OSTLV2 # 55002
+      - Item: Headset_OSTLV3 # 55003
+      - Item: Headset_OSTLV4 # 55004
+      - Item: Headset_OSTLV5 # 55005
+      - Item: Flying_AngelLV1 # 56001
+      - Item: Flying_AngelLV2 # 56002
+      - Item: Flying_AngelLV3 # 56003
+      - Item: Flying_AngelLV4 # 56004
+      - Item: Flying_AngelLV5 # 56005
+      - Item: Rabrplug # 56006
+      - Item: Flyin13 # 56007
+      - Item: Flyin14 # 56008
+      - Item: Adventurere's_Suit_LV1 # 58001
+      - Item: Adventurere's_Suit_LV2 # 58002
+      - Item: Adventurere's_Suit_LV3 # 58003
+      - Item: Adventurere's_Suit_LV4 # 58004
+      - Item: Adventurere's_Suit_LV5 # 58005
+      - Item: Adrere's_Suit_LV5 # 58006
+      - Item: Adventurers_Suit_LV5 # 58007
+      - Item: BlushLV1 # 57001
+      - Item: BlushLV2 # 57002
+      - Item: BlushLV3 # 57003
+      - Item: BlushLV4 # 57004
+      - Item: BlushLV5 # 57005
+      - Item: Sandals_LV1 # 58101
+      - Item: Sandals_LV2 # 58102
+      - Item: Sandals_LV3 # 58103
+      - Item: Sandals_LV4 # 58104
+      - Item: Sandals_LV5 # 58105
+      - Item: Sadalswd # 58106
+      - Item: Sadalswd # 58107
+      - Item: HoodLV1 # 58201
+      - Item: HoodLV2 # 58202
+      - Item: HoodLV3 # 58203
+      - Item: HoodLV4 # 58204
+      - Item: HoodLV5 # 58205
+    Result: |
+      callfunc("F_Lapine_item_950012", .@opts[0], .@vals[0], .@opts[1], .@vals[1], .@opts[2], .@vals[2], .@vals[3], .@opts[3], .@vals[4], .@opts[4]);
+      .@params[0] = 0;
+      getitem3(@last_lapine_id,1,1,@last_lapine_refine,0,@last_lapine_card1,@last_lapine_card2,@last_lapine_card3,@last_lapine_card4,.@opts,.@vals,.@params);

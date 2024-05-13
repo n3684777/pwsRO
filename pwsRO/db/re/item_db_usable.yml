@@ -50700,3 +50700,10 @@ Body:
     Weight: 10
     Script: |
       upgradeui 950011;
+  - Id: 950012
+    AegisName: item_950012
+    Name: 正面插入的鑰匙(防具)
+    Type: Delayconsume
+    Weight: 1
+    Script: |
+     upgradeui 950012;

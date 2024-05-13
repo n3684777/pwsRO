@@ -2326,3 +2326,94 @@ function	script	F_Lapine_Abyss_Ddbox3	{
 function	script	F_Lapine_Abyss_Ddbox4	{
 	return;
 }
+
+
+
+//
+
+/**
+ * 正面插入的鑰匙
+ */
+function	script	F_Lapine_item_950012	{
+	// Option: 1
+	.@e1 = 5;
+	.@e2 = 10;
+	.@e3 = 3000;
+	.@r = rand(10000);
+	// option: 1
+	set getarg(0),RDMOPT_VAR_MAXHPAMOUNT; set getarg(1), rand(.@e3,.@e3*3); // MaxHP + n
+	set getarg(0),RDMOPT_VAR_MAXSPAMOUNT; set getarg(1), rand(.@e3,.@e3*3); // MaxSP + n
+	set getarg(0),RDMOPT_VAR_STRAMOUNT; set getarg(1), rand(.@e2,.@e2*3); // STR + n
+	set getarg(0),RDMOPT_VAR_AGIAMOUNT; set getarg(1), rand(.@e2,.@e2*3); // AGI + n
+	set getarg(0),RDMOPT_VAR_VITAMOUNT; set getarg(1), rand(.@e2,.@e2*3); // VIT + n
+	set getarg(0),RDMOPT_VAR_INTAMOUNT; set getarg(1), rand(.@e2,.@e2*3); // INT + n
+	set getarg(0),RDMOPT_VAR_DEXAMOUNT; set getarg(1), rand(.@e2,.@e2*3); // DEX + n
+	set getarg(0),RDMOPT_VAR_LUKAMOUNT; set getarg(1), rand(.@e2,.@e2*3); // LUK + n
+	set getarg(0),RDMOPT_VAR_ATKPERCENT; set getarg(1), rand(.@e1,.@e1*3); //  物理攻擊 c 類別的單位時, 增加 x% 的傷害 
+	//set getarg(0),RDMOPT_VAR_MAGICATKPERCENT; set getarg(1), rand(.@e1,.@e1*3); // MATK + %
+	set getarg(0),RDMOPT_RANGE_ATTACK_DAMAGE_TARGET; set getarg(1), rand(.@e1,.@e1*3); // 遠傷 + %
+	set getarg(0),RDMOPT_MELEE_ATTACK_DAMAGE_TARGET; set getarg(1), rand(.@e1,.@e1*3); // 近傷 + %
+
+	// option: 2
+	set getarg(2),RDMOPT_VAR_MAXHPAMOUNT; set getarg(3), rand(.@e3,.@e3*3); // MaxHP + n
+	set getarg(2),RDMOPT_VAR_MAXSPAMOUNT; set getarg(3), rand(.@e3,.@e3*3); // MaxSP + n
+	set getarg(2),RDMOPT_VAR_STRAMOUNT; set getarg(3), rand(.@e2,.@e2*3); // STR + n
+	set getarg(2),RDMOPT_VAR_AGIAMOUNT; set getarg(3), rand(.@e2,.@e2*3); // AGI + n
+	set getarg(2),RDMOPT_VAR_VITAMOUNT; set getarg(3), rand(.@e2,.@e2*3); // VIT + n
+	set getarg(2),RDMOPT_VAR_INTAMOUNT; set getarg(3), rand(.@e2,.@e2*3); // INT + n
+	set getarg(2),RDMOPT_VAR_DEXAMOUNT; set getarg(3), rand(.@e2,.@e2*3); // DEX + n
+	set getarg(2),RDMOPT_VAR_LUKAMOUNT; set getarg(3), rand(.@e2,.@e2*3); // LUK + n
+	set getarg(2),RDMOPT_VAR_ATKPERCENT; set getarg(3), rand(.@e1,.@e1*3); //  物理攻擊 c 類別的單位時, 增加 x% 的傷害 
+	//set getarg(2),RDMOPT_VAR_MAGICATKPERCENT; set getarg(3), rand(.@e1,.@e1*3); // MATK + %
+	set getarg(2),RDMOPT_RANGE_ATTACK_DAMAGE_TARGET; set getarg(3), rand(.@e1,.@e1*3); // 遠傷 + %
+	set getarg(2),RDMOPT_MELEE_ATTACK_DAMAGE_TARGET; set getarg(3), rand(.@e1,.@e1*3); // 近傷 + %
+
+	// option: 3
+	set getarg(4),RDMOPT_VAR_MAXHPAMOUNT; set getarg(5), rand(.@e3,.@e3*3); // MaxHP + n
+	set getarg(4),RDMOPT_VAR_MAXSPAMOUNT; set getarg(5), rand(.@e3,.@e3*3); // MaxSP + n
+	set getarg(4),RDMOPT_VAR_STRAMOUNT; set getarg(5), rand(.@e2,.@e2*3); // STR + n
+	set getarg(4),RDMOPT_VAR_AGIAMOUNT; set getarg(5), rand(.@e2,.@e2*3); // AGI + n
+	set getarg(4),RDMOPT_VAR_VITAMOUNT; set getarg(5), rand(.@e2,.@e2*3); // VIT + n
+	set getarg(4),RDMOPT_VAR_INTAMOUNT; set getarg(5), rand(.@e2,.@e2*3); // INT + n
+	set getarg(4),RDMOPT_VAR_DEXAMOUNT; set getarg(5), rand(.@e2,.@e2*3); // DEX + n
+	set getarg(4),RDMOPT_VAR_LUKAMOUNT; set getarg(5), rand(.@e2,.@e2*3); // LUK + n
+	set getarg(4),RDMOPT_VAR_ATKPERCENT; set getarg(5), rand(.@e1,.@e1*3); //  物理攻擊 c 類別的單位時, 增加 x% 的傷害 
+	//set getarg(4),RDMOPT_VAR_MAGICATKPERCENT; set getarg(5), rand(.@e1,.@e1*3); // MATK + %
+	set getarg(4),RDMOPT_RANGE_ATTACK_DAMAGE_TARGET; set getarg(5), rand(.@e1,.@e1*3); // 遠傷 + %
+	set getarg(4),RDMOPT_MELEE_ATTACK_DAMAGE_TARGET; set getarg(5), rand(.@e1,.@e1*3); // 近傷 + %
+
+	// option: 4
+	set getarg(6),RDMOPT_VAR_MAXHPAMOUNT; set getarg(7), rand(.@e3,.@e3*3); // MaxHP + n
+	set getarg(6),RDMOPT_VAR_MAXSPAMOUNT; set getarg(7), rand(.@e3,.@e3*3); // MaxSP + n
+	set getarg(6),RDMOPT_VAR_STRAMOUNT; set getarg(7), rand(.@e2,.@e2*3); // STR + n
+	set getarg(6),RDMOPT_VAR_AGIAMOUNT; set getarg(7), rand(.@e2,.@e2*3); // AGI + n
+	set getarg(6),RDMOPT_VAR_VITAMOUNT; set getarg(7), rand(.@e2,.@e2*3); // VIT + n
+	set getarg(6),RDMOPT_VAR_INTAMOUNT; set getarg(7), rand(.@e2,.@e2*3); // INT + n
+	set getarg(6),RDMOPT_VAR_DEXAMOUNT; set getarg(7), rand(.@e2,.@e2*3); // DEX + n
+	set getarg(6),RDMOPT_VAR_LUKAMOUNT; set getarg(7), rand(.@e2,.@e2*3); // LUK + n
+	set getarg(6),RDMOPT_VAR_ATKPERCENT; set getarg(7), rand(.@e1,.@e1*3); //  物理攻擊 c 類別的單位時, 增加 x% 的傷害 
+	//set getarg(6),RDMOPT_VAR_MAGICATKPERCENT; set getarg(7), rand(.@e1,.@e1*3); // MATK + %
+	set getarg(6),RDMOPT_RANGE_ATTACK_DAMAGE_TARGET; set getarg(7), rand(.@e1,.@e1*3); // 遠傷 + %
+	set getarg(6),RDMOPT_MELEE_ATTACK_DAMAGE_TARGET; set getarg(7), rand(.@e1,.@e1*3); // 近傷 + %
+
+	// option: 5
+	set getarg(8),RDMOPT_VAR_MAXHPAMOUNT; set getarg(9), rand(.@e3,.@e3*3); // MaxHP + n
+	set getarg(8),RDMOPT_VAR_MAXSPAMOUNT; set getarg(9), rand(.@e3,.@e3*3); // MaxSP + n
+	set getarg(8),RDMOPT_VAR_STRAMOUNT; set getarg(9), rand(.@e2,.@e2*3); // STR + n
+	set getarg(8),RDMOPT_VAR_AGIAMOUNT; set getarg(9), rand(.@e2,.@e2*3); // AGI + n
+	set getarg(8),RDMOPT_VAR_VITAMOUNT; set getarg(9), rand(.@e2,.@e2*3); // VIT + n
+	set getarg(8),RDMOPT_VAR_INTAMOUNT; set getarg(9), rand(.@e2,.@e2*3); // INT + n
+	set getarg(8),RDMOPT_VAR_DEXAMOUNT; set getarg(9), rand(.@e2,.@e2*3); // DEX + n
+	set getarg(8),RDMOPT_VAR_LUKAMOUNT; set getarg(9), rand(.@e2,.@e2*3); // LUK + n
+	set getarg(8),RDMOPT_VAR_ATKPERCENT; set getarg(9), rand(.@e1,.@e1*3); //  物理攻擊 c 類別的單位時, 增加 x% 的傷害 
+	//set getarg(8),RDMOPT_VAR_MAGICATKPERCENT; set getarg(9), rand(.@e1,.@e1*3); // MATK + %
+	set getarg(8),RDMOPT_RANGE_ATTACK_DAMAGE_TARGET; set getarg(9), rand(.@e1,.@e1*3); // 遠傷 + %
+	set getarg(8),RDMOPT_MELEE_ATTACK_DAMAGE_TARGET; set getarg(9), rand(.@e1,.@e1*3); // 近傷 + %
+
+
+
+
+
+
+	return;
+}
