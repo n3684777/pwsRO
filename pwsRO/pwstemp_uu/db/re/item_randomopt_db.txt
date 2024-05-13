@@ -2,67 +2,67 @@
 //
 // Structure of Database:
 // ID,{ Bonus Script }
-RDMOPT_VAR_MAXHPAMOUNT,{ bonus bMaxHP,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_VAR_MAXSPAMOUNT,{ bonus bMaxSP,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_VAR_STRAMOUNT,{ bonus bStr,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_VAR_AGIAMOUNT,{ bonus bAgi,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_VAR_VITAMOUNT,{ bonus bVit,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_VAR_INTAMOUNT,{ bonus bInt,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_VAR_DEXAMOUNT,{ bonus bDex,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_VAR_LUKAMOUNT,{ bonus bLuk,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_VAR_MAXHPPERCENT,{ bonus bMaxHPrate,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_VAR_MAXSPPERCENT,{ bonus bMaxSPrate,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_VAR_HPACCELERATION,{ bonus bHPrecovRate,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_VAR_SPACCELERATION,{ bonus bSPrecovRate,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_VAR_ATKPERCENT,{ bonus2 bAddClass,Class_All,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_VAR_MAGICATKPERCENT,{ bonus bMatkRate,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_VAR_PLUSASPD,{ bonus bAspd,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_VAR_PLUSASPDPERCENT,{ bonus bAspdRate,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_VAR_ATTPOWER,{ bonus bAtk,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_VAR_HITSUCCESSVALUE,{ bonus bHit,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_VAR_ATTMPOWER,{ bonus bMatk,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_VAR_ITEMDEFPOWER,{ bonus bDef,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_VAR_MDEFPOWER,{ bonus bMdef,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_VAR_AVOIDSUCCESSVALUE,{ bonus bFlee,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_VAR_PLUSAVOIDSUCCESSVALUE,{ bonus bFlee2,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_VAR_CRITICALSUCCESSVALUE,{ bonus bCritical,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_ATTR_TOLERACE_NOTHING,{ bonus2 bSubEle,Ele_Neutral,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_ATTR_TOLERACE_WATER,{ bonus2 bSubEle,Ele_Water,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_ATTR_TOLERACE_GROUND,{ bonus2 bSubEle,Ele_Earth,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_ATTR_TOLERACE_FIRE,{ bonus2 bSubEle,Ele_Fire,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_ATTR_TOLERACE_WIND,{ bonus2 bSubEle,Ele_Wind,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_ATTR_TOLERACE_POISON,{ bonus2 bSubEle,Ele_Poison,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_ATTR_TOLERACE_SAINT,{ bonus2 bSubEle,Ele_Holy,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_ATTR_TOLERACE_DARKNESS,{ bonus2 bSubEle,Ele_Dark,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_ATTR_TOLERACE_TELEKINESIS,{ bonus2 bSubEle,Ele_Ghost,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_ATTR_TOLERACE_UNDEAD,{ bonus2 bSubEle,Ele_Undead,getrandomoptinfo(ROA_VALUE); }
+RDMOPT_VAR_MAXHPAMOUNT,{ bonus bMaxHP,getrandomoptinfo(ROA_VALUE); } // MaxHP + n
+RDMOPT_VAR_MAXSPAMOUNT,{ bonus bMaxSP,getrandomoptinfo(ROA_VALUE); } // MaxSP + n
+RDMOPT_VAR_STRAMOUNT,{ bonus bStr,getrandomoptinfo(ROA_VALUE); } // STR
+RDMOPT_VAR_AGIAMOUNT,{ bonus bAgi,getrandomoptinfo(ROA_VALUE); } // AGI
+RDMOPT_VAR_VITAMOUNT,{ bonus bVit,getrandomoptinfo(ROA_VALUE); } // VIT
+RDMOPT_VAR_INTAMOUNT,{ bonus bInt,getrandomoptinfo(ROA_VALUE); } // INT
+RDMOPT_VAR_DEXAMOUNT,{ bonus bDex,getrandomoptinfo(ROA_VALUE); } // DEX
+RDMOPT_VAR_LUKAMOUNT,{ bonus bLuk,getrandomoptinfo(ROA_VALUE); } // LUK
+RDMOPT_VAR_MAXHPPERCENT,{ bonus bMaxHPrate,getrandomoptinfo(ROA_VALUE); } // # MHP + %
+RDMOPT_VAR_MAXSPPERCENT,{ bonus bMaxSPrate,getrandomoptinfo(ROA_VALUE); } // MSP + %
+RDMOPT_VAR_HPACCELERATION,{ bonus bHPrecovRate,getrandomoptinfo(ROA_VALUE); } // HP 自然恢復量 + n%
+RDMOPT_VAR_SPACCELERATION,{ bonus bSPrecovRate,getrandomoptinfo(ROA_VALUE); } // SP 自然恢復量 + n%
+RDMOPT_VAR_ATKPERCENT,{ bonus2 bAddClass,Class_All,getrandomoptinfo(ROA_VALUE); } //  物理攻擊 c 類別的單位時, 增加 x% 的傷害 
+RDMOPT_VAR_MAGICATKPERCENT,{ bonus bMatkRate,getrandomoptinfo(ROA_VALUE); } // MATK + %
+RDMOPT_VAR_PLUSASPD,{ bonus bAspd,getrandomoptinfo(ROA_VALUE); } // ASPD + n
+RDMOPT_VAR_PLUSASPDPERCENT,{ bonus bAspdRate,getrandomoptinfo(ROA_VALUE); } // aspd + %
+RDMOPT_VAR_ATTPOWER,{ bonus bAtk,getrandomoptinfo(ROA_VALUE); } // atk + n
+RDMOPT_VAR_HITSUCCESSVALUE,{ bonus bHit,getrandomoptinfo(ROA_VALUE); } // hit + n
+RDMOPT_VAR_ATTMPOWER,{ bonus bMatk,getrandomoptinfo(ROA_VALUE); } // matk + n
+RDMOPT_VAR_ITEMDEFPOWER,{ bonus bDef,getrandomoptinfo(ROA_VALUE); } // def + n
+RDMOPT_VAR_MDEFPOWER,{ bonus bMdef,getrandomoptinfo(ROA_VALUE); } // mdef + n
+RDMOPT_VAR_AVOIDSUCCESSVALUE,{ bonus bFlee,getrandomoptinfo(ROA_VALUE); } // flee + n
+RDMOPT_VAR_PLUSAVOIDSUCCESSVALUE,{ bonus bFlee2,getrandomoptinfo(ROA_VALUE); } // flee2 + n
+RDMOPT_VAR_CRITICALSUCCESSVALUE,{ bonus bCritical,getrandomoptinfo(ROA_VALUE); } // cri + n
+RDMOPT_ATTR_TOLERACE_NOTHING,{ bonus2 bSubEle,Ele_Neutral,getrandomoptinfo(ROA_VALUE); } // 受到 無 屬性攻擊時, 減少 x% 的傷害 (減少屬性傷害)
+RDMOPT_ATTR_TOLERACE_WATER,{ bonus2 bSubEle,Ele_Water,getrandomoptinfo(ROA_VALUE); } // 受到 水 屬性攻擊時, 減少 x% 的傷害 (減少屬性傷害)
+RDMOPT_ATTR_TOLERACE_GROUND,{ bonus2 bSubEle,Ele_Earth,getrandomoptinfo(ROA_VALUE); } // 受到 地 屬性攻擊時, 減少 x% 的傷害 (減少屬性傷害)
+RDMOPT_ATTR_TOLERACE_FIRE,{ bonus2 bSubEle,Ele_Fire,getrandomoptinfo(ROA_VALUE); } // 受到 火 屬性攻擊時, 減少 x% 的傷害 (減少屬性傷害)
+RDMOPT_ATTR_TOLERACE_WIND,{ bonus2 bSubEle,Ele_Wind,getrandomoptinfo(ROA_VALUE); } // 受到 風 屬性攻擊時, 減少 x% 的傷害 (減少屬性傷害)
+RDMOPT_ATTR_TOLERACE_POISON,{ bonus2 bSubEle,Ele_Poison,getrandomoptinfo(ROA_VALUE); } //受到 毒 屬性攻擊時, 減少 x% 的傷害 (減少屬性傷害)
+RDMOPT_ATTR_TOLERACE_SAINT,{ bonus2 bSubEle,Ele_Holy,getrandomoptinfo(ROA_VALUE); } // 受到 聖 屬性攻擊時, 減少 x% 的傷害 (減少屬性傷害)
+RDMOPT_ATTR_TOLERACE_DARKNESS,{ bonus2 bSubEle,Ele_Dark,getrandomoptinfo(ROA_VALUE); } // 受到 暗 屬性攻擊時, 減少 x% 的傷害 (減少屬性傷害)
+RDMOPT_ATTR_TOLERACE_TELEKINESIS,{ bonus2 bSubEle,Ele_Ghost,getrandomoptinfo(ROA_VALUE); } // 受到 念 屬性攻擊時, 減少 x% 的傷害 (減少屬性傷害)
+RDMOPT_ATTR_TOLERACE_UNDEAD,{ bonus2 bSubEle,Ele_Undead,getrandomoptinfo(ROA_VALUE); } // 受到 不死 屬性攻擊時, 減少 x% 的傷害 (減少屬性傷害)
 RDMOPT_ATTR_TOLERACE_ALLBUTNOTHING,{ for(.@i = Ele_Water; .@i < Ele_Undead; ++.@i) bonus2 bSubEle,.@i,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_DAMAGE_PROPERTY_NOTHING_USER,{ bonus2 bSubDefEle,Ele_Neutral,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_DAMAGE_PROPERTY_NOTHING_TARGET,{ bonus2 bAddEle,Ele_Neutral,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_DAMAGE_PROPERTY_WATER_USER,{ bonus2 bSubDefEle,Ele_Water,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_DAMAGE_PROPERTY_WATER_TARGET,{ bonus2 bAddEle,Ele_Water,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_DAMAGE_PROPERTY_GROUND_USER,{ bonus2 bSubDefEle,Ele_Earth,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_DAMAGE_PROPERTY_GROUND_TARGET,{ bonus2 bAddEle,Ele_Earth,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_DAMAGE_PROPERTY_FIRE_USER,{ bonus2 bSubDefEle,Ele_Fire,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_DAMAGE_PROPERTY_FIRE_TARGET,{ bonus2 bAddEle,Ele_Fire,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_DAMAGE_PROPERTY_WIND_USER,{ bonus2 bSubDefEle,Ele_Wind,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_DAMAGE_PROPERTY_WIND_TARGET,{ bonus2 bAddEle,Ele_Wind,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_DAMAGE_PROPERTY_POISON_USER,{ bonus2 bSubDefEle,Ele_Poison,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_DAMAGE_PROPERTY_POISON_TARGET,{ bonus2 bAddEle,Ele_Poison,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_DAMAGE_PROPERTY_SAINT_USER,{ bonus2 bSubDefEle,Ele_Holy,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_DAMAGE_PROPERTY_SAINT_TARGET,{ bonus2 bAddEle,Ele_Holy,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_DAMAGE_PROPERTY_DARKNESS_USER,{ bonus2 bSubDefEle,Ele_Dark,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_DAMAGE_PROPERTY_DARKNESS_TARGET,{ bonus2 bAddEle,Ele_Dark,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_DAMAGE_PROPERTY_TELEKINESIS_USER,{ bonus2 bSubDefEle,Ele_Ghost,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_DAMAGE_PROPERTY_TELEKINESIS_TARGET,{ bonus2 bAddEle,Ele_Ghost,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_DAMAGE_PROPERTY_UNDEAD_USER,{ bonus2 bSubDefEle,Ele_Undead,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_DAMAGE_PROPERTY_UNDEAD_TARGET,{ bonus2 bAddEle,Ele_Undead,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_MDAMAGE_PROPERTY_NOTHING_USER,{ bonus2 bMagicSubDefEle,Ele_Neutral,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_MDAMAGE_PROPERTY_NOTHING_TARGET,{ bonus2 bMagicAddEle,Ele_Neutral,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_MDAMAGE_PROPERTY_WATER_USER,{ bonus2 bMagicSubDefEle,Ele_Water,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_MDAMAGE_PROPERTY_WATER_TARGET,{ bonus2 bMagicAddEle,Ele_Water,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_MDAMAGE_PROPERTY_GROUND_USER,{ bonus2 bMagicSubDefEle,Ele_Earth,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_MDAMAGE_PROPERTY_GROUND_TARGET,{ bonus2 bMagicAddEle,Ele_Earth,getrandomoptinfo(ROA_VALUE); }
+RDMOPT_DAMAGE_PROPERTY_NOTHING_USER,{ bonus2 bSubDefEle,Ele_Neutral,getrandomoptinfo(ROA_VALUE); } // 受到 無 屬性的單位攻擊時, 減少物理防禦 x% 的傷害 
+RDMOPT_DAMAGE_PROPERTY_NOTHING_TARGET,{ bonus2 bAddEle,Ele_Neutral,getrandomoptinfo(ROA_VALUE); } // 物理攻擊 無 屬性的單位時, 增加 x% 的傷害 (增加屬性傷害/對屬性敵人增加傷害)
+RDMOPT_DAMAGE_PROPERTY_WATER_USER,{ bonus2 bSubDefEle,Ele_Water,getrandomoptinfo(ROA_VALUE); } // 受到 水 屬性的單位攻擊時, 減少物理防禦 x% 的傷害 
+RDMOPT_DAMAGE_PROPERTY_WATER_TARGET,{ bonus2 bAddEle,Ele_Water,getrandomoptinfo(ROA_VALUE); } // 物理攻擊 水 屬性的單位時, 增加 x% 的傷害 (增加屬性傷害/對屬性敵人增加傷害)
+RDMOPT_DAMAGE_PROPERTY_GROUND_USER,{ bonus2 bSubDefEle,Ele_Earth,getrandomoptinfo(ROA_VALUE); } // 受到 地 屬性的單位攻擊時, 減少物理防禦 x% 的傷害 
+RDMOPT_DAMAGE_PROPERTY_GROUND_TARGET,{ bonus2 bAddEle,Ele_Earth,getrandomoptinfo(ROA_VALUE); } // 物理攻擊 地 屬性的單位時, 增加 x% 的傷害 (增加屬性傷害/對屬性敵人增加傷害)
+RDMOPT_DAMAGE_PROPERTY_FIRE_USER,{ bonus2 bSubDefEle,Ele_Fire,getrandomoptinfo(ROA_VALUE); } // 受到 火 屬性的單位攻擊時, 減少物理防禦 x% 的傷害 
+RDMOPT_DAMAGE_PROPERTY_FIRE_TARGET,{ bonus2 bAddEle,Ele_Fire,getrandomoptinfo(ROA_VALUE); } // 物理攻擊 火 屬性的單位時, 增加 x% 的傷害 (增加屬性傷害/對屬性敵人增加傷害)
+RDMOPT_DAMAGE_PROPERTY_WIND_USER,{ bonus2 bSubDefEle,Ele_Wind,getrandomoptinfo(ROA_VALUE); } // 受到 風 屬性的單位攻擊時, 減少物理防禦 x% 的傷害 
+RDMOPT_DAMAGE_PROPERTY_WIND_TARGET,{ bonus2 bAddEle,Ele_Wind,getrandomoptinfo(ROA_VALUE); } // 物理攻擊 風 屬性的單位時, 增加 x% 的傷害 (增加屬性傷害/對屬性敵人增加傷害)
+RDMOPT_DAMAGE_PROPERTY_POISON_USER,{ bonus2 bSubDefEle,Ele_Poison,getrandomoptinfo(ROA_VALUE); } // 受到 毒 屬性的單位攻擊時, 減少物理防禦 x% 的傷害 
+RDMOPT_DAMAGE_PROPERTY_POISON_TARGET,{ bonus2 bAddEle,Ele_Poison,getrandomoptinfo(ROA_VALUE); } //  物理攻擊 毒 屬性的單位時, 增加 x% 的傷害 (增加屬性傷害/對屬性敵人增加傷害)
+RDMOPT_DAMAGE_PROPERTY_SAINT_USER,{ bonus2 bSubDefEle,Ele_Holy,getrandomoptinfo(ROA_VALUE); } // 受到 聖 屬性的單位攻擊時, 減少物理防禦 x% 的傷害 
+RDMOPT_DAMAGE_PROPERTY_SAINT_TARGET,{ bonus2 bAddEle,Ele_Holy,getrandomoptinfo(ROA_VALUE); } // 物理攻擊 聖 屬性的單位時, 增加 x% 的傷害 (增加屬性傷害/對屬性敵人增加傷害)
+RDMOPT_DAMAGE_PROPERTY_DARKNESS_USER,{ bonus2 bSubDefEle,Ele_Dark,getrandomoptinfo(ROA_VALUE); } // 受到 暗 屬性的單位攻擊時, 減少物理防禦 x% 的傷害 
+RDMOPT_DAMAGE_PROPERTY_DARKNESS_TARGET,{ bonus2 bAddEle,Ele_Dark,getrandomoptinfo(ROA_VALUE); } // 物理攻擊 暗 屬性的單位時, 增加 x% 的傷害 (增加屬性傷害/對屬性敵人增加傷害)
+RDMOPT_DAMAGE_PROPERTY_TELEKINESIS_USER,{ bonus2 bSubDefEle,Ele_Ghost,getrandomoptinfo(ROA_VALUE); } // 受到 念 屬性的單位攻擊時, 減少物理防禦 x% 的傷害 
+RDMOPT_DAMAGE_PROPERTY_TELEKINESIS_TARGET,{ bonus2 bAddEle,Ele_Ghost,getrandomoptinfo(ROA_VALUE); } // 物理攻擊 念 屬性的單位時, 增加 x% 的傷害 (增加屬性傷害/對屬性敵人增加傷害)
+RDMOPT_DAMAGE_PROPERTY_UNDEAD_USER,{ bonus2 bSubDefEle,Ele_Undead,getrandomoptinfo(ROA_VALUE); } // 受到 不死 屬性的單位攻擊時, 減少物理防禦 x% 的傷害 
+RDMOPT_DAMAGE_PROPERTY_UNDEAD_TARGET,{ bonus2 bAddEle,Ele_Undead,getrandomoptinfo(ROA_VALUE); } //  物理攻擊 不死 屬性的單位時, 增加 x% 的傷害 (增加屬性傷害/對屬性敵人增加傷害)
+RDMOPT_MDAMAGE_PROPERTY_NOTHING_USER,{ bonus2 bMagicSubDefEle,Ele_Neutral,getrandomoptinfo(ROA_VALUE); } // 受到 無 屬性的單位攻擊時, 減少魔法防禦 x% 的傷害
+RDMOPT_MDAMAGE_PROPERTY_NOTHING_TARGET,{ bonus2 bMagicAddEle,Ele_Neutral,getrandomoptinfo(ROA_VALUE); } // 魔法攻擊 無 屬性的單位時, 增加 x% 的傷害
+RDMOPT_MDAMAGE_PROPERTY_WATER_USER,{ bonus2 bMagicSubDefEle,Ele_Water,getrandomoptinfo(ROA_VALUE); } // 受到 水 屬性的單位攻擊時, 減少魔法防禦 x% 的傷害
+RDMOPT_MDAMAGE_PROPERTY_WATER_TARGET,{ bonus2 bMagicAddEle,Ele_Water,getrandomoptinfo(ROA_VALUE); } // 魔法攻擊 水 屬性的單位時, 增加 x% 的傷害
+RDMOPT_MDAMAGE_PROPERTY_GROUND_USER,{ bonus2 bMagicSubDefEle,Ele_Earth,getrandomoptinfo(ROA_VALUE); } // 受到 地 屬性的單位攻擊時, 減少魔法防禦 x% 的傷害
+RDMOPT_MDAMAGE_PROPERTY_GROUND_TARGET,{ bonus2 bMagicAddEle,Ele_Earth,getrandomoptinfo(ROA_VALUE); } // 魔法攻擊 地 屬性的單位時, 增加 x% 的傷害
 RDMOPT_MDAMAGE_PROPERTY_FIRE_USER,{ bonus2 bMagicSubDefEle,Ele_Fire,getrandomoptinfo(ROA_VALUE); }
 RDMOPT_MDAMAGE_PROPERTY_FIRE_TARGET,{ bonus2 bMagicAddEle,Ele_Fire,getrandomoptinfo(ROA_VALUE); }
 RDMOPT_MDAMAGE_PROPERTY_WIND_USER,{ bonus2 bMagicSubDefEle,Ele_Wind,getrandomoptinfo(ROA_VALUE); }
@@ -77,7 +77,7 @@ RDMOPT_MDAMAGE_PROPERTY_TELEKINESIS_USER,{ bonus2 bMagicSubDefEle,Ele_Ghost,getr
 RDMOPT_MDAMAGE_PROPERTY_TELEKINESIS_TARGET,{ bonus2 bMagicAddEle,Ele_Ghost,getrandomoptinfo(ROA_VALUE); }
 RDMOPT_MDAMAGE_PROPERTY_UNDEAD_USER,{ bonus2 bMagicSubDefEle,Ele_Undead,getrandomoptinfo(ROA_VALUE); }
 RDMOPT_MDAMAGE_PROPERTY_UNDEAD_TARGET,{ bonus2 bMagicAddEle,Ele_Undead,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_BODY_ATTR_NOTHING,{ bonus bDefEle,Ele_Neutral; }
+RDMOPT_BODY_ATTR_NOTHING,{ bonus bDefEle,Ele_Neutral; } // 將玩家的防禦附加上 e 屬性
 RDMOPT_BODY_ATTR_WATER,{ bonus bDefEle,Ele_Water; }
 RDMOPT_BODY_ATTR_GROUND,{ bonus bDefEle,Ele_Earth; }
 RDMOPT_BODY_ATTR_FIRE,{ bonus bDefEle,Ele_Fire; }
@@ -88,7 +88,7 @@ RDMOPT_BODY_ATTR_DARKNESS,{ bonus bDefEle,Ele_Dark; }
 RDMOPT_BODY_ATTR_TELEKINESIS,{ bonus bDefEle,Ele_Ghost; }
 RDMOPT_BODY_ATTR_UNDEAD,{ bonus bDefEle,Ele_Undead; }
 //RDMOPT_BODY_ATTR_ALL,{}
-RDMOPT_RACE_TOLERACE_NOTHING,{ bonus2 bSubRace,RC_Formless,getrandomoptinfo(ROA_VALUE); }
+RDMOPT_RACE_TOLERACE_NOTHING,{ bonus2 bSubRace,RC_Formless,getrandomoptinfo(ROA_VALUE); } //  受到 r 種族的單位攻擊時, 減少 x% 的傷害 (種族減少傷害/種族減少傷害) (增加種族抗性)
 RDMOPT_RACE_TOLERACE_UNDEAD,{ bonus2 bSubRace,RC_Undead,getrandomoptinfo(ROA_VALUE); }
 RDMOPT_RACE_TOLERACE_ANIMAL,{ bonus2 bSubRace,RC_Brute,getrandomoptinfo(ROA_VALUE); }
 RDMOPT_RACE_TOLERACE_PLANT,{ bonus2 bSubRace,RC_Plant,getrandomoptinfo(ROA_VALUE); }
@@ -98,7 +98,7 @@ RDMOPT_RACE_TOLERACE_DEVIL,{ bonus2 bSubRace,RC_Demon,getrandomoptinfo(ROA_VALUE
 RDMOPT_RACE_TOLERACE_HUMAN,{ bonus2 bSubRace,RC_DemiHuman,getrandomoptinfo(ROA_VALUE); }
 RDMOPT_RACE_TOLERACE_ANGEL,{ bonus2 bSubRace,RC_Angel,getrandomoptinfo(ROA_VALUE); }
 RDMOPT_RACE_TOLERACE_DRAGON,{ bonus2 bSubRace,RC_Dragon,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_RACE_DAMAGE_NOTHING,{ bonus2 bAddRace,RC_Formless,getrandomoptinfo(ROA_VALUE); }
+RDMOPT_RACE_DAMAGE_NOTHING,{ bonus2 bAddRace,RC_Formless,getrandomoptinfo(ROA_VALUE); } // 物理攻擊 r 種族的單位時, 增加 x% 的傷害 (種族物理傷害/物理種族傷害)
 RDMOPT_RACE_DAMAGE_UNDEAD,{ bonus2 bAddRace,RC_Undead,getrandomoptinfo(ROA_VALUE); }
 RDMOPT_RACE_DAMAGE_ANIMAL,{ bonus2 bAddRace,RC_Brute,getrandomoptinfo(ROA_VALUE); }
 RDMOPT_RACE_DAMAGE_PLANT,{ bonus2 bAddRace,RC_Plant,getrandomoptinfo(ROA_VALUE); }
@@ -108,7 +108,7 @@ RDMOPT_RACE_DAMAGE_DEVIL,{ bonus2 bAddRace,RC_Demon,getrandomoptinfo(ROA_VALUE);
 RDMOPT_RACE_DAMAGE_HUMAN,{ bonus2 bAddRace,RC_DemiHuman,getrandomoptinfo(ROA_VALUE); }
 RDMOPT_RACE_DAMAGE_ANGEL,{ bonus2 bAddRace,RC_Angel,getrandomoptinfo(ROA_VALUE); }
 RDMOPT_RACE_DAMAGE_DRAGON,{ bonus2 bAddRace,RC_Dragon,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_RACE_MDAMAGE_NOTHING,{ bonus2 bMagicAddRace,RC_Formless,getrandomoptinfo(ROA_VALUE); }
+RDMOPT_RACE_MDAMAGE_NOTHING,{ bonus2 bMagicAddRace,RC_Formless,getrandomoptinfo(ROA_VALUE); } // 魔法攻擊 mr 種族的單位時, 增加 x% 的傷害
 RDMOPT_RACE_MDAMAGE_UNDEAD,{ bonus2 bMagicAddRace,RC_Undead,getrandomoptinfo(ROA_VALUE); }
 RDMOPT_RACE_MDAMAGE_ANIMAL,{ bonus2 bMagicAddRace,RC_Brute,getrandomoptinfo(ROA_VALUE); }
 RDMOPT_RACE_MDAMAGE_PLANT,{ bonus2 bMagicAddRace,RC_Plant,getrandomoptinfo(ROA_VALUE); }
@@ -118,7 +118,7 @@ RDMOPT_RACE_MDAMAGE_DEVIL,{ bonus2 bMagicAddRace,RC_Demon,getrandomoptinfo(ROA_V
 RDMOPT_RACE_MDAMAGE_HUMAN,{ bonus2 bMagicAddRace,RC_DemiHuman,getrandomoptinfo(ROA_VALUE); }
 RDMOPT_RACE_MDAMAGE_ANGEL,{ bonus2 bMagicAddRace,RC_Angel,getrandomoptinfo(ROA_VALUE); }
 RDMOPT_RACE_MDAMAGE_DRAGON,{ bonus2 bMagicAddRace,RC_Dragon,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_RACE_CRI_PERCENT_NOTHING,{ bonus2 bCriticalAddRace,RC_Formless,getrandomoptinfo(ROA_VALUE)/10; }
+RDMOPT_RACE_CRI_PERCENT_NOTHING,{ bonus2 bCriticalAddRace,RC_Formless,getrandomoptinfo(ROA_VALUE)/10; } // 對種族 r 的暴擊率 + n 
 RDMOPT_RACE_CRI_PERCENT_UNDEAD,{ bonus2 bCriticalAddRace,RC_Undead,getrandomoptinfo(ROA_VALUE)/10; }
 RDMOPT_RACE_CRI_PERCENT_ANIMAL,{ bonus2 bCriticalAddRace,RC_Brute,getrandomoptinfo(ROA_VALUE)/10; }
 RDMOPT_RACE_CRI_PERCENT_PLANT,{ bonus2 bCriticalAddRace,RC_Plant,getrandomoptinfo(ROA_VALUE)/10; }
@@ -128,7 +128,7 @@ RDMOPT_RACE_CRI_PERCENT_DEVIL,{ bonus2 bCriticalAddRace,RC_Demon,getrandomoptinf
 RDMOPT_RACE_CRI_PERCENT_HUMAN,{ bonus2 bCriticalAddRace,RC_DemiHuman,getrandomoptinfo(ROA_VALUE)/10; }
 RDMOPT_RACE_CRI_PERCENT_ANGEL,{ bonus2 bCriticalAddRace,RC_Angel,getrandomoptinfo(ROA_VALUE)/10; }
 RDMOPT_RACE_CRI_PERCENT_DRAGON,{ bonus2 bCriticalAddRace,RC_Dragon,getrandomoptinfo(ROA_VALUE)/10; }
-RDMOPT_RACE_IGNORE_DEF_PERCENT_NOTHING,{ bonus2 bIgnoreDefRaceRate,RC_Formless,getrandomoptinfo(ROA_VALUE); }
+RDMOPT_RACE_IGNORE_DEF_PERCENT_NOTHING,{ bonus2 bIgnoreDefRaceRate,RC_Formless,getrandomoptinfo(ROA_VALUE); } // 無視 r 種族魔物 n% 的物理防禦
 RDMOPT_RACE_IGNORE_DEF_PERCENT_UNDEAD,{ bonus2 bIgnoreDefRaceRate,RC_Undead,getrandomoptinfo(ROA_VALUE); }
 RDMOPT_RACE_IGNORE_DEF_PERCENT_ANIMAL,{ bonus2 bIgnoreDefRaceRate,RC_Brute,getrandomoptinfo(ROA_VALUE); }
 RDMOPT_RACE_IGNORE_DEF_PERCENT_PLANT,{ bonus2 bIgnoreDefRaceRate,RC_Plant,getrandomoptinfo(ROA_VALUE); }
@@ -138,7 +138,7 @@ RDMOPT_RACE_IGNORE_DEF_PERCENT_DEVIL,{ bonus2 bIgnoreDefRaceRate,RC_Demon,getran
 RDMOPT_RACE_IGNORE_DEF_PERCENT_HUMAN,{ bonus2 bIgnoreDefRaceRate,RC_DemiHuman,getrandomoptinfo(ROA_VALUE); }
 RDMOPT_RACE_IGNORE_DEF_PERCENT_ANGEL,{ bonus2 bIgnoreDefRaceRate,RC_Angel,getrandomoptinfo(ROA_VALUE); }
 RDMOPT_RACE_IGNORE_DEF_PERCENT_DRAGON,{ bonus2 bIgnoreDefRaceRate,RC_Dragon,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_RACE_IGNORE_MDEF_PERCENT_NOTHING,{ bonus2 bIgnoreMdefRaceRate,RC_Formless,getrandomoptinfo(ROA_VALUE); }
+RDMOPT_RACE_IGNORE_MDEF_PERCENT_NOTHING,{ bonus2 bIgnoreMdefRaceRate,RC_Formless,getrandomoptinfo(ROA_VALUE); } //  無視 r 種族魔物 n% 的魔法防禦
 RDMOPT_RACE_IGNORE_MDEF_PERCENT_UNDEAD,{ bonus2 bIgnoreMdefRaceRate,RC_Undead,getrandomoptinfo(ROA_VALUE); }
 RDMOPT_RACE_IGNORE_MDEF_PERCENT_ANIMAL,{ bonus2 bIgnoreMdefRaceRate,RC_Brute,getrandomoptinfo(ROA_VALUE); }
 RDMOPT_RACE_IGNORE_MDEF_PERCENT_PLANT,{ bonus2 bIgnoreMdefRaceRate,RC_Plant,getrandomoptinfo(ROA_VALUE); }
@@ -148,35 +148,35 @@ RDMOPT_RACE_IGNORE_MDEF_PERCENT_DEVIL,{ bonus2 bIgnoreMdefRaceRate,RC_Demon,getr
 RDMOPT_RACE_IGNORE_MDEF_PERCENT_HUMAN,{ bonus2 bIgnoreMdefRaceRate,RC_DemiHuman,getrandomoptinfo(ROA_VALUE); }
 RDMOPT_RACE_IGNORE_MDEF_PERCENT_ANGEL,{ bonus2 bIgnoreMdefRaceRate,RC_Angel,getrandomoptinfo(ROA_VALUE); }
 RDMOPT_RACE_IGNORE_MDEF_PERCENT_DRAGON,{ bonus2 bIgnoreMdefRaceRate,RC_Dragon,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_CLASS_DAMAGE_NORMAL_TARGET,{ bonus2 bAddClass,Class_Normal,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_CLASS_DAMAGE_BOSS_TARGET,{ bonus2 bAddClass,Class_Boss,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_CLASS_DAMAGE_NORMAL_USER,{ bonus2 bSubClass,Class_Normal,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_CLASS_DAMAGE_BOSS_USER,{ bonus2 bSubClass,Class_Boss,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_CLASS_MDAMAGE_NORMAL,{ bonus2 bMagicAddClass,Class_Normal,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_CLASS_MDAMAGE_BOSS,{ bonus2 bMagicAddClass,Class_Boss,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_CLASS_IGNORE_DEF_PERCENT_NORMAL,{ bonus2 bIgnoreDefClassRate,Class_Normal,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_CLASS_IGNORE_DEF_PERCENT_BOSS,{ bonus2 bIgnoreDefClassRate,Class_Boss,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_CLASS_IGNORE_MDEF_PERCENT_NORMAL,{ bonus2 bIgnoreMdefClassRate,Class_Normal,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_CLASS_IGNORE_MDEF_PERCENT_BOSS,{ bonus2 bIgnoreMdefClassRate,Class_Boss,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_DAMAGE_SIZE_SMALL_TARGET,{ bonus2 bAddSize,Size_Small,getrandomoptinfo(ROA_VALUE); }
+RDMOPT_CLASS_DAMAGE_NORMAL_TARGET,{ bonus2 bAddClass,Class_Normal,getrandomoptinfo(ROA_VALUE); } // 物理攻擊 一般 類別的單位時, 增加 x% 的傷害   (物理階級傷害/魔法階級傷害)
+RDMOPT_CLASS_DAMAGE_BOSS_TARGET,{ bonus2 bAddClass,Class_Boss,getrandomoptinfo(ROA_VALUE); } // 物理攻擊 boss 類別的單位時, 增加 x% 的傷害   (物理階級傷害/魔法階級傷害)
+RDMOPT_CLASS_DAMAGE_NORMAL_USER,{ bonus2 bSubClass,Class_Normal,getrandomoptinfo(ROA_VALUE); } // 受到 一般 類別的單位攻擊時, 減少 x% 的傷害
+RDMOPT_CLASS_DAMAGE_BOSS_USER,{ bonus2 bSubClass,Class_Boss,getrandomoptinfo(ROA_VALUE); } // 受到 boss 類別的單位攻擊時, 減少 x% 的傷害
+RDMOPT_CLASS_MDAMAGE_NORMAL,{ bonus2 bMagicAddClass,Class_Normal,getrandomoptinfo(ROA_VALUE); } // 魔法攻擊 一般 類別的單位時, 增加 x% 的傷害
+RDMOPT_CLASS_MDAMAGE_BOSS,{ bonus2 bMagicAddClass,Class_Boss,getrandomoptinfo(ROA_VALUE); } // 魔法攻擊 boss 類別的單位時, 增加 x% 的傷害
+RDMOPT_CLASS_IGNORE_DEF_PERCENT_NORMAL,{ bonus2 bIgnoreDefClassRate,Class_Normal,getrandomoptinfo(ROA_VALUE); } //  無視 c 類別魔物 n% 的物理防禦
+RDMOPT_CLASS_IGNORE_DEF_PERCENT_BOSS,{ bonus2 bIgnoreDefClassRate,Class_Boss,getrandomoptinfo(ROA_VALUE); } // 無視 boss 類別魔物 n% 的物理防禦
+RDMOPT_CLASS_IGNORE_MDEF_PERCENT_NORMAL,{ bonus2 bIgnoreMdefClassRate,Class_Normal,getrandomoptinfo(ROA_VALUE); } // 無視 一般 類別魔物 n% 的魔法防禦
+RDMOPT_CLASS_IGNORE_MDEF_PERCENT_BOSS,{ bonus2 bIgnoreMdefClassRate,Class_Boss,getrandomoptinfo(ROA_VALUE); } // 無視 boss 類別魔物 n% 的魔法防禦
+RDMOPT_DAMAGE_SIZE_SMALL_TARGET,{ bonus2 bAddSize,Size_Small,getrandomoptinfo(ROA_VALUE); } // 物理攻擊 s 體型的單位時, 增加 x% 的傷害 (體型物理傷害)
 RDMOPT_DAMAGE_SIZE_MIDIUM_TARGET,{ bonus2 bAddSize,Size_Medium,getrandomoptinfo(ROA_VALUE); }
 RDMOPT_DAMAGE_SIZE_LARGE_TARGET,{ bonus2 bAddSize,Size_Large,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_DAMAGE_SIZE_SMALL_USER,{ bonus2 bSubSize,Size_Small,getrandomoptinfo(ROA_VALUE); }
+RDMOPT_DAMAGE_SIZE_SMALL_USER,{ bonus2 bSubSize,Size_Small,getrandomoptinfo(ROA_VALUE); } // 受到 s 體型的單位攻擊時, 減少 x% 的傷害 (減少體型傷害/體型減少傷害)
 RDMOPT_DAMAGE_SIZE_MIDIUM_USER,{ bonus2 bSubSize,Size_Medium,getrandomoptinfo(ROA_VALUE); }
 RDMOPT_DAMAGE_SIZE_LARGE_USER,{ bonus2 bSubSize,Size_Large,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_DAMAGE_SIZE_PERFECT,{ bonus bNoSizeFix,1; }
-RDMOPT_DAMAGE_CRI_TARGET,{ bonus bCritAtkRate,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_DAMAGE_CRI_USER,{ bonus bCritDefRate,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_RANGE_ATTACK_DAMAGE_TARGET,{ bonus bLongAtkRate,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_RANGE_ATTACK_DAMAGE_USER,{ bonus bLongAtkDef,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_HEAL_VALUE,{ bonus bHealPower,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_HEAL_MODIFY_PERCENT,{ bonus bHealPower2,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_DEC_SPELL_CAST_TIME,{ bonus bVariableCastrate,-(getrandomoptinfo(ROA_VALUE));}
-RDMOPT_DEC_SPELL_DELAY_TIME,{ bonus bDelayrate,-(getrandomoptinfo(ROA_VALUE)); }
-RDMOPT_DEC_SP_CONSUMPTION,{ bonus bUseSPrate,-(getrandomoptinfo(ROA_VALUE)); }
+RDMOPT_DAMAGE_SIZE_PERFECT,{ bonus bNoSizeFix,1; } // 攻擊時無視敵方的體型壓制,
+RDMOPT_DAMAGE_CRI_TARGET,{ bonus bCritAtkRate,getrandomoptinfo(ROA_VALUE); } // 增加 n% 暴擊傷害 (增加暴傷)
+RDMOPT_DAMAGE_CRI_USER,{ bonus bCritDefRate,getrandomoptinfo(ROA_VALUE); } // 減少 n% 暴擊傷害
+RDMOPT_RANGE_ATTACK_DAMAGE_TARGET,{ bonus bLongAtkRate,getrandomoptinfo(ROA_VALUE); } // 增加 n% 遠距離攻擊傷害 (遠距離傷害增加/遠傷增加)
+RDMOPT_RANGE_ATTACK_DAMAGE_USER,{ bonus bLongAtkDef,getrandomoptinfo(ROA_VALUE); } // 被遠距離物理攻擊受到的傷害減少 n% //遠距離減傷 遠距離減少傷害 遠傷減少
+RDMOPT_HEAL_VALUE,{ bonus bHealPower,getrandomoptinfo(ROA_VALUE); }  // 使用全部治癒系列技能的治癒效果增加 n%
+RDMOPT_HEAL_MODIFY_PERCENT,{ bonus bHealPower2,getrandomoptinfo(ROA_VALUE); } // 被任意治癒技能治癒時, 治癒效果增加 n% 
+RDMOPT_DEC_SPELL_CAST_TIME,{ bonus bVariableCastrate,-(getrandomoptinfo(ROA_VALUE));} // 變詠 - %
+RDMOPT_DEC_SPELL_DELAY_TIME,{ bonus bDelayrate,-(getrandomoptinfo(ROA_VALUE)); } // 所有技能共通延遲 - %
+RDMOPT_DEC_SP_CONSUMPTION,{ bonus bUseSPrate,-(getrandomoptinfo(ROA_VALUE)); } // SP 消耗量 - n%
 //RDMOPT_HP_DRAIN,{ /* Needs more info */ }
 //RDMOPT_SP_DRAIN,{ /* Needs more info */ }
-RDMOPT_WEAPON_ATTR_NOTHING,{ bonus bAtkEle,Ele_Neutral; }
+RDMOPT_WEAPON_ATTR_NOTHING,{ bonus bAtkEle,Ele_Neutral; } / 將玩家的攻擊附加上 e 屬性
 RDMOPT_WEAPON_ATTR_WATER,{ bonus bAtkEle,Ele_Water; }
 RDMOPT_WEAPON_ATTR_GROUND,{ bonus bAtkEle,Ele_Earth; }
 RDMOPT_WEAPON_ATTR_FIRE,{ bonus bAtkEle,Ele_Fire; }
@@ -186,15 +186,15 @@ RDMOPT_WEAPON_ATTR_SAINT,{ bonus bAtkEle,Ele_Holy; }
 RDMOPT_WEAPON_ATTR_DARKNESS,{ bonus bAtkEle,Ele_Dark; }
 RDMOPT_WEAPON_ATTR_TELEKINESIS,{ bonus bAtkEle,Ele_Ghost; }
 RDMOPT_WEAPON_ATTR_UNDEAD,{ bonus bAtkEle,Ele_Undead; }
-RDMOPT_WEAPON_INDESTRUCTIBLE,{ bonus bUnbreakableWeapon,1; }
-RDMOPT_BODY_INDESTRUCTIBLE,{ bonus bUnbreakableArmor,1; }
-RDMOPT_MDAMAGE_SIZE_SMALL_TARGET,{ bonus2 bMagicAddSize,Size_Small,getrandomoptinfo(ROA_VALUE); }
+RDMOPT_WEAPON_INDESTRUCTIBLE,{ bonus bUnbreakableWeapon,1; } // 武器不會因任何理由而被損壞
+RDMOPT_BODY_INDESTRUCTIBLE,{ bonus bUnbreakableArmor,1; } // 鎧甲不會因任何理由而被損壞
+RDMOPT_MDAMAGE_SIZE_SMALL_TARGET,{ bonus2 bMagicAddSize,Size_Small,getrandomoptinfo(ROA_VALUE); } // 魔法攻擊 s 體型的單位時, 增加 x% 的傷害 (體型魔法傷害)
 RDMOPT_MDAMAGE_SIZE_MIDIUM_TARGET,{ bonus2 bMagicAddSize,Size_Medium,getrandomoptinfo(ROA_VALUE); }
 RDMOPT_MDAMAGE_SIZE_LARGE_TARGET,{ bonus2 bMagicAddSize,Size_Large,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_MDAMAGE_SIZE_SMALL_USER,{ bonus2 bMagicSubSize,Size_Small,getrandomoptinfo(ROA_VALUE); }
+RDMOPT_MDAMAGE_SIZE_SMALL_USER,{ bonus2 bMagicSubSize,Size_Small,getrandomoptinfo(ROA_VALUE); } //  受到 s 體型的魔法攻擊時, 減少 x% 的傷害
 RDMOPT_MDAMAGE_SIZE_MIDIUM_USER,{ bonus2 bMagicSubSize,Size_Medium,getrandomoptinfo(ROA_VALUE); }
 RDMOPT_MDAMAGE_SIZE_LARGE_USER,{ bonus2 bMagicSubSize,Size_Large,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_ATTR_TOLERACE_ALL,{ bonus2 bSubEle,Ele_All,getrandomoptinfo(ROA_VALUE); }
+RDMOPT_ATTR_TOLERACE_ALL,{ bonus2 bSubEle,Ele_All,getrandomoptinfo(ROA_VALUE); } // 受到 e 屬性攻擊時, 減少 x% 的傷害 (減少屬性傷害)
 RDMOPT_RACE_WEAPON_TOLERACE_NOTHING,{ bonus3 bSubRace,RC_Formless,getrandomoptinfo(ROA_VALUE),BF_WEAPON; }
 RDMOPT_RACE_WEAPON_TOLERACE_UNDEAD,{ bonus3 bSubRace,RC_Undead,getrandomoptinfo(ROA_VALUE),BF_WEAPON; }
 RDMOPT_RACE_WEAPON_TOLERACE_ANIMAL,{ bonus3 bSubRace,RC_Brute,getrandomoptinfo(ROA_VALUE),BF_WEAPON; }
@@ -207,8 +207,8 @@ RDMOPT_RACE_WEAPON_TOLERACE_ANGEL,{ bonus3 bSubRace,RC_Angel,getrandomoptinfo(RO
 RDMOPT_RACE_WEAPON_TOLERACE_DRAGON,{ bonus3 bSubRace,RC_Dragon,getrandomoptinfo(ROA_VALUE),BF_WEAPON; }
 // RDMOPT_RANGE_WEAPON_ATTACK_DAMAGE_TARGET,{}
 // RDMOPT_RANGE_WEAPON_ATTACK_DAMAGE_USER,{}
-RDMOPT_RACE_TOLERACE_PLAYER_HUMAN,{ bonus2 bSubRace,RC_Player_Human,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_RACE_TOLERACE_PLAYER_DORAM,{ bonus2 bSubRace,RC_Player_Doram,getrandomoptinfo(ROA_VALUE); }
+RDMOPT_RACE_TOLERACE_PLAYER_HUMAN,{ bonus2 bSubRace,RC_Player_Human,getrandomoptinfo(ROA_VALUE); } // 受到 玩家人型 種族的單位攻擊時, 減少 x% 的傷害 (種族減少傷害/種族減少傷害) (增加種族抗性)
+RDMOPT_RACE_TOLERACE_PLAYER_DORAM,{ bonus2 bSubRace,RC_Player_Doram,getrandomoptinfo(ROA_VALUE); }  // 受到 貓 種族的單位攻擊時, 減少 x% 的傷害 (種族減少傷害/種族減少傷害) (增加種族抗性)
 RDMOPT_RACE_DAMAGE_PLAYER_HUMAN,{ bonus2 bAddRace,RC_Player_Human,getrandomoptinfo(ROA_VALUE); }
 RDMOPT_RACE_DAMAGE_PLAYER_DORAM,{ bonus2 bAddRace,RC_Player_Doram,getrandomoptinfo(ROA_VALUE); }
 RDMOPT_RACE_MDAMAGE_PLAYER_HUMAN,{ bonus2 bMagicAddRace,RC_Player_Human,getrandomoptinfo(ROA_VALUE);  }
@@ -220,5 +220,5 @@ RDMOPT_RACE_IGNORE_DEF_PERCENT_PLAYER_DORAM,{ bonus2 bIgnoreDefRaceRate,RC_Playe
 RDMOPT_RACE_IGNORE_MDEF_PERCENT_PLAYER_HUMAN,{ bonus2 bIgnoreMdefRaceRate,RC_Player_Human,getrandomoptinfo(ROA_VALUE); }
 RDMOPT_RACE_IGNORE_MDEF_PERCENT_PLAYER_DORAM,{ bonus2 bIgnoreMdefRaceRate,RC_Player_Doram,getrandomoptinfo(ROA_VALUE); }
 // RDMOPT_REFLECT_DAMAGE_PERCENT,{}
-RDMOPT_MELEE_ATTACK_DAMAGE_TARGET,{ bonus bShortAtkRate,getrandomoptinfo(ROA_VALUE); }
-RDMOPT_MELEE_ATTACK_DAMAGE_USER,{ bonus bNearAtkDef,getrandomoptinfo(ROA_VALUE); }
+RDMOPT_MELEE_ATTACK_DAMAGE_TARGET,{ bonus bShortAtkRate,getrandomoptinfo(ROA_VALUE); } // 增加 n% 近距離攻擊傷害 (近距離傷害增加/近傷增加)
+RDMOPT_MELEE_ATTACK_DAMAGE_USER,{ bonus bNearAtkDef,getrandomoptinfo(ROA_VALUE); } // 被近距離物理攻擊受到的傷害減少 n% //近距離減傷 近距離減少傷害 近傷減少

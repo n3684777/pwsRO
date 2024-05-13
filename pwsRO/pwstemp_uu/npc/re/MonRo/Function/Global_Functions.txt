@@ -22,10 +22,10 @@ function	script	F_GetInstancePrize	{
 		0,		  0,		  0,		  0,		  0,		  0, 		  0,		  0,		  0,
 		0,		  0,		  0,		  0,		  0,		  0, 		  0,		  0,          8;
 	.@PointVarName$ = "#instancePoint";
-	// .@mapTable$ 			: ??舀?祇???????????敺?銝??????啣?????蝔?
-	// .@prizeTable 		: ?????萇?拙???????拙??蝺刻?? (??乩????喟策??拙??隢?撖?0)
-	// .@instancePointTable : ?????萇????舀?祇????? (??乩????喟策暺???貉??撖?0)
-	// .@PointVarName$ 		: ??舀?祇????貊??霈???詨??蝔?
+	// .@mapTable$ 			: 副本通關的最後一個地圖名稱
+	// .@prizeTable 		: 獎勵物品的物品編號 (若不想給物品請寫0)
+	// .@instancePointTable : 獎勵的副本點數 (若不想給點數請寫0)
+	// .@PointVarName$ 		: 副本點數的變數名稱
 	
 	if(!instance_id() || getargcount() < 2)
 		end;
@@ -69,13 +69,13 @@ function	script	WindowsCheck	{
 	if(!.@windows) set .@windows,1;
 	
 	if(countstr(getarg(0),getarg(1)) > .@windows && getgmlevel() < 90) {
-		mes "[??脣??蝒???斗?瑞頂蝯崧";
-		mes "IP嚗?^FF6600"+ getarg(1)+ "^000000";
-		mes "???隡?鋆∟????? ^FF6600" + .@windows + "^000000 雿???? IP ?????拙振???";
-		mes "雿???⊥????脣?亙?舀?穿??";
+		mes "[防多窗判斷系統]";
+		mes "IP：^FF6600"+ getarg(1)+ "^000000";
+		mes "隊伍裡超過 ^FF6600" + .@windows + "^000000 位同 IP 的玩家。";
+		mes "你無法進入副本！";
 		mes " ";
 		mes " ";
-		mes "^FF0000???閮鳴????芾???????券??隡???抒????賜?????^000000";
+		mes "^FF0000備註：只要有在隊伍內的都算。^000000";
 		close2;
 		cutin "", 255;
 		end;
@@ -107,6 +107,55 @@ function	script	PartyIPCheck	{
 	}
 	return 1;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -167,16 +216,16 @@ OnClock2330:
 //----- RO大盜的隨機出現城市數量設定 [0-13 有14個 ]-----
 set $@ditu,rand(0,12);			
 //----- RO大盜的隨機出現城市設定 ----- (別打.gat)
-setarray $@romonapper$[0],"lhz_dun01","lhz_dun02","lhz_dun03","sp_rudus3","sp_rudus2","alberta","aldebaran","xmas","comodo","yuno","gonryun","louyang","niflheim";
+setarray $@romonapper$[0],"lhz_dun01","lhz_dun02","lhz_dun03","sp_rudus3","sp_rudus2";
 //----- RO大盜的隨機出現城市名字設定 -----  (請對應上面次序)
-setarray $@romonmapname$[0],"普隆德拉","夢羅克","伊斯魯德","吉芬","斐揚","艾爾貝塔","艾爾帕蘭","姜餅城","克魔島","朱諾","昆侖","洛陽","尼芙菲姆";
+setarray $@romonmapname$[0],"普隆德拉","夢羅克","伊斯魯德","吉芬","斐揚","艾爾貝塔";
 
 monster ""+$@romonapper$[$@ditu]+"",0,0,"幽魂",2003,5;
 //announce "[ 抓鬼令 ] : 怨念幽魂在 [ "+$@romonmapname$[$@ditu]+" ] 出現,請玩家們速往抓捕,重重有賞!",16;
 end;
 }
 
--	script	ROPIRATESKELL	-1,{
+-	script	ROPIRATESKELL1	-1,{
 OnNPCKillEvent:
   	if ( killedrid == 2003 ) {
 //----------------------------------------------------------------[ RO大盜獎勵的相關設定 , 請各伺服器依情況斟酌 ]---------------------------------------------------------------- 
@@ -213,7 +262,7 @@ OnNPCKillEvent:
 	mes "[ ^00BBFF系統提示^000000 ]";
 	mes "恭喜你殺死了[ ^00BBFF怨念幽魂^000000 ]!!";
 	mes "你獲得了 ^0000FF["+getitemname($@RORewardItem[@GetItem])+"]^000000 數量 ^FF0000["+$@RORewardItemMax[@GetItem]+"]^000000 個";
-	announce "[ 英雄榜 ] : 恭喜玩家 [ "+strcharinfo(0)+" ] 殺死了 [ 怨念幽魂 ] 獲得獎勵獎品 ["+getitemname($@RORewardItem[@GetItem])+"] 數量 ["+$@RORewardItemMax[@GetItem]+"] 個。",16;
+	//announce "[ 英雄榜 ] : 恭喜玩家 [ "+strcharinfo(0)+" ] 殺死了 [ 怨念幽魂 ] 獲得獎勵獎品 ["+getitemname($@RORewardItem[@GetItem])+"] 數量 ["+$@RORewardItemMax[@GetItem]+"] 個。",16;
 	close;
 	}
 	if (@a==2) {
@@ -222,7 +271,7 @@ OnNPCKillEvent:
 	mes "[ ^00BBFF系統提示^000000 ]";
 	mes "恭喜你殺死了[ ^00BBFF怨念幽魂^000000 ]!!";
 	mes "你獲得了 ^FF0000["+@GetZeny+"]^000000 Zeny";
-	announce "[ 英雄榜 ] : 恭喜玩家 [ "+strcharinfo(0)+" ] 殺死了 [ 怨念幽魂 ] 獲得獎勵獎金 ["+@GetZeny+"] Zeny。",16;
+	//announce "[ 英雄榜 ] : 恭喜玩家 [ "+strcharinfo(0)+" ] 殺死了 [ 怨念幽魂 ] 獲得獎勵獎金 ["+@GetZeny+"] Zeny。",16;
 	close;
 	}
 	if (@a==3) {
@@ -231,7 +280,7 @@ OnNPCKillEvent:
 	mes "[ ^00BBFF系統提示^000000 ]";
 	mes "恭喜你殺死了[ ^00BBFF怨念幽魂^000000 ]!!";
 	mes "你獲得了 ^0000FF商城點數^000000 ^FF0000["+@GetCash+"]^000000 點";
-	announce "[ 英雄榜 ] : 恭喜玩家 [ "+strcharinfo(0)+" ] 殺死了 [ 怨念幽魂 ] 獲得獎勵商城點數 ["+@GetCash+"] 點。",16;
+	//announce "[ 英雄榜 ] : 恭喜玩家 [ "+strcharinfo(0)+" ] 殺死了 [ 怨念幽魂 ] 獲得獎勵商城點數 ["+@GetCash+"] 點。",16;
 	close;
 	}
 	if (@a==4) {
@@ -240,7 +289,7 @@ OnNPCKillEvent:
 	mes "很不幸";
 	mes "[ ^00BBFF怨念幽魂^000000 ]用盡了最后的一絲力量,";
 	mes "與你同歸於盡了!!";
-	announce "[ 追悼會 ] : 英勇的玩家 [ "+strcharinfo(0)+" ] ,雖然制服了 [ 怨念幽魂 ] , 但是他自己卻付出了血的代價!!",16;
+	//announce "[ 追悼會 ] : 英勇的玩家 [ "+strcharinfo(0)+" ] ,雖然制服了 [ 怨念幽魂 ] , 但是他自己卻付出了血的代價!!",16;
 	close;
 	}
 	}
