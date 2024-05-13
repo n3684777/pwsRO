@@ -166,7 +166,7 @@ lroom00,139,73,3	script	破寶換破鑽	554,{
 	mes "感謝您的交易。";
 	mes "每^ff00005個 破滅寶石^000000 可幫您換成^3333ff破滅鑽石1個^000000，那麼..要開始交易了?";
 	next;
-	setarray .@coin_amount[0],10,100,500,1000;
+	setarray .@coin_amount[0],50,100,500,1000;
 	while(1) {
 		.@menu$ = "";
 		for(.@i = 0; .@i<getarraysize(.@coin_amount); .@i++) {
@@ -254,7 +254,7 @@ lroom00,139,69,3	script	破幣換破寶	554,{
 	mes "感謝您的交易。";
 	mes "每^ff000050個 破滅的硬幣^000000 可幫您換成^3333ff破滅寶石1個^000000，那麼..要開始交易了?";
 	next;
-	setarray .@coin_amount[0],10,100,500,1000;
+	setarray .@coin_amount[0],3000,5000,15000,20000;
 	while(1) {
 		.@menu$ = "";
 		for(.@i = 0; .@i<getarraysize(.@coin_amount); .@i++) {
